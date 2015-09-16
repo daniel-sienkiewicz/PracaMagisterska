@@ -12,5 +12,6 @@ Uniwersytet Gdañski
 * symulator - opis symulatora samochodowego
 * tex - pliki pracy magisterskiej (LaTeX)
 * vm800 - pliki potrzebne do obs³ugi ekranu FTDI EVE VM800
+
 ##Autor
 [Daniel Sienkiewicz](mailto:daniel@sienkiewicz.ovh)
