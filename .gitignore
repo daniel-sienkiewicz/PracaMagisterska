@@ -56,3 +56,6 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+
+#Other
+*.autosave
