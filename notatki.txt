@@ -1,0 +1,5 @@
+èrod≥a:
+https://www.arduino.cc/en/Tutorial/Files
+https://www.arduino.cc/en/Tutorial/DumpFile
+https://www.arduino.cc/en/Tutorial/Datalogger
+http://playground.arduino.cc/Code/Timer1
