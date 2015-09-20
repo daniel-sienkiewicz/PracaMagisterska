@@ -1,3 +1,5 @@
+#include <TimerOne.h>
+
 // Digital ports (PCF)
 int sda = 8;
 int scl = 9;
@@ -37,8 +39,10 @@ void setup() {
    
    audi = readData();
       
-   // Set interrupt - changes in pin0 (HIGH) execute function checkChanges()
-   attachInterrupt(pinInt0, checkChanges, FALLING);
+   // Set interrupt - changes in pin0 (HIGH) execute function checkChangesDigital()
+   attachInterrupt(pinInt0, checkChangesDigital, FALLING);
+   Timer1.initialize(500000); // set a timer of length 100000 microseconds
+   Timer1.attachInterrupt(checkChangesAnalog, 500000); // the callback will be called on each 5th timer interrupt, i.e. every 0.5 sec
 }
 
 // Reading value from analog ports (temperatures)
@@ -118,6 +122,7 @@ void printObj(struct car * obj){
   Serial.println("+-------------------+");
 }
 
+// Reading data about car status 
 struct car * readData(){
   struct car * tmp = (struct car *)malloc(sizeof(struct car));
   
@@ -140,7 +145,8 @@ struct car * readData(){
   return tmp;
 }
 
-void checkChanges(){
+// Check if sth on digital ports was changed
+void checkChangesDigital(){
   digitalWrite(13, HIGH);
   struct car * tmp = readData();
   
@@ -154,14 +160,29 @@ void checkChanges(){
     Serial.println("Wsteczny!!");
   if(tmp->lights != audi->lights)
     Serial.println("Światła sie zmienily");
+  
+  audi = tmp;
+  
+  // DEBUG
+  printObj(audi);
+  digitalWrite(13, LOW);
+}
+
+// Check if sth on analog ports was changed
+void checkChangesAnalog(){
+  digitalWrite(13, HIGH);
+  struct car * tmp = readData();
+  
   if(tmp->tempOut != audi->tempOut)
     Serial.println("TempOut sie zmienilo");
   if(tmp->tempIn != audi->tempIn)
     Serial.println("TempIn sie zmienilo");
   if(tmp->tempEngine != audi->tempEngine)
     Serial.println("TempEngine sie zmienilo");
-  
+    
   audi = tmp;
+  
+  // DEBUG
   printObj(audi);
   digitalWrite(13, LOW);
 }
@@ -169,7 +190,8 @@ void checkChanges(){
 void loop() {
   
   /* Version with ask about changes in loop
-  * checkChanges();
+  * checkChangesDigital();
+  * checkChangesAnalog();
   * delay(1000);
   */
 }
