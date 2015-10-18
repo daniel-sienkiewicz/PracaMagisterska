@@ -79,7 +79,7 @@ int readPCF(char adres){
   digitalWrite(sda, LOW);
   delay(d);
   digitalWrite(scl, LOW);
-	Serial.println(adres);
+
   for(m = 0x80; m; m >>= 1){ // address transfer MSB->LSB
     if(adres & m)         
       digitalWrite(sda,HIGH);
