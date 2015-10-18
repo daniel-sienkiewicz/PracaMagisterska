@@ -13,7 +13,7 @@
 \date     {2015}
 \miejsce  {Gdańsk}
 
-\opiekun  {dr Janusz Młodzianowski}
+\opiekun  {dr inż. Janusz Młodzianowski}
 
 \begin{document}
 
@@ -40,46 +40,51 @@ TO DO
 \section{Cele}
 TO DO
 \section{Założenia}
-TO DO
+- galileo + arduino (środowisko)
+- dostepne czujniki
+- kamerka - czujnik cofania /lusterko wsteczne
+- GPS - rejestracja czasu drogi
+- komputer nie do samochodu tylko SYMULATOR!!!
+- immo???
+- nie ma predkosci i przebiegu!!! bo NIE
 \section{Plan pracy}
 TO DO
 %================KONIEC WPROWADZENIE=====================
 
 %================ARCHITEKTURA=====================
 \chapter{Architektura}
-\section{Opis wersji, etapy pracy nad sprzętem}
-\subsection{Porównanie dostępnych na rynku mikrokomputerów}
-TO DO
-\section{Obsługa urządzeń wejścia/wyjścia w różnych systemach operacyjnych}
-TO DO
-\subsection{Podstawowe interfejsy I/O}
-TO DO
-\subsubsection{SPI}
-TO DO
-\subsubsection{$I^2C$}
-TO DO
-\subsubsection{USB OTG}
-TO DO
-\subsubsection{GPS}
-TO DO
-\subsubsection{Wyjścia analogowe i cyfrowe}
-TO DO
-\subsection{Symulator samochodu}
-TO DO
+\subsection{Schemat blokowy i opis funkcjonalny}
+\subsection{Mechanizmy komunikacji systemu mikroprocesorowego z otoczeniem}
+- porty
+- przerwania
+- dopytywanie
+- timer
+- protokół komunikacyjny (co to jest) np I2C
+- złączki, kable itp
+// po 1 stronie max na kazdy
+
 %================KONIEC ARCHITEKTURA=====================
 
 %================IMPLEMENTACJA=====================
 \chapter{Implementacja}
-\section{Wizja programu}
-TO DO
-\section{Opis funkcji}
+\section{I2C}
+\subsection{Problemy z bibliotekami}
+\subsection{moja implenatacja I2C (read)}
 \subsection{Schemat blokowy programu}
-TO DO
-\section{Użyte algorytmy}
-\subsection{Próbkowanie sygnału}
-TO DO
-\section{Schematy sprzętu}
-TO DO
+\subsection{Moja biblioteka do R/W Arduino galileo - COŚ CZEGO NIE MA JESZCZE NIGDZIE!!!!}
+\section{Założenia funkcjonalne}
+ - czytanie z czyjników, pisanie do ekaranu, zczytanie z ekranu
+ - schemat blokowy z BAJERAMI i wybrane to co zrobie
+ - włączanie i wyłączanie systemu
+\section{Integracja z samochodem}
+ - podpięcie pod auto
+ - włączanie i wyłączanie systemu - mozna brutalnie wylaczyc
+\section{VM800}
+  - na poczatku emulacja na PC
+  - potem przepisanie na niski poziom
+  - ostatecznie podpiecie do Galielo (poszukac czy juz jest?)
+  
+   programers manual reference vm800 ftdi POSZUKAĆ!!!!
 %================KONIEC IMPLEMENTACJA=====================
 
 \summary
