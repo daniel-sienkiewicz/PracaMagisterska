@@ -3,3 +3,50 @@ https://www.arduino.cc/en/Tutorial/Files
 https://www.arduino.cc/en/Tutorial/DumpFile
 https://www.arduino.cc/en/Tutorial/Datalogger
 http://playground.arduino.cc/Code/Timer1
+
+
+zalozenia:
+- galileo + arduino (œrodowisko)
+- dostepne czujniki
+- kamerka - czujnik cofania /lusterko wsteczne
+- GPS - rejestracja czasu drogi
+- komputer nie do samochodu tylko SYMULATOR!!!
+- immo???
+- nie ma predkosci i przebiegu!!! bo NIE
+
+2) Archutektura proponowanego systemu:
+- schemat blokowy
+- opis funkcjonalny
+
+2.1) Mechanizmy komunikacji systemu mikroporosesorowego z otroczeniem
+- porty
+- przerwania
+- dopytywanie
+- timer
+- protokó³ komunikacyjny (co to jest) np I2C
+- z³¹czki, kable itp
+// po 1 stronie max na kazdy
+
+dodatek/ podrozdzia³?:
+- przegl¹d dostepnych na rynku mikrokomputerow
+- karty katalogowe sprzetu
+
+3) Implementacja
+3.1 I2C
+3.1.1 Problemy z bibliotekami
+3.1.2 moja implenatacja I2C (read)
+3.1.3 Moja biblioteka do R/W Arduino galileo - COŒ CZEGO NIE MA JESZCZE NIGDZIE!!!!
+
+3.2 Za³o¿enia funkcjonalne
+ - czytanie z czyjników, pisanie do ekaranu, zczytanie z ekranu
+ - schemat blokowy z BAJERAMI i wybrane to co zrobie
+ - w³¹czanie i wy³¹czanie systemu
+ 3.3
+ - podpiêcie pod auto
+ - w³¹czanie i wy³¹czanie systemu - mozna brutalnie wylaczyc
+ 3.4 VM800
+  - na poczatku emulacja na PC
+  - potem przepisanie na niski poziom
+  - ostatecznie podpiecie do Galielo (poszukac czy juz jest?)
+ 
+ programers manual reference vm800 ftdi POSZUKAÆ!!!!
