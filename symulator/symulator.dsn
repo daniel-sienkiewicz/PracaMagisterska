@@ -11,12 +11,12 @@ download a copy.-->
 			<GUIDES horiz='7' vert='5'/>
 			<TITLE>Symulator Samochodu</TITLE>
 			<AUTHOR>Daniel Sienkiewicz</AUTHOR>
-			<REVISION>3.0</REVISION>
+			<REVISION>3.2</REVISION>
 			<DOCNUMBER></DOCNUMBER>
 			<ORGANISATION></ORGANISATION>
 			<SHEETS>1 of 1</SHEETS>
 			<SHOWS>1</SHOWS>
-			<DATE>17.05.2015</DATE>
+			<DATE>18.10.2015</DATE>
 			<GRID spacing='100.00000' snap='1'/>
 		</DETAILS>
 		<FONT id='1'>
@@ -930,18 +930,18 @@ download a copy.-->
 		<WIRE a='12.00000,132.00000' b='22.00000,132.00000'/>
 		<WIRE a='8.00000,132.00000' b='12.00000,132.00000'/>
 		<RECTANGLE a='188.00000,72.00000' b='201.00000,107.00000' style='6' fill='0'/>
-		<PIN pos='182.00000,76.00000' which='0' elec='0' direction='3' part='0' number='1' show='3' length='30' number_pos='0' centre_name='0'>P0</PIN>
-		<PIN pos='182.00000,80.00000' which='0' elec='0' direction='3' part='0' number='2' show='3' length='30' number_pos='0' centre_name='0'>P1</PIN>
-		<PIN pos='182.00000,84.00000' which='0' elec='0' direction='3' part='0' number='3' show='3' length='30' number_pos='0' centre_name='0'>P2</PIN>
-		<PIN pos='182.00000,88.00000' which='0' elec='0' direction='3' part='0' number='4' show='3' length='30' number_pos='0' centre_name='0'>P3</PIN>
-		<PIN pos='182.00000,92.00000' which='0' elec='0' direction='3' part='0' number='5' show='3' length='30' number_pos='0' centre_name='0'>P4</PIN>
-		<PIN pos='207.00000,104.00000' which='0' elec='0' direction='2' part='0' number='9' show='3' length='30' number_pos='0' centre_name='0'>INT</PIN>
-		<PIN pos='207.00000,100.00000' which='0' elec='0' direction='2' part='0' number='10' show='3' length='30' number_pos='0' centre_name='0'>SCL</PIN>
-		<PIN pos='207.00000,96.00000' which='0' elec='0' direction='2' part='0' number='11' show='3' length='30' number_pos='0' centre_name='0'>SDA</PIN>
-		<PIN pos='207.00000,92.00000' which='0' elec='0' direction='2' part='0' number='12' show='3' length='30' number_pos='0' centre_name='0'>VSS</PIN>
-		<PIN pos='207.00000,88.00000' which='0' elec='0' direction='2' part='0' number='13' show='3' length='30' number_pos='0' centre_name='0'>A2</PIN>
-		<PIN pos='207.00000,84.00000' which='0' elec='0' direction='2' part='0' number='14' show='3' length='30' number_pos='0' centre_name='0'>A1</PIN>
-		<PIN pos='207.00000,80.00000' which='0' elec='0' direction='2' part='0' number='15' show='3' length='30' number_pos='0' centre_name='0'>A0</PIN>
+		<PIN pos='182.00000,76.00000' which='0' elec='0' direction='3' part='0' number='4' show='3' length='30' number_pos='0' centre_name='0'>P0</PIN>
+		<PIN pos='182.00000,80.00000' which='0' elec='0' direction='3' part='0' number='5' show='3' length='30' number_pos='0' centre_name='0'>P1</PIN>
+		<PIN pos='182.00000,84.00000' which='0' elec='0' direction='3' part='0' number='6' show='3' length='30' number_pos='0' centre_name='0'>P2</PIN>
+		<PIN pos='182.00000,88.00000' which='0' elec='0' direction='3' part='0' number='7' show='3' length='30' number_pos='0' centre_name='0'>P3</PIN>
+		<PIN pos='182.00000,92.00000' which='0' elec='0' direction='3' part='0' number='9' show='3' length='30' number_pos='0' centre_name='0'>P4</PIN>
+		<PIN pos='207.00000,104.00000' which='0' elec='0' direction='2' part='0' number='13' show='3' length='30' number_pos='0' centre_name='0'>INT</PIN>
+		<PIN pos='207.00000,100.00000' which='0' elec='0' direction='2' part='0' number='14' show='3' length='30' number_pos='0' centre_name='0'>SCL</PIN>
+		<PIN pos='207.00000,96.00000' which='0' elec='0' direction='2' part='0' number='15' show='3' length='30' number_pos='0' centre_name='0'>SDA</PIN>
+		<PIN pos='207.00000,92.00000' which='0' elec='0' direction='2' part='0' number='8' show='3' length='30' number_pos='0' centre_name='0'>VSS</PIN>
+		<PIN pos='207.00000,88.00000' which='0' elec='0' direction='2' part='0' number='3' show='3' length='30' number_pos='0' centre_name='0'>A2</PIN>
+		<PIN pos='207.00000,84.00000' which='0' elec='0' direction='2' part='0' number='2' show='3' length='30' number_pos='0' centre_name='0'>A1</PIN>
+		<PIN pos='207.00000,80.00000' which='0' elec='0' direction='2' part='0' number='1' show='3' length='30' number_pos='0' centre_name='0'>A0</PIN>
 		<PIN pos='207.00000,76.00000' which='0' elec='0' direction='2' part='0' number='16' show='3' length='30' number_pos='0' centre_name='0'>VDD</PIN>
 		<POLYGON pos='195.00000,72.00000' style='4' fill='0'>
 			<POINT pos='0.00000,3.00000' arc='0'/>
@@ -1159,22 +1159,22 @@ download a copy.-->
 			<FIELD type='1' description='Mouser Part' value='..' show='0' pos='-4.00000,28.40000'/>
 			<FIELD type='1' description='Cost' value='..' show='0' pos='-4.00000,30.80000'/>
 		</SYMBOL>
-		<PIN pos='182.00000,96.00000' which='0' elec='0' direction='3' part='0' number='6' show='3' length='30' number_pos='0' centre_name='0'>P5</PIN>
-		<PIN pos='182.00000,100.00000' which='0' elec='0' direction='3' part='0' number='7' show='3' length='30' number_pos='0' centre_name='0'>P6</PIN>
-		<PIN pos='182.00000,104.00000' which='0' elec='0' direction='3' part='0' number='8' show='3' length='30' number_pos='0' centre_name='0'>P7</PIN>
+		<PIN pos='182.00000,96.00000' which='0' elec='0' direction='3' part='0' number='10' show='3' length='30' number_pos='0' centre_name='0'>P5</PIN>
+		<PIN pos='182.00000,100.00000' which='0' elec='0' direction='3' part='0' number='11' show='3' length='30' number_pos='0' centre_name='0'>P6</PIN>
+		<PIN pos='182.00000,104.00000' which='0' elec='0' direction='3' part='0' number='12' show='3' length='30' number_pos='0' centre_name='0'>P7</PIN>
 		<RECTANGLE a='188.00000,124.00000' b='201.00000,161.00000' style='6' fill='0'/>
-		<PIN pos='182.00000,130.00000' which='0' elec='0' direction='3' part='0' number='1' show='3' length='30' number_pos='0' centre_name='0'>P0</PIN>
-		<PIN pos='182.00000,134.00000' which='0' elec='0' direction='3' part='0' number='2' show='3' length='30' number_pos='0' centre_name='0'>P1</PIN>
-		<PIN pos='182.00000,138.00000' which='0' elec='0' direction='3' part='0' number='3' show='3' length='30' number_pos='0' centre_name='0'>P2</PIN>
-		<PIN pos='182.00000,142.00000' which='0' elec='0' direction='3' part='0' number='4' show='3' length='30' number_pos='0' centre_name='0'>P3</PIN>
-		<PIN pos='182.00000,146.00000' which='0' elec='0' direction='3' part='0' number='5' show='3' length='30' number_pos='0' centre_name='0'>P4</PIN>
-		<PIN pos='207.00000,158.00000' which='0' elec='0' direction='2' part='0' number='9' show='3' length='30' number_pos='0' centre_name='0'>INT</PIN>
-		<PIN pos='207.00000,154.00000' which='0' elec='0' direction='2' part='0' number='10' show='3' length='30' number_pos='0' centre_name='0'>SCL</PIN>
-		<PIN pos='207.00000,150.00000' which='0' elec='0' direction='2' part='0' number='11' show='3' length='30' number_pos='0' centre_name='0'>SDA</PIN>
-		<PIN pos='207.00000,146.00000' which='0' elec='0' direction='2' part='0' number='12' show='3' length='30' number_pos='0' centre_name='0'>VSS</PIN>
-		<PIN pos='207.00000,142.00000' which='0' elec='0' direction='2' part='0' number='13' show='3' length='30' number_pos='0' centre_name='0'>A2</PIN>
-		<PIN pos='207.00000,138.00000' which='0' elec='0' direction='2' part='0' number='14' show='3' length='30' number_pos='0' centre_name='0'>A1</PIN>
-		<PIN pos='207.00000,134.00000' which='0' elec='0' direction='2' part='0' number='15' show='3' length='30' number_pos='0' centre_name='0'>A0</PIN>
+		<PIN pos='182.00000,130.00000' which='0' elec='0' direction='3' part='0' number='4' show='3' length='30' number_pos='0' centre_name='0'>P0</PIN>
+		<PIN pos='182.00000,134.00000' which='0' elec='0' direction='3' part='0' number='5' show='3' length='30' number_pos='0' centre_name='0'>P1</PIN>
+		<PIN pos='182.00000,138.00000' which='0' elec='0' direction='3' part='0' number='6' show='3' length='30' number_pos='0' centre_name='0'>P2</PIN>
+		<PIN pos='182.00000,142.00000' which='0' elec='0' direction='3' part='0' number='7' show='3' length='30' number_pos='0' centre_name='0'>P3</PIN>
+		<PIN pos='182.00000,146.00000' which='0' elec='0' direction='3' part='0' number='9' show='3' length='30' number_pos='0' centre_name='0'>P4</PIN>
+		<PIN pos='207.00000,158.00000' which='0' elec='0' direction='2' part='0' number='13' show='3' length='30' number_pos='0' centre_name='0'>INT</PIN>
+		<PIN pos='207.00000,154.00000' which='0' elec='0' direction='2' part='0' number='14' show='3' length='30' number_pos='0' centre_name='0'>SCL</PIN>
+		<PIN pos='207.00000,150.00000' which='0' elec='0' direction='2' part='0' number='15' show='3' length='30' number_pos='0' centre_name='0'>SDA</PIN>
+		<PIN pos='207.00000,146.00000' which='0' elec='0' direction='2' part='0' number='8' show='3' length='30' number_pos='0' centre_name='0'>VSS</PIN>
+		<PIN pos='207.00000,142.00000' which='0' elec='0' direction='2' part='0' number='3' show='3' length='30' number_pos='0' centre_name='0'>A2</PIN>
+		<PIN pos='207.00000,138.00000' which='0' elec='0' direction='2' part='0' number='2' show='3' length='30' number_pos='0' centre_name='0'>A1</PIN>
+		<PIN pos='207.00000,134.00000' which='0' elec='0' direction='2' part='0' number='1' show='3' length='30' number_pos='0' centre_name='0'>A0</PIN>
 		<PIN pos='207.00000,130.00000' which='0' elec='0' direction='2' part='0' number='16' show='3' length='30' number_pos='0' centre_name='0'>VDD</PIN>
 		<POLYGON pos='195.00000,124.00000' style='4' fill='0'>
 			<POINT pos='0.00000,3.00000' arc='0'/>
@@ -1184,9 +1184,9 @@ download a copy.-->
 			<POINT pos='0.00000,0.00000' arc='0'/>
 			<POINT pos='3.00000,3.00000' arc='2'/>
 		</POLYGON>
-		<PIN pos='182.00000,150.00000' which='0' elec='0' direction='3' part='0' number='6' show='3' length='30' number_pos='0' centre_name='0'>P5</PIN>
-		<PIN pos='182.00000,154.00000' which='0' elec='0' direction='3' part='0' number='7' show='3' length='30' number_pos='0' centre_name='0'>P6</PIN>
-		<PIN pos='182.00000,158.00000' which='0' elec='0' direction='3' part='0' number='8' show='3' length='30' number_pos='0' centre_name='0'>P7</PIN>
+		<PIN pos='182.00000,150.00000' which='0' elec='0' direction='3' part='0' number='10' show='3' length='30' number_pos='0' centre_name='0'>P5</PIN>
+		<PIN pos='182.00000,154.00000' which='0' elec='0' direction='3' part='0' number='11' show='3' length='30' number_pos='0' centre_name='0'>P6</PIN>
+		<PIN pos='182.00000,158.00000' which='0' elec='0' direction='3' part='0' number='12' show='3' length='30' number_pos='0' centre_name='0'>P7</PIN>
 		<WIRE a='12.00000,17.00000' b='12.00000,18.00000'/>
 		<WIRE a='22.00000,30.00000' b='22.00000,40.00000'/>
 		<WIRE a='12.00000,40.00000' b='16.00000,40.00000'/>
@@ -1261,7 +1261,7 @@ download a copy.-->
 		<BUS a='24.00000,64.00000' b='164.00000,64.00000'/>
 		<BUS a='24.00000,126.00000' b='126.00000,126.00000'/>
 		<BUS a='126.00000,126.00000' b='126.00000,126.00000'/>
-		<BUS a='126.00000,126.00000' b='162.00000,126.00000'/>
+		<BUS a='126.00000,126.00000' b='158.00000,126.00000'/>
 		<WIRE a='16.00000,104.00000' b='20.00000,104.00000'/>
 		<WIRE a='36.00000,104.00000' b='42.00000,104.00000'/>
 		<WIRE a='58.00000,104.00000' b='64.00000,104.00000'/>
@@ -1287,8 +1287,7 @@ download a copy.-->
 		<LABEL pos='108.00000,124.00000' direction='3' font='6' color='208000' style='0'>Światła</LABEL>
 		<BUS a='164.00000,64.00000' b='168.00000,64.00000'/>
 		<BUS a='168.00000,64.00000' b='168.00000,88.00000'/>
-		<BUS a='168.00000,134.00000' b='168.00000,150.00000'/>
-		<BUS a='168.00000,134.00000' b='167.86405,130.00000'/>
+		<BUS a='166.00000,126.00000' b='166.00000,150.00000'/>
 		<RECTANGLE a='260.00000,80.00000' b='270.00000,162.00000' style='4' fill='0'/>
 		<ELLIPSE a='262.00000,106.00000' b='268.00000,112.00000' style='4' fill='0'/>
 		<ELLIPSE a='262.00000,114.00000' b='268.00000,120.00000' style='4' fill='0'/>
@@ -1386,16 +1385,16 @@ download a copy.-->
 		<LABEL pos='172.00000,84.00000' direction='3' font='5' color='208000' style='0'>LPP</LABEL>
 		<LABEL pos='172.00000,88.00000' direction='3' font='5' color='208000' style='0'>PPP</LABEL>
 		<LABEL pos='172.00000,92.00000' direction='3' font='5' color='208000' style='0'>Immo</LABEL>
-		<LABEL pos='172.00000,130.00000' direction='3' font='5' color='208000' style='0'>LTD</LABEL>
-		<LABEL pos='172.00000,134.00000' direction='3' font='5' color='208000' style='0'>PTD</LABEL>
-		<LABEL pos='172.00000,138.00000' direction='3' font='5' color='208000' style='0'>LTP</LABEL>
-		<LABEL pos='172.00000,142.00000' direction='3' font='5' color='208000' style='0'>PTP</LABEL>
-		<LABEL pos='172.00000,146.00000' direction='3' font='5' color='208000' style='0'>Światła</LABEL>
-		<LABEL pos='172.00000,146.00000' direction='3' font='5' color='208000' style='0'>Światła</LABEL>
-		<LABEL pos='172.00000,150.00000' direction='3' font='5' color='208000' style='0'>Bagażnik</LABEL>
-		<LABEL pos='172.00000,154.00000' direction='3' font='5' color='208000' style='0'>R</LABEL>
-		<BUS a='162.00000,126.00000' b='162.00000,184.00000'/>
-		<BUS a='24.00000,184.00000' b='162.00000,184.00000'/>
+		<LABEL pos='170.00000,130.00000' direction='3' font='5' color='208000' style='0'>LTD</LABEL>
+		<LABEL pos='170.00000,134.00000' direction='3' font='5' color='208000' style='0'>PTD</LABEL>
+		<LABEL pos='170.00000,138.00000' direction='3' font='5' color='208000' style='0'>LTP</LABEL>
+		<LABEL pos='170.00000,142.00000' direction='3' font='5' color='208000' style='0'>PTP</LABEL>
+		<LABEL pos='170.00000,146.00000' direction='3' font='5' color='208000' style='0'>Światła</LABEL>
+		<LABEL pos='170.00000,146.00000' direction='3' font='5' color='208000' style='0'>Światła</LABEL>
+		<LABEL pos='170.00000,150.00000' direction='3' font='5' color='208000' style='0'>Bagażnik</LABEL>
+		<LABEL pos='170.00000,154.00000' direction='3' font='5' color='208000' style='0'>R</LABEL>
+		<BUS a='158.00000,126.00000' b='158.00000,184.00000'/>
+		<BUS a='24.00000,184.00000' b='158.00000,184.00000'/>
 		<WIRE a='226.00000,40.00000' b='222.00000,40.00000'/>
 		<WIRE a='162.00000,46.00000' b='222.00000,46.00000'/>
 		<SYMBOL id='4' pos='258.00000,70.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
@@ -1444,21 +1443,20 @@ download a copy.-->
 		<NOCONNECT pos='182.00000,100.00000'/>
 		<NOCONNECT pos='182.00000,104.00000'/>
 		<NOCONNECT pos='182.00000,158.00000'/>
-		<BUSSLASH pos='172.00000,134.00000' direction='1'/>
-		<BUSSLASH pos='172.00000,138.00000' direction='1'/>
-		<BUSSLASH pos='172.00000,142.00000' direction='1'/>
-		<BUSSLASH pos='172.00000,146.00000' direction='1'/>
-		<BUSSLASH pos='172.00000,150.00000' direction='1'/>
-		<BUSSLASH pos='172.00000,154.00000' direction='1'/>
-		<BUSSLASH pos='172.00000,130.00000' direction='1'/>
-		<WIRE a='182.00000,138.00000' b='172.00000,138.00000'/>
-		<WIRE a='182.00000,142.00000' b='172.00000,142.00000'/>
-		<WIRE a='182.00000,146.00000' b='172.00000,146.00000'/>
-		<WIRE a='182.00000,150.00000' b='172.00000,150.00000'/>
-		<WIRE a='182.00000,154.00000' b='172.00000,154.00000'/>
-		<WIRE a='172.00000,130.00000' b='182.00000,130.00000'/>
-		<WIRE a='172.00000,134.00000' b='182.00000,134.00000'/>
-		<BUS a='168.00000,126.00000' b='168.00000,130.00000'/>
+		<BUSSLASH pos='170.00000,134.00000' direction='1'/>
+		<BUSSLASH pos='170.00000,138.00000' direction='1'/>
+		<BUSSLASH pos='170.00000,142.00000' direction='1'/>
+		<BUSSLASH pos='170.00000,146.00000' direction='1'/>
+		<BUSSLASH pos='170.00000,150.00000' direction='1'/>
+		<BUSSLASH pos='170.00000,154.00000' direction='1'/>
+		<BUSSLASH pos='170.00000,130.00000' direction='1'/>
+		<WIRE a='182.00000,138.00000' b='170.00000,138.00000'/>
+		<WIRE a='182.00000,142.00000' b='170.00000,142.00000'/>
+		<WIRE a='182.00000,146.00000' b='170.00000,146.00000'/>
+		<WIRE a='182.00000,150.00000' b='170.00000,150.00000'/>
+		<WIRE a='182.00000,154.00000' b='170.00000,154.00000'/>
+		<WIRE a='170.00000,130.00000' b='182.00000,130.00000'/>
+		<WIRE a='170.00000,134.00000' b='182.00000,134.00000'/>
 		<WIRE a='8.00000,204.00000' b='8.00000,203.00000'/>
 		<POWER pos='16.00000,57.00000' which='0' direction='1'>GND</POWER>
 		<POWER pos='222.00000,57.00000' which='0' direction='1'>GND</POWER>
@@ -1530,7 +1528,7 @@ download a copy.-->
 		<WIRE a='58.00000,117.00000' b='78.00000,117.00000'/>
 		<WIRE a='36.00000,177.00000' b='16.00000,177.00000'/>
 		<JUNCTION pos='16.00000,177.00000'/>
-		<BUS a='168.00000,140.00000' b='162.00000,140.00000'/>
+		<BUS a='166.00000,140.00000' b='158.48276,140.00000'/>
 		<BUS a='150.00000,196.00000' b='150.00000,206.00000'/>
 		<BUS a='150.00000,196.00000' b='164.00000,196.00000'/>
 		<BUS a='164.00000,196.00000' b='164.00000,168.00000'/>
