@@ -25,13 +25,14 @@
 #define _PCF8574N_H
 class PCF8574N{
   public:
-	PCF8574N(int address, int sda, int scl); 
+	PCF8574N(char address, int sda, int scl); 
 
-  int read8();
-  int write8(int data);
+	int read8();
+	int write8(int data);
+	void init(int sda, int scl);
   
   private:
-	int _address;
+	char _address;
 	int _sda;
 	int _scl;
 };

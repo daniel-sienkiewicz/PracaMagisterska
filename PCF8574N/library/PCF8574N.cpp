@@ -24,11 +24,13 @@
 #include "PCF8574N.h"
 #import <Arduino.h>
 
-PCF8574N::PCF8574N(int address, int sda, int scl){
+PCF8574N::PCF8574N(char address, int sda, int scl){
 	_address = address;
 	_sda = sda;
 	_scl = scl;
+}
 
+void PCF8574N::init(int sda, int scl){
 	pinMode(sda, OUTPUT);
 	pinMode(scl, OUTPUT);
 	digitalWrite(scl, HIGH);
@@ -36,11 +38,12 @@ PCF8574N::PCF8574N(int address, int sda, int scl){
 }
 
 int PCF8574N::read8(){
+	init(_sda, _scl);
 	int m, ack, answer = 0, d = 1;
 	digitalWrite(_sda, LOW);
 	delay(d);
 	digitalWrite(_scl, LOW);
-
+	
 	for(m = 0x80; m; m >>= 1){ // address transfer MSB->LSB
 		if(_address & m)         
 			digitalWrite(_sda,HIGH);
@@ -83,7 +86,6 @@ int PCF8574N::read8(){
 	return answer;
 }
 
-//TO DO
 int PCF8574N::write8(int data){
 	int answer;
 	

@@ -36,5 +36,5 @@ void setup(){
 void loop(){
    Serial.println(PCF_41.read8());
    Serial.println(PCF_43.read8());
-   delay(100);
+   delay(500);
 }
