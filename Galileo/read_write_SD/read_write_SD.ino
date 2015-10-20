@@ -30,16 +30,15 @@ void setup() {
   Serial.begin(9600);
 }
 
-void readSD(){
+void readSD(char *filename){
     Serial.print("Initializing SD card...");
 
-  // see if the card is present and can be initialized:
   if (!SD.begin(chipSelect)) {
     Serial.println("Card failed, or not present");
     return;
   }
   Serial.println("card initialized.");
-  File dataFile = SD.open("log.txt");
+  File dataFile = SD.open(filename);
   
   if (dataFile) {
     while (dataFile.available()) {
@@ -49,28 +48,27 @@ void readSD(){
   }
   
   else {
-    Serial.println("error opening log.txt");
+    Serial.println("error opening file");
   } 
 }
 
-void writeSD(){
-  String dataString = "daniel";
-  File dataFile = SD.open("log.txt", FILE_WRITE);
+void writeSD(char *filename, char * data){
+  File dataFile = SD.open(filename, FILE_WRITE);
   if (dataFile) {
-    dataFile.println(dataString);
+    dataFile.println(data);
     dataFile.close();
   }
 }
 
-void removeSD(){
-  if (SD.exists("log.txt")) {
-    Serial.println("Removing log.txt...");
-    SD.remove("log.txt");
+void removeSD(char *filename){
+  if (SD.exists(filename)) {
+    Serial.println("Removing file...");
+    SD.remove(filename);
   }
 }
 
 void loop() {
-  writeSD();
-  readSD();
-  removeSD();
+  writeSD("log.txt", "dataToFile");
+  readSD("log.txt");
+  removeSD("log.txt");
 }
