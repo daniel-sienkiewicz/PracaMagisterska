@@ -41,9 +41,9 @@ struct car {
  int lights;
  int immo;
  int r;
- short tempOut;
- short tempIn;
- short tempEngine;
+ float tempOut;
+ float tempIn;
+ float tempEngine;
 };
 
 // Delay time
