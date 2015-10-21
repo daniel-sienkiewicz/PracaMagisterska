@@ -8,105 +8,86 @@ int WindowHeight = 500;
 int WindowWidth = 800;
 
 struct Button{
-	int   x;							/* top left x coord of the button */
-	int   y;							/* top left y coord of the button */
-	int   w;							/* the width of the button */
-	int   h;							/* the height of the button */
-	char* label;						/* the text label of the button */
+	float x;
+	float y;
+	int w;
+	int h;
+	char* label;
 };
 typedef struct Button Button;
 
-Button MyButton = {10, 450, 200, 40, "Button"};
+Button MyButton = {0, 0, 200, 40, "Button"};
 
-void printtext(int x, int y, char* String, int len){
+void printtext(float x, float y, char* String){
 	int i;
-
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    glOrtho(0, WindowWidth, 0, WindowHeight, -1.0f, 1.0f);
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
-    glPushAttrib(GL_DEPTH_TEST);
-    glDisable(GL_DEPTH_TEST);
-    glRasterPos2i(x,y);
     
-    for(i = 0; i < len; i++){
+	glMatrixMode( GL_PROJECTION ) ;
+	glPushMatrix() ; // save
+	glLoadIdentity();// and clear
+	glMatrixMode( GL_MODELVIEW ) ;
+	glPushMatrix() ;
+	glLoadIdentity() ;
+	glDisable( GL_DEPTH_TEST ) ; // also disable the depth test so renders on top
+	glRasterPos2f(0, 0) ; // center of screen. (-1,0) is center left.
+    for(i = 0; i < strlen(String); i++){
         glutBitmapCharacter(GLUT_BITMAP_9_BY_15, String[i]);
     }
 
-    glPopAttrib();
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
-    glPopMatrix();
+    glEnable( GL_DEPTH_TEST ) ; // Turn depth testing back on
+
+	glMatrixMode( GL_PROJECTION ) ;
+	glPopMatrix() ; // revert back to the matrix I had before.
+	glMatrixMode( GL_MODELVIEW ) ;
+	glPopMatrix() ;
 }
 
 void ButtonDraw(Button *b){
-	glColor3f(0.4f,0.4f,0.4f);
+		printtext(b->x, b->y, b->label);
+}
 
-		glBegin(GL_LINE_STRIP);
-			glVertex2i( b->x     , b->y+b->h );
-			glVertex2i( b->x+b->w, b->y+b->h );
-			glVertex2i( b->x+b->w, b->y      );
-		glEnd();
-
-		glLineWidth(1);
-
-		glColor3f(1,1,1);
-		printf("dddd");
-		printtext(b->x, b->y, b->label, strlen(b->label));
+void onMouseButton(int button, int state, int x, int y){
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+    	printf("Mysz guzik: %i %i\n", x, y);
+		printtext(10, 430, "Temperatura");
+    	printtext(10, 400, "Temperatura");
+    	printtext(10, 370, "Temperatura");
+    	printtext(600, 430, "V");
+    	printtext(600, 400, "S");
+    	printtext(10, 480, "Lurch Computer Borad");
+    	glutSwapBuffers();
+	}else{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glutSwapBuffers();
+	}
 }
  
+void onMouseMotion(int x, int y){
+    printf("Mysz przeciagniecie: %i %i\n", x, y);
+}
+
+void MousePassiveMotion(int x, int y){
+	 printf("Mysz: %i %i\n", x, y);
+}
+
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
- 
-	glEnable(GL_DEPTH_TEST);
- 
-    char welcome[21];
-    char temp1[12];
-    char temp2[12];
-    char temp3[12];
-    char gps[4];
-    char v[2];
-    char s[2];
-    sprintf(welcome, "Lurch Computer Borad");
-    sprintf(temp1, "Temperatura");
-    sprintf(temp2, "Temperatura");
-    sprintf(temp3, "Temperatura");
-    sprintf(gps, "GPS"); 
-    sprintf(v, "V"); 
-    sprintf(s, "S"); 
     ButtonDraw(&MyButton);
-    printtext(10, 430, temp1, strlen(temp1));
-    printtext(10, 400, temp2, strlen(temp2));
-    printtext(10, 370, temp3, strlen(temp3));
-    printtext(600, 430, v, strlen(v));
-    printtext(600, 400, s, strlen(s));
-    printtext(10, 480, welcome, strlen(welcome));
- 	
 	glutSwapBuffers();
 }
 
+
 int main(int argc, char *argv[]){
+	printf("Zaczynamy zabawe\n");
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(WindowWidth, WindowHeight);
 	glutInitWindowPosition(0, 0);
 	glutCreateWindow("OpenGL");
- 
 	glutDisplayFunc(display);
- 
-	glMatrixMode(GL_PROJECTION);
-
-	glLoadIdentity();
-	gluPerspective(70, 1, 1, 100);
+ 	glutMouseFunc(onMouseButton);
+	glutMotionFunc(onMouseMotion);
+	glutPassiveMotionFunc(MousePassiveMotion);
     glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
- 
-	gluLookAt(2, 2, 10, 2, 0, 0, 0, 1, 0);
 	glutMainLoop();
 	return 0;
 }
