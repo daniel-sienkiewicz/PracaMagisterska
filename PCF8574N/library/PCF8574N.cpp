@@ -30,15 +30,15 @@ PCF8574N::PCF8574N(char address, int sda, int scl){
 	_scl = scl;
 }
 
-void PCF8574N::init(int sda, int scl){
-	pinMode(sda, OUTPUT);
-	pinMode(scl, OUTPUT);
-	digitalWrite(scl, HIGH);
-	digitalWrite(sda, HIGH);
+void PCF8574N::init(void){
+	pinMode(_sda, OUTPUT);
+	pinMode(_scl, OUTPUT);
+	digitalWrite(_scl, HIGH);
+	digitalWrite(_sda, HIGH);
 }
 
-int PCF8574N::read8(){
-	init(_sda, _scl);
+int PCF8574N::read8(void){
+	init();
 	int m, ack, answer = 0, d = 1;
 	digitalWrite(_sda, LOW);
 	delay(d);
