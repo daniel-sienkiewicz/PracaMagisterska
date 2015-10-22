@@ -28,7 +28,7 @@ class PCF8574N{
 	PCF8574N(char address, int sda, int scl); 
 
 	int read8(void);
-	int write8(int data);
+	void write8(int data);
  
   private:
 	void init();
