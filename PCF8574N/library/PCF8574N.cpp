@@ -30,12 +30,13 @@ PCF8574N::PCF8574N(char address, int sda, int scl){
 	_scl = scl;
 }
 
+PCF8574N::~PCF8574N(){}
+
 void PCF8574N::init(void){
 	pinMode(_sda, OUTPUT);
 	pinMode(_scl, OUTPUT);
 	digitalWrite(_scl, HIGH);
 	digitalWrite(_sda, HIGH);
-}
 
 int PCF8574N::read8(void){
 	init();
@@ -48,13 +49,13 @@ int PCF8574N::read8(void){
 		if(_address & m)         
 			digitalWrite(_sda,HIGH);
 		else
-		digitalWrite(_sda,LOW);
+			digitalWrite(_sda,LOW);
         
-	digitalWrite(_scl,HIGH); // generate clock pulse
-	delay(d);
-	digitalWrite(_scl,LOW); 
-	delay(d);
-}
+		digitalWrite(_scl,HIGH); // generate clock pulse
+		delay(d);
+		digitalWrite(_scl,LOW); 
+		delay(d);
+	}
 
    pinMode(_sda,INPUT);
    digitalWrite(_scl,HIGH);
@@ -86,8 +87,6 @@ int PCF8574N::read8(void){
 	return answer;
 }
 
-int PCF8574N::write8(int data){
-	int answer;
+void PCF8574N::write8(int data){
 	
-	return answer;
 }

@@ -41,9 +41,9 @@ struct car {
  int lights;
  int immo;
  int r;
- int tempOut;
- int tempIn;
- int tempEngine;
+ float tempOut;
+ float tempIn;
+ float tempEngine;
 };
 
 // Delay time
@@ -79,7 +79,7 @@ int readPCF(char adres){
   digitalWrite(sda, LOW);
   delay(d);
   digitalWrite(scl, LOW);
-	Serial.println(adres);
+
   for(m = 0x80; m; m >>= 1){ // address transfer MSB->LSB
     if(adres & m)         
       digitalWrite(sda,HIGH);
@@ -145,6 +145,16 @@ void printObj(struct car * obj){
   Serial.println("+-------------------+");
 }
 
+void save(struct car *audi, struct car *tmp){
+  audi->doors = tmp->doors;
+  audi->seatbelts = tmp->seatbelts;
+  audi->lights = tmp->lights;
+  audi->r = tmp->r;
+  audi->tempOut = tmp->tempOut;
+  audi->tempIn = tmp->tempIn;
+  audi->tempEngine = tmp->tempEngine;
+}
+
 // Reading data about car status 
 struct car * readData(){
   struct car * tmp = (struct car *)malloc(sizeof(struct car));
@@ -184,7 +194,8 @@ void checkChangesDigital(){
   if(tmp->lights != audi->lights)
     Serial.println("Światła sie zmienily");
   
-  audi = tmp;
+  save(audi, tmp);
+  free(tmp);
   
   // DEBUG
   printObj(audi);
@@ -202,8 +213,9 @@ void checkChangesAnalog(){
     Serial.println("TempIn sie zmienilo");
   if(tmp->tempEngine != audi->tempEngine)
     Serial.println("TempEngine sie zmienilo");
-    
-  audi = tmp;
+  
+  save(audi, tmp);
+  free(tmp);
   
   // DEBUG
   printObj(audi);
