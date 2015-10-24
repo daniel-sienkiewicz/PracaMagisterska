@@ -18,20 +18,48 @@
 /**
  * @file PFC8574N.H
  * @author Daniel Sienkiewicz
- * @date 18 October 2015
+ * @date 24 October 2015
  */
  
 #ifndef _PCF8574N_H
 #define _PCF8574N_H
 class PCF8574N{
   public:
+  
+	/**
+	******************************************************************************
+	* @details        Object constrctor - creating new PCF object 			     *
+	*				  Set sda and scl line as inactive						     *
+	* @param          address The address of PCF8574N I/O Expander				 *
+	* @param		  sda, scl line using to comminication with PCF				 *
+	******************************************************************************
+	*/
 	PCF8574N(char address, int sda, int scl); 
 
+	/**
+	******************************************************************************
+	* @details        Object destrctor - deleting PCF object 				     *
+	*			      Set sda and scl line as inactive						     *
+	******************************************************************************
+	*/
+	~PCF8574N(char address, int sda, int scl);
+	
+	/**
+	******************************************************************************
+	* @details        Reading value from PCF8574N I/O Expander                   *
+	* @return         Value from the specified PCF8574N I/O Expander             *
+	******************************************************************************
+	*/
 	int read8(void);
+	
+	/**
+	******************************************************************************
+	* @details        Writing value to PCF8574N I/O Expander                     *
+	******************************************************************************
+	*/
 	void write8(int data);
  
   private:
-	void init();
 	char _address;
 	int _sda;
 	int _scl;

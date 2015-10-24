@@ -18,7 +18,7 @@
 /**
  * @file PFC8574N.CPP
  * @author Daniel Sienkiewicz
- * @date 18 October 2015
+ * @date 24 October 2015
  */
 
 #include "PCF8574N.h"
@@ -28,30 +28,31 @@ PCF8574N::PCF8574N(char address, int sda, int scl){
 	_address = address;
 	_sda = sda;
 	_scl = scl;
-}
 
-PCF8574N::~PCF8574N(){}
-
-void PCF8574N::init(void){
 	pinMode(_sda, OUTPUT);
 	pinMode(_scl, OUTPUT);
 	digitalWrite(_scl, HIGH);
 	digitalWrite(_sda, HIGH);
+}
+
+PCF8574N::~PCF8574N(){
+	digitalWrite(_scl, HIGH);
+	digitalWrite(_sda, HIGH);
+}
 
 int PCF8574N::read8(void){
-	init();
 	int m, ack, answer = 0, d = 1;
 	digitalWrite(_sda, LOW);
 	delay(d);
 	digitalWrite(_scl, LOW);
 	
-	for(m = 0x80; m; m >>= 1){ // address transfer MSB->LSB
+	for(m = 0x80; m; m >>= 1){ 												// Address transfer MSB->LSB
 		if(_address & m)         
 			digitalWrite(_sda,HIGH);
 		else
 			digitalWrite(_sda,LOW);
         
-		digitalWrite(_scl,HIGH); // generate clock pulse
+		digitalWrite(_scl,HIGH); 											// Generate clock pulse
 		delay(d);
 		digitalWrite(_scl,LOW); 
 		delay(d);
@@ -61,8 +62,7 @@ int PCF8574N::read8(void){
    digitalWrite(_scl,HIGH);
    delay(d);
    
-   //Read ACL
-   ack = digitalRead(_sda);
+   ack = digitalRead(_sda);													// Read ACL
    digitalWrite(_scl,LOW);
    delay(d);
    
@@ -77,9 +77,8 @@ int PCF8574N::read8(void){
 		digitalWrite(_scl, LOW);
 		delay(d);
 	}
-   
-	// Generate STOP bit
-	pinMode(_sda,OUTPUT);
+
+	pinMode(_sda,OUTPUT);													// Generate STOP bit
 	digitalWrite(_scl, HIGH);
 	delay(d);
 	digitalWrite(_sda, HIGH);
