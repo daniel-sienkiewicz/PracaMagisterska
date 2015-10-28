@@ -32,13 +32,9 @@ Celem pracy jest stworzenie komputera pokładowego do samochodu, w którego skł
 \item Kamerka cofania.
 \end{enumerate}
 
-Pierwsza część pracy przedstawia architekturę projektu wraz z jego opisem funkcjonalnym. Opisuję również mechanizmy komunikacji systemu mikroprocesorowego z otoczeniem.
-
-Następnie przedstawiony jest pomysł implementacji oraz proces tworzenia niezbędnej do obsługi symulatora samochodu biblioteki pozwalającej na komunikację z I/O Expanderem PCF8574N.
-
-Ostatnia część pracy przedstawia pomysły  możliwych rozszerzeń projektu o dodatkowe moduły oraz funkcjonalności w zależności od potrzeb użytkownika.
 \end{abstract}
-\keywords{Intel Galileo, $I^2C$,
+\keywords{Intel Galileo, 
+ $I^2C$,
  SPI, 
  C, 
  Arduino,
@@ -50,16 +46,22 @@ Ostatnia część pracy przedstawia pomysły  możliwych rozszerzeń projektu o 
 %================WPROWADZENIE=====================
 \chapter{Wprowadzenie}
 \section{Cele}
-Celem pracy jest budowa oraz oprogramowanie komputera pokładowego do samochodu. Komputer powinien móc wczytać z czujników temperaturę panującą w silniku, na zewnątrz oraz w środku samochodu. Ponadto powinien on móc zapisać aktualną pozycję GPS na karcie microSD oraz umożliwić korzystanie z kamerki cofania lub inteligentnego lusterka wstecznego.
+Celem pracy jest budowa oraz oprogramowanie komputera pokładowego do samochodu. Komputer powinien móc wczytać z czujników temperaturę panującą w silniku, na zewnątrz oraz w środku samochodu. Ponadto powinien on móc zapisać aktualną pozycję \emph{GPS} na karcie pamięci microSD oraz umożliwić korzystanie z kamerki cofania lub inteligentnego lusterka wstecznego. Komunikacja użytkownika z komputerem będzie odbywała się poprzez użycie ekranu dotykowego \emph{FTDI Chip VM800}.
 \section{Założenia}
-Do wykonania komputera wykorzystano: Intel Galileo używane w trybie Arduino o oprogramowywane za pomocą Arduino IDE, lokalizator GPS służący do podawania aktualnej pozycji dzięki której obliczana zostaje droga przebyta przez samochód, kamerka internetowa służąca jako czujnik cofania oraz inteligentne lusterko wsteczne oraz symulator samochodu. Aktualnie komputer nie będzie zamontowany do fizycznego samochodu więc do tych celów zbudowany został symulator samochodu składający się z podstawowych czujników takich jak: guziki służące za czujnik zapięcia pasów/zamknięcia drzwi, potencjometry służące za czujniki temperatury oraz I/O expander PCF8574N pozwalający zmniejszyć ilość kabli wychodzących z symulatora do Intel Galileo do 2 zamiast 11. Na komputerze nie będzie wyświetlana aktualna prędkość ani przebieg ponieważ nawet w najnowszych samochodach nie jest to dostępna opcja. Dane te są dostępne na zegarach samochodowych więc nie ma potrzeby powtarzania tej informacji.
+Do wykonania komputera wykorzystano: \emph{Intel Galileo} wraz z niezainstalowanym oprogramowaniem Linux YOCTO, Arduino IDE, lokalizator GPS służący do podawania aktualnej pozycji dzięki której obliczana zostaje droga przebyta przez samochód, kamerka internetowa służąca jako czujnik cofania oraz inteligentne lusterko wsteczne oraz symulator samochodu. Aktualnie komputer nie będzie zamontowany do fizycznego samochodu więc do tych celów zbudowany został symulator składający się z podstawowych czujników takich jak: guziki służące za czujnik zapięcia pasów/zamknięcia drzwi, potencjometry służące za czujniki temperatury oraz I/O expander PCF8574N pozwalający na komunikację z Intel Galileo. Na komputerze nie będzie wyświetlana aktualna prędkość ani przebieg ponieważ nawet w najnowszych samochodach nie jest to dostępna opcja. Dane te są dostępne na zegarach samochodowych więc nie ma potrzeby powtarzania tej informacji.
 \section{Plan pracy}
-TO DO
+
+Pierwszy rozdział opisuje podstawowe cele oraz założenia projektu.
+
+Druga część pracy przedstawia architekturę projektu wraz z jego opisem funkcjonalnym. Opisuję również mechanizmy komunikacji systemu mikroprocesorowego z otoczeniem.
+
+W następnym rozdziale przedstawiony zostaje pomysł implementacji oraz proces tworzenia niezbędnej do obsługi symulatora samochodu biblioteki pozwalającej na komunikację poprzez I/O Expander PCF8574N z Intel Galielo. Zostaje tutaj również opisany proces tworzenia oprogramowania ekranu dotykowego FTDI Chip VM800.
+
+Ostatnia część pracy przedstawia pomysły  możliwych rozszerzeń projektu o dodatkowe moduły oraz funkcjonalności w zależności od potrzeb użytkownika.
 %================KONIEC WPROWADZENIE=====================
 
 %================ARCHITEKTURA=====================
 \chapter{Architektura}
-\subsection{Opis funkcjonalny}
 \subsection{Mechanizmy komunikacji systemu mikroprocesorowego z otoczeniem}
 \subsubsection{Porty}
 
@@ -82,7 +84,7 @@ pinMode(analogPin, INPUT);
 analogWrite(ledPin, val);
 \end{lstlisting}
 
-i odpowiednio dla portu cyfrowego:
+oraz odpowiednio dla portu cyfrowego:
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa portu cyfrowego w środowisku Arduino]
 int val = 0;
 int digitalPin = 1;	
@@ -110,7 +112,7 @@ Przerwania programowe wywołuje się za pomocą komendy INT XX gdzie XX oznacza 
 
 Przerwanie sprzętowe jest to rodzaj przerwań wywoływanych przez urządzenia wejścia/wyjścia lub zgłaszane przez procesor. Zostają one wywołane niezależnie w określonych przypadkach. Przerwania te dzielimy na maskowalne oraz niemaskowalne. Główna różnica między nimi polega na możliwości zablokowania przerwań maskowalnych podczas gdy przerwania niemaskowalne muszą zostać obsłużone. Przykładem przerwania niemaskowalnego INT2 czyli popularny blue screen of death.
 
-Ostatnim rodzajem przerwań są wyjątki. Wywoływane sa podczas napotkania przez procesor błędów oraz niepowodzeń. Arduino oczywiście obsługuje przerwania. Ich obsłga jets bardzo prosta:
+Ostatnim rodzajem przerwań są wyjątki. Wywoływane są podczas napotkania przez procesor błędów oraz niepowodzeń. Arduino oczywiście obsługuje przerwania. Ich obsłga jest bardzo prosta:
 W środowisku Arduino aby obsłużyć port analogowy wystarczy:
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa przerwań sprzętowych w środowisku Arduino]
@@ -154,26 +156,62 @@ Intel Galileo jest  to mikro kontroler oparty na 32-bitowym procesorze Intel® Q
 
 %================IMPLEMENTACJA=====================
 \chapter{Implementacja}
-\section{$I^2C$}
-\subsection{Problemy z bibliotekami}
-\subsection{moja implenatacja $I^2C$ (read)}
-\subsection{Schemat blokowy programu}
+\section{Protokół komunikacyjny $I^2C$}
+\emph{$I^2C$} jest szeregowym interfejsem służącym do przesyłania danych między urządzeniami elektrycznymi. 
+
+Podstawową cechą \emph{$I^2C$} jest wykorzystywanie dwóch linii służących do komunikacji: linia \emph{SDA (Serial Data Line)} oraz linia \emph{SCL(Serial Clock Time)}. Każdą transmisję danych należy rozpocząć sygnałem \emph{START} oraz zakończyć sygnałem \emph{STOP}. Dane wysyłane są od najstarszego do najmłodszego bitu oraz otrzymanie każdego z nich musi być potwierdzone przez odbiornik. Należy również pamiętać aby każdą komunikację z urządzeniem rozpocząć i zakończyć ustawiając linie \emph{SDA} oraz \emph{SCL} w stan nieaktywny (HIGH). Podstawowe zalety protokołu:
+\begin{enumerate}
+	\item Połączenia składają się tylko z dwóch linii co znacznie ogranicza liczbę kabli wychodzących z urządzenia
+	\item Duża dostępność sprzętu w sklepach
+	\item Transmisja jest odporna na zakłócenia zewnętrzne
+	\item Bez większych problemów można dodawać oraz odejmować układy korzystające z magistrali
+\end{enumerate}
+Odbieranie danych rozpoczyna się wysłaniem sygnału START, a następnie zaadresowaniu urządzenia. Kolejnym krokiem jest ustalenie tryby (w tym wypadku read) oraz odczytanie potwierdzenia. Po wykonaniu tych czynności można rozpocząć odbierania danych, które należy zakończyć wysłaniem sygnału \emph{STOP}.
+
+Wygenerowanie sygnału \emph{START} polega na ustawieniu linii \emph{SDA} oraz \emph{SCL} w stan niski (LOW), a wygenerowanie sygnału \emph{STOP} polega na ustawieniu linii \emph{SDA} oraz \emph{SCL} w stan wysoki (HIGH).
+
+Adresowanie urządzenia odbywa się poprzez wysłanie wysłanie pojedynczych bitów adresu (pamiętając o kolejności MSB->LCB) oraz wygenerowanie impulsu zegara.
+\begin{lstlisting}[label=bot-dirs-alg,caption=Adresowanie urządzenia $I^2C$ na przykładzie PCF8574N]
+for(m = 0x80; m; m >>= 1){
+    if(adres & m)         
+      digitalWrite(sda, HIGH);
+    else
+      digitalWrite(sda, LOW);
+        
+   digitalWrite(scl, HIGH);
+   digitalWrite(scl, LOW); 
+}
+\end{lstlisting}
+Po otrzymaniu potwierdzenia na linii \emph{SDA} można zacząć czytać dane przesyłane z urządzenia.
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[height=0.4\textheight]{images/schemat_blokowy.png}
-    \caption{Schemat blokowy głównego programu\label{SchematBlokowy}}
-    \source{Opracowanie własne}
+    \includegraphics[height=0.3\textheight]{images/read_i2c.png}
+    \caption{Przykładowy schemat odbierania danych poprzez $I^2C$ na przykładzie PCF8574N\label{$I^2C$}}
+    \source{Karta katalogowa I/O Expander PCF8574N}
 \end{figure}
 
-\subsection{Moja biblioteka do R/W Arduino dla Intel Galileo}
-\section{Założenia funkcjonalne}
- - czytanie z czujników, pisanie do ekranu, czytanie z ekranu
- - włączanie i wyłączanie systemu
+Podobnie jak odbieranie danych, wysyłanie danych należy rozpocząć od wysłania sygnału \emph{START} wraz z adresem urządzenia oraz trybem (write). Po otrzymaniu potwierdzenia można rozpocząć wysyłanie danych w odpowiednich dla urządzenia paczkach x-bitowych. Po wysłaniu każdej z nich otrzymamy potwierdzenie. Na zakończenia transmisji należy wysłać sygnał \emph{STOP}.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[height=0.3\textheight]{images/write_i2c.png}
+    \caption{Przykładowy schemat wysyłania danych poprzez $I^2C$ na przykładzie PCF8574N\label{$I^2C$}}
+    \source{Karta katalogowa I/O Expander PCF8574N}
+\end{figure}
+
+\subsection{Problemy z bibliotekami}
+\subsection{Własna implementacja $I^2C$}
+\subsection{Schemat blokowy programu}
+\subsection{Własna biblioteka do komunikacji poprzez $I^2C$ dla Intel Galileo}
+\section{Założenia funkcjonalne projektu}
+Najważniejszym założeniem funkcjonalnym była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. czytanie z czujników, pisanie do ekranu, czytanie z ekranu
+włączanie i wyłączanie systemu
 \section{Integracja z samochodem}
  - podpięcie pod auto
  - włączanie i wyłączanie systemu - można brutalnie wyłączyć
- 
+
+\subsection{Symulator samochodu}
  \begin{figure}[!htb]
     \centering
     \includegraphics[height=0.4\textheight]{images/symulator.png}
@@ -182,14 +220,13 @@ Intel Galileo jest  to mikro kontroler oparty na 32-bitowym procesorze Intel® Q
 \end{figure}
 
 \section{VM800}
-  - na poczatku emulacja na PC
-  - potem przepisanie na niski poziom
-  - ostatecznie podpiecie do Galielo (poszukac czy juz jest?)
-  
-   programers manual reference vm800 ftdi POSZUKAĆ!!!!
+na poczatku emulacja na PC
+potem przepisanie na niski poziom
+ostatecznie podpiecie do Galielo (poszukac czy juz jest?)
+programers manual reference vm800 ftdi POSZUKAĆ!!!!
 
 \section{Dalsze kroki oraz propozycje}
-- schemat blokowy z BAJERAMI i wybrane to co zrobię
+schemat blokowy z BAJERAMI i wybrane to co zrobię
 %================KONIEC IMPLEMENTACJA=====================
 
 \summary
