@@ -77,7 +77,7 @@ Revision History:
 #ifdef ARDUINO_PLATFORM
 #include <stdio.h>
 #include <Arduino.h>
-#include <EEPROM.h>
+#include "EEPROM.h"
 #include <SPI.h>
 #include <avr/pgmspace.h>
 #endif
@@ -90,6 +90,7 @@ Revision History:
 #include <Windows.h>
 
 #include "ftd2xx.h"
+#include "FT_CoPro_Cmds.h"
 #include "LibMPSSE_spi.h"
 #endif
 

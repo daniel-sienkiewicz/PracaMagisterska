@@ -1,0 +1,12 @@
+_loop: CODE, 1060 0 964
+_main: CODE, 3824 0 29
+__initialization: CODE, 2024 0 20
+_ft800memRead8: CODE, 4013 0 83
+_ft800memRead16: CODE, 28 0 121
+_ft800cmdWrite: CODE, 3767 0 28
+_incCMDOffset: CODE, 3795 0 29
+_ft800memWrite8: CODE, 3853 0 78
+_ft800memWrite32: CODE, 149 0 149
+_ft800memWrite16: CODE, 3931 0 82
+_setup: CODE, 298 0 762
+Total: 2345
