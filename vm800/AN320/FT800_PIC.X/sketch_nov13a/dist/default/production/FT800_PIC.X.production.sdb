@@ -1,0 +1,352 @@
+[p LITE_MODE AUTOSTATIC PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F886 ]
+[d frameptr 6 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\abdiv.c
+[v ___abdiv __abdiv `(c  1 e 1 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\abmod.c
+[v ___abmod __abmod `(c  1 e 1 0 ]
+"33 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\abtoft.c
+[v ___abtoft __abtoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\almod.c
+[v ___almod __almod `(l  1 e 4 0 ]
+"42 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\altoft.c
+[v ___altoft __altoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\atdiv.c
+[v ___atdiv __atdiv `(m  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\atmod.c
+[v ___atmod __atmod `(m  1 e 3 0 ]
+"37 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\attoft.c
+[v ___attoft __attoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"32 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\awtoft.c
+[v ___awtoft __awtoft `(f  1 e 3 0 ]
+"2 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\bmul.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\ftge.c
+[v ___ftge __ftge `(b  1 e 0 0 ]
+"51 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 3 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\ftneg.c
+[v ___ftneg __ftneg `(f  1 e 3 0 ]
+"18 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 3 0 ]
+"44 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\fttol.c
+[v ___fttol __fttol `(l  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\lbdiv.c
+[v ___lbdiv __lbdiv `(uc  1 e 1 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\lbmod.c
+[v ___lbmod __lbmod `(uc  1 e 1 0 ]
+"27 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\lbtoft.c
+[v ___lbtoft __lbtoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\llmod.c
+[v ___llmod __llmod `(ul  1 e 4 0 ]
+"35 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\lltoft.c
+[v ___lltoft __lltoft `(f  1 e 3 0 ]
+"2 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\lmul.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\ltdiv.c
+[v ___ltdiv __ltdiv `(um  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\ltmod.c
+[v ___ltmod __ltmod `(um  1 e 3 0 ]
+"30 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\lttoft.c
+[v ___lttoft __lttoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"28 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\lwtoft.c
+[v ___lwtoft __lwtoft `(f  1 e 3 0 ]
+"2 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\tmul.c
+[v ___tmul __tmul `(um  1 e 3 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\common\wmul.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\pic\eeprom.c
+[v _eecpymem eecpymem `(v  1 e 0 0 ]
+"24
+[v _memcpyee memcpyee `(v  1 e 0 0 ]
+"48
+[v ___eetoc __eetoc `(uc  1 e 1 0 ]
+"56
+[v ___eetoi __eetoi `(ui  1 e 2 0 ]
+"64
+[v ___eetom __eetom `(um  1 e 3 0 ]
+"72
+[v ___eetol __eetol `(ul  1 e 4 0 ]
+"80
+[v ___ctoee __ctoee `(uc  1 e 1 0 ]
+"87
+[v ___itoee __itoee `(ui  1 e 2 0 ]
+"94
+[v ___mtoee __mtoee `(um  1 e 3 0 ]
+"101
+[v ___ltoee __ltoee `(ul  1 e 4 0 ]
+"108
+[v ___eetoft __eetoft `(f  1 e 3 0 ]
+"116
+[v ___eetofl __eetofl `(d  1 e 3 0 ]
+"124
+[v ___fttoee __fttoee `(f  1 e 3 0 ]
+"131
+[v ___fltoee __fltoee `(d  1 e 3 0 ]
+"49 C:\Program Files (x86)\Microchip\xc8\v1.30\sources\pic\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
+"112 C:\Users\sachi.murthy\MPLABXProjects\FT800_PIC.X\main.c
+[v _ft800memWrite8 ft800memWrite8 `(v  1 e 0 0 ]
+"128
+[v _ft800memWrite16 ft800memWrite16 `(v  1 e 0 0 ]
+"146
+[v _ft800memWrite32 ft800memWrite32 `(v  1 e 0 0 ]
+"176
+[v _ft800memRead8 ft800memRead8 `(uc  1 e 1 0 ]
+"197
+[v _ft800memRead16 ft800memRead16 `(uc  1 e 1 0 ]
+"229
+[v _ft800memRead32 ft800memRead32 `(ul  1 e 4 0 ]
+"285
+[v _incCMDOffset incCMDOffset `(ui  1 e 2 0 ]
+"305
+[v _ft800cmdWrite ft800cmdWrite `(v  1 e 0 0 ]
+"321
+[v _setup setup `(v  1 e 0 0 ]
+"472
+[v _loop loop `(v  1 e 0 0 ]
+"555
+[v _main main `(v  1 e 0 0 ]
+"739 C:\Program Files (x86)\Microchip\xc8\v1.30\include\pic16f886.h
+[v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
+"745
+[v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
+[s S120 . 1 `uc 1 SCS 1 0 :1:0 
+`uc 1 LTS 1 0 :1:1 
+`uc 1 HTS 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+]
+"1676
+[s S126 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+[u S131 . 1 `S120 1 . 1 0 `S126 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES131  1 e 1 @143 ]
+"1965
+[v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
+[s S27 . 1 `uc 1 BF 1 0 :1:0 
+`uc 1 UA 1 0 :1:1 
+`uc 1 R_nW 1 0 :1:2 
+`uc 1 S 1 0 :1:3 
+`uc 1 P 1 0 :1:4 
+`uc 1 D_nA 1 0 :1:5 
+`uc 1 CKE 1 0 :1:6 
+`uc 1 SMP 1 0 :1:7 
+]
+"2019
+[s S36 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D 1 0 :1:5 
+]
+[s S41 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 I2C_READ 1 0 :1:2 
+`uc 1 I2C_START 1 0 :1:3 
+`uc 1 I2C_STOP 1 0 :1:4 
+`uc 1 I2C_DATA 1 0 :1:5 
+]
+[s S47 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nW 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nA 1 0 :1:5 
+]
+[s S52 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nWRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nADDRESS 1 0 :1:5 
+]
+[s S57 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R_W 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D_A 1 0 :1:5 
+]
+[s S62 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 READ_WRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 DATA_ADDRESS 1 0 :1:5 
+]
+[u S67 . 1 `S27 1 . 1 0 `S36 1 . 1 0 `S41 1 . 1 0 `S47 1 . 1 0 `S52 1 . 1 0 `S57 1 . 1 0 `S62 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES67  1 e 1 @148 ]
+"3017
+[v _EEDATA EEDATA `VEuc  1 e 1 @268 ]
+"3028
+[v _EEADR EEADR `VEuc  1 e 1 @269 ]
+"3153
+[v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
+"3245
+[v _EECON1 EECON1 `VEuc  1 e 1 @396 ]
+"3289
+[v _EECON2 EECON2 `VEuc  1 e 1 @397 ]
+"3435
+[v _CARRY CARRY `VEb  1 e 0 @24 ]
+"3521
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"3691
+[v _RC6 RC6 `VEb  1 e 0 @62 ]
+"3693
+[v _RC7 RC7 `VEb  1 e 0 @63 ]
+"3709
+[v _RD RD `VEb  1 e 0 @3168 ]
+"3749
+[v _SSPEN SSPEN `VEb  1 e 0 @165 ]
+"3873
+[v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
+"3875
+[v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
+"3877
+[v _TRISC5 TRISC5 `VEb  1 e 0 @1085 ]
+"3879
+[v _TRISC6 TRISC6 `VEb  1 e 0 @1086 ]
+"3881
+[v _TRISC7 TRISC7 `VEb  1 e 0 @1087 ]
+"3965
+[v _WR WR `VEb  1 e 0 @3169 ]
+"3967
+[v _WREN WREN `VEb  1 e 0 @3170 ]
+"74 C:\Users\sachi.murthy\MPLABXProjects\FT800_PIC.X\main.c
+[v _lcdWidth lcdWidth `ui  1 e 2 0 ]
+"75
+[v _lcdHeight lcdHeight `ui  1 e 2 0 ]
+"76
+[v _lcdHcycle lcdHcycle `ui  1 e 2 0 ]
+"77
+[v _lcdHoffset lcdHoffset `ui  1 e 2 0 ]
+"78
+[v _lcdHsync0 lcdHsync0 `ui  1 e 2 0 ]
+"79
+[v _lcdHsync1 lcdHsync1 `ui  1 e 2 0 ]
+"80
+[v _lcdVcycle lcdVcycle `ui  1 e 2 0 ]
+"81
+[v _lcdVoffset lcdVoffset `ui  1 e 2 0 ]
+"82
+[v _lcdVsync0 lcdVsync0 `ui  1 e 2 0 ]
+"83
+[v _lcdVsync1 lcdVsync1 `ui  1 e 2 0 ]
+"84
+[v _lcdPclk lcdPclk `uc  1 e 1 0 ]
+"85
+[v _lcdSwizzle lcdSwizzle `uc  1 e 1 0 ]
+"86
+[v _lcdPclkpol lcdPclkpol `uc  1 e 1 0 ]
+"88
+[v _ramDisplayList ramDisplayList `ul  1 e 4 0 ]
+"89
+[v _ramCommandBuffer ramCommandBuffer `ul  1 e 4 0 ]
+"91
+[v _cmdBufferRd cmdBufferRd `ui  1 e 2 0 ]
+"92
+[v _cmdBufferWr cmdBufferWr `ui  1 e 2 0 ]
+"93
+[v _cmdOffset cmdOffset `ui  1 e 2 0 ]
+"94
+[v _point_size point_size `ui  1 e 2 0 ]
+"95
+[v _point_x point_x `ul  1 e 4 0 ]
+"96
+[v _point_x2 point_x2 `ul  1 e 4 0 ]
+"97
+[v _point_y point_y `ul  1 e 4 0 ]
+"98
+[v _color color `ul  1 e 4 0 ]
+"99
+[v _ft800Gpio ft800Gpio `uc  1 e 1 0 ]
+"555
+[v _main main `(v  1 e 0 0 ]
+{
+"573
+} 0
+"321
+[v _setup setup `(v  1 e 0 0 ]
+{
+"404
+[v setup@duty duty `uc  1 a 1 0 ]
+"460
+} 0
+"112
+[v _ft800memWrite8 ft800memWrite8 `(v  1 e 0 0 ]
+{
+[v ft800memWrite8@ftAddress ftAddress `ul  1 p 4 0 ]
+[v ft800memWrite8@ftData8 ftData8 `uc  1 p 1 4 ]
+"126
+} 0
+"176
+[v _ft800memRead8 ft800memRead8 `(uc  1 e 1 0 ]
+{
+"178
+[v ft800memRead8@ftData8 ftData8 `uc  1 a 1 8 ]
+"176
+[v ft800memRead8@ftAddress ftAddress `ul  1 p 4 0 ]
+"195
+} 0
+"305
+[v _ft800cmdWrite ft800cmdWrite `(v  1 e 0 0 ]
+{
+[v ft800cmdWrite@ftCommand ftCommand `uc  1 a 1 wreg ]
+[v ft800cmdWrite@ftCommand ftCommand `uc  1 a 1 wreg ]
+"307
+[v ft800cmdWrite@ftCommand ftCommand `uc  1 a 1 0 ]
+"317
+} 0
+"472
+[v _loop loop `(v  1 e 0 0 ]
+{
+"478
+[v loop@ftRead ftRead `ul  1 a 4 16 ]
+"552
+} 0
+"285
+[v _incCMDOffset incCMDOffset `(ui  1 e 2 0 ]
+{
+"287
+[v incCMDOffset@newOffset newOffset `ui  1 a 2 3 ]
+"285
+[v incCMDOffset@currentOffset currentOffset `ui  1 p 2 0 ]
+[v incCMDOffset@commandSize commandSize `uc  1 p 1 2 ]
+"294
+} 0
+"146
+[v _ft800memWrite32 ft800memWrite32 `(v  1 e 0 0 ]
+{
+[v ft800memWrite32@ftAddress ftAddress `ul  1 p 4 0 ]
+[v ft800memWrite32@ftData32 ftData32 `ul  1 p 4 4 ]
+"165
+} 0
+"128
+[v _ft800memWrite16 ft800memWrite16 `(v  1 e 0 0 ]
+{
+[v ft800memWrite16@ftAddress ftAddress `ul  1 p 4 0 ]
+[v ft800memWrite16@ftData16 ftData16 `ui  1 p 2 4 ]
+"145
+} 0
+"197
+[v _ft800memRead16 ft800memRead16 `(uc  1 e 1 0 ]
+{
+"199
+[v ft800memRead16@tempData tempData `[2]ui  1 a 4 8 ]
+[v ft800memRead16@ftData16 ftData16 `ui  1 a 2 12 ]
+"197
+[v ft800memRead16@ftAddress ftAddress `ul  1 p 4 0 ]
+"227
+} 0

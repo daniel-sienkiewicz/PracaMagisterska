@@ -1,0 +1,3740 @@
+
+
+Microchip Technology PIC LITE Macro Assembler V1.30 build 55553 
+                                                                                               Wed Apr 16 16:45:46 2014
+
+Microchip Technology Omniscient Code Generator (Lite mode) build 55553
+     1                           	processor	16F886
+     2                           	opt	pw 120
+     3                           	opt	lm
+     4                           	psect	idataBANK0,global,class=CODE,delta=2
+     5                           	psect	nvBANK0,global,class=BANK0,space=1,delta=1
+     6                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+     8                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	clrtext,global,class=CODE,delta=2
+    10                           	psect	inittext,global,class=CODE,delta=2
+    11                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    12                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    13                           	psect	maintext,global,class=CODE,split=1,delta=2
+    14                           	psect	text1,local,class=CODE,merge=1,delta=2
+    15                           	psect	text2,local,class=CODE,merge=1,delta=2
+    16                           	psect	text3,local,class=CODE,merge=1,delta=2
+    17                           	psect	text4,local,class=CODE,merge=1,delta=2
+    18                           	psect	text5,local,class=CODE,merge=1,delta=2
+    19                           	psect	text6,local,class=CODE,merge=1,delta=2
+    20                           	psect	text7,local,class=CODE,merge=1,delta=2
+    21                           	psect	text8,local,class=CODE,merge=1,delta=2
+    22                           	psect	text9,local,class=CODE,merge=1,delta=2
+    23                           	dabs	1,0x7E,2
+    24  0000                     	;# 
+    25  0001                     	;# 
+    26  0002                     	;# 
+    27  0003                     	;# 
+    28  0004                     	;# 
+    29  0005                     	;# 
+    30  0006                     	;# 
+    31  0007                     	;# 
+    32  0009                     	;# 
+    33  000A                     	;# 
+    34  000B                     	;# 
+    35  000C                     	;# 
+    36  000D                     	;# 
+    37  000E                     	;# 
+    38  000E                     	;# 
+    39  000F                     	;# 
+    40  0010                     	;# 
+    41  0011                     	;# 
+    42  0012                     	;# 
+    43  0013                     	;# 
+    44  0014                     	;# 
+    45  0015                     	;# 
+    46  0015                     	;# 
+    47  0016                     	;# 
+    48  0017                     	;# 
+    49  0018                     	;# 
+    50  0019                     	;# 
+    51  001A                     	;# 
+    52  001B                     	;# 
+    53  001B                     	;# 
+    54  001C                     	;# 
+    55  001D                     	;# 
+    56  001E                     	;# 
+    57  001F                     	;# 
+    58  0081                     	;# 
+    59  0085                     	;# 
+    60  0086                     	;# 
+    61  0087                     	;# 
+    62  0089                     	;# 
+    63  008C                     	;# 
+    64  008D                     	;# 
+    65  008E                     	;# 
+    66  008F                     	;# 
+    67  0090                     	;# 
+    68  0091                     	;# 
+    69  0092                     	;# 
+    70  0093                     	;# 
+    71  0093                     	;# 
+    72  0093                     	;# 
+    73  0094                     	;# 
+    74  0095                     	;# 
+    75  0096                     	;# 
+    76  0097                     	;# 
+    77  0098                     	;# 
+    78  0099                     	;# 
+    79  009A                     	;# 
+    80  009B                     	;# 
+    81  009C                     	;# 
+    82  009D                     	;# 
+    83  009E                     	;# 
+    84  009F                     	;# 
+    85  0105                     	;# 
+    86  0107                     	;# 
+    87  0108                     	;# 
+    88  0109                     	;# 
+    89  010C                     	;# 
+    90  010C                     	;# 
+    91  010D                     	;# 
+    92  010E                     	;# 
+    93  010F                     	;# 
+    94  0185                     	;# 
+    95  0187                     	;# 
+    96  0188                     	;# 
+    97  0189                     	;# 
+    98  018C                     	;# 
+    99  018D                     	;# 
+   100                           
+   101                           	psect	idataBANK0
+   102  0006                     __pidataBANK0:	
+   103                           
+   104                           ;initializer for _point_x
+   105  0006  3400               	retlw	0
+   106  0007  3406               	retlw	6
+   107  0008  3400               	retlw	0
+   108  0009  3400               	retlw	0
+   109                           
+   110                           ;initializer for _point_x2
+   111  000A  3480               	retlw	128
+   112  000B  340C               	retlw	12
+   113  000C  3400               	retlw	0
+   114  000D  3400               	retlw	0
+   115                           
+   116                           ;initializer for _point_y
+   117  000E  3480               	retlw	128
+   118  000F  3408               	retlw	8
+   119  0010  3400               	retlw	0
+   120  0011  3400               	retlw	0
+   121                           
+   122                           ;initializer for _ramCommandBuffer
+   123  0012  3400               	retlw	0
+   124  0013  3480               	retlw	128
+   125  0014  3410               	retlw	16
+   126  0015  3400               	retlw	0
+   127                           
+   128                           ;initializer for _ramDisplayList
+   129  0016  3400               	retlw	0
+   130  0017  3400               	retlw	0
+   131  0018  3410               	retlw	16
+   132  0019  3400               	retlw	0
+   133                           
+   134                           ;initializer for _point_size
+   135  001A  3400               	retlw	0
+   136  001B  3401               	retlw	1
+   137                           
+   138                           	psect	nvBANK0
+   139  004A                     __pnvBANK0:	
+   140  004A                     _lcdHcycle:	
+   141  004A                     	ds	2
+   142  004C                     _lcdHeight:	
+   143  004C                     	ds	2
+   144  004E                     _lcdHoffset:	
+   145  004E                     	ds	2
+   146  0050                     _lcdHsync1:	
+   147  0050                     	ds	2
+   148  0052                     _lcdVcycle:	
+   149  0052                     	ds	2
+   150  0054                     _lcdVoffset:	
+   151  0054                     	ds	2
+   152  0056                     _lcdVsync1:	
+   153  0056                     	ds	2
+   154  0058                     _lcdWidth:	
+   155  0058                     	ds	2
+   156  005A                     _lcdPclk:	
+   157  005A                     	ds	1
+   158  005B                     _lcdPclkpol:	
+   159  005B                     	ds	1
+   160  0013                     _SSPBUF	set	19
+   161  0014                     _SSPCON	set	20
+   162  003E                     _RC6	set	62
+   163  003F                     _RC7	set	63
+   164  00A5                     _SSPEN	set	165
+   165  008F                     _OSCCONbits	set	143
+   166  0094                     _SSPSTAT	set	148
+   167  0094                     _SSPSTATbits	set	148
+   168  043B                     _TRISC3	set	1083
+   169  043C                     _TRISC4	set	1084
+   170  043D                     _TRISC5	set	1085
+   171  043E                     _TRISC6	set	1086
+   172  043F                     _TRISC7	set	1087
+   173  0188                     _ANSEL	set	392
+   174                           
+   175                           ; #config settings
+   176  0000                     
+   177                           	psect	cinit
+   178  07E8                     start_initialization:	
+   179  07E8                     __initialization:	
+   180                           
+   181                           ; Clear objects allocated to BANK0
+   182  07E8  1383               	bcf	3,7	;select IRP bank0
+   183  07E9  305C               	movlw	low __pbssBANK0
+   184  07EA  0084               	movwf	4
+   185  07EB  306C               	movlw	low (__pbssBANK0+16)
+   186  07EC  120A  158A  269E   	fcall	clear_ram0
+      +       120A  118A         
+   187                           
+   188                           ; Initialize objects allocated to BANK0
+   189  07F1  3036               	movlw	low (__pdataBANK0+22)
+   190  07F2  00FD               	movwf	btemp+-1
+   191  07F3  3000               	movlw	high __pidataBANK0
+   192  07F4  00FE               	movwf	btemp
+   193  07F5  3006               	movlw	low __pidataBANK0
+   194  07F6  00FF               	movwf	btemp+1
+   195  07F7  3020               	movlw	low __pdataBANK0
+   196  07F8  0084               	movwf	4
+   197  07F9  120A  158A  26AA   	fcall	init_ram0
+   198  07FC                     end_of_initialization:	
+   199                           ;End of C runtime variable initialization code
+   200                           
+   201  07FC                     __end_of__initialization:	
+   202  07FC  0183               	clrf	3
+   203  07FD  120A  158A  2EF0   	ljmp	_main	;jump to C main() function
+   204                           
+   205                           	psect	bssBANK0
+   206  005C                     __pbssBANK0:	
+   207  005C                     _color:	
+   208  005C                     	ds	4
+   209  0060                     _cmdBufferRd:	
+   210  0060                     	ds	2
+   211  0062                     _cmdBufferWr:	
+   212  0062                     	ds	2
+   213  0064                     _cmdOffset:	
+   214  0064                     	ds	2
+   215  0066                     _lcdHsync0:	
+   216  0066                     	ds	2
+   217  0068                     _lcdVsync0:	
+   218  0068                     	ds	2
+   219  006A                     _ft800Gpio:	
+   220  006A                     	ds	1
+   221  006B                     _lcdSwizzle:	
+   222  006B                     	ds	1
+   223                           
+   224                           	psect	dataBANK0
+   225  0020                     __pdataBANK0:	
+   226  0020                     _point_x:	
+   227  0020                     	ds	4
+   228  0024                     _point_x2:	
+   229  0024                     	ds	4
+   230  0028                     _point_y:	
+   231  0028                     	ds	4
+   232  002C                     _ramCommandBuffer:	
+   233  002C                     	ds	4
+   234  0030                     _ramDisplayList:	
+   235  0030                     	ds	4
+   236  0034                     _point_size:	
+   237  0034                     	ds	2
+   238                           
+   239                           	psect	clrtext
+   240  0E9E                     clear_ram0:	
+   241                           ;	Called with FSR containing the base address, and
+   242                           ;	W with the last address+1
+   243                           
+   244  0E9E  0064               	clrwdt	;clear the watchdog before getting into this loop
+   245  0E9F                     clrloop0:	
+   246  0E9F  0180               	clrf	0	;clear RAM location pointed to by FSR
+   247  0EA0  0A84               	incf	4,f	;increment pointer
+   248  0EA1  0604               	xorwf	4,w	;XOR with final address
+   249  0EA2  1903               	btfsc	3,2	;have we reached the end yet?
+   250  0EA3  3400               	retlw	0	;all done for this memory range, return
+   251  0EA4  0604               	xorwf	4,w	;XOR again to restore value
+   252  0EA5  2E9F               	goto	clrloop0	;do the next byte
+   253                           
+   254                           	psect	inittext
+   255  0EA6                     init_fetch0:	
+   256                           ;	Called with low address in FSR and high address in W
+   257                           
+   258  0EA6  087E               	movf	126,w
+   259  0EA7  008A               	movwf	10
+   260  0EA8  087F               	movf	127,w
+   261  0EA9  0082               	movwf	2
+   262  0EAA                     init_ram0:	
+   263                           ;Called with:
+   264                           ;	high address of idata address in btemp 
+   265                           ;	low address of idata address in btemp+1 
+   266                           ;	low address of data in FSR
+   267                           ;	high address + 1 of data in btemp-1
+   268                           
+   269  0EAA  26A6  120A  158A   	fcall	init_fetch0
+   270  0EAD  0080               	movwf	0
+   271  0EAE  0A84               	incf	4,f
+   272  0EAF  0804               	movf	4,w
+   273  0EB0  067D               	xorwf	125,w
+   274  0EB1  1903               	btfsc	3,2
+   275  0EB2  3400               	retlw	0
+   276  0EB3  0AFF               	incf	127,f
+   277  0EB4  1903               	btfsc	3,2
+   278  0EB5  0AFE               	incf	126,f
+   279  0EB6  2EAA               	goto	init_ram0
+   280                           
+   281                           	psect	cstackCOMMON
+   282  0070                     __pcstackCOMMON:	
+   283  0070                     ?_ft800memWrite8:	
+   284  0070                     ?_ft800memWrite16:	
+   285                           ; 0 bytes @ 0x0
+   286                           
+   287  0070                     ?_ft800memWrite32:	
+   288                           ; 0 bytes @ 0x0
+   289                           
+   290  0070                     ?_ft800cmdWrite:	
+   291                           ; 0 bytes @ 0x0
+   292                           
+   293  0070                     ??_ft800cmdWrite:	
+   294                           ; 0 bytes @ 0x0
+   295                           
+   296  0070                     ?_setup:	
+   297                           ; 0 bytes @ 0x0
+   298                           
+   299  0070                     ?_loop:	
+   300                           ; 0 bytes @ 0x0
+   301                           
+   302  0070                     ?_main:	
+   303                           ; 0 bytes @ 0x0
+   304                           
+   305  0070                     ?_ft800memRead8:	
+   306                           ; 0 bytes @ 0x0
+   307                           
+   308  0070                     ?_ft800memRead16:	
+   309                           ; 1 bytes @ 0x0
+   310                           
+   311  0070                     ?_incCMDOffset:	
+   312                           ; 1 bytes @ 0x0
+   313                           
+   314  0070                     ft800cmdWrite@ftCommand:	
+   315                           ; 2 bytes @ 0x0
+   316                           
+   317  0070                     incCMDOffset@currentOffset:	
+   318                           ; 1 bytes @ 0x0
+   319                           
+   320  0070                     ft800memWrite8@ftAddress:	
+   321                           ; 2 bytes @ 0x0
+   322                           
+   323  0070                     ft800memWrite16@ftAddress:	
+   324                           ; 4 bytes @ 0x0
+   325                           
+   326  0070                     ft800memWrite32@ftAddress:	
+   327                           ; 4 bytes @ 0x0
+   328                           
+   329  0070                     ft800memRead8@ftAddress:	
+   330                           ; 4 bytes @ 0x0
+   331                           
+   332  0070                     ft800memRead16@ftAddress:	
+   333                           ; 4 bytes @ 0x0
+   334                           
+   335                           
+   336                           ; 4 bytes @ 0x0
+   337  0070                     	ds	2
+   338  0072                     incCMDOffset@commandSize:	
+   339                           
+   340                           ; 1 bytes @ 0x2
+   341  0072                     	ds	1
+   342  0073                     ??_incCMDOffset:	
+   343  0073                     incCMDOffset@newOffset:	
+   344                           ; 0 bytes @ 0x3
+   345                           
+   346                           
+   347                           ; 2 bytes @ 0x3
+   348  0073                     	ds	1
+   349  0074                     ??_ft800memRead8:	
+   350  0074                     ??_ft800memRead16:	
+   351                           ; 0 bytes @ 0x4
+   352                           
+   353  0074                     ft800memWrite8@ftData8:	
+   354                           ; 0 bytes @ 0x4
+   355                           
+   356  0074                     ft800memWrite16@ftData16:	
+   357                           ; 1 bytes @ 0x4
+   358                           
+   359  0074                     ft800memWrite32@ftData32:	
+   360                           ; 2 bytes @ 0x4
+   361                           
+   362                           
+   363                           ; 4 bytes @ 0x4
+   364  0074                     	ds	1
+   365  0075                     ??_ft800memWrite8:	
+   366                           
+   367                           ; 0 bytes @ 0x5
+   368  0075                     	ds	1
+   369  0076                     ??_ft800memWrite16:	
+   370                           
+   371                           ; 0 bytes @ 0x6
+   372  0076                     	ds	2
+   373  0078                     ??_ft800memWrite32:	
+   374  0078                     ft800memRead8@ftData8:	
+   375                           ; 0 bytes @ 0x8
+   376                           
+   377  0078                     ft800memRead16@tempData:	
+   378                           ; 1 bytes @ 0x8
+   379                           
+   380                           
+   381                           ; 4 bytes @ 0x8
+   382  0078                     	ds	4
+   383  007C                     ??_setup:	
+   384  007C                     ft800memRead16@ftData16:	
+   385                           ; 0 bytes @ 0xC
+   386                           
+   387                           
+   388                           ; 2 bytes @ 0xC
+   389  007C                     	ds	2
+   390  007E                     ??_main:	
+   391                           
+   392                           	psect	cstackBANK0
+   393  0036                     __pcstackBANK0:	
+   394                           ; 0 bytes @ 0xE
+   395                           
+   396  0036                     ??_loop:	
+   397  0036                     setup@duty:	
+   398                           ; 0 bytes @ 0x0
+   399                           
+   400                           
+   401                           ; 1 bytes @ 0x0
+   402  0036                     	ds	16
+   403  0046                     loop@ftRead:	
+   404                           
+   405                           ; 4 bytes @ 0x10
+   406  0046                     	ds	4
+   407                           
+   408                           	psect	maintext
+   409  0EF0                     __pmaintext:	
+   410 ;;
+   411 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   412 ;;
+   413 ;; *************** function _main *****************
+   414 ;; Defined at:
+   415 ;;		line 555 in file "main.c"
+   416 ;; Parameters:    Size  Location     Type
+   417 ;;		None
+   418 ;; Auto vars:     Size  Location     Type
+   419 ;;		None
+   420 ;; Return value:  Size  Location     Type
+   421 ;;		None               void
+   422 ;; Registers used:
+   423 ;;		wreg, status,2, status,0, pclath, cstack
+   424 ;; Tracked objects:
+   425 ;;		On entry : 17F/0
+   426 ;;		On exit  : 0/0
+   427 ;;		Unchanged: 0/0
+   428 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   429 ;;      Params:         0       0       0       0       0
+   430 ;;      Locals:         0       0       0       0       0
+   431 ;;      Temps:          0       0       0       0       0
+   432 ;;      Totals:         0       0       0       0       0
+   433 ;;Total ram usage:        0 bytes
+   434 ;; Hardware stack levels required when called:    2
+   435 ;; This function calls:
+   436 ;;		_loop
+   437 ;;		_setup
+   438 ;; This function is called by:
+   439 ;;		Startup code after reset
+   440 ;; This function uses a non-reentrant model
+   441 ;;
+   442                           
+   443                           
+   444                           ;psect for function _main
+   445  0EF0                     _main:	
+   446                           
+   447                           ;main.c: 557: OSCCONbits.IRCF = 0b111;
+   448                           
+   449                           ;incstack = 0
+   450                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   451  0EF0  3070               	movlw	112
+   452  0EF1  1683               	bsf	3,5	;RP0=1, select bank1
+   453  0EF2  1303               	bcf	3,6	;RP1=0, select bank1
+   454  0EF3  048F               	iorwf	15,f	;volatile
+   455                           
+   456                           ;main.c: 558: ANSEL = 0;
+   457  0EF4  1683               	bsf	3,5	;RP0=1, select bank3
+   458  0EF5  1703               	bsf	3,6	;RP1=1, select bank3
+   459  0EF6  0188               	clrf	8	;volatile
+   460                           
+   461                           ;main.c: 560: TRISC4 = 1;
+   462  0EF7  1683               	bsf	3,5	;RP0=1, select bank1
+   463  0EF8  1303               	bcf	3,6	;RP1=0, select bank1
+   464  0EF9  1607               	bsf	7,4	;volatile
+   465                           
+   466                           ;main.c: 561: TRISC5 = 0;
+   467  0EFA  1287               	bcf	7,5	;volatile
+   468                           
+   469                           ;main.c: 562: TRISC3 = 0;
+   470  0EFB  1187               	bcf	7,3	;volatile
+   471                           
+   472                           ;main.c: 563: TRISC6 = 0;
+   473  0EFC  1307               	bcf	7,6	;volatile
+   474                           
+   475                           ;main.c: 564: TRISC7 = 0;
+   476  0EFD  1387               	bcf	7,7	;volatile
+   477                           
+   478                           ;main.c: 565: RC6 = 1;
+   479  0EFE  1283               	bcf	3,5	;RP0=0, select bank0
+   480  0EFF  1303               	bcf	3,6	;RP1=0, select bank0
+   481  0F00  1707               	bsf	7,6	;volatile
+   482                           
+   483                           ;main.c: 566: RC7 = 1;
+   484  0F01  1787               	bsf	7,7	;volatile
+   485                           
+   486                           ;main.c: 568: setup();
+   487  0F02  120A  118A  212A   	fcall	_setup
+      +       120A  158A         
+   488  0F07                     l1253:	
+   489                           ;main.c: 570: while(1){
+   490                           
+   491                           
+   492                           ;main.c: 571: loop();
+   493  0F07  120A  118A  2424   	fcall	_loop
+      +       120A  158A         
+   494  0F0C  2F07               	goto	l1253
+   495  0F0D                     __end_of_main:	
+   496                           
+   497                           	psect	text1
+   498  012A                     __ptext1:	
+   499 ;; *************** function _setup *****************
+   500 ;; Defined at:
+   501 ;;		line 321 in file "main.c"
+   502 ;; Parameters:    Size  Location     Type
+   503 ;;		None
+   504 ;; Auto vars:     Size  Location     Type
+   505 ;;  duty            1    0[BANK0 ] unsigned char 
+   506 ;; Return value:  Size  Location     Type
+   507 ;;		None               void
+   508 ;; Registers used:
+   509 ;;		wreg, status,2, status,0, pclath, cstack
+   510 ;; Tracked objects:
+   511 ;;		On entry : 0/0
+   512 ;;		On exit  : 0/0
+   513 ;;		Unchanged: 0/0
+   514 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   515 ;;      Params:         0       0       0       0       0
+   516 ;;      Locals:         0       1       0       0       0
+   517 ;;      Temps:          2       0       0       0       0
+   518 ;;      Totals:         2       1       0       0       0
+   519 ;;Total ram usage:        3 bytes
+   520 ;; Hardware stack levels used:    1
+   521 ;; Hardware stack levels required when called:    1
+   522 ;; This function calls:
+   523 ;;		_ft800cmdWrite
+   524 ;;		_ft800memRead8
+   525 ;;		_ft800memWrite16
+   526 ;;		_ft800memWrite32
+   527 ;;		_ft800memWrite8
+   528 ;; This function is called by:
+   529 ;;		_main
+   530 ;; This function uses a non-reentrant model
+   531 ;;
+   532                           
+   533                           
+   534                           ;psect for function _setup
+   535  012A                     _setup:	
+   536                           
+   537                           ;main.c: 324: SSPEN = 0;
+   538                           
+   539                           ;incstack = 0
+   540                           ; Regs used in _setup: [wreg+status,2+status,0+pclath+cstack]
+   541  012A  1283               	bcf	3,5	;RP0=0, select bank0
+   542  012B  1303               	bcf	3,6	;RP1=0, select bank0
+   543  012C  1294               	bcf	20,5	;volatile
+   544                           
+   545                           ;main.c: 325: SSPSTAT = 0b01000000;
+   546  012D  3040               	movlw	64
+   547  012E  1683               	bsf	3,5	;RP0=1, select bank1
+   548  012F  1303               	bcf	3,6	;RP1=0, select bank1
+   549  0130  0094               	movwf	20	;volatile
+   550                           
+   551                           ;main.c: 328: SSPCON = 0b00000000;
+   552  0131  1283               	bcf	3,5	;RP0=0, select bank0
+   553  0132  1303               	bcf	3,6	;RP1=0, select bank0
+   554  0133  0194               	clrf	20	;volatile
+   555                           
+   556                           ;main.c: 333: SSPEN = 1;
+   557  0134  1694               	bsf	20,5	;volatile
+   558                           
+   559                           ;main.c: 353: lcdWidth = 480;
+   560  0135  30E0               	movlw	224
+   561  0136  00D8               	movwf	_lcdWidth
+   562  0137  3001               	movlw	1
+   563  0138  00D9               	movwf	_lcdWidth+1
+   564                           
+   565                           ;main.c: 354: lcdHeight = 272;
+   566  0139  3010               	movlw	16
+   567  013A  00CC               	movwf	_lcdHeight
+   568  013B  3001               	movlw	1
+   569  013C  00CD               	movwf	_lcdHeight+1
+   570                           
+   571                           ;main.c: 355: lcdHcycle = 548;
+   572  013D  3024               	movlw	36
+   573  013E  00CA               	movwf	_lcdHcycle
+   574  013F  3002               	movlw	2
+   575  0140  00CB               	movwf	_lcdHcycle+1
+   576                           
+   577                           ;main.c: 356: lcdHoffset = 43;
+   578  0141  302B               	movlw	43
+   579  0142  00CE               	movwf	_lcdHoffset
+   580  0143  3000               	movlw	0
+   581  0144  00CF               	movwf	_lcdHoffset+1
+   582                           
+   583                           ;main.c: 357: lcdHsync0 = 0;
+   584  0145  01E6               	clrf	_lcdHsync0
+   585  0146  01E7               	clrf	_lcdHsync0+1
+   586                           
+   587                           ;main.c: 358: lcdHsync1 = 41;
+   588  0147  3029               	movlw	41
+   589  0148  00D0               	movwf	_lcdHsync1
+   590  0149  3000               	movlw	0
+   591  014A  00D1               	movwf	_lcdHsync1+1
+   592                           
+   593                           ;main.c: 359: lcdVcycle = 292;
+   594  014B  3024               	movlw	36
+   595  014C  00D2               	movwf	_lcdVcycle
+   596  014D  3001               	movlw	1
+   597  014E  00D3               	movwf	_lcdVcycle+1
+   598                           
+   599                           ;main.c: 360: lcdVoffset = 12;
+   600  014F  300C               	movlw	12
+   601  0150  00D4               	movwf	_lcdVoffset
+   602  0151  3000               	movlw	0
+   603  0152  00D5               	movwf	_lcdVoffset+1
+   604                           
+   605                           ;main.c: 361: lcdVsync0 = 0;
+   606  0153  01E8               	clrf	_lcdVsync0
+   607  0154  01E9               	clrf	_lcdVsync0+1
+   608                           
+   609                           ;main.c: 362: lcdVsync1 = 10;
+   610  0155  300A               	movlw	10
+   611  0156  00D6               	movwf	_lcdVsync1
+   612  0157  3000               	movlw	0
+   613  0158  00D7               	movwf	_lcdVsync1+1
+   614                           
+   615                           ;main.c: 363: lcdPclk = 5;
+   616  0159  3005               	movlw	5
+   617  015A  00FC               	movwf	??_setup
+   618  015B  087C               	movf	??_setup,w
+   619  015C  00DA               	movwf	_lcdPclk
+   620                           
+   621                           ;main.c: 364: lcdSwizzle = 0;
+   622  015D  01EB               	clrf	_lcdSwizzle
+   623                           
+   624                           ;main.c: 365: lcdPclkpol = 1;
+   625  015E  01DB               	clrf	_lcdPclkpol
+   626  015F  0ADB               	incf	_lcdPclkpol,f
+   627                           
+   628                           ;main.c: 372: RC7 = 0;
+   629  0160  1387               	bcf	7,7	;volatile
+   630                           
+   631                           ;main.c: 373: _delay((unsigned long)((20)*(8000000/4000.0)));
+   632  0161  3034               	movlw	52
+   633  0162  00FD               	movwf	??_setup+1
+   634  0163  30F1               	movlw	241
+   635  0164  00FC               	movwf	??_setup
+   636  0165                     u1357:	
+   637  0165  0BFC               	decfsz	??_setup,f
+   638  0166  2965               	goto	u1357
+   639  0167  0BFD               	decfsz	??_setup+1,f
+   640  0168  2965               	goto	u1357
+   641  0169  296A               	nop2
+   642                           
+   643                           ;main.c: 374: RC7 = 1;
+   644  016A  1283               	bcf	3,5	;RP0=0, select bank0
+   645  016B  1303               	bcf	3,6	;RP1=0, select bank0
+   646  016C  1787               	bsf	7,7	;volatile
+   647                           
+   648                           ;main.c: 375: _delay((unsigned long)((20)*(8000000/4000.0)));
+   649  016D  3034               	movlw	52
+   650  016E  00FD               	movwf	??_setup+1
+   651  016F  30F1               	movlw	241
+   652  0170  00FC               	movwf	??_setup
+   653  0171                     u1367:	
+   654  0171  0BFC               	decfsz	??_setup,f
+   655  0172  2971               	goto	u1367
+   656  0173  0BFD               	decfsz	??_setup+1,f
+   657  0174  2971               	goto	u1367
+   658  0175  2976               	nop2
+   659                           
+   660                           ;main.c: 377: ft800cmdWrite(0x00);
+   661  0176  3000               	movlw	0
+   662  0177  120A  158A  26B7   	fcall	_ft800cmdWrite
+      +       120A  118A         
+   663                           
+   664                           ;main.c: 378: _delay((unsigned long)((5)*(8000000/4000.0)));
+   665  017C  300D               	movlw	13
+   666  017D  00FD               	movwf	??_setup+1
+   667  017E  30FB               	movlw	251
+   668  017F  00FC               	movwf	??_setup
+   669  0180                     u1377:	
+   670  0180  0BFC               	decfsz	??_setup,f
+   671  0181  2980               	goto	u1377
+   672  0182  0BFD               	decfsz	??_setup+1,f
+   673  0183  2980               	goto	u1377
+   674  0184  2985               	nop2
+   675                           
+   676                           ;main.c: 380: ft800cmdWrite(0x44);
+   677  0185  3044               	movlw	68
+   678  0186  120A  158A  26B7   	fcall	_ft800cmdWrite
+      +       120A  118A         
+   679                           
+   680                           ;main.c: 381: _delay((unsigned long)((5)*(8000000/4000.0)));
+   681  018B  300D               	movlw	13
+   682  018C  00FD               	movwf	??_setup+1
+   683  018D  30FB               	movlw	251
+   684  018E  00FC               	movwf	??_setup
+   685  018F                     u1387:	
+   686  018F  0BFC               	decfsz	??_setup,f
+   687  0190  298F               	goto	u1387
+   688  0191  0BFD               	decfsz	??_setup+1,f
+   689  0192  298F               	goto	u1387
+   690  0193  2994               	nop2
+   691                           
+   692                           ;main.c: 383: ft800cmdWrite(0x62);
+   693  0194  3062               	movlw	98
+   694  0195  120A  158A  26B7   	fcall	_ft800cmdWrite
+      +       120A  118A         
+   695                           
+   696                           ;main.c: 384: _delay((unsigned long)((5)*(8000000/4000.0)));
+   697  019A  300D               	movlw	13
+   698  019B  00FD               	movwf	??_setup+1
+   699  019C  30FB               	movlw	251
+   700  019D  00FC               	movwf	??_setup
+   701  019E                     u1397:	
+   702  019E  0BFC               	decfsz	??_setup,f
+   703  019F  299E               	goto	u1397
+   704  01A0  0BFD               	decfsz	??_setup+1,f
+   705  01A1  299E               	goto	u1397
+   706  01A2  29A3               	nop2
+   707                           
+   708                           ;main.c: 386: ft800cmdWrite(0x68);
+   709  01A3  3068               	movlw	104
+   710  01A4  120A  158A  26B7   	fcall	_ft800cmdWrite
+      +       120A  118A         
+   711                           
+   712                           ;main.c: 387: _delay((unsigned long)((5)*(8000000/4000.0)));
+   713  01A9  300D               	movlw	13
+   714  01AA  00FD               	movwf	??_setup+1
+   715  01AB  30FB               	movlw	251
+   716  01AC  00FC               	movwf	??_setup
+   717  01AD                     u1407:	
+   718  01AD  0BFC               	decfsz	??_setup,f
+   719  01AE  29AD               	goto	u1407
+   720  01AF  0BFD               	decfsz	??_setup+1,f
+   721  01B0  29AD               	goto	u1407
+   722  01B1  29B2               	nop2
+   723                           
+   724                           ;main.c: 389: ft800cmdWrite(0x40);
+   725  01B2  3040               	movlw	64
+   726  01B3  120A  158A  26B7   	fcall	_ft800cmdWrite
+      +       120A  118A         
+   727                           
+   728                           ;main.c: 390: _delay((unsigned long)((5)*(8000000/4000.0)));
+   729  01B8  300D               	movlw	13
+   730  01B9  00FD               	movwf	??_setup+1
+   731  01BA  30FB               	movlw	251
+   732  01BB  00FC               	movwf	??_setup
+   733  01BC                     u1417:	
+   734  01BC  0BFC               	decfsz	??_setup,f
+   735  01BD  29BC               	goto	u1417
+   736  01BE  0BFD               	decfsz	??_setup+1,f
+   737  01BF  29BC               	goto	u1417
+   738  01C0  29C1               	nop2
+   739                           
+   740                           ;main.c: 392: if (ft800memRead8(0x102400UL) != 0x7C)
+   741  01C1  3000               	movlw	0
+   742  01C2  00F3               	movwf	ft800memRead8@ftAddress+3
+   743  01C3  3010               	movlw	16
+   744  01C4  00F2               	movwf	ft800memRead8@ftAddress+2
+   745  01C5  3024               	movlw	36
+   746  01C6  00F1               	movwf	ft800memRead8@ftAddress+1
+   747  01C7  3000               	movlw	0
+   748  01C8  00F0               	movwf	ft800memRead8@ftAddress
+   749  01C9  120A  158A  27AD   	fcall	_ft800memRead8
+      +       120A  118A         
+   750  01CE  3A7C               	xorlw	124
+   751  01CF  1903               	skipnz
+   752  01D0  29D9               	goto	l1143
+   753                           
+   754                           ;main.c: 393: {
+   755                           ;main.c: 396: SSPBUF = 0xFF;
+   756  01D1  30FF               	movlw	255
+   757  01D2  1283               	bcf	3,5	;RP0=0, select bank0
+   758  01D3  1303               	bcf	3,6	;RP1=0, select bank0
+   759  01D4  0093               	movwf	19	;volatile
+   760  01D5                     l218:	
+   761                           ;main.c: 397: while(!SSPSTATbits.BF);
+   762                           
+   763  01D5  1683               	bsf	3,5	;RP0=1, select bank1
+   764  01D6  1303               	bcf	3,6	;RP1=0, select bank1
+   765  01D7  1C14               	btfss	20,0	;volatile
+   766  01D8  29D5               	goto	l218
+   767  01D9                     l1143:	
+   768                           
+   769                           ;main.c: 398: }
+   770                           ;main.c: 401: ft800memWrite8(0x10246cUL, 0UL);
+   771  01D9  3000               	movlw	0
+   772  01DA  00F3               	movwf	ft800memWrite8@ftAddress+3
+   773  01DB  3010               	movlw	16
+   774  01DC  00F2               	movwf	ft800memWrite8@ftAddress+2
+   775  01DD  3024               	movlw	36
+   776  01DE  00F1               	movwf	ft800memWrite8@ftAddress+1
+   777  01DF  306C               	movlw	108
+   778  01E0  00F0               	movwf	ft800memWrite8@ftAddress
+   779  01E1  01F4               	clrf	ft800memWrite8@ftData8
+   780  01E2  120A  158A  270D   	fcall	_ft800memWrite8
+      +       120A  118A         
+   781                           
+   782                           ;main.c: 402: ft800memWrite8(0x1024c4UL, 0UL);
+   783  01E7  3000               	movlw	0
+   784  01E8  00F3               	movwf	ft800memWrite8@ftAddress+3
+   785  01E9  3010               	movlw	16
+   786  01EA  00F2               	movwf	ft800memWrite8@ftAddress+2
+   787  01EB  3024               	movlw	36
+   788  01EC  00F1               	movwf	ft800memWrite8@ftAddress+1
+   789  01ED  30C4               	movlw	196
+   790  01EE  00F0               	movwf	ft800memWrite8@ftAddress
+   791  01EF  01F4               	clrf	ft800memWrite8@ftData8
+   792  01F0  120A  158A  270D   	fcall	_ft800memWrite8
+      +       120A  118A         
+   793                           
+   794                           ;main.c: 404: unsigned char duty;
+   795                           ;main.c: 407: ft800memWrite16(0x102430UL, lcdWidth);
+   796  01F5  3000               	movlw	0
+   797  01F6  00F3               	movwf	ft800memWrite16@ftAddress+3
+   798  01F7  3010               	movlw	16
+   799  01F8  00F2               	movwf	ft800memWrite16@ftAddress+2
+   800  01F9  3024               	movlw	36
+   801  01FA  00F1               	movwf	ft800memWrite16@ftAddress+1
+   802  01FB  3030               	movlw	48
+   803  01FC  00F0               	movwf	ft800memWrite16@ftAddress
+   804  01FD  1283               	bcf	3,5	;RP0=0, select bank0
+   805  01FE  1303               	bcf	3,6	;RP1=0, select bank0
+   806  01FF  0859               	movf	_lcdWidth+1,w
+   807  0200  01F5               	clrf	ft800memWrite16@ftData16+1
+   808  0201  07F5               	addwf	ft800memWrite16@ftData16+1,f
+   809  0202  0858               	movf	_lcdWidth,w
+   810  0203  01F4               	clrf	ft800memWrite16@ftData16
+   811  0204  07F4               	addwf	ft800memWrite16@ftData16,f
+   812  0205  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+   813                           
+   814                           ;main.c: 408: ft800memWrite16(0x102428UL, lcdHcycle);
+   815  020A  3000               	movlw	0
+   816  020B  00F3               	movwf	ft800memWrite16@ftAddress+3
+   817  020C  3010               	movlw	16
+   818  020D  00F2               	movwf	ft800memWrite16@ftAddress+2
+   819  020E  3024               	movlw	36
+   820  020F  00F1               	movwf	ft800memWrite16@ftAddress+1
+   821  0210  3028               	movlw	40
+   822  0211  00F0               	movwf	ft800memWrite16@ftAddress
+   823  0212  1283               	bcf	3,5	;RP0=0, select bank0
+   824  0213  1303               	bcf	3,6	;RP1=0, select bank0
+   825  0214  084B               	movf	_lcdHcycle+1,w
+   826  0215  01F5               	clrf	ft800memWrite16@ftData16+1
+   827  0216  07F5               	addwf	ft800memWrite16@ftData16+1,f
+   828  0217  084A               	movf	_lcdHcycle,w
+   829  0218  01F4               	clrf	ft800memWrite16@ftData16
+   830  0219  07F4               	addwf	ft800memWrite16@ftData16,f
+   831  021A  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+   832                           
+   833                           ;main.c: 409: ft800memWrite16(0x10242cUL, lcdHoffset);
+   834  021F  3000               	movlw	0
+   835  0220  00F3               	movwf	ft800memWrite16@ftAddress+3
+   836  0221  3010               	movlw	16
+   837  0222  00F2               	movwf	ft800memWrite16@ftAddress+2
+   838  0223  3024               	movlw	36
+   839  0224  00F1               	movwf	ft800memWrite16@ftAddress+1
+   840  0225  302C               	movlw	44
+   841  0226  00F0               	movwf	ft800memWrite16@ftAddress
+   842  0227  1283               	bcf	3,5	;RP0=0, select bank0
+   843  0228  1303               	bcf	3,6	;RP1=0, select bank0
+   844  0229  084F               	movf	_lcdHoffset+1,w
+   845  022A  01F5               	clrf	ft800memWrite16@ftData16+1
+   846  022B  07F5               	addwf	ft800memWrite16@ftData16+1,f
+   847  022C  084E               	movf	_lcdHoffset,w
+   848  022D  01F4               	clrf	ft800memWrite16@ftData16
+   849  022E  07F4               	addwf	ft800memWrite16@ftData16,f
+   850  022F  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+   851                           
+   852                           ;main.c: 410: ft800memWrite16(0x102434UL, lcdHsync0);
+   853  0234  3000               	movlw	0
+   854  0235  00F3               	movwf	ft800memWrite16@ftAddress+3
+   855  0236  3010               	movlw	16
+   856  0237  00F2               	movwf	ft800memWrite16@ftAddress+2
+   857  0238  3024               	movlw	36
+   858  0239  00F1               	movwf	ft800memWrite16@ftAddress+1
+   859  023A  3034               	movlw	52
+   860  023B  00F0               	movwf	ft800memWrite16@ftAddress
+   861  023C  1283               	bcf	3,5	;RP0=0, select bank0
+   862  023D  1303               	bcf	3,6	;RP1=0, select bank0
+   863  023E  0867               	movf	_lcdHsync0+1,w
+   864  023F  01F5               	clrf	ft800memWrite16@ftData16+1
+   865  0240  07F5               	addwf	ft800memWrite16@ftData16+1,f
+   866  0241  0866               	movf	_lcdHsync0,w
+   867  0242  01F4               	clrf	ft800memWrite16@ftData16
+   868  0243  07F4               	addwf	ft800memWrite16@ftData16,f
+   869  0244  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+   870                           
+   871                           ;main.c: 411: ft800memWrite16(0x102438UL, lcdHsync1);
+   872  0249  3000               	movlw	0
+   873  024A  00F3               	movwf	ft800memWrite16@ftAddress+3
+   874  024B  3010               	movlw	16
+   875  024C  00F2               	movwf	ft800memWrite16@ftAddress+2
+   876  024D  3024               	movlw	36
+   877  024E  00F1               	movwf	ft800memWrite16@ftAddress+1
+   878  024F  3038               	movlw	56
+   879  0250  00F0               	movwf	ft800memWrite16@ftAddress
+   880  0251  1283               	bcf	3,5	;RP0=0, select bank0
+   881  0252  1303               	bcf	3,6	;RP1=0, select bank0
+   882  0253  0851               	movf	_lcdHsync1+1,w
+   883  0254  01F5               	clrf	ft800memWrite16@ftData16+1
+   884  0255  07F5               	addwf	ft800memWrite16@ftData16+1,f
+   885  0256  0850               	movf	_lcdHsync1,w
+   886  0257  01F4               	clrf	ft800memWrite16@ftData16
+   887  0258  07F4               	addwf	ft800memWrite16@ftData16,f
+   888  0259  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+   889                           
+   890                           ;main.c: 412: ft800memWrite16(0x102444UL, lcdHeight);
+   891  025E  3000               	movlw	0
+   892  025F  00F3               	movwf	ft800memWrite16@ftAddress+3
+   893  0260  3010               	movlw	16
+   894  0261  00F2               	movwf	ft800memWrite16@ftAddress+2
+   895  0262  3024               	movlw	36
+   896  0263  00F1               	movwf	ft800memWrite16@ftAddress+1
+   897  0264  3044               	movlw	68
+   898  0265  00F0               	movwf	ft800memWrite16@ftAddress
+   899  0266  1283               	bcf	3,5	;RP0=0, select bank0
+   900  0267  1303               	bcf	3,6	;RP1=0, select bank0
+   901  0268  084D               	movf	_lcdHeight+1,w
+   902  0269  01F5               	clrf	ft800memWrite16@ftData16+1
+   903  026A  07F5               	addwf	ft800memWrite16@ftData16+1,f
+   904  026B  084C               	movf	_lcdHeight,w
+   905  026C  01F4               	clrf	ft800memWrite16@ftData16
+   906  026D  07F4               	addwf	ft800memWrite16@ftData16,f
+   907  026E  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+   908                           
+   909                           ;main.c: 413: ft800memWrite16(0x10243cUL, lcdVcycle);
+   910  0273  3000               	movlw	0
+   911  0274  00F3               	movwf	ft800memWrite16@ftAddress+3
+   912  0275  3010               	movlw	16
+   913  0276  00F2               	movwf	ft800memWrite16@ftAddress+2
+   914  0277  3024               	movlw	36
+   915  0278  00F1               	movwf	ft800memWrite16@ftAddress+1
+   916  0279  303C               	movlw	60
+   917  027A  00F0               	movwf	ft800memWrite16@ftAddress
+   918  027B  1283               	bcf	3,5	;RP0=0, select bank0
+   919  027C  1303               	bcf	3,6	;RP1=0, select bank0
+   920  027D  0853               	movf	_lcdVcycle+1,w
+   921  027E  01F5               	clrf	ft800memWrite16@ftData16+1
+   922  027F  07F5               	addwf	ft800memWrite16@ftData16+1,f
+   923  0280  0852               	movf	_lcdVcycle,w
+   924  0281  01F4               	clrf	ft800memWrite16@ftData16
+   925  0282  07F4               	addwf	ft800memWrite16@ftData16,f
+   926  0283  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+   927                           
+   928                           ;main.c: 414: ft800memWrite16(0x102440UL, lcdVoffset);
+   929  0288  3000               	movlw	0
+   930  0289  00F3               	movwf	ft800memWrite16@ftAddress+3
+   931  028A  3010               	movlw	16
+   932  028B  00F2               	movwf	ft800memWrite16@ftAddress+2
+   933  028C  3024               	movlw	36
+   934  028D  00F1               	movwf	ft800memWrite16@ftAddress+1
+   935  028E  3040               	movlw	64
+   936  028F  00F0               	movwf	ft800memWrite16@ftAddress
+   937  0290  1283               	bcf	3,5	;RP0=0, select bank0
+   938  0291  1303               	bcf	3,6	;RP1=0, select bank0
+   939  0292  0855               	movf	_lcdVoffset+1,w
+   940  0293  01F5               	clrf	ft800memWrite16@ftData16+1
+   941  0294  07F5               	addwf	ft800memWrite16@ftData16+1,f
+   942  0295  0854               	movf	_lcdVoffset,w
+   943  0296  01F4               	clrf	ft800memWrite16@ftData16
+   944  0297  07F4               	addwf	ft800memWrite16@ftData16,f
+   945  0298  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+   946                           
+   947                           ;main.c: 415: ft800memWrite16(0x102448UL, lcdVsync0);
+   948  029D  3000               	movlw	0
+   949  029E  00F3               	movwf	ft800memWrite16@ftAddress+3
+   950  029F  3010               	movlw	16
+   951  02A0  00F2               	movwf	ft800memWrite16@ftAddress+2
+   952  02A1  3024               	movlw	36
+   953  02A2  00F1               	movwf	ft800memWrite16@ftAddress+1
+   954  02A3  3048               	movlw	72
+   955  02A4  00F0               	movwf	ft800memWrite16@ftAddress
+   956  02A5  1283               	bcf	3,5	;RP0=0, select bank0
+   957  02A6  1303               	bcf	3,6	;RP1=0, select bank0
+   958  02A7  0869               	movf	_lcdVsync0+1,w
+   959  02A8  01F5               	clrf	ft800memWrite16@ftData16+1
+   960  02A9  07F5               	addwf	ft800memWrite16@ftData16+1,f
+   961  02AA  0868               	movf	_lcdVsync0,w
+   962  02AB  01F4               	clrf	ft800memWrite16@ftData16
+   963  02AC  07F4               	addwf	ft800memWrite16@ftData16,f
+   964  02AD  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+   965                           
+   966                           ;main.c: 416: ft800memWrite16(0x10244cUL, lcdVsync1);
+   967  02B2  3000               	movlw	0
+   968  02B3  00F3               	movwf	ft800memWrite16@ftAddress+3
+   969  02B4  3010               	movlw	16
+   970  02B5  00F2               	movwf	ft800memWrite16@ftAddress+2
+   971  02B6  3024               	movlw	36
+   972  02B7  00F1               	movwf	ft800memWrite16@ftAddress+1
+   973  02B8  304C               	movlw	76
+   974  02B9  00F0               	movwf	ft800memWrite16@ftAddress
+   975  02BA  1283               	bcf	3,5	;RP0=0, select bank0
+   976  02BB  1303               	bcf	3,6	;RP1=0, select bank0
+   977  02BC  0857               	movf	_lcdVsync1+1,w
+   978  02BD  01F5               	clrf	ft800memWrite16@ftData16+1
+   979  02BE  07F5               	addwf	ft800memWrite16@ftData16+1,f
+   980  02BF  0856               	movf	_lcdVsync1,w
+   981  02C0  01F4               	clrf	ft800memWrite16@ftData16
+   982  02C1  07F4               	addwf	ft800memWrite16@ftData16,f
+   983  02C2  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+   984                           
+   985                           ;main.c: 417: ft800memWrite8(0x102460UL, lcdSwizzle);
+   986  02C7  3000               	movlw	0
+   987  02C8  00F3               	movwf	ft800memWrite8@ftAddress+3
+   988  02C9  3010               	movlw	16
+   989  02CA  00F2               	movwf	ft800memWrite8@ftAddress+2
+   990  02CB  3024               	movlw	36
+   991  02CC  00F1               	movwf	ft800memWrite8@ftAddress+1
+   992  02CD  3060               	movlw	96
+   993  02CE  00F0               	movwf	ft800memWrite8@ftAddress
+   994  02CF  1283               	bcf	3,5	;RP0=0, select bank0
+   995  02D0  1303               	bcf	3,6	;RP1=0, select bank0
+   996  02D1  086B               	movf	_lcdSwizzle,w
+   997  02D2  00FC               	movwf	??_setup
+   998  02D3  087C               	movf	??_setup,w
+   999  02D4  00F4               	movwf	ft800memWrite8@ftData8
+  1000  02D5  120A  158A  270D   	fcall	_ft800memWrite8
+      +       120A  118A         
+  1001                           
+  1002                           ;main.c: 418: ft800memWrite8(0x102468UL, lcdPclkpol);
+  1003  02DA  3000               	movlw	0
+  1004  02DB  00F3               	movwf	ft800memWrite8@ftAddress+3
+  1005  02DC  3010               	movlw	16
+  1006  02DD  00F2               	movwf	ft800memWrite8@ftAddress+2
+  1007  02DE  3024               	movlw	36
+  1008  02DF  00F1               	movwf	ft800memWrite8@ftAddress+1
+  1009  02E0  3068               	movlw	104
+  1010  02E1  00F0               	movwf	ft800memWrite8@ftAddress
+  1011  02E2  1283               	bcf	3,5	;RP0=0, select bank0
+  1012  02E3  1303               	bcf	3,6	;RP1=0, select bank0
+  1013  02E4  085B               	movf	_lcdPclkpol,w
+  1014  02E5  00FC               	movwf	??_setup
+  1015  02E6  087C               	movf	??_setup,w
+  1016  02E7  00F4               	movwf	ft800memWrite8@ftData8
+  1017  02E8  120A  158A  270D   	fcall	_ft800memWrite8
+      +       120A  118A         
+  1018                           
+  1019                           ;main.c: 426: ft800memWrite8(0x1024f0UL, 0UL);
+  1020  02ED  3000               	movlw	0
+  1021  02EE  00F3               	movwf	ft800memWrite8@ftAddress+3
+  1022  02EF  3010               	movlw	16
+  1023  02F0  00F2               	movwf	ft800memWrite8@ftAddress+2
+  1024  02F1  3024               	movlw	36
+  1025  02F2  00F1               	movwf	ft800memWrite8@ftAddress+1
+  1026  02F3  30F0               	movlw	240
+  1027  02F4  00F0               	movwf	ft800memWrite8@ftAddress
+  1028  02F5  01F4               	clrf	ft800memWrite8@ftData8
+  1029  02F6  120A  158A  270D   	fcall	_ft800memWrite8
+      +       120A  118A         
+  1030                           
+  1031                           ;main.c: 427: ft800memWrite16(0x102504UL, 0UL);
+  1032  02FB  3000               	movlw	0
+  1033  02FC  00F3               	movwf	ft800memWrite16@ftAddress+3
+  1034  02FD  3010               	movlw	16
+  1035  02FE  00F2               	movwf	ft800memWrite16@ftAddress+2
+  1036  02FF  3025               	movlw	37
+  1037  0300  00F1               	movwf	ft800memWrite16@ftAddress+1
+  1038  0301  3004               	movlw	4
+  1039  0302  00F0               	movwf	ft800memWrite16@ftAddress
+  1040  0303  3000               	movlw	0
+  1041  0304  00F4               	movwf	ft800memWrite16@ftData16
+  1042  0305  3000               	movlw	0
+  1043  0306  00F5               	movwf	ft800memWrite16@ftData16+1
+  1044  0307  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+  1045                           
+  1046                           ;main.c: 429: ft800memWrite8(0x10247cUL, 0UL);
+  1047  030C  3000               	movlw	0
+  1048  030D  00F3               	movwf	ft800memWrite8@ftAddress+3
+  1049  030E  3010               	movlw	16
+  1050  030F  00F2               	movwf	ft800memWrite8@ftAddress+2
+  1051  0310  3024               	movlw	36
+  1052  0311  00F1               	movwf	ft800memWrite8@ftAddress+1
+  1053  0312  307C               	movlw	124
+  1054  0313  00F0               	movwf	ft800memWrite8@ftAddress
+  1055  0314  01F4               	clrf	ft800memWrite8@ftData8
+  1056  0315  120A  158A  270D   	fcall	_ft800memWrite8
+      +       120A  118A         
+  1057                           
+  1058                           ;main.c: 430: ft800memWrite8(0x102480UL, 0UL);
+  1059  031A  3000               	movlw	0
+  1060  031B  00F3               	movwf	ft800memWrite8@ftAddress+3
+  1061  031C  3010               	movlw	16
+  1062  031D  00F2               	movwf	ft800memWrite8@ftAddress+2
+  1063  031E  3024               	movlw	36
+  1064  031F  00F1               	movwf	ft800memWrite8@ftAddress+1
+  1065  0320  3080               	movlw	128
+  1066  0321  00F0               	movwf	ft800memWrite8@ftAddress
+  1067  0322  01F4               	clrf	ft800memWrite8@ftData8
+  1068  0323  120A  158A  270D   	fcall	_ft800memWrite8
+      +       120A  118A         
+  1069                           
+  1070                           ;main.c: 431: ft800memWrite16(0x102484UL, 0x6000);
+  1071  0328  3000               	movlw	0
+  1072  0329  00F3               	movwf	ft800memWrite16@ftAddress+3
+  1073  032A  3010               	movlw	16
+  1074  032B  00F2               	movwf	ft800memWrite16@ftAddress+2
+  1075  032C  3024               	movlw	36
+  1076  032D  00F1               	movwf	ft800memWrite16@ftAddress+1
+  1077  032E  3084               	movlw	132
+  1078  032F  00F0               	movwf	ft800memWrite16@ftAddress
+  1079  0330  3000               	movlw	0
+  1080  0331  00F4               	movwf	ft800memWrite16@ftData16
+  1081  0332  3060               	movlw	96
+  1082  0333  00F5               	movwf	ft800memWrite16@ftData16+1
+  1083  0334  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+  1084                           
+  1085                           ;main.c: 439: ramDisplayList = 0x100000UL;
+  1086  0339  3000               	movlw	0
+  1087  033A  1283               	bcf	3,5	;RP0=0, select bank0
+  1088  033B  1303               	bcf	3,6	;RP1=0, select bank0
+  1089  033C  00B3               	movwf	_ramDisplayList+3
+  1090  033D  3010               	movlw	16
+  1091  033E  00B2               	movwf	_ramDisplayList+2
+  1092  033F  3000               	movlw	0
+  1093  0340  00B1               	movwf	_ramDisplayList+1
+  1094  0341  3000               	movlw	0
+  1095  0342  00B0               	movwf	_ramDisplayList
+  1096                           
+  1097                           ;main.c: 440: ft800memWrite32(ramDisplayList, 0x02000000UL);
+  1098  0343  0833               	movf	_ramDisplayList+3,w
+  1099  0344  00F3               	movwf	ft800memWrite32@ftAddress+3
+  1100  0345  0832               	movf	_ramDisplayList+2,w
+  1101  0346  00F2               	movwf	ft800memWrite32@ftAddress+2
+  1102  0347  0831               	movf	_ramDisplayList+1,w
+  1103  0348  00F1               	movwf	ft800memWrite32@ftAddress+1
+  1104  0349  0830               	movf	_ramDisplayList,w
+  1105  034A  00F0               	movwf	ft800memWrite32@ftAddress
+  1106  034B  3002               	movlw	2
+  1107  034C  00F7               	movwf	ft800memWrite32@ftData32+3
+  1108  034D  3000               	movlw	0
+  1109  034E  00F6               	movwf	ft800memWrite32@ftData32+2
+  1110  034F  3000               	movlw	0
+  1111  0350  00F5               	movwf	ft800memWrite32@ftData32+1
+  1112  0351  3000               	movlw	0
+  1113  0352  00F4               	movwf	ft800memWrite32@ftData32
+  1114  0353  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  1115                           
+  1116                           ;main.c: 441: ramDisplayList += 4;
+  1117  0358  3004               	movlw	4
+  1118  0359  1283               	bcf	3,5	;RP0=0, select bank0
+  1119  035A  1303               	bcf	3,6	;RP1=0, select bank0
+  1120  035B  07B0               	addwf	_ramDisplayList,f
+  1121  035C  3000               	movlw	0
+  1122  035D  1803               	skipnc
+  1123  035E  3001               	movlw	1
+  1124  035F  07B1               	addwf	_ramDisplayList+1,f
+  1125  0360  3000               	movlw	0
+  1126  0361  1803               	skipnc
+  1127  0362  3001               	movlw	1
+  1128  0363  07B2               	addwf	_ramDisplayList+2,f
+  1129  0364  3000               	movlw	0
+  1130  0365  1803               	skipnc
+  1131  0366  3001               	movlw	1
+  1132  0367  07B3               	addwf	_ramDisplayList+3,f
+  1133                           
+  1134                           ;main.c: 442: ft800memWrite32(ramDisplayList, (0x26000000UL | 0x4 | 0x2 | 0x1));
+  1135  0368  0833               	movf	_ramDisplayList+3,w
+  1136  0369  00F3               	movwf	ft800memWrite32@ftAddress+3
+  1137  036A  0832               	movf	_ramDisplayList+2,w
+  1138  036B  00F2               	movwf	ft800memWrite32@ftAddress+2
+  1139  036C  0831               	movf	_ramDisplayList+1,w
+  1140  036D  00F1               	movwf	ft800memWrite32@ftAddress+1
+  1141  036E  0830               	movf	_ramDisplayList,w
+  1142  036F  00F0               	movwf	ft800memWrite32@ftAddress
+  1143  0370  3026               	movlw	38
+  1144  0371  00F7               	movwf	ft800memWrite32@ftData32+3
+  1145  0372  3000               	movlw	0
+  1146  0373  00F6               	movwf	ft800memWrite32@ftData32+2
+  1147  0374  3000               	movlw	0
+  1148  0375  00F5               	movwf	ft800memWrite32@ftData32+1
+  1149  0376  3007               	movlw	7
+  1150  0377  00F4               	movwf	ft800memWrite32@ftData32
+  1151  0378  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  1152                           
+  1153                           ;main.c: 443: ramDisplayList += 4;
+  1154  037D  3004               	movlw	4
+  1155  037E  1283               	bcf	3,5	;RP0=0, select bank0
+  1156  037F  1303               	bcf	3,6	;RP1=0, select bank0
+  1157  0380  07B0               	addwf	_ramDisplayList,f
+  1158  0381  3000               	movlw	0
+  1159  0382  1803               	skipnc
+  1160  0383  3001               	movlw	1
+  1161  0384  07B1               	addwf	_ramDisplayList+1,f
+  1162  0385  3000               	movlw	0
+  1163  0386  1803               	skipnc
+  1164  0387  3001               	movlw	1
+  1165  0388  07B2               	addwf	_ramDisplayList+2,f
+  1166  0389  3000               	movlw	0
+  1167  038A  1803               	skipnc
+  1168  038B  3001               	movlw	1
+  1169  038C  07B3               	addwf	_ramDisplayList+3,f
+  1170                           
+  1171                           ;main.c: 444: ft800memWrite32(ramDisplayList, 0x00000000UL);
+  1172  038D  0833               	movf	_ramDisplayList+3,w
+  1173  038E  00F3               	movwf	ft800memWrite32@ftAddress+3
+  1174  038F  0832               	movf	_ramDisplayList+2,w
+  1175  0390  00F2               	movwf	ft800memWrite32@ftAddress+2
+  1176  0391  0831               	movf	_ramDisplayList+1,w
+  1177  0392  00F1               	movwf	ft800memWrite32@ftAddress+1
+  1178  0393  0830               	movf	_ramDisplayList,w
+  1179  0394  00F0               	movwf	ft800memWrite32@ftAddress
+  1180  0395  3000               	movlw	0
+  1181  0396  00F7               	movwf	ft800memWrite32@ftData32+3
+  1182  0397  3000               	movlw	0
+  1183  0398  00F6               	movwf	ft800memWrite32@ftData32+2
+  1184  0399  3000               	movlw	0
+  1185  039A  00F5               	movwf	ft800memWrite32@ftData32+1
+  1186  039B  3000               	movlw	0
+  1187  039C  00F4               	movwf	ft800memWrite32@ftData32
+  1188  039D  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  1189                           
+  1190                           ;main.c: 446: ft800memWrite32(0x102450UL, 2UL);
+  1191  03A2  3000               	movlw	0
+  1192  03A3  00F3               	movwf	ft800memWrite32@ftAddress+3
+  1193  03A4  3010               	movlw	16
+  1194  03A5  00F2               	movwf	ft800memWrite32@ftAddress+2
+  1195  03A6  3024               	movlw	36
+  1196  03A7  00F1               	movwf	ft800memWrite32@ftAddress+1
+  1197  03A8  3050               	movlw	80
+  1198  03A9  00F0               	movwf	ft800memWrite32@ftAddress
+  1199  03AA  3000               	movlw	0
+  1200  03AB  00F7               	movwf	ft800memWrite32@ftData32+3
+  1201  03AC  3000               	movlw	0
+  1202  03AD  00F6               	movwf	ft800memWrite32@ftData32+2
+  1203  03AE  3000               	movlw	0
+  1204  03AF  00F5               	movwf	ft800memWrite32@ftData32+1
+  1205  03B0  3002               	movlw	2
+  1206  03B1  00F4               	movwf	ft800memWrite32@ftData32
+  1207  03B2  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  1208                           
+  1209                           ;main.c: 448: ramDisplayList = 0x100000UL;
+  1210  03B7  3000               	movlw	0
+  1211  03B8  1283               	bcf	3,5	;RP0=0, select bank0
+  1212  03B9  1303               	bcf	3,6	;RP1=0, select bank0
+  1213  03BA  00B3               	movwf	_ramDisplayList+3
+  1214  03BB  3010               	movlw	16
+  1215  03BC  00B2               	movwf	_ramDisplayList+2
+  1216  03BD  3000               	movlw	0
+  1217  03BE  00B1               	movwf	_ramDisplayList+1
+  1218  03BF  3000               	movlw	0
+  1219  03C0  00B0               	movwf	_ramDisplayList
+  1220                           
+  1221                           ;main.c: 450: ft800Gpio = ft800memRead8(0x102490UL);
+  1222  03C1  3000               	movlw	0
+  1223  03C2  00F3               	movwf	ft800memRead8@ftAddress+3
+  1224  03C3  3010               	movlw	16
+  1225  03C4  00F2               	movwf	ft800memRead8@ftAddress+2
+  1226  03C5  3024               	movlw	36
+  1227  03C6  00F1               	movwf	ft800memRead8@ftAddress+1
+  1228  03C7  3090               	movlw	144
+  1229  03C8  00F0               	movwf	ft800memRead8@ftAddress
+  1230  03C9  120A  158A  27AD   	fcall	_ft800memRead8
+      +       120A  118A         
+  1231  03CE  00FC               	movwf	??_setup
+  1232  03CF  087C               	movf	??_setup,w
+  1233  03D0  1283               	bcf	3,5	;RP0=0, select bank0
+  1234  03D1  1303               	bcf	3,6	;RP1=0, select bank0
+  1235  03D2  00EA               	movwf	_ft800Gpio
+  1236                           
+  1237                           ;main.c: 451: ft800Gpio = ft800Gpio | 0x80;
+  1238  03D3  086A               	movf	_ft800Gpio,w
+  1239  03D4  3880               	iorlw	128
+  1240  03D5  00FC               	movwf	??_setup
+  1241  03D6  087C               	movf	??_setup,w
+  1242  03D7  00EA               	movwf	_ft800Gpio
+  1243                           
+  1244                           ;main.c: 452: ft800memWrite8(0x102490UL, ft800Gpio);
+  1245  03D8  3000               	movlw	0
+  1246  03D9  00F3               	movwf	ft800memWrite8@ftAddress+3
+  1247  03DA  3010               	movlw	16
+  1248  03DB  00F2               	movwf	ft800memWrite8@ftAddress+2
+  1249  03DC  3024               	movlw	36
+  1250  03DD  00F1               	movwf	ft800memWrite8@ftAddress+1
+  1251  03DE  3090               	movlw	144
+  1252  03DF  00F0               	movwf	ft800memWrite8@ftAddress
+  1253  03E0  086A               	movf	_ft800Gpio,w
+  1254  03E1  00FC               	movwf	??_setup
+  1255  03E2  087C               	movf	??_setup,w
+  1256  03E3  00F4               	movwf	ft800memWrite8@ftData8
+  1257  03E4  120A  158A  270D   	fcall	_ft800memWrite8
+      +       120A  118A         
+  1258                           
+  1259                           ;main.c: 453: ft800memWrite8(0x10246cUL, lcdPclk);
+  1260  03E9  3000               	movlw	0
+  1261  03EA  00F3               	movwf	ft800memWrite8@ftAddress+3
+  1262  03EB  3010               	movlw	16
+  1263  03EC  00F2               	movwf	ft800memWrite8@ftAddress+2
+  1264  03ED  3024               	movlw	36
+  1265  03EE  00F1               	movwf	ft800memWrite8@ftAddress+1
+  1266  03EF  306C               	movlw	108
+  1267  03F0  00F0               	movwf	ft800memWrite8@ftAddress
+  1268  03F1  1283               	bcf	3,5	;RP0=0, select bank0
+  1269  03F2  1303               	bcf	3,6	;RP1=0, select bank0
+  1270  03F3  085A               	movf	_lcdPclk,w
+  1271  03F4  00FC               	movwf	??_setup
+  1272  03F5  087C               	movf	??_setup,w
+  1273  03F6  00F4               	movwf	ft800memWrite8@ftData8
+  1274  03F7  120A  158A  270D   	fcall	_ft800memWrite8
+      +       120A  118A         
+  1275                           
+  1276                           ;main.c: 454: for(duty = 0; duty < 127; duty++){
+  1277  03FC  1283               	bcf	3,5	;RP0=0, select bank0
+  1278  03FD  1303               	bcf	3,6	;RP1=0, select bank0
+  1279  03FE  01B6               	clrf	setup@duty
+  1280  03FF                     L1:	
+  1281  03FF  307F               	movlw	127
+  1282  0400  0236               	subwf	setup@duty,w
+  1283  0401  1803               	btfsc	3,0
+  1284  0402  0008               	return
+  1285                           
+  1286                           ;main.c: 456: ft800memWrite8(0x1024c4UL,duty);
+  1287  0403  3000               	movlw	0
+  1288  0404  00F3               	movwf	ft800memWrite8@ftAddress+3
+  1289  0405  3010               	movlw	16
+  1290  0406  00F2               	movwf	ft800memWrite8@ftAddress+2
+  1291  0407  3024               	movlw	36
+  1292  0408  00F1               	movwf	ft800memWrite8@ftAddress+1
+  1293  0409  30C4               	movlw	196
+  1294  040A  00F0               	movwf	ft800memWrite8@ftAddress
+  1295  040B  0836               	movf	setup@duty,w
+  1296  040C  00FC               	movwf	??_setup
+  1297  040D  087C               	movf	??_setup,w
+  1298  040E  00F4               	movwf	ft800memWrite8@ftData8
+  1299  040F  120A  158A  270D   	fcall	_ft800memWrite8
+      +       120A  118A         
+  1300                           
+  1301                           ;main.c: 457: _delay((unsigned long)((10)*(8000000/4000.0)));
+  1302  0414  301A               	movlw	26
+  1303  0415  00FD               	movwf	??_setup+1
+  1304  0416  30F8               	movlw	248
+  1305  0417  00FC               	movwf	??_setup
+  1306  0418                     u1427:	
+  1307  0418  0BFC               	decfsz	??_setup,f
+  1308  0419  2C18               	goto	u1427
+  1309  041A  0BFD               	decfsz	??_setup+1,f
+  1310  041B  2C18               	goto	u1427
+  1311  041C  0000               	nop
+  1312  041D  3001               	movlw	1
+  1313  041E  00FC               	movwf	??_setup
+  1314  041F  087C               	movf	??_setup,w
+  1315  0420  1283               	bcf	3,5	;RP0=0, select bank0
+  1316  0421  1303               	bcf	3,6	;RP1=0, select bank0
+  1317  0422  07B6               	addwf	setup@duty,f
+  1318  0423  2BFF               	goto	L1
+  1319  0424                     __end_of_setup:	
+  1320                           
+  1321                           	psect	text2
+  1322  0F0D                     __ptext2:	
+  1323 ;; *************** function _ft800memWrite8 *****************
+  1324 ;; Defined at:
+  1325 ;;		line 112 in file "main.c"
+  1326 ;; Parameters:    Size  Location     Type
+  1327 ;;  ftAddress       4    0[COMMON] unsigned long 
+  1328 ;;  ftData8         1    4[COMMON] unsigned char 
+  1329 ;; Auto vars:     Size  Location     Type
+  1330 ;;		None
+  1331 ;; Return value:  Size  Location     Type
+  1332 ;;		None               void
+  1333 ;; Registers used:
+  1334 ;;		wreg, status,2, status,0
+  1335 ;; Tracked objects:
+  1336 ;;		On entry : 0/0
+  1337 ;;		On exit  : 0/0
+  1338 ;;		Unchanged: 0/0
+  1339 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1340 ;;      Params:         5       0       0       0       0
+  1341 ;;      Locals:         0       0       0       0       0
+  1342 ;;      Temps:          4       0       0       0       0
+  1343 ;;      Totals:         9       0       0       0       0
+  1344 ;;Total ram usage:        9 bytes
+  1345 ;; Hardware stack levels used:    1
+  1346 ;; This function calls:
+  1347 ;;		Nothing
+  1348 ;; This function is called by:
+  1349 ;;		_setup
+  1350 ;; This function uses a non-reentrant model
+  1351 ;;
+  1352                           
+  1353                           
+  1354                           ;psect for function _ft800memWrite8
+  1355  0F0D                     _ft800memWrite8:	
+  1356                           
+  1357                           ;main.c: 114: RC6 = 0;
+  1358                           
+  1359                           ;incstack = 0
+  1360                           ; Regs used in _ft800memWrite8: [wreg+status,2+status,0]
+  1361  0F0D  1283               	bcf	3,5	;RP0=0, select bank0
+  1362  0F0E  1303               	bcf	3,6	;RP1=0, select bank0
+  1363  0F0F  1307               	bcf	7,6	;volatile
+  1364                           
+  1365                           ;main.c: 115: _delay((unsigned long)((2)*(8000000/4000000.0)));
+  1366  0F10  2F11               	nop2	;2 cycle nop
+  1367  0F11  2F12               	nop2	;2 cycle nop
+  1368                           
+  1369                           ;main.c: 116: SSPBUF = ((char)(ftAddress >> 16) | 0x80);
+  1370  0F12  0870               	movf	ft800memWrite8@ftAddress,w
+  1371  0F13  00F5               	movwf	??_ft800memWrite8
+  1372  0F14  0871               	movf	ft800memWrite8@ftAddress+1,w
+  1373  0F15  00F6               	movwf	??_ft800memWrite8+1
+  1374  0F16  0872               	movf	ft800memWrite8@ftAddress+2,w
+  1375  0F17  00F7               	movwf	??_ft800memWrite8+2
+  1376  0F18  0873               	movf	ft800memWrite8@ftAddress+3,w
+  1377  0F19  00F8               	movwf	??_ft800memWrite8+3
+  1378  0F1A  3010               	movlw	16
+  1379  0F1B                     u855:	
+  1380  0F1B  1003               	clrc
+  1381  0F1C  0CF8               	rrf	??_ft800memWrite8+3,f
+  1382  0F1D  0CF7               	rrf	??_ft800memWrite8+2,f
+  1383  0F1E  0CF6               	rrf	??_ft800memWrite8+1,f
+  1384  0F1F  0CF5               	rrf	??_ft800memWrite8,f
+  1385  0F20  3EFF               	addlw	-1
+  1386  0F21  1D03               	skipz
+  1387  0F22  2F1B               	goto	u855
+  1388  0F23  0875               	movf	??_ft800memWrite8,w
+  1389  0F24  3880               	iorlw	128
+  1390  0F25  1283               	bcf	3,5	;RP0=0, select bank0
+  1391  0F26  1303               	bcf	3,6	;RP1=0, select bank0
+  1392  0F27  0093               	movwf	19	;volatile
+  1393  0F28                     l81:	
+  1394                           ;main.c: 117: while(!SSPSTATbits.BF);
+  1395                           
+  1396  0F28  1683               	bsf	3,5	;RP0=1, select bank1
+  1397  0F29  1303               	bcf	3,6	;RP1=0, select bank1
+  1398  0F2A  1C14               	btfss	20,0	;volatile
+  1399  0F2B  2F28               	goto	l81
+  1400                           
+  1401                           ;main.c: 118: SSPBUF = ((char)(ftAddress >> 8));
+  1402  0F2C  0870               	movf	ft800memWrite8@ftAddress,w
+  1403  0F2D  00F5               	movwf	??_ft800memWrite8
+  1404  0F2E  0871               	movf	ft800memWrite8@ftAddress+1,w
+  1405  0F2F  00F6               	movwf	??_ft800memWrite8+1
+  1406  0F30  0872               	movf	ft800memWrite8@ftAddress+2,w
+  1407  0F31  00F7               	movwf	??_ft800memWrite8+2
+  1408  0F32  0873               	movf	ft800memWrite8@ftAddress+3,w
+  1409  0F33  00F8               	movwf	??_ft800memWrite8+3
+  1410  0F34  3008               	movlw	8
+  1411  0F35                     u875:	
+  1412  0F35  1003               	clrc
+  1413  0F36  0CF8               	rrf	??_ft800memWrite8+3,f
+  1414  0F37  0CF7               	rrf	??_ft800memWrite8+2,f
+  1415  0F38  0CF6               	rrf	??_ft800memWrite8+1,f
+  1416  0F39  0CF5               	rrf	??_ft800memWrite8,f
+  1417  0F3A  3EFF               	addlw	-1
+  1418  0F3B  1D03               	skipz
+  1419  0F3C  2F35               	goto	u875
+  1420  0F3D  0875               	movf	??_ft800memWrite8,w
+  1421  0F3E  1283               	bcf	3,5	;RP0=0, select bank0
+  1422  0F3F  1303               	bcf	3,6	;RP1=0, select bank0
+  1423  0F40  0093               	movwf	19	;volatile
+  1424  0F41                     l84:	
+  1425                           ;main.c: 119: while(!SSPSTATbits.BF);
+  1426                           
+  1427  0F41  1683               	bsf	3,5	;RP0=1, select bank1
+  1428  0F42  1303               	bcf	3,6	;RP1=0, select bank1
+  1429  0F43  1C14               	btfss	20,0	;volatile
+  1430  0F44  2F41               	goto	l84
+  1431                           
+  1432                           ;main.c: 120: SSPBUF = (char)(ftAddress);
+  1433  0F45  0870               	movf	ft800memWrite8@ftAddress,w
+  1434  0F46  1283               	bcf	3,5	;RP0=0, select bank0
+  1435  0F47  1303               	bcf	3,6	;RP1=0, select bank0
+  1436  0F48  0093               	movwf	19	;volatile
+  1437  0F49                     l87:	
+  1438                           ;main.c: 121: while(!SSPSTATbits.BF);
+  1439                           
+  1440  0F49  1683               	bsf	3,5	;RP0=1, select bank1
+  1441  0F4A  1303               	bcf	3,6	;RP1=0, select bank1
+  1442  0F4B  1C14               	btfss	20,0	;volatile
+  1443  0F4C  2F49               	goto	l87
+  1444                           
+  1445                           ;main.c: 122: SSPBUF = ftData8;
+  1446  0F4D  0874               	movf	ft800memWrite8@ftData8,w
+  1447  0F4E  1283               	bcf	3,5	;RP0=0, select bank0
+  1448  0F4F  1303               	bcf	3,6	;RP1=0, select bank0
+  1449  0F50  0093               	movwf	19	;volatile
+  1450  0F51                     l90:	
+  1451                           ;main.c: 123: while(!SSPSTATbits.BF);
+  1452                           
+  1453  0F51  1683               	bsf	3,5	;RP0=1, select bank1
+  1454  0F52  1303               	bcf	3,6	;RP1=0, select bank1
+  1455  0F53  1C14               	btfss	20,0	;volatile
+  1456  0F54  2F51               	goto	l90
+  1457                           
+  1458                           ;main.c: 124: _delay((unsigned long)((2)*(8000000/4000000.0)));
+  1459  0F55  2F56               	nop2	;2 cycle nop
+  1460  0F56  2F57               	nop2	;2 cycle nop
+  1461                           
+  1462                           ;main.c: 125: RC6 = 1;
+  1463  0F57  1283               	bcf	3,5	;RP0=0, select bank0
+  1464  0F58  1303               	bcf	3,6	;RP1=0, select bank0
+  1465  0F59  1707               	bsf	7,6	;volatile
+  1466  0F5A  0008               	return
+  1467  0F5B                     __end_of_ft800memWrite8:	
+  1468                           
+  1469                           	psect	text3
+  1470  0FAD                     __ptext3:	
+  1471 ;; *************** function _ft800memRead8 *****************
+  1472 ;; Defined at:
+  1473 ;;		line 176 in file "main.c"
+  1474 ;; Parameters:    Size  Location     Type
+  1475 ;;  ftAddress       4    0[COMMON] unsigned long 
+  1476 ;; Auto vars:     Size  Location     Type
+  1477 ;;  ftData8         1    8[COMMON] unsigned char 
+  1478 ;; Return value:  Size  Location     Type
+  1479 ;;                  1    wreg      unsigned char 
+  1480 ;; Registers used:
+  1481 ;;		wreg, status,2, status,0
+  1482 ;; Tracked objects:
+  1483 ;;		On entry : 0/0
+  1484 ;;		On exit  : 0/0
+  1485 ;;		Unchanged: 0/0
+  1486 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1487 ;;      Params:         4       0       0       0       0
+  1488 ;;      Locals:         1       0       0       0       0
+  1489 ;;      Temps:          4       0       0       0       0
+  1490 ;;      Totals:         9       0       0       0       0
+  1491 ;;Total ram usage:        9 bytes
+  1492 ;; Hardware stack levels used:    1
+  1493 ;; This function calls:
+  1494 ;;		Nothing
+  1495 ;; This function is called by:
+  1496 ;;		_setup
+  1497 ;; This function uses a non-reentrant model
+  1498 ;;
+  1499                           
+  1500                           
+  1501                           ;psect for function _ft800memRead8
+  1502  0FAD                     _ft800memRead8:	
+  1503                           
+  1504                           ;main.c: 178: unsigned char ftData8 = 0UL;
+  1505                           
+  1506                           ;incstack = 0
+  1507                           ; Regs used in _ft800memRead8: [wreg+status,2+status,0]
+  1508  0FAD  01F8               	clrf	ft800memRead8@ftData8
+  1509                           
+  1510                           ;main.c: 179: RC6 = 0;
+  1511  0FAE  1283               	bcf	3,5	;RP0=0, select bank0
+  1512  0FAF  1303               	bcf	3,6	;RP1=0, select bank0
+  1513  0FB0  1307               	bcf	7,6	;volatile
+  1514                           
+  1515                           ;main.c: 180: SSPBUF = (char)(ftAddress >> 16) | 0x00;
+  1516  0FB1  0870               	movf	ft800memRead8@ftAddress,w
+  1517  0FB2  00F4               	movwf	??_ft800memRead8
+  1518  0FB3  0871               	movf	ft800memRead8@ftAddress+1,w
+  1519  0FB4  00F5               	movwf	??_ft800memRead8+1
+  1520  0FB5  0872               	movf	ft800memRead8@ftAddress+2,w
+  1521  0FB6  00F6               	movwf	??_ft800memRead8+2
+  1522  0FB7  0873               	movf	ft800memRead8@ftAddress+3,w
+  1523  0FB8  00F7               	movwf	??_ft800memRead8+3
+  1524  0FB9  3010               	movlw	16
+  1525  0FBA                     u745:	
+  1526  0FBA  1003               	clrc
+  1527  0FBB  0CF7               	rrf	??_ft800memRead8+3,f
+  1528  0FBC  0CF6               	rrf	??_ft800memRead8+2,f
+  1529  0FBD  0CF5               	rrf	??_ft800memRead8+1,f
+  1530  0FBE  0CF4               	rrf	??_ft800memRead8,f
+  1531  0FBF  3EFF               	addlw	-1
+  1532  0FC0  1D03               	skipz
+  1533  0FC1  2FBA               	goto	u745
+  1534  0FC2  0874               	movf	??_ft800memRead8,w
+  1535  0FC3  0093               	movwf	19	;volatile
+  1536  0FC4                     l138:	
+  1537                           ;main.c: 181: while(!SSPSTATbits.BF);
+  1538                           
+  1539  0FC4  1683               	bsf	3,5	;RP0=1, select bank1
+  1540  0FC5  1303               	bcf	3,6	;RP1=0, select bank1
+  1541  0FC6  1C14               	btfss	20,0	;volatile
+  1542  0FC7  2FC4               	goto	l138
+  1543                           
+  1544                           ;main.c: 182: SSPBUF = (char)(ftAddress >> 8);
+  1545  0FC8  0870               	movf	ft800memRead8@ftAddress,w
+  1546  0FC9  00F4               	movwf	??_ft800memRead8
+  1547  0FCA  0871               	movf	ft800memRead8@ftAddress+1,w
+  1548  0FCB  00F5               	movwf	??_ft800memRead8+1
+  1549  0FCC  0872               	movf	ft800memRead8@ftAddress+2,w
+  1550  0FCD  00F6               	movwf	??_ft800memRead8+2
+  1551  0FCE  0873               	movf	ft800memRead8@ftAddress+3,w
+  1552  0FCF  00F7               	movwf	??_ft800memRead8+3
+  1553  0FD0  3008               	movlw	8
+  1554  0FD1                     u765:	
+  1555  0FD1  1003               	clrc
+  1556  0FD2  0CF7               	rrf	??_ft800memRead8+3,f
+  1557  0FD3  0CF6               	rrf	??_ft800memRead8+2,f
+  1558  0FD4  0CF5               	rrf	??_ft800memRead8+1,f
+  1559  0FD5  0CF4               	rrf	??_ft800memRead8,f
+  1560  0FD6  3EFF               	addlw	-1
+  1561  0FD7  1D03               	skipz
+  1562  0FD8  2FD1               	goto	u765
+  1563  0FD9  0874               	movf	??_ft800memRead8,w
+  1564  0FDA  1283               	bcf	3,5	;RP0=0, select bank0
+  1565  0FDB  1303               	bcf	3,6	;RP1=0, select bank0
+  1566  0FDC  0093               	movwf	19	;volatile
+  1567  0FDD                     l141:	
+  1568                           ;main.c: 183: while(!SSPSTATbits.BF);
+  1569                           
+  1570  0FDD  1683               	bsf	3,5	;RP0=1, select bank1
+  1571  0FDE  1303               	bcf	3,6	;RP1=0, select bank1
+  1572  0FDF  1C14               	btfss	20,0	;volatile
+  1573  0FE0  2FDD               	goto	l141
+  1574                           
+  1575                           ;main.c: 184: SSPBUF = (char)(ftAddress);
+  1576  0FE1  0870               	movf	ft800memRead8@ftAddress,w
+  1577  0FE2  1283               	bcf	3,5	;RP0=0, select bank0
+  1578  0FE3  1303               	bcf	3,6	;RP1=0, select bank0
+  1579  0FE4  0093               	movwf	19	;volatile
+  1580  0FE5                     l144:	
+  1581                           ;main.c: 185: while(!SSPSTATbits.BF);
+  1582                           
+  1583  0FE5  1683               	bsf	3,5	;RP0=1, select bank1
+  1584  0FE6  1303               	bcf	3,6	;RP1=0, select bank1
+  1585  0FE7  1C14               	btfss	20,0	;volatile
+  1586  0FE8  2FE5               	goto	l144
+  1587                           
+  1588                           ;main.c: 186: SSPBUF = 0UL;
+  1589  0FE9  1283               	bcf	3,5	;RP0=0, select bank0
+  1590  0FEA  1303               	bcf	3,6	;RP1=0, select bank0
+  1591  0FEB  0193               	clrf	19	;volatile
+  1592  0FEC                     l147:	
+  1593                           ;main.c: 187: while(!SSPSTATbits.BF);
+  1594                           
+  1595  0FEC  1683               	bsf	3,5	;RP0=1, select bank1
+  1596  0FED  1303               	bcf	3,6	;RP1=0, select bank1
+  1597  0FEE  1C14               	btfss	20,0	;volatile
+  1598  0FEF  2FEC               	goto	l147
+  1599                           
+  1600                           ;main.c: 188: SSPBUF = 0UL;
+  1601  0FF0  1283               	bcf	3,5	;RP0=0, select bank0
+  1602  0FF1  1303               	bcf	3,6	;RP1=0, select bank0
+  1603  0FF2  0193               	clrf	19	;volatile
+  1604  0FF3                     l150:	
+  1605                           ;main.c: 189: while( (SSPSTAT & (1<<0)) == 0);
+  1606                           
+  1607  0FF3  1683               	bsf	3,5	;RP0=1, select bank1
+  1608  0FF4  1303               	bcf	3,6	;RP1=0, select bank1
+  1609  0FF5  1C14               	btfss	20,0	;volatile
+  1610  0FF6  2FF3               	goto	l150
+  1611                           
+  1612                           ;main.c: 190: ftData8 = SSPBUF;
+  1613  0FF7  1283               	bcf	3,5	;RP0=0, select bank0
+  1614  0FF8  1303               	bcf	3,6	;RP1=0, select bank0
+  1615  0FF9  0813               	movf	19,w	;volatile
+  1616  0FFA  00F4               	movwf	??_ft800memRead8
+  1617  0FFB  0874               	movf	??_ft800memRead8,w
+  1618  0FFC  00F8               	movwf	ft800memRead8@ftData8
+  1619                           
+  1620                           ;main.c: 193: RC6 = 1;
+  1621  0FFD  1707               	bsf	7,6	;volatile
+  1622                           
+  1623                           ;main.c: 194: return ftData8;
+  1624  0FFE  0878               	movf	ft800memRead8@ftData8,w
+  1625  0FFF  0008               	return
+  1626  1000                     __end_of_ft800memRead8:	
+  1627                           
+  1628                           	psect	text4
+  1629  0EB7                     __ptext4:	
+  1630 ;; *************** function _ft800cmdWrite *****************
+  1631 ;; Defined at:
+  1632 ;;		line 305 in file "main.c"
+  1633 ;; Parameters:    Size  Location     Type
+  1634 ;;  ftCommand       1    wreg     unsigned char 
+  1635 ;; Auto vars:     Size  Location     Type
+  1636 ;;  ftCommand       1    0[COMMON] unsigned char 
+  1637 ;; Return value:  Size  Location     Type
+  1638 ;;		None               void
+  1639 ;; Registers used:
+  1640 ;;		wreg, status,2
+  1641 ;; Tracked objects:
+  1642 ;;		On entry : 0/0
+  1643 ;;		On exit  : 0/0
+  1644 ;;		Unchanged: 0/0
+  1645 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1646 ;;      Params:         0       0       0       0       0
+  1647 ;;      Locals:         1       0       0       0       0
+  1648 ;;      Temps:          0       0       0       0       0
+  1649 ;;      Totals:         1       0       0       0       0
+  1650 ;;Total ram usage:        1 bytes
+  1651 ;; Hardware stack levels used:    1
+  1652 ;; This function calls:
+  1653 ;;		Nothing
+  1654 ;; This function is called by:
+  1655 ;;		_setup
+  1656 ;; This function uses a non-reentrant model
+  1657 ;;
+  1658                           
+  1659                           
+  1660                           ;psect for function _ft800cmdWrite
+  1661  0EB7                     _ft800cmdWrite:	
+  1662                           
+  1663                           ;incstack = 0
+  1664                           ; Regs used in _ft800cmdWrite: [wreg+status,2]
+  1665                           ;ft800cmdWrite@ftCommand stored from wreg
+  1666  0EB7  00F0               	movwf	ft800cmdWrite@ftCommand
+  1667                           
+  1668                           ;main.c: 307: RC6 = 0;
+  1669  0EB8  1283               	bcf	3,5	;RP0=0, select bank0
+  1670  0EB9  1303               	bcf	3,6	;RP1=0, select bank0
+  1671  0EBA  1307               	bcf	7,6	;volatile
+  1672                           
+  1673                           ;main.c: 309: SSPBUF = ftCommand;
+  1674  0EBB  0870               	movf	ft800cmdWrite@ftCommand,w
+  1675  0EBC  0093               	movwf	19	;volatile
+  1676  0EBD                     l205:	
+  1677                           ;main.c: 310: while(!SSPSTATbits.BF);
+  1678                           
+  1679  0EBD  1683               	bsf	3,5	;RP0=1, select bank1
+  1680  0EBE  1303               	bcf	3,6	;RP1=0, select bank1
+  1681  0EBF  1C14               	btfss	20,0	;volatile
+  1682  0EC0  2EBD               	goto	l205
+  1683                           
+  1684                           ;main.c: 311: SSPBUF = 0UL;
+  1685  0EC1  1283               	bcf	3,5	;RP0=0, select bank0
+  1686  0EC2  1303               	bcf	3,6	;RP1=0, select bank0
+  1687  0EC3  0193               	clrf	19	;volatile
+  1688  0EC4                     l208:	
+  1689                           ;main.c: 312: while(!SSPSTATbits.BF);
+  1690                           
+  1691  0EC4  1683               	bsf	3,5	;RP0=1, select bank1
+  1692  0EC5  1303               	bcf	3,6	;RP1=0, select bank1
+  1693  0EC6  1C14               	btfss	20,0	;volatile
+  1694  0EC7  2EC4               	goto	l208
+  1695                           
+  1696                           ;main.c: 313: SSPBUF = 0UL;
+  1697  0EC8  1283               	bcf	3,5	;RP0=0, select bank0
+  1698  0EC9  1303               	bcf	3,6	;RP1=0, select bank0
+  1699  0ECA  0193               	clrf	19	;volatile
+  1700  0ECB                     l211:	
+  1701                           ;main.c: 314: while(!SSPSTATbits.BF);
+  1702                           
+  1703  0ECB  1683               	bsf	3,5	;RP0=1, select bank1
+  1704  0ECC  1303               	bcf	3,6	;RP1=0, select bank1
+  1705  0ECD  1C14               	btfss	20,0	;volatile
+  1706  0ECE  2ECB               	goto	l211
+  1707                           
+  1708                           ;main.c: 316: RC6 = 1;
+  1709  0ECF  1283               	bcf	3,5	;RP0=0, select bank0
+  1710  0ED0  1303               	bcf	3,6	;RP1=0, select bank0
+  1711  0ED1  1707               	bsf	7,6	;volatile
+  1712  0ED2  0008               	return
+  1713  0ED3                     __end_of_ft800cmdWrite:	
+  1714                           
+  1715                           	psect	text5
+  1716  0424                     __ptext5:	
+  1717 ;; *************** function _loop *****************
+  1718 ;; Defined at:
+  1719 ;;		line 472 in file "main.c"
+  1720 ;; Parameters:    Size  Location     Type
+  1721 ;;		None
+  1722 ;; Auto vars:     Size  Location     Type
+  1723 ;;  ftRead          4   16[BANK0 ] unsigned long 
+  1724 ;; Return value:  Size  Location     Type
+  1725 ;;		None               void
+  1726 ;; Registers used:
+  1727 ;;		wreg, status,2, status,0, pclath, cstack
+  1728 ;; Tracked objects:
+  1729 ;;		On entry : 0/0
+  1730 ;;		On exit  : 0/0
+  1731 ;;		Unchanged: 0/0
+  1732 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1733 ;;      Params:         0       0       0       0       0
+  1734 ;;      Locals:         0       4       0       0       0
+  1735 ;;      Temps:          0      16       0       0       0
+  1736 ;;      Totals:         0      20       0       0       0
+  1737 ;;Total ram usage:       20 bytes
+  1738 ;; Hardware stack levels used:    1
+  1739 ;; Hardware stack levels required when called:    1
+  1740 ;; This function calls:
+  1741 ;;		_ft800memRead16
+  1742 ;;		_ft800memWrite16
+  1743 ;;		_ft800memWrite32
+  1744 ;;		_incCMDOffset
+  1745 ;; This function is called by:
+  1746 ;;		_main
+  1747 ;; This function uses a non-reentrant model
+  1748 ;;
+  1749                           
+  1750                           
+  1751                           ;psect for function _loop
+  1752  0424                     _loop:	
+  1753                           
+  1754                           ;main.c: 478: unsigned long ftRead = 0x00000000;
+  1755                           
+  1756                           ;incstack = 0
+  1757                           ; Regs used in _loop: [wreg+status,2+status,0+pclath+cstack]
+  1758  0424  3000               	movlw	0
+  1759  0425  1283               	bcf	3,5	;RP0=0, select bank0
+  1760  0426  1303               	bcf	3,6	;RP1=0, select bank0
+  1761  0427  00C9               	movwf	loop@ftRead+3
+  1762  0428  3000               	movlw	0
+  1763  0429  00C8               	movwf	loop@ftRead+2
+  1764  042A  3000               	movlw	0
+  1765  042B  00C7               	movwf	loop@ftRead+1
+  1766  042C  3000               	movlw	0
+  1767  042D  00C6               	movwf	loop@ftRead
+  1768  042E                     l1177:	
+  1769                           ;main.c: 479: do
+  1770                           
+  1771                           
+  1772                           ;main.c: 480: {
+  1773                           ;main.c: 481: cmdBufferRd = ft800memRead16(0x1024e4UL);
+  1774  042E  3000               	movlw	0
+  1775  042F  00F3               	movwf	ft800memRead16@ftAddress+3
+  1776  0430  3010               	movlw	16
+  1777  0431  00F2               	movwf	ft800memRead16@ftAddress+2
+  1778  0432  3024               	movlw	36
+  1779  0433  00F1               	movwf	ft800memRead16@ftAddress+1
+  1780  0434  30E4               	movlw	228
+  1781  0435  00F0               	movwf	ft800memRead16@ftAddress
+  1782  0436  120A  118A  201C   	fcall	_ft800memRead16
+      +       120A  118A         
+  1783  043B  1283               	bcf	3,5	;RP0=0, select bank0
+  1784  043C  1303               	bcf	3,6	;RP1=0, select bank0
+  1785  043D  00B6               	movwf	??_loop
+  1786  043E  01B7               	clrf	??_loop+1
+  1787  043F  0836               	movf	??_loop,w
+  1788  0440  00E0               	movwf	_cmdBufferRd
+  1789  0441  0837               	movf	??_loop+1,w
+  1790  0442  00E1               	movwf	_cmdBufferRd+1
+  1791                           
+  1792                           ;main.c: 482: cmdBufferWr = ft800memRead16(0x1024e8UL);
+  1793  0443  3000               	movlw	0
+  1794  0444  00F3               	movwf	ft800memRead16@ftAddress+3
+  1795  0445  3010               	movlw	16
+  1796  0446  00F2               	movwf	ft800memRead16@ftAddress+2
+  1797  0447  3024               	movlw	36
+  1798  0448  00F1               	movwf	ft800memRead16@ftAddress+1
+  1799  0449  30E8               	movlw	232
+  1800  044A  00F0               	movwf	ft800memRead16@ftAddress
+  1801  044B  120A  118A  201C   	fcall	_ft800memRead16
+      +       120A  118A         
+  1802  0450  1283               	bcf	3,5	;RP0=0, select bank0
+  1803  0451  1303               	bcf	3,6	;RP1=0, select bank0
+  1804  0452  00B6               	movwf	??_loop
+  1805  0453  01B7               	clrf	??_loop+1
+  1806  0454  0836               	movf	??_loop,w
+  1807  0455  00E2               	movwf	_cmdBufferWr
+  1808  0456  0837               	movf	??_loop+1,w
+  1809  0457  00E3               	movwf	_cmdBufferWr+1
+  1810                           
+  1811                           ;main.c: 483: }while (cmdBufferWr != cmdBufferRd);
+  1812  0458  0861               	movf	_cmdBufferRd+1,w
+  1813  0459  0663               	xorwf	_cmdBufferWr+1,w
+  1814  045A  1D03               	skipz
+  1815  045B  2C5E               	goto	u1225
+  1816  045C  0860               	movf	_cmdBufferRd,w
+  1817  045D  0662               	xorwf	_cmdBufferWr,w
+  1818  045E                     u1225:	
+  1819  045E  1D03               	skipz
+  1820  045F  2C2E               	goto	l1177
+  1821                           
+  1822                           ;main.c: 485: cmdOffset = cmdBufferWr;
+  1823  0460  0863               	movf	_cmdBufferWr+1,w
+  1824  0461  01E5               	clrf	_cmdOffset+1
+  1825  0462  07E5               	addwf	_cmdOffset+1,f
+  1826  0463  0862               	movf	_cmdBufferWr,w
+  1827  0464  01E4               	clrf	_cmdOffset
+  1828  0465  07E4               	addwf	_cmdOffset,f
+  1829                           
+  1830                           ;main.c: 487: if (color != 0xFF0000)
+  1831  0466  3000               	movlw	0
+  1832  0467  065F               	xorwf	_color+3,w
+  1833  0468  1D03               	skipz
+  1834  0469  2C74               	goto	u1235
+  1835  046A  30FF               	movlw	255
+  1836  046B  065E               	xorwf	_color+2,w
+  1837  046C  1D03               	skipz
+  1838  046D  2C74               	goto	u1235
+  1839  046E  3000               	movlw	0
+  1840  046F  065D               	xorwf	_color+1,w
+  1841  0470  1D03               	skipz
+  1842  0471  2C74               	goto	u1235
+  1843  0472  3000               	movlw	0
+  1844  0473  065C               	xorwf	_color,w
+  1845  0474                     u1235:	
+  1846  0474  1903               	skipnz
+  1847  0475  2C7E               	goto	l1187
+  1848                           
+  1849                           ;main.c: 488: color = 0xFF0000;
+  1850  0476  3000               	movlw	0
+  1851  0477  00DF               	movwf	_color+3
+  1852  0478  30FF               	movlw	255
+  1853  0479  00DE               	movwf	_color+2
+  1854  047A  3000               	movlw	0
+  1855  047B  00DD               	movwf	_color+1
+  1856  047C  3000               	movlw	0
+  1857  047D  2C85               	goto	L2
+  1858  047E                     l1187:	
+  1859                           
+  1860                           ;main.c: 489: else
+  1861                           ;main.c: 490: color = 0xFFFFFF;
+  1862  047E  3000               	movlw	0
+  1863  047F  00DF               	movwf	_color+3
+  1864  0480  30FF               	movlw	255
+  1865  0481  00DE               	movwf	_color+2
+  1866  0482  30FF               	movlw	255
+  1867  0483  00DD               	movwf	_color+1
+  1868  0484  30FF               	movlw	255
+  1869  0485                     L2:	
+  1870  0485  00DC               	movwf	_color
+  1871                           
+  1872                           ;main.c: 492: ft800memWrite32(0x108000UL + cmdOffset, (0xffffff00UL));
+  1873  0486  3000               	movlw	0
+  1874  0487  00B6               	movwf	??_loop
+  1875  0488  3080               	movlw	128
+  1876  0489  00B7               	movwf	??_loop+1
+  1877  048A  3010               	movlw	16
+  1878  048B  00B8               	movwf	??_loop+2
+  1879  048C  3000               	movlw	0
+  1880  048D  00B9               	movwf	??_loop+3
+  1881  048E  0864               	movf	_cmdOffset,w
+  1882  048F  00BA               	movwf	??_loop+4
+  1883  0490  0865               	movf	_cmdOffset+1,w
+  1884  0491  00BB               	movwf	??_loop+5
+  1885  0492  01BC               	clrf	??_loop+6
+  1886  0493  01BD               	clrf	??_loop+7
+  1887  0494  083A               	movf	??_loop+4,w
+  1888  0495  07B6               	addwf	??_loop,f
+  1889  0496  083B               	movf	??_loop+5,w
+  1890  0497  1803               	skipnc
+  1891  0498  0F3B               	incfsz	??_loop+5,w
+  1892  0499  2C9B               	goto	u1240
+  1893  049A  2C9C               	goto	u1241
+  1894  049B                     u1240:	
+  1895  049B  07B7               	addwf	??_loop+1,f
+  1896  049C                     u1241:	
+  1897  049C  083C               	movf	??_loop+6,w
+  1898  049D  1803               	skipnc
+  1899  049E  0F3C               	incfsz	??_loop+6,w
+  1900  049F  2CA1               	goto	u1242
+  1901  04A0  2CA2               	goto	u1243
+  1902  04A1                     u1242:	
+  1903  04A1  07B8               	addwf	??_loop+2,f
+  1904  04A2                     u1243:	
+  1905  04A2  083D               	movf	??_loop+7,w
+  1906  04A3  1803               	skipnc
+  1907  04A4  0A3D               	incf	??_loop+7,w
+  1908  04A5  07B9               	addwf	??_loop+3,f
+  1909  04A6  0839               	movf	??_loop+3,w
+  1910  04A7  00F3               	movwf	ft800memWrite32@ftAddress+3
+  1911  04A8  0838               	movf	??_loop+2,w
+  1912  04A9  00F2               	movwf	ft800memWrite32@ftAddress+2
+  1913  04AA  0837               	movf	??_loop+1,w
+  1914  04AB  00F1               	movwf	ft800memWrite32@ftAddress+1
+  1915  04AC  0836               	movf	??_loop,w
+  1916  04AD  00F0               	movwf	ft800memWrite32@ftAddress
+  1917  04AE  30FF               	movlw	255
+  1918  04AF  00F7               	movwf	ft800memWrite32@ftData32+3
+  1919  04B0  30FF               	movlw	255
+  1920  04B1  00F6               	movwf	ft800memWrite32@ftData32+2
+  1921  04B2  30FF               	movlw	255
+  1922  04B3  00F5               	movwf	ft800memWrite32@ftData32+1
+  1923  04B4  3000               	movlw	0
+  1924  04B5  00F4               	movwf	ft800memWrite32@ftData32
+  1925  04B6  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  1926                           
+  1927                           ;main.c: 496: cmdOffset = incCMDOffset(cmdOffset, 4);
+  1928  04BB  1283               	bcf	3,5	;RP0=0, select bank0
+  1929  04BC  1303               	bcf	3,6	;RP1=0, select bank0
+  1930  04BD  0865               	movf	_cmdOffset+1,w
+  1931  04BE  01F1               	clrf	incCMDOffset@currentOffset+1
+  1932  04BF  07F1               	addwf	incCMDOffset@currentOffset+1,f
+  1933  04C0  0864               	movf	_cmdOffset,w
+  1934  04C1  01F0               	clrf	incCMDOffset@currentOffset
+  1935  04C2  07F0               	addwf	incCMDOffset@currentOffset,f
+  1936  04C3  3004               	movlw	4
+  1937  04C4  00B6               	movwf	??_loop
+  1938  04C5  0836               	movf	??_loop,w
+  1939  04C6  00F2               	movwf	incCMDOffset@commandSize
+  1940  04C7  120A  158A  26D3   	fcall	_incCMDOffset
+      +       120A  118A         
+  1941  04CC  0871               	movf	?_incCMDOffset+1,w
+  1942  04CD  1283               	bcf	3,5	;RP0=0, select bank0
+  1943  04CE  1303               	bcf	3,6	;RP1=0, select bank0
+  1944  04CF  01E5               	clrf	_cmdOffset+1
+  1945  04D0  07E5               	addwf	_cmdOffset+1,f
+  1946  04D1  0870               	movf	?_incCMDOffset,w
+  1947  04D2  01E4               	clrf	_cmdOffset
+  1948  04D3  07E4               	addwf	_cmdOffset,f
+  1949                           
+  1950                           ;main.c: 499: ft800memWrite32(0x108000UL + cmdOffset, (0x02000000UL | 0x000000));
+  1951  04D4  3000               	movlw	0
+  1952  04D5  00B6               	movwf	??_loop
+  1953  04D6  3080               	movlw	128
+  1954  04D7  00B7               	movwf	??_loop+1
+  1955  04D8  3010               	movlw	16
+  1956  04D9  00B8               	movwf	??_loop+2
+  1957  04DA  3000               	movlw	0
+  1958  04DB  00B9               	movwf	??_loop+3
+  1959  04DC  0864               	movf	_cmdOffset,w
+  1960  04DD  00BA               	movwf	??_loop+4
+  1961  04DE  0865               	movf	_cmdOffset+1,w
+  1962  04DF  00BB               	movwf	??_loop+5
+  1963  04E0  01BC               	clrf	??_loop+6
+  1964  04E1  01BD               	clrf	??_loop+7
+  1965  04E2  083A               	movf	??_loop+4,w
+  1966  04E3  07B6               	addwf	??_loop,f
+  1967  04E4  083B               	movf	??_loop+5,w
+  1968  04E5  1803               	skipnc
+  1969  04E6  0F3B               	incfsz	??_loop+5,w
+  1970  04E7  2CE9               	goto	u1250
+  1971  04E8  2CEA               	goto	u1251
+  1972  04E9                     u1250:	
+  1973  04E9  07B7               	addwf	??_loop+1,f
+  1974  04EA                     u1251:	
+  1975  04EA  083C               	movf	??_loop+6,w
+  1976  04EB  1803               	skipnc
+  1977  04EC  0F3C               	incfsz	??_loop+6,w
+  1978  04ED  2CEF               	goto	u1252
+  1979  04EE  2CF0               	goto	u1253
+  1980  04EF                     u1252:	
+  1981  04EF  07B8               	addwf	??_loop+2,f
+  1982  04F0                     u1253:	
+  1983  04F0  083D               	movf	??_loop+7,w
+  1984  04F1  1803               	skipnc
+  1985  04F2  0A3D               	incf	??_loop+7,w
+  1986  04F3  07B9               	addwf	??_loop+3,f
+  1987  04F4  0839               	movf	??_loop+3,w
+  1988  04F5  00F3               	movwf	ft800memWrite32@ftAddress+3
+  1989  04F6  0838               	movf	??_loop+2,w
+  1990  04F7  00F2               	movwf	ft800memWrite32@ftAddress+2
+  1991  04F8  0837               	movf	??_loop+1,w
+  1992  04F9  00F1               	movwf	ft800memWrite32@ftAddress+1
+  1993  04FA  0836               	movf	??_loop,w
+  1994  04FB  00F0               	movwf	ft800memWrite32@ftAddress
+  1995  04FC  3002               	movlw	2
+  1996  04FD  00F7               	movwf	ft800memWrite32@ftData32+3
+  1997  04FE  3000               	movlw	0
+  1998  04FF  00F6               	movwf	ft800memWrite32@ftData32+2
+  1999  0500  3000               	movlw	0
+  2000  0501  00F5               	movwf	ft800memWrite32@ftData32+1
+  2001  0502  3000               	movlw	0
+  2002  0503  00F4               	movwf	ft800memWrite32@ftData32
+  2003  0504  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  2004                           
+  2005                           ;main.c: 501: cmdOffset = incCMDOffset(cmdOffset, 4);
+  2006  0509  1283               	bcf	3,5	;RP0=0, select bank0
+  2007  050A  1303               	bcf	3,6	;RP1=0, select bank0
+  2008  050B  0865               	movf	_cmdOffset+1,w
+  2009  050C  01F1               	clrf	incCMDOffset@currentOffset+1
+  2010  050D  07F1               	addwf	incCMDOffset@currentOffset+1,f
+  2011  050E  0864               	movf	_cmdOffset,w
+  2012  050F  01F0               	clrf	incCMDOffset@currentOffset
+  2013  0510  07F0               	addwf	incCMDOffset@currentOffset,f
+  2014  0511  3004               	movlw	4
+  2015  0512  00B6               	movwf	??_loop
+  2016  0513  0836               	movf	??_loop,w
+  2017  0514  00F2               	movwf	incCMDOffset@commandSize
+  2018  0515  120A  158A  26D3   	fcall	_incCMDOffset
+      +       120A  118A         
+  2019  051A  0871               	movf	?_incCMDOffset+1,w
+  2020  051B  1283               	bcf	3,5	;RP0=0, select bank0
+  2021  051C  1303               	bcf	3,6	;RP1=0, select bank0
+  2022  051D  01E5               	clrf	_cmdOffset+1
+  2023  051E  07E5               	addwf	_cmdOffset+1,f
+  2024  051F  0870               	movf	?_incCMDOffset,w
+  2025  0520  01E4               	clrf	_cmdOffset
+  2026  0521  07E4               	addwf	_cmdOffset,f
+  2027                           
+  2028                           ;main.c: 504: ft800memWrite32(0x108000UL + cmdOffset, (0x26000000UL | 0x4 | 0x2 | 0x1));
+  2029  0522  3000               	movlw	0
+  2030  0523  00B6               	movwf	??_loop
+  2031  0524  3080               	movlw	128
+  2032  0525  00B7               	movwf	??_loop+1
+  2033  0526  3010               	movlw	16
+  2034  0527  00B8               	movwf	??_loop+2
+  2035  0528  3000               	movlw	0
+  2036  0529  00B9               	movwf	??_loop+3
+  2037  052A  0864               	movf	_cmdOffset,w
+  2038  052B  00BA               	movwf	??_loop+4
+  2039  052C  0865               	movf	_cmdOffset+1,w
+  2040  052D  00BB               	movwf	??_loop+5
+  2041  052E  01BC               	clrf	??_loop+6
+  2042  052F  01BD               	clrf	??_loop+7
+  2043  0530  083A               	movf	??_loop+4,w
+  2044  0531  07B6               	addwf	??_loop,f
+  2045  0532  083B               	movf	??_loop+5,w
+  2046  0533  1803               	skipnc
+  2047  0534  0F3B               	incfsz	??_loop+5,w
+  2048  0535  2D37               	goto	u1260
+  2049  0536  2D38               	goto	u1261
+  2050  0537                     u1260:	
+  2051  0537  07B7               	addwf	??_loop+1,f
+  2052  0538                     u1261:	
+  2053  0538  083C               	movf	??_loop+6,w
+  2054  0539  1803               	skipnc
+  2055  053A  0F3C               	incfsz	??_loop+6,w
+  2056  053B  2D3D               	goto	u1262
+  2057  053C  2D3E               	goto	u1263
+  2058  053D                     u1262:	
+  2059  053D  07B8               	addwf	??_loop+2,f
+  2060  053E                     u1263:	
+  2061  053E  083D               	movf	??_loop+7,w
+  2062  053F  1803               	skipnc
+  2063  0540  0A3D               	incf	??_loop+7,w
+  2064  0541  07B9               	addwf	??_loop+3,f
+  2065  0542  0839               	movf	??_loop+3,w
+  2066  0543  00F3               	movwf	ft800memWrite32@ftAddress+3
+  2067  0544  0838               	movf	??_loop+2,w
+  2068  0545  00F2               	movwf	ft800memWrite32@ftAddress+2
+  2069  0546  0837               	movf	??_loop+1,w
+  2070  0547  00F1               	movwf	ft800memWrite32@ftAddress+1
+  2071  0548  0836               	movf	??_loop,w
+  2072  0549  00F0               	movwf	ft800memWrite32@ftAddress
+  2073  054A  3026               	movlw	38
+  2074  054B  00F7               	movwf	ft800memWrite32@ftData32+3
+  2075  054C  3000               	movlw	0
+  2076  054D  00F6               	movwf	ft800memWrite32@ftData32+2
+  2077  054E  3000               	movlw	0
+  2078  054F  00F5               	movwf	ft800memWrite32@ftData32+1
+  2079  0550  3007               	movlw	7
+  2080  0551  00F4               	movwf	ft800memWrite32@ftData32
+  2081  0552  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  2082                           
+  2083                           ;main.c: 507: cmdOffset = incCMDOffset(cmdOffset, 4);
+  2084  0557  1283               	bcf	3,5	;RP0=0, select bank0
+  2085  0558  1303               	bcf	3,6	;RP1=0, select bank0
+  2086  0559  0865               	movf	_cmdOffset+1,w
+  2087  055A  01F1               	clrf	incCMDOffset@currentOffset+1
+  2088  055B  07F1               	addwf	incCMDOffset@currentOffset+1,f
+  2089  055C  0864               	movf	_cmdOffset,w
+  2090  055D  01F0               	clrf	incCMDOffset@currentOffset
+  2091  055E  07F0               	addwf	incCMDOffset@currentOffset,f
+  2092  055F  3004               	movlw	4
+  2093  0560  00B6               	movwf	??_loop
+  2094  0561  0836               	movf	??_loop,w
+  2095  0562  00F2               	movwf	incCMDOffset@commandSize
+  2096  0563  120A  158A  26D3   	fcall	_incCMDOffset
+      +       120A  118A         
+  2097  0568  0871               	movf	?_incCMDOffset+1,w
+  2098  0569  1283               	bcf	3,5	;RP0=0, select bank0
+  2099  056A  1303               	bcf	3,6	;RP1=0, select bank0
+  2100  056B  01E5               	clrf	_cmdOffset+1
+  2101  056C  07E5               	addwf	_cmdOffset+1,f
+  2102  056D  0870               	movf	?_incCMDOffset,w
+  2103  056E  01E4               	clrf	_cmdOffset
+  2104  056F  07E4               	addwf	_cmdOffset,f
+  2105                           
+  2106                           ;main.c: 512: ft800memWrite32(0x108000UL + cmdOffset, (0x0D000000UL | point_size));
+  2107  0570  3000               	movlw	0
+  2108  0571  00B6               	movwf	??_loop
+  2109  0572  3080               	movlw	128
+  2110  0573  00B7               	movwf	??_loop+1
+  2111  0574  3010               	movlw	16
+  2112  0575  00B8               	movwf	??_loop+2
+  2113  0576  3000               	movlw	0
+  2114  0577  00B9               	movwf	??_loop+3
+  2115  0578  0864               	movf	_cmdOffset,w
+  2116  0579  00BA               	movwf	??_loop+4
+  2117  057A  0865               	movf	_cmdOffset+1,w
+  2118  057B  00BB               	movwf	??_loop+5
+  2119  057C  01BC               	clrf	??_loop+6
+  2120  057D  01BD               	clrf	??_loop+7
+  2121  057E  083A               	movf	??_loop+4,w
+  2122  057F  07B6               	addwf	??_loop,f
+  2123  0580  083B               	movf	??_loop+5,w
+  2124  0581  1803               	skipnc
+  2125  0582  0F3B               	incfsz	??_loop+5,w
+  2126  0583  2D85               	goto	u1270
+  2127  0584  2D86               	goto	u1271
+  2128  0585                     u1270:	
+  2129  0585  07B7               	addwf	??_loop+1,f
+  2130  0586                     u1271:	
+  2131  0586  083C               	movf	??_loop+6,w
+  2132  0587  1803               	skipnc
+  2133  0588  0F3C               	incfsz	??_loop+6,w
+  2134  0589  2D8B               	goto	u1272
+  2135  058A  2D8C               	goto	u1273
+  2136  058B                     u1272:	
+  2137  058B  07B8               	addwf	??_loop+2,f
+  2138  058C                     u1273:	
+  2139  058C  083D               	movf	??_loop+7,w
+  2140  058D  1803               	skipnc
+  2141  058E  0A3D               	incf	??_loop+7,w
+  2142  058F  07B9               	addwf	??_loop+3,f
+  2143  0590  0839               	movf	??_loop+3,w
+  2144  0591  00F3               	movwf	ft800memWrite32@ftAddress+3
+  2145  0592  0838               	movf	??_loop+2,w
+  2146  0593  00F2               	movwf	ft800memWrite32@ftAddress+2
+  2147  0594  0837               	movf	??_loop+1,w
+  2148  0595  00F1               	movwf	ft800memWrite32@ftAddress+1
+  2149  0596  0836               	movf	??_loop,w
+  2150  0597  00F0               	movwf	ft800memWrite32@ftAddress
+  2151  0598  0834               	movf	_point_size,w
+  2152  0599  00BE               	movwf	??_loop+8
+  2153  059A  0835               	movf	_point_size+1,w
+  2154  059B  00BF               	movwf	??_loop+9
+  2155  059C  01C0               	clrf	??_loop+10
+  2156  059D  01C1               	clrf	??_loop+11
+  2157  059E  3000               	movlw	0
+  2158  059F  043E               	iorwf	??_loop+8,w
+  2159  05A0  00F4               	movwf	ft800memWrite32@ftData32
+  2160  05A1  3000               	movlw	0
+  2161  05A2  043F               	iorwf	??_loop+9,w
+  2162  05A3  00F5               	movwf	ft800memWrite32@ftData32+1
+  2163  05A4  3000               	movlw	0
+  2164  05A5  0440               	iorwf	??_loop+10,w
+  2165  05A6  00F6               	movwf	ft800memWrite32@ftData32+2
+  2166  05A7  300D               	movlw	13
+  2167  05A8  0441               	iorwf	??_loop+11,w
+  2168  05A9  00F7               	movwf	ft800memWrite32@ftData32+3
+  2169  05AA  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  2170                           
+  2171                           ;main.c: 514: cmdOffset = incCMDOffset(cmdOffset, 4);
+  2172  05AF  1283               	bcf	3,5	;RP0=0, select bank0
+  2173  05B0  1303               	bcf	3,6	;RP1=0, select bank0
+  2174  05B1  0865               	movf	_cmdOffset+1,w
+  2175  05B2  01F1               	clrf	incCMDOffset@currentOffset+1
+  2176  05B3  07F1               	addwf	incCMDOffset@currentOffset+1,f
+  2177  05B4  0864               	movf	_cmdOffset,w
+  2178  05B5  01F0               	clrf	incCMDOffset@currentOffset
+  2179  05B6  07F0               	addwf	incCMDOffset@currentOffset,f
+  2180  05B7  3004               	movlw	4
+  2181  05B8  00B6               	movwf	??_loop
+  2182  05B9  0836               	movf	??_loop,w
+  2183  05BA  00F2               	movwf	incCMDOffset@commandSize
+  2184  05BB  120A  158A  26D3   	fcall	_incCMDOffset
+      +       120A  118A         
+  2185  05C0  0871               	movf	?_incCMDOffset+1,w
+  2186  05C1  1283               	bcf	3,5	;RP0=0, select bank0
+  2187  05C2  1303               	bcf	3,6	;RP1=0, select bank0
+  2188  05C3  01E5               	clrf	_cmdOffset+1
+  2189  05C4  07E5               	addwf	_cmdOffset+1,f
+  2190  05C5  0870               	movf	?_incCMDOffset,w
+  2191  05C6  01E4               	clrf	_cmdOffset
+  2192  05C7  07E4               	addwf	_cmdOffset,f
+  2193                           
+  2194                           ;main.c: 517: ft800memWrite32(0x108000UL + cmdOffset, (0x1F000000UL | 2UL));
+  2195  05C8  3000               	movlw	0
+  2196  05C9  00B6               	movwf	??_loop
+  2197  05CA  3080               	movlw	128
+  2198  05CB  00B7               	movwf	??_loop+1
+  2199  05CC  3010               	movlw	16
+  2200  05CD  00B8               	movwf	??_loop+2
+  2201  05CE  3000               	movlw	0
+  2202  05CF  00B9               	movwf	??_loop+3
+  2203  05D0  0864               	movf	_cmdOffset,w
+  2204  05D1  00BA               	movwf	??_loop+4
+  2205  05D2  0865               	movf	_cmdOffset+1,w
+  2206  05D3  00BB               	movwf	??_loop+5
+  2207  05D4  01BC               	clrf	??_loop+6
+  2208  05D5  01BD               	clrf	??_loop+7
+  2209  05D6  083A               	movf	??_loop+4,w
+  2210  05D7  07B6               	addwf	??_loop,f
+  2211  05D8  083B               	movf	??_loop+5,w
+  2212  05D9  1803               	skipnc
+  2213  05DA  0F3B               	incfsz	??_loop+5,w
+  2214  05DB  2DDD               	goto	u1280
+  2215  05DC  2DDE               	goto	u1281
+  2216  05DD                     u1280:	
+  2217  05DD  07B7               	addwf	??_loop+1,f
+  2218  05DE                     u1281:	
+  2219  05DE  083C               	movf	??_loop+6,w
+  2220  05DF  1803               	skipnc
+  2221  05E0  0F3C               	incfsz	??_loop+6,w
+  2222  05E1  2DE3               	goto	u1282
+  2223  05E2  2DE4               	goto	u1283
+  2224  05E3                     u1282:	
+  2225  05E3  07B8               	addwf	??_loop+2,f
+  2226  05E4                     u1283:	
+  2227  05E4  083D               	movf	??_loop+7,w
+  2228  05E5  1803               	skipnc
+  2229  05E6  0A3D               	incf	??_loop+7,w
+  2230  05E7  07B9               	addwf	??_loop+3,f
+  2231  05E8  0839               	movf	??_loop+3,w
+  2232  05E9  00F3               	movwf	ft800memWrite32@ftAddress+3
+  2233  05EA  0838               	movf	??_loop+2,w
+  2234  05EB  00F2               	movwf	ft800memWrite32@ftAddress+2
+  2235  05EC  0837               	movf	??_loop+1,w
+  2236  05ED  00F1               	movwf	ft800memWrite32@ftAddress+1
+  2237  05EE  0836               	movf	??_loop,w
+  2238  05EF  00F0               	movwf	ft800memWrite32@ftAddress
+  2239  05F0  301F               	movlw	31
+  2240  05F1  00F7               	movwf	ft800memWrite32@ftData32+3
+  2241  05F2  3000               	movlw	0
+  2242  05F3  00F6               	movwf	ft800memWrite32@ftData32+2
+  2243  05F4  3000               	movlw	0
+  2244  05F5  00F5               	movwf	ft800memWrite32@ftData32+1
+  2245  05F6  3002               	movlw	2
+  2246  05F7  00F4               	movwf	ft800memWrite32@ftData32
+  2247  05F8  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  2248                           
+  2249                           ;main.c: 519: cmdOffset = incCMDOffset(cmdOffset, 4);
+  2250  05FD  1283               	bcf	3,5	;RP0=0, select bank0
+  2251  05FE  1303               	bcf	3,6	;RP1=0, select bank0
+  2252  05FF  0865               	movf	_cmdOffset+1,w
+  2253  0600  01F1               	clrf	incCMDOffset@currentOffset+1
+  2254  0601  07F1               	addwf	incCMDOffset@currentOffset+1,f
+  2255  0602  0864               	movf	_cmdOffset,w
+  2256  0603  01F0               	clrf	incCMDOffset@currentOffset
+  2257  0604  07F0               	addwf	incCMDOffset@currentOffset,f
+  2258  0605  3004               	movlw	4
+  2259  0606  00B6               	movwf	??_loop
+  2260  0607  0836               	movf	??_loop,w
+  2261  0608  00F2               	movwf	incCMDOffset@commandSize
+  2262  0609  120A  158A  26D3   	fcall	_incCMDOffset
+      +       120A  118A         
+  2263  060E  0871               	movf	?_incCMDOffset+1,w
+  2264  060F  1283               	bcf	3,5	;RP0=0, select bank0
+  2265  0610  1303               	bcf	3,6	;RP1=0, select bank0
+  2266  0611  01E5               	clrf	_cmdOffset+1
+  2267  0612  07E5               	addwf	_cmdOffset+1,f
+  2268  0613  0870               	movf	?_incCMDOffset,w
+  2269  0614  01E4               	clrf	_cmdOffset
+  2270  0615  07E4               	addwf	_cmdOffset,f
+  2271                           
+  2272                           ;main.c: 521: ft800memWrite32(0x108000UL + cmdOffset, (0x04000000UL | color));
+  2273  0616  3000               	movlw	0
+  2274  0617  00B6               	movwf	??_loop
+  2275  0618  3080               	movlw	128
+  2276  0619  00B7               	movwf	??_loop+1
+  2277  061A  3010               	movlw	16
+  2278  061B  00B8               	movwf	??_loop+2
+  2279  061C  3000               	movlw	0
+  2280  061D  00B9               	movwf	??_loop+3
+  2281  061E  0864               	movf	_cmdOffset,w
+  2282  061F  00BA               	movwf	??_loop+4
+  2283  0620  0865               	movf	_cmdOffset+1,w
+  2284  0621  00BB               	movwf	??_loop+5
+  2285  0622  01BC               	clrf	??_loop+6
+  2286  0623  01BD               	clrf	??_loop+7
+  2287  0624  083A               	movf	??_loop+4,w
+  2288  0625  07B6               	addwf	??_loop,f
+  2289  0626  083B               	movf	??_loop+5,w
+  2290  0627  1803               	skipnc
+  2291  0628  0F3B               	incfsz	??_loop+5,w
+  2292  0629  2E2B               	goto	u1290
+  2293  062A  2E2C               	goto	u1291
+  2294  062B                     u1290:	
+  2295  062B  07B7               	addwf	??_loop+1,f
+  2296  062C                     u1291:	
+  2297  062C  083C               	movf	??_loop+6,w
+  2298  062D  1803               	skipnc
+  2299  062E  0F3C               	incfsz	??_loop+6,w
+  2300  062F  2E31               	goto	u1292
+  2301  0630  2E32               	goto	u1293
+  2302  0631                     u1292:	
+  2303  0631  07B8               	addwf	??_loop+2,f
+  2304  0632                     u1293:	
+  2305  0632  083D               	movf	??_loop+7,w
+  2306  0633  1803               	skipnc
+  2307  0634  0A3D               	incf	??_loop+7,w
+  2308  0635  07B9               	addwf	??_loop+3,f
+  2309  0636  0839               	movf	??_loop+3,w
+  2310  0637  00F3               	movwf	ft800memWrite32@ftAddress+3
+  2311  0638  0838               	movf	??_loop+2,w
+  2312  0639  00F2               	movwf	ft800memWrite32@ftAddress+2
+  2313  063A  0837               	movf	??_loop+1,w
+  2314  063B  00F1               	movwf	ft800memWrite32@ftAddress+1
+  2315  063C  0836               	movf	??_loop,w
+  2316  063D  00F0               	movwf	ft800memWrite32@ftAddress
+  2317  063E  3000               	movlw	0
+  2318  063F  045C               	iorwf	_color,w
+  2319  0640  00F4               	movwf	ft800memWrite32@ftData32
+  2320  0641  3000               	movlw	0
+  2321  0642  045D               	iorwf	_color+1,w
+  2322  0643  00F5               	movwf	ft800memWrite32@ftData32+1
+  2323  0644  3000               	movlw	0
+  2324  0645  045E               	iorwf	_color+2,w
+  2325  0646  00F6               	movwf	ft800memWrite32@ftData32+2
+  2326  0647  3004               	movlw	4
+  2327  0648  045F               	iorwf	_color+3,w
+  2328  0649  00F7               	movwf	ft800memWrite32@ftData32+3
+  2329  064A  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  2330                           
+  2331                           ;main.c: 524: cmdOffset = incCMDOffset(cmdOffset, 4);
+  2332  064F  1283               	bcf	3,5	;RP0=0, select bank0
+  2333  0650  1303               	bcf	3,6	;RP1=0, select bank0
+  2334  0651  0865               	movf	_cmdOffset+1,w
+  2335  0652  01F1               	clrf	incCMDOffset@currentOffset+1
+  2336  0653  07F1               	addwf	incCMDOffset@currentOffset+1,f
+  2337  0654  0864               	movf	_cmdOffset,w
+  2338  0655  01F0               	clrf	incCMDOffset@currentOffset
+  2339  0656  07F0               	addwf	incCMDOffset@currentOffset,f
+  2340  0657  3004               	movlw	4
+  2341  0658  00B6               	movwf	??_loop
+  2342  0659  0836               	movf	??_loop,w
+  2343  065A  00F2               	movwf	incCMDOffset@commandSize
+  2344  065B  120A  158A  26D3   	fcall	_incCMDOffset
+      +       120A  118A         
+  2345  0660  0871               	movf	?_incCMDOffset+1,w
+  2346  0661  1283               	bcf	3,5	;RP0=0, select bank0
+  2347  0662  1303               	bcf	3,6	;RP1=0, select bank0
+  2348  0663  01E5               	clrf	_cmdOffset+1
+  2349  0664  07E5               	addwf	_cmdOffset+1,f
+  2350  0665  0870               	movf	?_incCMDOffset,w
+  2351  0666  01E4               	clrf	_cmdOffset
+  2352  0667  07E4               	addwf	_cmdOffset,f
+  2353                           
+  2354                           ;main.c: 527: ft800memWrite32(0x108000UL + cmdOffset, (0x40000000UL | (point_x << 15) | 
+      +                          point_y));
+  2355  0668  3000               	movlw	0
+  2356  0669  00B6               	movwf	??_loop
+  2357  066A  3080               	movlw	128
+  2358  066B  00B7               	movwf	??_loop+1
+  2359  066C  3010               	movlw	16
+  2360  066D  00B8               	movwf	??_loop+2
+  2361  066E  3000               	movlw	0
+  2362  066F  00B9               	movwf	??_loop+3
+  2363  0670  0864               	movf	_cmdOffset,w
+  2364  0671  00BA               	movwf	??_loop+4
+  2365  0672  0865               	movf	_cmdOffset+1,w
+  2366  0673  00BB               	movwf	??_loop+5
+  2367  0674  01BC               	clrf	??_loop+6
+  2368  0675  01BD               	clrf	??_loop+7
+  2369  0676  083A               	movf	??_loop+4,w
+  2370  0677  07B6               	addwf	??_loop,f
+  2371  0678  083B               	movf	??_loop+5,w
+  2372  0679  1803               	skipnc
+  2373  067A  0F3B               	incfsz	??_loop+5,w
+  2374  067B  2E7D               	goto	u1300
+  2375  067C  2E7E               	goto	u1301
+  2376  067D                     u1300:	
+  2377  067D  07B7               	addwf	??_loop+1,f
+  2378  067E                     u1301:	
+  2379  067E  083C               	movf	??_loop+6,w
+  2380  067F  1803               	skipnc
+  2381  0680  0F3C               	incfsz	??_loop+6,w
+  2382  0681  2E83               	goto	u1302
+  2383  0682  2E84               	goto	u1303
+  2384  0683                     u1302:	
+  2385  0683  07B8               	addwf	??_loop+2,f
+  2386  0684                     u1303:	
+  2387  0684  083D               	movf	??_loop+7,w
+  2388  0685  1803               	skipnc
+  2389  0686  0A3D               	incf	??_loop+7,w
+  2390  0687  07B9               	addwf	??_loop+3,f
+  2391  0688  0839               	movf	??_loop+3,w
+  2392  0689  00F3               	movwf	ft800memWrite32@ftAddress+3
+  2393  068A  0838               	movf	??_loop+2,w
+  2394  068B  00F2               	movwf	ft800memWrite32@ftAddress+2
+  2395  068C  0837               	movf	??_loop+1,w
+  2396  068D  00F1               	movwf	ft800memWrite32@ftAddress+1
+  2397  068E  0836               	movf	??_loop,w
+  2398  068F  00F0               	movwf	ft800memWrite32@ftAddress
+  2399  0690  0828               	movf	_point_y,w
+  2400  0691  00BE               	movwf	??_loop+8
+  2401  0692  0829               	movf	_point_y+1,w
+  2402  0693  00BF               	movwf	??_loop+9
+  2403  0694  082A               	movf	_point_y+2,w
+  2404  0695  00C0               	movwf	??_loop+10
+  2405  0696  082B               	movf	_point_y+3,w
+  2406  0697  00C1               	movwf	??_loop+11
+  2407  0698  0820               	movf	_point_x,w
+  2408  0699  00C2               	movwf	??_loop+12
+  2409  069A  0821               	movf	_point_x+1,w
+  2410  069B  00C3               	movwf	??_loop+13
+  2411  069C  0822               	movf	_point_x+2,w
+  2412  069D  00C4               	movwf	??_loop+14
+  2413  069E  0823               	movf	_point_x+3,w
+  2414  069F  00C5               	movwf	??_loop+15
+  2415  06A0  300F               	movlw	15
+  2416  06A1                     u1315:	
+  2417  06A1  1003               	clrc
+  2418  06A2  0DC2               	rlf	??_loop+12,f
+  2419  06A3  0DC3               	rlf	??_loop+13,f
+  2420  06A4  0DC4               	rlf	??_loop+14,f
+  2421  06A5  0DC5               	rlf	??_loop+15,f
+  2422  06A6  3EFF               	addlw	-1
+  2423  06A7  1D03               	skipz
+  2424  06A8  2EA1               	goto	u1315
+  2425  06A9  0842               	movf	??_loop+12,w
+  2426  06AA  04BE               	iorwf	??_loop+8,f
+  2427  06AB  0843               	movf	??_loop+13,w
+  2428  06AC  04BF               	iorwf	??_loop+9,f
+  2429  06AD  0844               	movf	??_loop+14,w
+  2430  06AE  04C0               	iorwf	??_loop+10,f
+  2431  06AF  0845               	movf	??_loop+15,w
+  2432  06B0  04C1               	iorwf	??_loop+11,f
+  2433  06B1  3000               	movlw	0
+  2434  06B2  043E               	iorwf	??_loop+8,w
+  2435  06B3  00F4               	movwf	ft800memWrite32@ftData32
+  2436  06B4  3000               	movlw	0
+  2437  06B5  043F               	iorwf	??_loop+9,w
+  2438  06B6  00F5               	movwf	ft800memWrite32@ftData32+1
+  2439  06B7  3000               	movlw	0
+  2440  06B8  0440               	iorwf	??_loop+10,w
+  2441  06B9  00F6               	movwf	ft800memWrite32@ftData32+2
+  2442  06BA  3040               	movlw	64
+  2443  06BB  0441               	iorwf	??_loop+11,w
+  2444  06BC  00F7               	movwf	ft800memWrite32@ftData32+3
+  2445  06BD  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  2446                           
+  2447                           ;main.c: 529: cmdOffset = incCMDOffset(cmdOffset, 4);
+  2448  06C2  1283               	bcf	3,5	;RP0=0, select bank0
+  2449  06C3  1303               	bcf	3,6	;RP1=0, select bank0
+  2450  06C4  0865               	movf	_cmdOffset+1,w
+  2451  06C5  01F1               	clrf	incCMDOffset@currentOffset+1
+  2452  06C6  07F1               	addwf	incCMDOffset@currentOffset+1,f
+  2453  06C7  0864               	movf	_cmdOffset,w
+  2454  06C8  01F0               	clrf	incCMDOffset@currentOffset
+  2455  06C9  07F0               	addwf	incCMDOffset@currentOffset,f
+  2456  06CA  3004               	movlw	4
+  2457  06CB  00B6               	movwf	??_loop
+  2458  06CC  0836               	movf	??_loop,w
+  2459  06CD  00F2               	movwf	incCMDOffset@commandSize
+  2460  06CE  120A  158A  26D3   	fcall	_incCMDOffset
+      +       120A  118A         
+  2461  06D3  0871               	movf	?_incCMDOffset+1,w
+  2462  06D4  1283               	bcf	3,5	;RP0=0, select bank0
+  2463  06D5  1303               	bcf	3,6	;RP1=0, select bank0
+  2464  06D6  01E5               	clrf	_cmdOffset+1
+  2465  06D7  07E5               	addwf	_cmdOffset+1,f
+  2466  06D8  0870               	movf	?_incCMDOffset,w
+  2467  06D9  01E4               	clrf	_cmdOffset
+  2468  06DA  07E4               	addwf	_cmdOffset,f
+  2469                           
+  2470                           ;main.c: 532: ft800memWrite32(0x108000UL + cmdOffset, (0x21000000UL));
+  2471  06DB  3000               	movlw	0
+  2472  06DC  00B6               	movwf	??_loop
+  2473  06DD  3080               	movlw	128
+  2474  06DE  00B7               	movwf	??_loop+1
+  2475  06DF  3010               	movlw	16
+  2476  06E0  00B8               	movwf	??_loop+2
+  2477  06E1  3000               	movlw	0
+  2478  06E2  00B9               	movwf	??_loop+3
+  2479  06E3  0864               	movf	_cmdOffset,w
+  2480  06E4  00BA               	movwf	??_loop+4
+  2481  06E5  0865               	movf	_cmdOffset+1,w
+  2482  06E6  00BB               	movwf	??_loop+5
+  2483  06E7  01BC               	clrf	??_loop+6
+  2484  06E8  01BD               	clrf	??_loop+7
+  2485  06E9  083A               	movf	??_loop+4,w
+  2486  06EA  07B6               	addwf	??_loop,f
+  2487  06EB  083B               	movf	??_loop+5,w
+  2488  06EC  1803               	skipnc
+  2489  06ED  0F3B               	incfsz	??_loop+5,w
+  2490  06EE  2EF0               	goto	u1320
+  2491  06EF  2EF1               	goto	u1321
+  2492  06F0                     u1320:	
+  2493  06F0  07B7               	addwf	??_loop+1,f
+  2494  06F1                     u1321:	
+  2495  06F1  083C               	movf	??_loop+6,w
+  2496  06F2  1803               	skipnc
+  2497  06F3  0F3C               	incfsz	??_loop+6,w
+  2498  06F4  2EF6               	goto	u1322
+  2499  06F5  2EF7               	goto	u1323
+  2500  06F6                     u1322:	
+  2501  06F6  07B8               	addwf	??_loop+2,f
+  2502  06F7                     u1323:	
+  2503  06F7  083D               	movf	??_loop+7,w
+  2504  06F8  1803               	skipnc
+  2505  06F9  0A3D               	incf	??_loop+7,w
+  2506  06FA  07B9               	addwf	??_loop+3,f
+  2507  06FB  0839               	movf	??_loop+3,w
+  2508  06FC  00F3               	movwf	ft800memWrite32@ftAddress+3
+  2509  06FD  0838               	movf	??_loop+2,w
+  2510  06FE  00F2               	movwf	ft800memWrite32@ftAddress+2
+  2511  06FF  0837               	movf	??_loop+1,w
+  2512  0700  00F1               	movwf	ft800memWrite32@ftAddress+1
+  2513  0701  0836               	movf	??_loop,w
+  2514  0702  00F0               	movwf	ft800memWrite32@ftAddress
+  2515  0703  3021               	movlw	33
+  2516  0704  00F7               	movwf	ft800memWrite32@ftData32+3
+  2517  0705  3000               	movlw	0
+  2518  0706  00F6               	movwf	ft800memWrite32@ftData32+2
+  2519  0707  3000               	movlw	0
+  2520  0708  00F5               	movwf	ft800memWrite32@ftData32+1
+  2521  0709  3000               	movlw	0
+  2522  070A  00F4               	movwf	ft800memWrite32@ftData32
+  2523  070B  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  2524                           
+  2525                           ;main.c: 534: cmdOffset = incCMDOffset(cmdOffset, 4);
+  2526  0710  1283               	bcf	3,5	;RP0=0, select bank0
+  2527  0711  1303               	bcf	3,6	;RP1=0, select bank0
+  2528  0712  0865               	movf	_cmdOffset+1,w
+  2529  0713  01F1               	clrf	incCMDOffset@currentOffset+1
+  2530  0714  07F1               	addwf	incCMDOffset@currentOffset+1,f
+  2531  0715  0864               	movf	_cmdOffset,w
+  2532  0716  01F0               	clrf	incCMDOffset@currentOffset
+  2533  0717  07F0               	addwf	incCMDOffset@currentOffset,f
+  2534  0718  3004               	movlw	4
+  2535  0719  00B6               	movwf	??_loop
+  2536  071A  0836               	movf	??_loop,w
+  2537  071B  00F2               	movwf	incCMDOffset@commandSize
+  2538  071C  120A  158A  26D3   	fcall	_incCMDOffset
+      +       120A  118A         
+  2539  0721  0871               	movf	?_incCMDOffset+1,w
+  2540  0722  1283               	bcf	3,5	;RP0=0, select bank0
+  2541  0723  1303               	bcf	3,6	;RP1=0, select bank0
+  2542  0724  01E5               	clrf	_cmdOffset+1
+  2543  0725  07E5               	addwf	_cmdOffset+1,f
+  2544  0726  0870               	movf	?_incCMDOffset,w
+  2545  0727  01E4               	clrf	_cmdOffset
+  2546  0728  07E4               	addwf	_cmdOffset,f
+  2547                           
+  2548                           ;main.c: 537: ft800memWrite32(0x108000UL + cmdOffset, (0x00000000UL));
+  2549  0729  3000               	movlw	0
+  2550  072A  00B6               	movwf	??_loop
+  2551  072B  3080               	movlw	128
+  2552  072C  00B7               	movwf	??_loop+1
+  2553  072D  3010               	movlw	16
+  2554  072E  00B8               	movwf	??_loop+2
+  2555  072F  3000               	movlw	0
+  2556  0730  00B9               	movwf	??_loop+3
+  2557  0731  0864               	movf	_cmdOffset,w
+  2558  0732  00BA               	movwf	??_loop+4
+  2559  0733  0865               	movf	_cmdOffset+1,w
+  2560  0734  00BB               	movwf	??_loop+5
+  2561  0735  01BC               	clrf	??_loop+6
+  2562  0736  01BD               	clrf	??_loop+7
+  2563  0737  083A               	movf	??_loop+4,w
+  2564  0738  07B6               	addwf	??_loop,f
+  2565  0739  083B               	movf	??_loop+5,w
+  2566  073A  1803               	skipnc
+  2567  073B  0F3B               	incfsz	??_loop+5,w
+  2568  073C  2F3E               	goto	u1330
+  2569  073D  2F3F               	goto	u1331
+  2570  073E                     u1330:	
+  2571  073E  07B7               	addwf	??_loop+1,f
+  2572  073F                     u1331:	
+  2573  073F  083C               	movf	??_loop+6,w
+  2574  0740  1803               	skipnc
+  2575  0741  0F3C               	incfsz	??_loop+6,w
+  2576  0742  2F44               	goto	u1332
+  2577  0743  2F45               	goto	u1333
+  2578  0744                     u1332:	
+  2579  0744  07B8               	addwf	??_loop+2,f
+  2580  0745                     u1333:	
+  2581  0745  083D               	movf	??_loop+7,w
+  2582  0746  1803               	skipnc
+  2583  0747  0A3D               	incf	??_loop+7,w
+  2584  0748  07B9               	addwf	??_loop+3,f
+  2585  0749  0839               	movf	??_loop+3,w
+  2586  074A  00F3               	movwf	ft800memWrite32@ftAddress+3
+  2587  074B  0838               	movf	??_loop+2,w
+  2588  074C  00F2               	movwf	ft800memWrite32@ftAddress+2
+  2589  074D  0837               	movf	??_loop+1,w
+  2590  074E  00F1               	movwf	ft800memWrite32@ftAddress+1
+  2591  074F  0836               	movf	??_loop,w
+  2592  0750  00F0               	movwf	ft800memWrite32@ftAddress
+  2593  0751  3000               	movlw	0
+  2594  0752  00F7               	movwf	ft800memWrite32@ftData32+3
+  2595  0753  3000               	movlw	0
+  2596  0754  00F6               	movwf	ft800memWrite32@ftData32+2
+  2597  0755  3000               	movlw	0
+  2598  0756  00F5               	movwf	ft800memWrite32@ftData32+1
+  2599  0757  3000               	movlw	0
+  2600  0758  00F4               	movwf	ft800memWrite32@ftData32
+  2601  0759  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  2602                           
+  2603                           ;main.c: 539: cmdOffset = incCMDOffset(cmdOffset, 4);
+  2604  075E  1283               	bcf	3,5	;RP0=0, select bank0
+  2605  075F  1303               	bcf	3,6	;RP1=0, select bank0
+  2606  0760  0865               	movf	_cmdOffset+1,w
+  2607  0761  01F1               	clrf	incCMDOffset@currentOffset+1
+  2608  0762  07F1               	addwf	incCMDOffset@currentOffset+1,f
+  2609  0763  0864               	movf	_cmdOffset,w
+  2610  0764  01F0               	clrf	incCMDOffset@currentOffset
+  2611  0765  07F0               	addwf	incCMDOffset@currentOffset,f
+  2612  0766  3004               	movlw	4
+  2613  0767  00B6               	movwf	??_loop
+  2614  0768  0836               	movf	??_loop,w
+  2615  0769  00F2               	movwf	incCMDOffset@commandSize
+  2616  076A  120A  158A  26D3   	fcall	_incCMDOffset
+      +       120A  118A         
+  2617  076F  0871               	movf	?_incCMDOffset+1,w
+  2618  0770  1283               	bcf	3,5	;RP0=0, select bank0
+  2619  0771  1303               	bcf	3,6	;RP1=0, select bank0
+  2620  0772  01E5               	clrf	_cmdOffset+1
+  2621  0773  07E5               	addwf	_cmdOffset+1,f
+  2622  0774  0870               	movf	?_incCMDOffset,w
+  2623  0775  01E4               	clrf	_cmdOffset
+  2624  0776  07E4               	addwf	_cmdOffset,f
+  2625                           
+  2626                           ;main.c: 542: ft800memWrite32(0x108000UL + cmdOffset, (0xffffff01UL));
+  2627  0777  3000               	movlw	0
+  2628  0778  00B6               	movwf	??_loop
+  2629  0779  3080               	movlw	128
+  2630  077A  00B7               	movwf	??_loop+1
+  2631  077B  3010               	movlw	16
+  2632  077C  00B8               	movwf	??_loop+2
+  2633  077D  3000               	movlw	0
+  2634  077E  00B9               	movwf	??_loop+3
+  2635  077F  0864               	movf	_cmdOffset,w
+  2636  0780  00BA               	movwf	??_loop+4
+  2637  0781  0865               	movf	_cmdOffset+1,w
+  2638  0782  00BB               	movwf	??_loop+5
+  2639  0783  01BC               	clrf	??_loop+6
+  2640  0784  01BD               	clrf	??_loop+7
+  2641  0785  083A               	movf	??_loop+4,w
+  2642  0786  07B6               	addwf	??_loop,f
+  2643  0787  083B               	movf	??_loop+5,w
+  2644  0788  1803               	skipnc
+  2645  0789  0F3B               	incfsz	??_loop+5,w
+  2646  078A  2F8C               	goto	u1340
+  2647  078B  2F8D               	goto	u1341
+  2648  078C                     u1340:	
+  2649  078C  07B7               	addwf	??_loop+1,f
+  2650  078D                     u1341:	
+  2651  078D  083C               	movf	??_loop+6,w
+  2652  078E  1803               	skipnc
+  2653  078F  0F3C               	incfsz	??_loop+6,w
+  2654  0790  2F92               	goto	u1342
+  2655  0791  2F93               	goto	u1343
+  2656  0792                     u1342:	
+  2657  0792  07B8               	addwf	??_loop+2,f
+  2658  0793                     u1343:	
+  2659  0793  083D               	movf	??_loop+7,w
+  2660  0794  1803               	skipnc
+  2661  0795  0A3D               	incf	??_loop+7,w
+  2662  0796  07B9               	addwf	??_loop+3,f
+  2663  0797  0839               	movf	??_loop+3,w
+  2664  0798  00F3               	movwf	ft800memWrite32@ftAddress+3
+  2665  0799  0838               	movf	??_loop+2,w
+  2666  079A  00F2               	movwf	ft800memWrite32@ftAddress+2
+  2667  079B  0837               	movf	??_loop+1,w
+  2668  079C  00F1               	movwf	ft800memWrite32@ftAddress+1
+  2669  079D  0836               	movf	??_loop,w
+  2670  079E  00F0               	movwf	ft800memWrite32@ftAddress
+  2671  079F  30FF               	movlw	255
+  2672  07A0  00F7               	movwf	ft800memWrite32@ftData32+3
+  2673  07A1  30FF               	movlw	255
+  2674  07A2  00F6               	movwf	ft800memWrite32@ftData32+2
+  2675  07A3  30FF               	movlw	255
+  2676  07A4  00F5               	movwf	ft800memWrite32@ftData32+1
+  2677  07A5  3001               	movlw	1
+  2678  07A6  00F4               	movwf	ft800memWrite32@ftData32
+  2679  07A7  120A  118A  2095   	fcall	_ft800memWrite32
+      +       120A  118A         
+  2680                           
+  2681                           ;main.c: 544: cmdOffset = incCMDOffset(cmdOffset, 4);
+  2682  07AC  1283               	bcf	3,5	;RP0=0, select bank0
+  2683  07AD  1303               	bcf	3,6	;RP1=0, select bank0
+  2684  07AE  0865               	movf	_cmdOffset+1,w
+  2685  07AF  01F1               	clrf	incCMDOffset@currentOffset+1
+  2686  07B0  07F1               	addwf	incCMDOffset@currentOffset+1,f
+  2687  07B1  0864               	movf	_cmdOffset,w
+  2688  07B2  01F0               	clrf	incCMDOffset@currentOffset
+  2689  07B3  07F0               	addwf	incCMDOffset@currentOffset,f
+  2690  07B4  3004               	movlw	4
+  2691  07B5  00B6               	movwf	??_loop
+  2692  07B6  0836               	movf	??_loop,w
+  2693  07B7  00F2               	movwf	incCMDOffset@commandSize
+  2694  07B8  120A  158A  26D3   	fcall	_incCMDOffset
+      +       120A  118A         
+  2695  07BD  0871               	movf	?_incCMDOffset+1,w
+  2696  07BE  1283               	bcf	3,5	;RP0=0, select bank0
+  2697  07BF  1303               	bcf	3,6	;RP1=0, select bank0
+  2698  07C0  01E5               	clrf	_cmdOffset+1
+  2699  07C1  07E5               	addwf	_cmdOffset+1,f
+  2700  07C2  0870               	movf	?_incCMDOffset,w
+  2701  07C3  01E4               	clrf	_cmdOffset
+  2702  07C4  07E4               	addwf	_cmdOffset,f
+  2703                           
+  2704                           ;main.c: 547: ft800memWrite16(0x1024e8UL, (cmdOffset));
+  2705  07C5  3000               	movlw	0
+  2706  07C6  00F3               	movwf	ft800memWrite16@ftAddress+3
+  2707  07C7  3010               	movlw	16
+  2708  07C8  00F2               	movwf	ft800memWrite16@ftAddress+2
+  2709  07C9  3024               	movlw	36
+  2710  07CA  00F1               	movwf	ft800memWrite16@ftAddress+1
+  2711  07CB  30E8               	movlw	232
+  2712  07CC  00F0               	movwf	ft800memWrite16@ftAddress
+  2713  07CD  0865               	movf	_cmdOffset+1,w
+  2714  07CE  01F5               	clrf	ft800memWrite16@ftData16+1
+  2715  07CF  07F5               	addwf	ft800memWrite16@ftData16+1,f
+  2716  07D0  0864               	movf	_cmdOffset,w
+  2717  07D1  01F4               	clrf	ft800memWrite16@ftData16
+  2718  07D2  07F4               	addwf	ft800memWrite16@ftData16,f
+  2719  07D3  120A  158A  275B   	fcall	_ft800memWrite16
+      +       120A  118A         
+  2720                           
+  2721                           ;main.c: 549: _delay((unsigned long)((500)*(8000000/4000.0)));
+  2722  07D8  3006               	movlw	6
+  2723  07D9  1283               	bcf	3,5	;RP0=0, select bank0
+  2724  07DA  1303               	bcf	3,6	;RP1=0, select bank0
+  2725  07DB  00B8               	movwf	??_loop+2
+  2726  07DC  3013               	movlw	19
+  2727  07DD  00B7               	movwf	??_loop+1
+  2728  07DE  30B1               	movlw	177
+  2729  07DF  00B6               	movwf	??_loop
+  2730  07E0                     u1437:	
+  2731  07E0  0BB6               	decfsz	??_loop,f
+  2732  07E1  2FE0               	goto	u1437
+  2733  07E2  0BB7               	decfsz	??_loop+1,f
+  2734  07E3  2FE0               	goto	u1437
+  2735  07E4  0BB8               	decfsz	??_loop+2,f
+  2736  07E5  2FE0               	goto	u1437
+  2737  07E6  2FE7               	nop2
+  2738  07E7  0008               	return
+  2739  07E8                     __end_of_loop:	
+  2740                           
+  2741                           	psect	text6
+  2742  0ED3                     __ptext6:	
+  2743 ;; *************** function _incCMDOffset *****************
+  2744 ;; Defined at:
+  2745 ;;		line 285 in file "main.c"
+  2746 ;; Parameters:    Size  Location     Type
+  2747 ;;  currentOffse    2    0[COMMON] unsigned int 
+  2748 ;;  commandSize     1    2[COMMON] unsigned char 
+  2749 ;; Auto vars:     Size  Location     Type
+  2750 ;;  newOffset       2    3[COMMON] unsigned int 
+  2751 ;; Return value:  Size  Location     Type
+  2752 ;;                  2    0[COMMON] unsigned int 
+  2753 ;; Registers used:
+  2754 ;;		wreg, status,2, status,0
+  2755 ;; Tracked objects:
+  2756 ;;		On entry : 0/0
+  2757 ;;		On exit  : 0/0
+  2758 ;;		Unchanged: 0/0
+  2759 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2760 ;;      Params:         3       0       0       0       0
+  2761 ;;      Locals:         2       0       0       0       0
+  2762 ;;      Temps:          0       0       0       0       0
+  2763 ;;      Totals:         5       0       0       0       0
+  2764 ;;Total ram usage:        5 bytes
+  2765 ;; Hardware stack levels used:    1
+  2766 ;; This function calls:
+  2767 ;;		Nothing
+  2768 ;; This function is called by:
+  2769 ;;		_loop
+  2770 ;; This function uses a non-reentrant model
+  2771 ;;
+  2772                           
+  2773                           
+  2774                           ;psect for function _incCMDOffset
+  2775  0ED3                     _incCMDOffset:	
+  2776                           
+  2777                           ;main.c: 287: unsigned int newOffset;
+  2778                           ;main.c: 288: newOffset = currentOffset + commandSize;
+  2779                           
+  2780                           ;incstack = 0
+  2781                           ; Regs used in _incCMDOffset: [wreg+status,2+status,0]
+  2782  0ED3  0872               	movf	incCMDOffset@commandSize,w
+  2783  0ED4  0770               	addwf	incCMDOffset@currentOffset,w
+  2784  0ED5  00F3               	movwf	incCMDOffset@newOffset
+  2785  0ED6  0871               	movf	incCMDOffset@currentOffset+1,w
+  2786  0ED7  1803               	skipnc
+  2787  0ED8  0A71               	incf	incCMDOffset@currentOffset+1,w
+  2788  0ED9  00F4               	movwf	incCMDOffset@newOffset+1
+  2789                           
+  2790                           ;main.c: 289: if(newOffset > 4095)
+  2791  0EDA  3010               	movlw	16
+  2792  0EDB  0274               	subwf	incCMDOffset@newOffset+1,w
+  2793  0EDC  3000               	movlw	0
+  2794  0EDD  1903               	skipnz
+  2795  0EDE  0273               	subwf	incCMDOffset@newOffset,w
+  2796  0EDF  1C03               	skipc
+  2797  0EE0  2EE9               	goto	l201
+  2798                           
+  2799                           ;main.c: 290: {
+  2800                           ;main.c: 291: newOffset = (newOffset - 4096);
+  2801  0EE1  0873               	movf	incCMDOffset@newOffset,w
+  2802  0EE2  3E00               	addlw	0
+  2803  0EE3  00F3               	movwf	incCMDOffset@newOffset
+  2804  0EE4  0874               	movf	incCMDOffset@newOffset+1,w
+  2805  0EE5  1803               	skipnc
+  2806  0EE6  3E01               	addlw	1
+  2807  0EE7  3EF0               	addlw	240
+  2808  0EE8  00F4               	movwf	incCMDOffset@newOffset+1
+  2809  0EE9                     l201:	
+  2810                           
+  2811                           ;main.c: 292: }
+  2812                           ;main.c: 293: return newOffset;
+  2813  0EE9  0874               	movf	incCMDOffset@newOffset+1,w
+  2814  0EEA  01F1               	clrf	?_incCMDOffset+1
+  2815  0EEB  07F1               	addwf	?_incCMDOffset+1,f
+  2816  0EEC  0873               	movf	incCMDOffset@newOffset,w
+  2817  0EED  01F0               	clrf	?_incCMDOffset
+  2818  0EEE  07F0               	addwf	?_incCMDOffset,f
+  2819  0EEF  0008               	return
+  2820  0EF0                     __end_of_incCMDOffset:	
+  2821                           
+  2822                           	psect	text7
+  2823  0095                     __ptext7:	
+  2824 ;; *************** function _ft800memWrite32 *****************
+  2825 ;; Defined at:
+  2826 ;;		line 146 in file "main.c"
+  2827 ;; Parameters:    Size  Location     Type
+  2828 ;;  ftAddress       4    0[COMMON] unsigned long 
+  2829 ;;  ftData32        4    4[COMMON] unsigned long 
+  2830 ;; Auto vars:     Size  Location     Type
+  2831 ;;		None
+  2832 ;; Return value:  Size  Location     Type
+  2833 ;;		None               void
+  2834 ;; Registers used:
+  2835 ;;		wreg, status,2, status,0
+  2836 ;; Tracked objects:
+  2837 ;;		On entry : 0/0
+  2838 ;;		On exit  : 0/0
+  2839 ;;		Unchanged: 0/0
+  2840 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2841 ;;      Params:         8       0       0       0       0
+  2842 ;;      Locals:         0       0       0       0       0
+  2843 ;;      Temps:          4       0       0       0       0
+  2844 ;;      Totals:        12       0       0       0       0
+  2845 ;;Total ram usage:       12 bytes
+  2846 ;; Hardware stack levels used:    1
+  2847 ;; This function calls:
+  2848 ;;		Nothing
+  2849 ;; This function is called by:
+  2850 ;;		_setup
+  2851 ;;		_loop
+  2852 ;; This function uses a non-reentrant model
+  2853 ;;
+  2854                           
+  2855                           
+  2856                           ;psect for function _ft800memWrite32
+  2857  0095                     _ft800memWrite32:	
+  2858                           
+  2859                           ;main.c: 148: RC6 = 0;
+  2860                           
+  2861                           ;incstack = 0
+  2862                           ; Regs used in _ft800memWrite32: [wreg+status,2+status,0]
+  2863  0095  1283               	bcf	3,5	;RP0=0, select bank0
+  2864  0096  1303               	bcf	3,6	;RP1=0, select bank0
+  2865  0097  1307               	bcf	7,6	;volatile
+  2866                           
+  2867                           ;main.c: 149: SSPBUF = ((char)(ftAddress >> 16) | 0x80);
+  2868  0098  0870               	movf	ft800memWrite32@ftAddress,w
+  2869  0099  00F8               	movwf	??_ft800memWrite32
+  2870  009A  0871               	movf	ft800memWrite32@ftAddress+1,w
+  2871  009B  00F9               	movwf	??_ft800memWrite32+1
+  2872  009C  0872               	movf	ft800memWrite32@ftAddress+2,w
+  2873  009D  00FA               	movwf	??_ft800memWrite32+2
+  2874  009E  0873               	movf	ft800memWrite32@ftAddress+3,w
+  2875  009F  00FB               	movwf	??_ft800memWrite32+3
+  2876  00A0  3010               	movlw	16
+  2877  00A1                     u985:	
+  2878  00A1  1003               	clrc
+  2879  00A2  0CFB               	rrf	??_ft800memWrite32+3,f
+  2880  00A3  0CFA               	rrf	??_ft800memWrite32+2,f
+  2881  00A4  0CF9               	rrf	??_ft800memWrite32+1,f
+  2882  00A5  0CF8               	rrf	??_ft800memWrite32,f
+  2883  00A6  3EFF               	addlw	-1
+  2884  00A7  1D03               	skipz
+  2885  00A8  28A1               	goto	u985
+  2886  00A9  0878               	movf	??_ft800memWrite32,w
+  2887  00AA  3880               	iorlw	128
+  2888  00AB  0093               	movwf	19	;volatile
+  2889  00AC                     l114:	
+  2890                           ;main.c: 150: while(!SSPSTATbits.BF);
+  2891                           
+  2892  00AC  1683               	bsf	3,5	;RP0=1, select bank1
+  2893  00AD  1303               	bcf	3,6	;RP1=0, select bank1
+  2894  00AE  1C14               	btfss	20,0	;volatile
+  2895  00AF  28AC               	goto	l114
+  2896                           
+  2897                           ;main.c: 151: SSPBUF = ((char)(ftAddress >> 8));
+  2898  00B0  0870               	movf	ft800memWrite32@ftAddress,w
+  2899  00B1  00F8               	movwf	??_ft800memWrite32
+  2900  00B2  0871               	movf	ft800memWrite32@ftAddress+1,w
+  2901  00B3  00F9               	movwf	??_ft800memWrite32+1
+  2902  00B4  0872               	movf	ft800memWrite32@ftAddress+2,w
+  2903  00B5  00FA               	movwf	??_ft800memWrite32+2
+  2904  00B6  0873               	movf	ft800memWrite32@ftAddress+3,w
+  2905  00B7  00FB               	movwf	??_ft800memWrite32+3
+  2906  00B8  3008               	movlw	8
+  2907  00B9                     u1005:	
+  2908  00B9  1003               	clrc
+  2909  00BA  0CFB               	rrf	??_ft800memWrite32+3,f
+  2910  00BB  0CFA               	rrf	??_ft800memWrite32+2,f
+  2911  00BC  0CF9               	rrf	??_ft800memWrite32+1,f
+  2912  00BD  0CF8               	rrf	??_ft800memWrite32,f
+  2913  00BE  3EFF               	addlw	-1
+  2914  00BF  1D03               	skipz
+  2915  00C0  28B9               	goto	u1005
+  2916  00C1  0878               	movf	??_ft800memWrite32,w
+  2917  00C2  1283               	bcf	3,5	;RP0=0, select bank0
+  2918  00C3  1303               	bcf	3,6	;RP1=0, select bank0
+  2919  00C4  0093               	movwf	19	;volatile
+  2920  00C5                     l117:	
+  2921                           ;main.c: 152: while(!SSPSTATbits.BF);
+  2922                           
+  2923  00C5  1683               	bsf	3,5	;RP0=1, select bank1
+  2924  00C6  1303               	bcf	3,6	;RP1=0, select bank1
+  2925  00C7  1C14               	btfss	20,0	;volatile
+  2926  00C8  28C5               	goto	l117
+  2927                           
+  2928                           ;main.c: 153: SSPBUF = ((char)(ftAddress));
+  2929  00C9  0870               	movf	ft800memWrite32@ftAddress,w
+  2930  00CA  1283               	bcf	3,5	;RP0=0, select bank0
+  2931  00CB  1303               	bcf	3,6	;RP1=0, select bank0
+  2932  00CC  0093               	movwf	19	;volatile
+  2933  00CD                     l120:	
+  2934                           ;main.c: 154: while(!SSPSTATbits.BF);
+  2935                           
+  2936  00CD  1683               	bsf	3,5	;RP0=1, select bank1
+  2937  00CE  1303               	bcf	3,6	;RP1=0, select bank1
+  2938  00CF  1C14               	btfss	20,0	;volatile
+  2939  00D0  28CD               	goto	l120
+  2940                           
+  2941                           ;main.c: 155: SSPBUF = ((char)(ftData32));
+  2942  00D1  0874               	movf	ft800memWrite32@ftData32,w
+  2943  00D2  1283               	bcf	3,5	;RP0=0, select bank0
+  2944  00D3  1303               	bcf	3,6	;RP1=0, select bank0
+  2945  00D4  0093               	movwf	19	;volatile
+  2946  00D5                     l123:	
+  2947                           ;main.c: 156: while(!SSPSTATbits.BF);
+  2948                           
+  2949  00D5  1683               	bsf	3,5	;RP0=1, select bank1
+  2950  00D6  1303               	bcf	3,6	;RP1=0, select bank1
+  2951  00D7  1C14               	btfss	20,0	;volatile
+  2952  00D8  28D5               	goto	l123
+  2953                           
+  2954                           ;main.c: 157: SSPBUF = ((char)(ftData32 >> 8));
+  2955  00D9  0874               	movf	ft800memWrite32@ftData32,w
+  2956  00DA  00F8               	movwf	??_ft800memWrite32
+  2957  00DB  0875               	movf	ft800memWrite32@ftData32+1,w
+  2958  00DC  00F9               	movwf	??_ft800memWrite32+1
+  2959  00DD  0876               	movf	ft800memWrite32@ftData32+2,w
+  2960  00DE  00FA               	movwf	??_ft800memWrite32+2
+  2961  00DF  0877               	movf	ft800memWrite32@ftData32+3,w
+  2962  00E0  00FB               	movwf	??_ft800memWrite32+3
+  2963  00E1  3008               	movlw	8
+  2964  00E2                     u1045:	
+  2965  00E2  1003               	clrc
+  2966  00E3  0CFB               	rrf	??_ft800memWrite32+3,f
+  2967  00E4  0CFA               	rrf	??_ft800memWrite32+2,f
+  2968  00E5  0CF9               	rrf	??_ft800memWrite32+1,f
+  2969  00E6  0CF8               	rrf	??_ft800memWrite32,f
+  2970  00E7  3EFF               	addlw	-1
+  2971  00E8  1D03               	skipz
+  2972  00E9  28E2               	goto	u1045
+  2973  00EA  0878               	movf	??_ft800memWrite32,w
+  2974  00EB  1283               	bcf	3,5	;RP0=0, select bank0
+  2975  00EC  1303               	bcf	3,6	;RP1=0, select bank0
+  2976  00ED  0093               	movwf	19	;volatile
+  2977  00EE                     l126:	
+  2978                           ;main.c: 158: while(!SSPSTATbits.BF);
+  2979                           
+  2980  00EE  1683               	bsf	3,5	;RP0=1, select bank1
+  2981  00EF  1303               	bcf	3,6	;RP1=0, select bank1
+  2982  00F0  1C14               	btfss	20,0	;volatile
+  2983  00F1  28EE               	goto	l126
+  2984                           
+  2985                           ;main.c: 159: SSPBUF = ((char)(ftData32 >> 16));
+  2986  00F2  0874               	movf	ft800memWrite32@ftData32,w
+  2987  00F3  00F8               	movwf	??_ft800memWrite32
+  2988  00F4  0875               	movf	ft800memWrite32@ftData32+1,w
+  2989  00F5  00F9               	movwf	??_ft800memWrite32+1
+  2990  00F6  0876               	movf	ft800memWrite32@ftData32+2,w
+  2991  00F7  00FA               	movwf	??_ft800memWrite32+2
+  2992  00F8  0877               	movf	ft800memWrite32@ftData32+3,w
+  2993  00F9  00FB               	movwf	??_ft800memWrite32+3
+  2994  00FA  3010               	movlw	16
+  2995  00FB                     u1065:	
+  2996  00FB  1003               	clrc
+  2997  00FC  0CFB               	rrf	??_ft800memWrite32+3,f
+  2998  00FD  0CFA               	rrf	??_ft800memWrite32+2,f
+  2999  00FE  0CF9               	rrf	??_ft800memWrite32+1,f
+  3000  00FF  0CF8               	rrf	??_ft800memWrite32,f
+  3001  0100  3EFF               	addlw	-1
+  3002  0101  1D03               	skipz
+  3003  0102  28FB               	goto	u1065
+  3004  0103  0878               	movf	??_ft800memWrite32,w
+  3005  0104  1283               	bcf	3,5	;RP0=0, select bank0
+  3006  0105  1303               	bcf	3,6	;RP1=0, select bank0
+  3007  0106  0093               	movwf	19	;volatile
+  3008  0107                     l129:	
+  3009                           ;main.c: 160: while(!SSPSTATbits.BF);
+  3010                           
+  3011  0107  1683               	bsf	3,5	;RP0=1, select bank1
+  3012  0108  1303               	bcf	3,6	;RP1=0, select bank1
+  3013  0109  1C14               	btfss	20,0	;volatile
+  3014  010A  2907               	goto	l129
+  3015                           
+  3016                           ;main.c: 161: SSPBUF = ((char)(ftData32 >> 24));
+  3017  010B  0874               	movf	ft800memWrite32@ftData32,w
+  3018  010C  00F8               	movwf	??_ft800memWrite32
+  3019  010D  0875               	movf	ft800memWrite32@ftData32+1,w
+  3020  010E  00F9               	movwf	??_ft800memWrite32+1
+  3021  010F  0876               	movf	ft800memWrite32@ftData32+2,w
+  3022  0110  00FA               	movwf	??_ft800memWrite32+2
+  3023  0111  0877               	movf	ft800memWrite32@ftData32+3,w
+  3024  0112  00FB               	movwf	??_ft800memWrite32+3
+  3025  0113  3018               	movlw	24
+  3026  0114                     u1085:	
+  3027  0114  1003               	clrc
+  3028  0115  0CFB               	rrf	??_ft800memWrite32+3,f
+  3029  0116  0CFA               	rrf	??_ft800memWrite32+2,f
+  3030  0117  0CF9               	rrf	??_ft800memWrite32+1,f
+  3031  0118  0CF8               	rrf	??_ft800memWrite32,f
+  3032  0119  3EFF               	addlw	-1
+  3033  011A  1D03               	skipz
+  3034  011B  2914               	goto	u1085
+  3035  011C  0878               	movf	??_ft800memWrite32,w
+  3036  011D  1283               	bcf	3,5	;RP0=0, select bank0
+  3037  011E  1303               	bcf	3,6	;RP1=0, select bank0
+  3038  011F  0093               	movwf	19	;volatile
+  3039  0120                     l132:	
+  3040                           ;main.c: 162: while(!SSPSTATbits.BF);
+  3041                           
+  3042  0120  1683               	bsf	3,5	;RP0=1, select bank1
+  3043  0121  1303               	bcf	3,6	;RP1=0, select bank1
+  3044  0122  1C14               	btfss	20,0	;volatile
+  3045  0123  2920               	goto	l132
+  3046                           
+  3047                           ;main.c: 163: _delay((unsigned long)((2)*(8000000/4000000.0)));
+  3048  0124  2925               	nop2	;2 cycle nop
+  3049  0125  2926               	nop2	;2 cycle nop
+  3050                           
+  3051                           ;main.c: 164: RC6 = 1;
+  3052  0126  1283               	bcf	3,5	;RP0=0, select bank0
+  3053  0127  1303               	bcf	3,6	;RP1=0, select bank0
+  3054  0128  1707               	bsf	7,6	;volatile
+  3055  0129  0008               	return
+  3056  012A                     __end_of_ft800memWrite32:	
+  3057                           
+  3058                           	psect	text8
+  3059  0F5B                     __ptext8:	
+  3060 ;; *************** function _ft800memWrite16 *****************
+  3061 ;; Defined at:
+  3062 ;;		line 128 in file "main.c"
+  3063 ;; Parameters:    Size  Location     Type
+  3064 ;;  ftAddress       4    0[COMMON] unsigned long 
+  3065 ;;  ftData16        2    4[COMMON] unsigned int 
+  3066 ;; Auto vars:     Size  Location     Type
+  3067 ;;		None
+  3068 ;; Return value:  Size  Location     Type
+  3069 ;;		None               void
+  3070 ;; Registers used:
+  3071 ;;		wreg, status,2, status,0
+  3072 ;; Tracked objects:
+  3073 ;;		On entry : 0/0
+  3074 ;;		On exit  : 0/0
+  3075 ;;		Unchanged: 0/0
+  3076 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  3077 ;;      Params:         6       0       0       0       0
+  3078 ;;      Locals:         0       0       0       0       0
+  3079 ;;      Temps:          4       0       0       0       0
+  3080 ;;      Totals:        10       0       0       0       0
+  3081 ;;Total ram usage:       10 bytes
+  3082 ;; Hardware stack levels used:    1
+  3083 ;; This function calls:
+  3084 ;;		Nothing
+  3085 ;; This function is called by:
+  3086 ;;		_setup
+  3087 ;;		_loop
+  3088 ;; This function uses a non-reentrant model
+  3089 ;;
+  3090                           
+  3091                           
+  3092                           ;psect for function _ft800memWrite16
+  3093  0F5B                     _ft800memWrite16:	
+  3094                           
+  3095                           ;main.c: 132: RC6 = 0;
+  3096                           
+  3097                           ;incstack = 0
+  3098                           ; Regs used in _ft800memWrite16: [wreg+status,2+status,0]
+  3099  0F5B  1283               	bcf	3,5	;RP0=0, select bank0
+  3100  0F5C  1303               	bcf	3,6	;RP1=0, select bank0
+  3101  0F5D  1307               	bcf	7,6	;volatile
+  3102                           
+  3103                           ;main.c: 133: SSPBUF = ((char)(ftAddress >> 16) | 0x80);
+  3104  0F5E  0870               	movf	ft800memWrite16@ftAddress,w
+  3105  0F5F  00F6               	movwf	??_ft800memWrite16
+  3106  0F60  0871               	movf	ft800memWrite16@ftAddress+1,w
+  3107  0F61  00F7               	movwf	??_ft800memWrite16+1
+  3108  0F62  0872               	movf	ft800memWrite16@ftAddress+2,w
+  3109  0F63  00F8               	movwf	??_ft800memWrite16+2
+  3110  0F64  0873               	movf	ft800memWrite16@ftAddress+3,w
+  3111  0F65  00F9               	movwf	??_ft800memWrite16+3
+  3112  0F66  3010               	movlw	16
+  3113  0F67                     u915:	
+  3114  0F67  1003               	clrc
+  3115  0F68  0CF9               	rrf	??_ft800memWrite16+3,f
+  3116  0F69  0CF8               	rrf	??_ft800memWrite16+2,f
+  3117  0F6A  0CF7               	rrf	??_ft800memWrite16+1,f
+  3118  0F6B  0CF6               	rrf	??_ft800memWrite16,f
+  3119  0F6C  3EFF               	addlw	-1
+  3120  0F6D  1D03               	skipz
+  3121  0F6E  2F67               	goto	u915
+  3122  0F6F  0876               	movf	??_ft800memWrite16,w
+  3123  0F70  3880               	iorlw	128
+  3124  0F71  0093               	movwf	19	;volatile
+  3125  0F72                     l96:	
+  3126                           ;main.c: 134: while(!SSPSTATbits.BF);
+  3127                           
+  3128  0F72  1683               	bsf	3,5	;RP0=1, select bank1
+  3129  0F73  1303               	bcf	3,6	;RP1=0, select bank1
+  3130  0F74  1C14               	btfss	20,0	;volatile
+  3131  0F75  2F72               	goto	l96
+  3132                           
+  3133                           ;main.c: 135: SSPBUF = ((char)(ftAddress >> 8));
+  3134  0F76  0870               	movf	ft800memWrite16@ftAddress,w
+  3135  0F77  00F6               	movwf	??_ft800memWrite16
+  3136  0F78  0871               	movf	ft800memWrite16@ftAddress+1,w
+  3137  0F79  00F7               	movwf	??_ft800memWrite16+1
+  3138  0F7A  0872               	movf	ft800memWrite16@ftAddress+2,w
+  3139  0F7B  00F8               	movwf	??_ft800memWrite16+2
+  3140  0F7C  0873               	movf	ft800memWrite16@ftAddress+3,w
+  3141  0F7D  00F9               	movwf	??_ft800memWrite16+3
+  3142  0F7E  3008               	movlw	8
+  3143  0F7F                     u935:	
+  3144  0F7F  1003               	clrc
+  3145  0F80  0CF9               	rrf	??_ft800memWrite16+3,f
+  3146  0F81  0CF8               	rrf	??_ft800memWrite16+2,f
+  3147  0F82  0CF7               	rrf	??_ft800memWrite16+1,f
+  3148  0F83  0CF6               	rrf	??_ft800memWrite16,f
+  3149  0F84  3EFF               	addlw	-1
+  3150  0F85  1D03               	skipz
+  3151  0F86  2F7F               	goto	u935
+  3152  0F87  0876               	movf	??_ft800memWrite16,w
+  3153  0F88  1283               	bcf	3,5	;RP0=0, select bank0
+  3154  0F89  1303               	bcf	3,6	;RP1=0, select bank0
+  3155  0F8A  0093               	movwf	19	;volatile
+  3156  0F8B                     l99:	
+  3157                           ;main.c: 136: while(!SSPSTATbits.BF);
+  3158                           
+  3159  0F8B  1683               	bsf	3,5	;RP0=1, select bank1
+  3160  0F8C  1303               	bcf	3,6	;RP1=0, select bank1
+  3161  0F8D  1C14               	btfss	20,0	;volatile
+  3162  0F8E  2F8B               	goto	l99
+  3163                           
+  3164                           ;main.c: 137: SSPBUF = ((char)(ftAddress));
+  3165  0F8F  0870               	movf	ft800memWrite16@ftAddress,w
+  3166  0F90  1283               	bcf	3,5	;RP0=0, select bank0
+  3167  0F91  1303               	bcf	3,6	;RP1=0, select bank0
+  3168  0F92  0093               	movwf	19	;volatile
+  3169  0F93                     l102:	
+  3170                           ;main.c: 138: while(!SSPSTATbits.BF);
+  3171                           
+  3172  0F93  1683               	bsf	3,5	;RP0=1, select bank1
+  3173  0F94  1303               	bcf	3,6	;RP1=0, select bank1
+  3174  0F95  1C14               	btfss	20,0	;volatile
+  3175  0F96  2F93               	goto	l102
+  3176                           
+  3177                           ;main.c: 139: SSPBUF = ((char)(ftData16));
+  3178  0F97  0874               	movf	ft800memWrite16@ftData16,w
+  3179  0F98  1283               	bcf	3,5	;RP0=0, select bank0
+  3180  0F99  1303               	bcf	3,6	;RP1=0, select bank0
+  3181  0F9A  0093               	movwf	19	;volatile
+  3182  0F9B                     l105:	
+  3183                           ;main.c: 140: while(!SSPSTATbits.BF);
+  3184                           
+  3185  0F9B  1683               	bsf	3,5	;RP0=1, select bank1
+  3186  0F9C  1303               	bcf	3,6	;RP1=0, select bank1
+  3187  0F9D  1C14               	btfss	20,0	;volatile
+  3188  0F9E  2F9B               	goto	l105
+  3189                           
+  3190                           ;main.c: 141: SSPBUF = ((char)(ftData16 >> 8));
+  3191  0F9F  0875               	movf	ft800memWrite16@ftData16+1,w
+  3192  0FA0  1283               	bcf	3,5	;RP0=0, select bank0
+  3193  0FA1  1303               	bcf	3,6	;RP1=0, select bank0
+  3194  0FA2  0093               	movwf	19	;volatile
+  3195  0FA3                     l108:	
+  3196                           ;main.c: 142: while(!SSPSTATbits.BF);
+  3197                           
+  3198  0FA3  1683               	bsf	3,5	;RP0=1, select bank1
+  3199  0FA4  1303               	bcf	3,6	;RP1=0, select bank1
+  3200  0FA5  1C14               	btfss	20,0	;volatile
+  3201  0FA6  2FA3               	goto	l108
+  3202                           
+  3203                           ;main.c: 143: _delay((unsigned long)((2)*(8000000/4000000.0)));
+  3204  0FA7  2FA8               	nop2	;2 cycle nop
+  3205  0FA8  2FA9               	nop2	;2 cycle nop
+  3206                           
+  3207                           ;main.c: 144: RC6 = 1;
+  3208  0FA9  1283               	bcf	3,5	;RP0=0, select bank0
+  3209  0FAA  1303               	bcf	3,6	;RP1=0, select bank0
+  3210  0FAB  1707               	bsf	7,6	;volatile
+  3211  0FAC  0008               	return
+  3212  0FAD                     __end_of_ft800memWrite16:	
+  3213                           
+  3214                           	psect	text9
+  3215  001C                     __ptext9:	
+  3216 ;; *************** function _ft800memRead16 *****************
+  3217 ;; Defined at:
+  3218 ;;		line 197 in file "main.c"
+  3219 ;; Parameters:    Size  Location     Type
+  3220 ;;  ftAddress       4    0[COMMON] unsigned long 
+  3221 ;; Auto vars:     Size  Location     Type
+  3222 ;;  tempData        4    8[COMMON] unsigned int [2]
+  3223 ;;  ftData16        2   12[COMMON] unsigned int 
+  3224 ;; Return value:  Size  Location     Type
+  3225 ;;                  1    wreg      unsigned char 
+  3226 ;; Registers used:
+  3227 ;;		wreg, status,2, status,0
+  3228 ;; Tracked objects:
+  3229 ;;		On entry : 0/0
+  3230 ;;		On exit  : 0/0
+  3231 ;;		Unchanged: 0/0
+  3232 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  3233 ;;      Params:         4       0       0       0       0
+  3234 ;;      Locals:         6       0       0       0       0
+  3235 ;;      Temps:          4       0       0       0       0
+  3236 ;;      Totals:        14       0       0       0       0
+  3237 ;;Total ram usage:       14 bytes
+  3238 ;; Hardware stack levels used:    1
+  3239 ;; This function calls:
+  3240 ;;		Nothing
+  3241 ;; This function is called by:
+  3242 ;;		_loop
+  3243 ;; This function uses a non-reentrant model
+  3244 ;;
+  3245                           
+  3246                           
+  3247                           ;psect for function _ft800memRead16
+  3248  001C                     _ft800memRead16:	
+  3249                           
+  3250                           ;main.c: 199: unsigned int ftData16, tempData[2];
+  3251                           ;main.c: 200: ftData16 = 0x0000;
+  3252                           
+  3253                           ;incstack = 0
+  3254                           ; Regs used in _ft800memRead16: [wreg+status,2+status,0]
+  3255  001C  01FC               	clrf	ft800memRead16@ftData16
+  3256  001D  01FD               	clrf	ft800memRead16@ftData16+1
+  3257                           
+  3258                           ;main.c: 201: RC6 = 0;
+  3259  001E  1283               	bcf	3,5	;RP0=0, select bank0
+  3260  001F  1303               	bcf	3,6	;RP1=0, select bank0
+  3261  0020  1307               	bcf	7,6	;volatile
+  3262                           
+  3263                           ;main.c: 202: SSPBUF = (char)(ftAddress >> 16) | 0x00;
+  3264  0021  0870               	movf	ft800memRead16@ftAddress,w
+  3265  0022  00F4               	movwf	??_ft800memRead16
+  3266  0023  0871               	movf	ft800memRead16@ftAddress+1,w
+  3267  0024  00F5               	movwf	??_ft800memRead16+1
+  3268  0025  0872               	movf	ft800memRead16@ftAddress+2,w
+  3269  0026  00F6               	movwf	??_ft800memRead16+2
+  3270  0027  0873               	movf	ft800memRead16@ftAddress+3,w
+  3271  0028  00F7               	movwf	??_ft800memRead16+3
+  3272  0029  3010               	movlw	16
+  3273  002A                     u1105:	
+  3274  002A  1003               	clrc
+  3275  002B  0CF7               	rrf	??_ft800memRead16+3,f
+  3276  002C  0CF6               	rrf	??_ft800memRead16+2,f
+  3277  002D  0CF5               	rrf	??_ft800memRead16+1,f
+  3278  002E  0CF4               	rrf	??_ft800memRead16,f
+  3279  002F  3EFF               	addlw	-1
+  3280  0030  1D03               	skipz
+  3281  0031  282A               	goto	u1105
+  3282  0032  0874               	movf	??_ft800memRead16,w
+  3283  0033  0093               	movwf	19	;volatile
+  3284  0034                     l156:	
+  3285                           ;main.c: 203: while(!SSPSTATbits.BF);
+  3286                           
+  3287  0034  1683               	bsf	3,5	;RP0=1, select bank1
+  3288  0035  1303               	bcf	3,6	;RP1=0, select bank1
+  3289  0036  1C14               	btfss	20,0	;volatile
+  3290  0037  2834               	goto	l156
+  3291                           
+  3292                           ;main.c: 204: SSPBUF = (char)(ftAddress >> 8);
+  3293  0038  0870               	movf	ft800memRead16@ftAddress,w
+  3294  0039  00F4               	movwf	??_ft800memRead16
+  3295  003A  0871               	movf	ft800memRead16@ftAddress+1,w
+  3296  003B  00F5               	movwf	??_ft800memRead16+1
+  3297  003C  0872               	movf	ft800memRead16@ftAddress+2,w
+  3298  003D  00F6               	movwf	??_ft800memRead16+2
+  3299  003E  0873               	movf	ft800memRead16@ftAddress+3,w
+  3300  003F  00F7               	movwf	??_ft800memRead16+3
+  3301  0040  3008               	movlw	8
+  3302  0041                     u1125:	
+  3303  0041  1003               	clrc
+  3304  0042  0CF7               	rrf	??_ft800memRead16+3,f
+  3305  0043  0CF6               	rrf	??_ft800memRead16+2,f
+  3306  0044  0CF5               	rrf	??_ft800memRead16+1,f
+  3307  0045  0CF4               	rrf	??_ft800memRead16,f
+  3308  0046  3EFF               	addlw	-1
+  3309  0047  1D03               	skipz
+  3310  0048  2841               	goto	u1125
+  3311  0049  0874               	movf	??_ft800memRead16,w
+  3312  004A  1283               	bcf	3,5	;RP0=0, select bank0
+  3313  004B  1303               	bcf	3,6	;RP1=0, select bank0
+  3314  004C  0093               	movwf	19	;volatile
+  3315  004D                     l159:	
+  3316                           ;main.c: 205: while(!SSPSTATbits.BF);
+  3317                           
+  3318  004D  1683               	bsf	3,5	;RP0=1, select bank1
+  3319  004E  1303               	bcf	3,6	;RP1=0, select bank1
+  3320  004F  1C14               	btfss	20,0	;volatile
+  3321  0050  284D               	goto	l159
+  3322                           
+  3323                           ;main.c: 206: SSPBUF = (char)(ftAddress);
+  3324  0051  0870               	movf	ft800memRead16@ftAddress,w
+  3325  0052  1283               	bcf	3,5	;RP0=0, select bank0
+  3326  0053  1303               	bcf	3,6	;RP1=0, select bank0
+  3327  0054  0093               	movwf	19	;volatile
+  3328  0055                     l162:	
+  3329                           ;main.c: 207: while(!SSPSTATbits.BF);
+  3330                           
+  3331  0055  1683               	bsf	3,5	;RP0=1, select bank1
+  3332  0056  1303               	bcf	3,6	;RP1=0, select bank1
+  3333  0057  1C14               	btfss	20,0	;volatile
+  3334  0058  2855               	goto	l162
+  3335                           
+  3336                           ;main.c: 208: SSPBUF = 0UL;
+  3337  0059  1283               	bcf	3,5	;RP0=0, select bank0
+  3338  005A  1303               	bcf	3,6	;RP1=0, select bank0
+  3339  005B  0193               	clrf	19	;volatile
+  3340                           
+  3341                           ;main.c: 210: SSPBUF = 0UL;
+  3342  005C  0193               	clrf	19	;volatile
+  3343  005D                     l165:	
+  3344                           ;main.c: 211: while(!SSPSTATbits.BF);
+  3345                           
+  3346  005D  1683               	bsf	3,5	;RP0=1, select bank1
+  3347  005E  1303               	bcf	3,6	;RP1=0, select bank1
+  3348  005F  1C14               	btfss	20,0	;volatile
+  3349  0060  285D               	goto	l165
+  3350                           
+  3351                           ;main.c: 212: SSPBUF = 0UL;
+  3352  0061  1283               	bcf	3,5	;RP0=0, select bank0
+  3353  0062  1303               	bcf	3,6	;RP1=0, select bank0
+  3354  0063  0193               	clrf	19	;volatile
+  3355  0064                     l168:	
+  3356                           ;main.c: 213: while(!SSPSTATbits.BF);
+  3357                           
+  3358  0064  1683               	bsf	3,5	;RP0=1, select bank1
+  3359  0065  1303               	bcf	3,6	;RP1=0, select bank1
+  3360  0066  1C14               	btfss	20,0	;volatile
+  3361  0067  2864               	goto	l168
+  3362                           
+  3363                           ;main.c: 214: tempData[0] = SSPBUF;
+  3364  0068  1283               	bcf	3,5	;RP0=0, select bank0
+  3365  0069  1303               	bcf	3,6	;RP1=0, select bank0
+  3366  006A  0813               	movf	19,w	;volatile
+  3367  006B  00F4               	movwf	??_ft800memRead16
+  3368  006C  01F5               	clrf	??_ft800memRead16+1
+  3369  006D  0874               	movf	??_ft800memRead16,w
+  3370  006E  00F8               	movwf	ft800memRead16@tempData
+  3371  006F  0875               	movf	??_ft800memRead16+1,w
+  3372  0070  00F9               	movwf	ft800memRead16@tempData+1
+  3373                           
+  3374                           ;main.c: 216: ftData16 = (tempData[0]) | (ftData16);
+  3375  0071  087C               	movf	ft800memRead16@ftData16,w
+  3376  0072  0478               	iorwf	ft800memRead16@tempData,w
+  3377  0073  00FC               	movwf	ft800memRead16@ftData16
+  3378  0074  087D               	movf	ft800memRead16@ftData16+1,w
+  3379  0075  0479               	iorwf	ft800memRead16@tempData+1,w
+  3380  0076  00FD               	movwf	ft800memRead16@ftData16+1
+  3381                           
+  3382                           ;main.c: 218: SSPBUF = 0UL;
+  3383  0077  0193               	clrf	19	;volatile
+  3384  0078                     l171:	
+  3385                           ;main.c: 219: while(!SSPSTATbits.BF);
+  3386                           
+  3387  0078  1683               	bsf	3,5	;RP0=1, select bank1
+  3388  0079  1303               	bcf	3,6	;RP1=0, select bank1
+  3389  007A  1C14               	btfss	20,0	;volatile
+  3390  007B  2878               	goto	l171
+  3391                           
+  3392                           ;main.c: 220: tempData[1] = SSPBUF;
+  3393  007C  1283               	bcf	3,5	;RP0=0, select bank0
+  3394  007D  1303               	bcf	3,6	;RP1=0, select bank0
+  3395  007E  0813               	movf	19,w	;volatile
+  3396  007F  00F4               	movwf	??_ft800memRead16
+  3397  0080  01F5               	clrf	??_ft800memRead16+1
+  3398  0081  0874               	movf	??_ft800memRead16,w
+  3399  0082  00FA               	movwf	ft800memRead16@tempData+2
+  3400  0083  0875               	movf	??_ft800memRead16+1,w
+  3401  0084  00FB               	movwf	ft800memRead16@tempData+3
+  3402                           
+  3403                           ;main.c: 222: ftData16 = (ftData16) | (tempData[1] << 8);
+  3404  0085  087A               	movf	ft800memRead16@tempData+2,w
+  3405  0086  00F5               	movwf	??_ft800memRead16+1
+  3406  0087  01F4               	clrf	??_ft800memRead16
+  3407  0088  087C               	movf	ft800memRead16@ftData16,w
+  3408  0089  0474               	iorwf	??_ft800memRead16,w
+  3409  008A  00FC               	movwf	ft800memRead16@ftData16
+  3410  008B  087D               	movf	ft800memRead16@ftData16+1,w
+  3411  008C  0475               	iorwf	??_ft800memRead16+1,w
+  3412  008D  00FD               	movwf	ft800memRead16@ftData16+1
+  3413                           
+  3414                           ;main.c: 224: _delay((unsigned long)((2)*(8000000/4000000.0)));
+  3415  008E  288F               	nop2	;2 cycle nop
+  3416  008F  2890               	nop2	;2 cycle nop
+  3417                           
+  3418                           ;main.c: 225: RC6 = 1;
+  3419  0090  1283               	bcf	3,5	;RP0=0, select bank0
+  3420  0091  1303               	bcf	3,6	;RP1=0, select bank0
+  3421  0092  1707               	bsf	7,6	;volatile
+  3422                           
+  3423                           ;main.c: 226: return ftData16;
+  3424  0093  087C               	movf	ft800memRead16@ftData16,w
+  3425  0094  0008               	return
+  3426  0095                     __end_of_ft800memRead16:	
+  3427  007E                     btemp	set	126	;btemp
+  3428  007E                     wtemp	set	126
+  3429  007E                     wtemp0	set	126
+  3430  0080                     wtemp1	set	128
+  3431  0082                     wtemp2	set	130
+  3432  0084                     wtemp3	set	132
+  3433  0086                     wtemp4	set	134
+  3434  0088                     wtemp5	set	136
+  3435  007F                     wtemp6	set	127
+  3436  007E                     ttemp	set	126
+  3437  007E                     ttemp0	set	126
+  3438  0081                     ttemp1	set	129
+  3439  0084                     ttemp2	set	132
+  3440  0087                     ttemp3	set	135
+  3441  007F                     ttemp4	set	127
+  3442  007E                     ltemp	set	126
+  3443  007E                     ltemp0	set	126
+  3444  0082                     ltemp1	set	130
+  3445  0086                     ltemp2	set	134
+  3446  0080                     ltemp3	set	128
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        22
+    BSS         16
+    Persistent  18
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14     14      14
+    BANK0            80     20      76
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_setup
+    _setup->_ft800memWrite32
+    _loop->_ft800memRead16
+
+Critical Paths under _main in BANK0
+
+    _main->_loop
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0    9170
+                               _loop
+                              _setup
+ ---------------------------------------------------------------------------------
+ (1) _setup                                                3     3      0    4560
+                                             12 COMMON     2     2      0
+                                              0 BANK0      1     1      0
+                      _ft800cmdWrite
+                      _ft800memRead8
+                    _ft800memWrite16
+                    _ft800memWrite32
+                     _ft800memWrite8
+ ---------------------------------------------------------------------------------
+ (2) _ft800memWrite8                                       9     4      5    1148
+                                              0 COMMON     9     4      5
+ ---------------------------------------------------------------------------------
+ (2) _ft800memRead8                                        9     5      4     196
+                                              0 COMMON     9     5      4
+ ---------------------------------------------------------------------------------
+ (2) _ft800cmdWrite                                        1     1      0      22
+                                              0 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ (1) _loop                                                20    20      0    4610
+                                              0 BANK0     20    20      0
+                     _ft800memRead16
+                    _ft800memWrite16
+                    _ft800memWrite32
+                       _incCMDOffset
+ ---------------------------------------------------------------------------------
+ (2) _incCMDOffset                                         5     2      3    1172
+                                              0 COMMON     5     2      3
+ ---------------------------------------------------------------------------------
+ (2) _ft800memWrite32                                     12     4      8    1638
+                                              0 COMMON    12     4      8
+ ---------------------------------------------------------------------------------
+ (2) _ft800memWrite16                                     10     4      6    1488
+                                              0 COMMON    10     4      6
+ ---------------------------------------------------------------------------------
+ (2) _ft800memRead16                                      14    10      4     311
+                                              0 COMMON    14    10      4
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _loop
+     _ft800memRead16
+     _ft800memWrite16
+     _ft800memWrite32
+     _incCMDOffset
+   _setup
+     _ft800cmdWrite
+     _ft800memRead8
+     _ft800memWrite16
+     _ft800memWrite32
+     _ft800memWrite8
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BANK3               60      0       0       9        0.0%
+BITBANK3            60      0       0       8        0.0%
+SFR3                 0      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+BANK2               60      0       0      11        0.0%
+BITBANK2            60      0       0      10        0.0%
+SFR2                 0      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK1            50      0       0       6        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR1              0      0       0       2        0.0%
+BANK0               50     14      4C       5       95.0%
+BITBANK0            50      0       0       4        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+COMMON               E      E       E       1      100.0%
+BITCOMMON            E      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+DATA                 0      0      5A      12        0.0%
+ABS                  0      0      5A       3        0.0%
+NULL                 0      0       0       0        0.0%
+STACK                0      0       0       2        0.0%
+EEDATA             100      0       0       0        0.0%
+
+
+Microchip Technology PIC Macro Assembler V1.30 build 55553 
+Symbol Table                                                                                   Wed Apr 16 16:45:46 2014
+
+                        pc 0002                __CFG_CP$OFF 0000                _SSPSTATbits 0094  
+                       l81 0F28                         l90 0F51                         l84 0F41  
+                       l87 0F49                         l96 0F72                         l99 0F8B  
+                       fsr 0004                        l102 0F93                        l120 00CD  
+                      l105 0F9B                        l201 0EE9                        l114 00AC  
+                      l123 00D5                        l211 0ECB                        l108 0FA3  
+                      l132 0120                        l117 00C5                        l205 0EBD  
+                      l141 0FDD                        l126 00EE                        l150 0FF3  
+                      l208 0EC4                        l144 0FE5                        l129 0107  
+                      l162 0055                        l138 0FC4                        l218 01D5  
+                      l171 0078                        l147 0FEC                        l156 0034  
+                      l165 005D                        l159 004D                        l168 0064  
+                      _RC6 003E                        _RC7 003F               __CFG_CPD$OFF 0000  
+                      u745 0FBA                        u915 0F67                        u765 0FD1  
+                      u935 0F7F                        u855 0F1B                        u875 0F35  
+                      u985 00A1                        indf 0000                       l1143 01D9  
+                     l1253 0F07                       l1177 042E                       l1187 047E  
+                     u1005 00B9                       u1105 002A                       u1300 067D  
+                     u1125 0041                       u1045 00E2                       u1301 067E  
+                     u1302 0683                       u1303 0684                       u1320 06F0  
+                     u1240 049B                       u1065 00FB                       u1321 06F1  
+                     u1241 049C                       u1225 045E                       u1330 073E  
+                     u1322 06F6                       u1250 04E9                       u1242 04A1  
+                     u1331 073F                       u1323 06F7                       u1315 06A1  
+                     u1251 04EA                       u1243 04A2                       u1235 0474  
+                     u1340 078C                       u1332 0744                       u1260 0537  
+                     u1252 04EF                       u1085 0114                       u1341 078D  
+                     u1333 0745                       u1261 0538                       u1253 04F0  
+                     u1342 0792                       u1270 0585                       u1262 053D  
+                     u1343 0793                       u1271 0586                       u1263 053E  
+                     u1407 01AD                       u1280 05DD                       u1272 058B  
+                     u1281 05DE                       u1273 058C                       u1417 01BC  
+                     u1290 062B                       u1282 05E3                       u1291 062C  
+                     u1283 05E4                       u1427 0418                       u1292 0631  
+                     u1437 07E0                       u1293 0632                       u1357 0165  
+                     u1367 0171                       u1377 0180                       u1387 018F  
+                     u1397 019E              __CFG_FCMEN$ON 0000                       _main 0EF0  
+                     _loop 0424                       btemp 007E              __CFG_BOREN$ON 0000  
+                     ltemp 007E                       start 0000                       ttemp 007E  
+                     wtemp 007E              __CFG_IESO$OFF 0000           ?_ft800memWrite32 0070  
+         ?_ft800memWrite16 0070              __CFG_MCLRE$ON 0000       __end_of_incCMDOffset 0EF0  
+                    ?_main 0070                      ?_loop 0070              __CFG_WDTE$OFF 0000  
+                    _ANSEL 0188                      _SSPEN 00A5    incCMDOffset@commandSize 0072  
+                    _color 005C                      _setup 012A                      pclath 000A  
+                    ltemp0 007E                      ltemp1 0082                      ltemp2 0086  
+                    ltemp3 0080                      ttemp0 007E                      ttemp1 0081  
+                    ttemp2 0084                      ttemp3 0087                      ttemp4 007F  
+                    status 0003                      wtemp0 007E                      wtemp1 0080  
+                    wtemp2 0082                      wtemp3 0084                      wtemp4 0086  
+                    wtemp5 0088                      wtemp6 007F            __initialization 07E8  
+             __end_of_main 0F0D               __end_of_loop 07E8                     ??_main 007E  
+                   ??_loop 0036                     ?_setup 0070                     _TRISC3 043B  
+                   _TRISC4 043C                     _TRISC5 043D                     _TRISC6 043E  
+                   _TRISC7 043F                     _SSPCON 0014                     _SSPBUF 0013  
+   ft800memRead8@ftAddress 0070             __CFG_PWRTE$OFF 0000    __size_of_ft800memRead16 0079  
+  __size_of_ft800memWrite8 004E      __end_of_ft800cmdWrite 0ED3      __end_of_ft800memRead8 1000  
+  __end_of__initialization 07FC      __size_of_incCMDOffset 001D             __pcstackCOMMON 0070  
+             __pidataBANK0 0006              __end_of_setup 0424     ft800cmdWrite@ftCommand 0070  
+     ft800memRead8@ftData8 0078               _incCMDOffset 0ED3                    ??_setup 007C  
+               __pbssBANK0 005C                 __pmaintext 0EF0                 _lcdHoffset 004E  
+               _lcdPclkpol 005B                 _lcdVoffset 0054  incCMDOffset@currentOffset 0070  
+               _lcdSwizzle 006B                    _SSPSTAT 0094             _ft800memRead16 001C  
+           _ft800memWrite8 0F0D             _ramDisplayList 0030   __size_of_ft800memWrite16 0052  
+ __size_of_ft800memWrite32 0095                    _lcdPclk 005A                    __ptext1 012A  
+                  __ptext2 0F0D                    __ptext3 0FAD                    __ptext4 0EB7  
+                  __ptext5 0424                    __ptext6 0ED3                    __ptext7 0095  
+                  __ptext8 0F5B                    __ptext9 001C                    _point_x 0020  
+                  _point_y 0028                    clrloop0 0E9F       end_of_initialization 07FC  
+   __end_of_ft800memRead16 0095     __end_of_ft800memWrite8 0F5B                 _point_size 0034  
+  ft800memWrite32@ftData32 0074    ft800memWrite16@ftData16 0074            ?_ft800memRead16 0070  
+          ?_ft800memWrite8 0070      incCMDOffset@newOffset 0073        start_initialization 07E8  
+        ??_ft800memWrite32 0078          ??_ft800memWrite16 0076     __size_of_ft800cmdWrite 001C  
+   __size_of_ft800memRead8 0053                  _ft800Gpio 006A                 init_fetch0 0EA6  
+         _ramCommandBuffer 002C                _cmdBufferRd 0060                _cmdBufferWr 0062  
+              __pdataBANK0 0020                  ___latbits 0002              __pcstackBANK0 0036  
+               loop@ftRead 0046                  _cmdOffset 0064                  __pnvBANK0 004A  
+  ft800memRead16@ftAddress 0070                  _lcdHeight 004C                  _lcdHcycle 004A  
+                _lcdHsync0 0066                  _lcdHsync1 0050                  _lcdVcycle 0052  
+                _lcdVsync0 0068                  _lcdVsync1 0056              _ft800cmdWrite 0EB7  
+            _ft800memRead8 0FAD             __size_of_setup 02FA                  clear_ram0 0E9E  
+           ?_ft800cmdWrite 0070             ?_ft800memRead8 0070           ??_ft800memRead16 0074  
+         ??_ft800memWrite8 0075            _ft800memWrite32 0095            _ft800memWrite16 0F5B  
+   ft800memRead16@ftData16 007C              ?_incCMDOffset 0070                   _lcdWidth 0058  
+            __size_of_main 001D              __size_of_loop 03C4    ft800memWrite8@ftAddress 0070  
+   ft800memRead16@tempData 0078                   _point_x2 0024                  setup@duty 0036  
+          ??_ft800cmdWrite 0070            ??_ft800memRead8 0074             ??_incCMDOffset 0073  
+                 init_ram0 0EAA    __end_of_ft800memWrite16 0FAD    __end_of_ft800memWrite32 012A  
+               _OSCCONbits 008F      ft800memWrite8@ftData8 0074   ft800memWrite32@ftAddress 0070  
+ ft800memWrite16@ftAddress 0070  
