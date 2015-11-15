@@ -72,7 +72,7 @@ Porty są jednym z najbardziej podstawowych interfejsów. Najczęściej dzieli s
 
 Porty cyfrowe charakteryzują się możliwością przyjęcia lub wysłania sygnału binarnego (1 - jest sygnał, 0 - sygnału nie ma). Najczęściej wysłanie sygnału równego 1 jest równoznaczne z wysłaniem napięcia o wartości 5V oraz odpowiednio wysłanie 0 jest równoznaczne z wysłaniem napięcia równego 0V. Z kolei porty analogowe mogą przesyłać sygnały nawet 10 bitowe. Każdy z portów może działać w jednym  z dwóch trybów: wejścia - oczekiwać na przyjęcie danych od urządzenia zewnętrznego oraz wyjścia - wysyłać dane do urządzenia zewnętrznego.
 
-W środowisku Arduino aby obsłużyć port analogowy wystarczy ustaliś tryb w jakim ma on działać (wejście/wyjście) a następnie wysłąć/odczytać dane. Dla portu analogowego wygląda to następująco:
+W środowisku Arduino aby obsłużyć port analogowy wystarczy ustaliś tryb w jakim ma on działać (wejście/wyjście) a następnie wysłać/odczytać dane. Dla portu analogowego wygląda to następująco:
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa portu analogowego w środowisku Arduino]
 int val = 0;
 int analogPin = A1;	
@@ -92,7 +92,7 @@ pinMode(digitalPin, INPUT);
 digitalWrite(digitalPin, HIGH);
 \end{lstlisting}
 
-W środowisku linux każdy z portów możemy traktować jako plik, więc wpisanie lub odczytanie danych z portu jest rówoznaczne z odpowiednio wpisaniem lub odczytaniem danych z pliku. Komunikację z portem możemy prowadzić w dowolnym języku. Dla języka C wygląda to następująco:
+W środowisku linux każdy z portów możemy traktować jako plik, więc wpisanie lub odczytanie danych z portu jest równoznaczne z odpowiednio wpisaniem lub odczytaniem danych z pliku. Komunikację z portem możemy prowadzić w dowolnym języku. Dla języka C wygląda to następująco:
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa portu cyfrowego w środowisku Linux (język C)]
 FILE *fp;
@@ -175,7 +175,7 @@ void loop() {
 Funkcja \emph{loop()} jest równoznaczna z funkcją \emph{main()} w języku C, z tą różnicą, że jest wykonywana od momentu startu (zaraz po jednorazowym wykonaniu funkcji \emph{setup()} ) aż do wyłączenia systemu. Taką sytuację można utożsamiać sobie z wywołaniem jakiejkolwiek funkcji w bloku \emph{while(1)}.
 
 \subsubsection{Timer}
-Kolejnym sposobem na komunikację z mikro kontrolerem (lub systemem operacyjnym) jest użycie dostępnego Timera. Polega to na wywołaniu funkcji co określony czas, którego zarządzaniem zajmuje się urządzenie (lub system operacyjny). ROzwiązanie to jest bardzo podobne do odpytywania w pętli, a następnie wywołania funkcji \emph{delete()} z tą różnicą, że użycie timera jest dokładniejsze ponieważ wykorzystuje zegar czasu rzeczywistego znajdującego się w CPU\footnote{ang. Central Processing Unit - jednostka arytmetyczno-logiczna wykorzystywana do wykonywania obliczeń niezbędnych do działania programu}.
+Kolejnym sposobem na komunikację z mikro kontrolerem (lub systemem operacyjnym) jest użycie dostępnego Timera. Polega to na wywołaniu funkcji co określony czas, którego zarządzaniem zajmuje się urządzenie (lub system operacyjny). Rozwiązanie to jest bardzo podobne do odpytywania w pętli, a następnie wywołania funkcji \emph{delete()} z tą różnicą, że użycie timera jest dokładniejsze ponieważ wykorzystuje zegar czasu rzeczywistego znajdującego się w CPU\footnote{ang. Central Processing Unit - jednostka arytmetyczno-logiczna wykorzystywana do wykonywania obliczeń niezbędnych do działania programu}.
 \begin{lstlisting}[label=bot-dirs-alg,caption=Przykładowe użycie timer w środowisku Arduino]
 #include <TimerOne.h>
 Timer1.initialize(500000);
@@ -187,20 +187,20 @@ Timer1.attachInterrupt(funcName, 500000);
 %================IMPLEMENTACJA=====================
 \chapter{Implementacja}
 \subsection{Intel Galileo}
-Intel Galileo jest  to mikro kontroler oparty na 32-bitowym procesorze Intel® Quark SoC X1000 i taktowaniu 400MHz. Został on wyposażony w 14 pinów cyfrowych (w tym 6 pinów mogących pełnić funkcję \emph{PWM}\footnote{ang. Pulse-Width Modulation - technika pozyskiwania wyników analogowych poprzez użycie wyjść cyfrowych}) oraz 6 pinów cyfrowych. Każdy z tych pinów jest w stanie operować napięciem od 0V do max 5V. Bardzo dużym atutem Galileo jest wbudowana karta sieciowa, port RS-232, port USB oraz slot karty microSD. Galileo może być używane w dwóch trybach - trybie w pełni kompatybilnym z Arduino oraz w trybie z zainstalowanym systemem operacyjnym (np. Linux).
+Intel Galileo jest  to mikro kontroler oparty na 32-bitowym procesorze Intel® Quark SoC X1000 i taktowaniu 400MHz. Został on wyposażony w 14 pinów cyfrowych (w tym 6 pinów mogących pełnić funkcję \emph{PWM}\footnote{ang. Pulse-Width Modulation - technika pozyskiwania wyników analogowych poprzez użycie wyjść cyfrowych}) oraz 6 pinów cyfrowych. Każdy z tych pinów jest w stanie operować napięciem od 0V do max 5V. Bardzo dużym atutem Galileo jest wbudowana karta sieciowa, port RS-232, port USB oraz slot karty microSD. Galileo może być używane w dwóch trybach - trybie w pełni kompatybilnym z Arduino oraz w trybie z zainstalowanym systemem operacyjnym (np. Linux).\cite{GalileoBook}
 
 \begin{figure}[!h]
     \centering
     \includegraphics[height=0.4\textwidth]{images/galileo.png}
     \caption{Galileo Gen 1 Board \label{Galileo Gen 1 Board}}
-    \source{\url{http://www.intel.com/content/www/us/en/embedded/products/galileo/galileo-g1-datasheet.html}}
+    \source{\url{http://www.intel.com/content/www/us/en/embedded/products/galileo/galileo-g1-datasheet.html}\cite{GalileoBoard}}
 \end{figure}
 
 \begin{figure}[!h]
     \centering
     \includegraphics[height=0.8\textwidth]{images/IntelGalileoLogicSchematics.jpg}
     \caption{Schemat logiczny układu Intel Galileo\label{IntelGalileoLogicSchematics}}
-    \source{\url{https://www.arduino.cc/en/ArduinoCertified/IntelGalileo}}
+    \source{\url{https://www.arduino.cc/en/ArduinoCertified/IntelGalileo}\cite{IntelGalileo}}
 \end{figure}
 
 Do komunikacji z Galileo programista może użyć portu RS-232, USB (działające w trybie host oraz client) oraz wyjścia Ehernet. Intel Galileo jest zasilane napięciem 5V i 2.0A, które może być dostarczone poprzez zasilacz dostarczony do zestawu lub poprzez podłączenie zasilania do portów PWR\footnote{Port używany jako port zasilania(5V)} oraz GND\footnote{Port używany jako masa}. Najprostszym sposobem na uruchomienie programu jest skompilowanie go za pomocą środowiska Arduino Studio, pisząc w języku C i używając dostarczonych przez producenta Arduino funkcji do obsługi portów, a następnie przesłania skompilowanej wersji poprzez kabel USB do urządzenia. Po przesłaniu program zostaje automatycznie uruchomiony. Gdy mamy zainstalowany system operacyjny wtedy komunikację można prowadzić w dowolnym języku programowania.
@@ -222,7 +222,7 @@ Nazwa $I^2C$ jest nazwą zastrzeżoną dlatego też w literaturze bardzo często
     \centering
     \includegraphics[height=0.3\textheight]{images/i2c.png}
     \caption{Przebieg czasowy protokołu $I^2C$}
-    \source{\url{http://www.byteparadigm.com/applications/introduction-to-i2c-and-spi-protocols/}}
+    \source{\url{http://www.byteparadigm.com/applications/introduction-to-i2c-and-spi-protocols/}\cite{byteparadigm}}
 \end{figure}
 
 \subsection{Użycie protokołu $I^2C$ na przykładzie I/O Expander PCF8574N}
@@ -267,21 +267,20 @@ Podobnie jak odbieranie danych, wysyłanie danych należy rozpocząć od wysłan
 \section{Protokół komunikacyjny SPI}
 Kolejnym przykładem interfejsu szeregowego jest protokół SPI\footnote{ang. Serial Peripherial Interface}. Składa się on z czterech podstawowych linii - dwóch służących do przesyłania danych w przeciwnych kierunkach, jednej z sygnałem taktującym synchronizującym transfer danych oraz linii chip select. 
 
-Linia MISO\footnote{ang. Master In Slave Out} jest linią wejścia danych dla urządzenia nadrzędnego (master), a wyjściem dla urządzenia podrzędnego (slave), linia MOSI\footnote{ang. Master Out Slave In} jest wyjściem dla urządzenia master, a wejściem dla slave. Linia SCK\footnote{ang. Serial Clock} jest wejściem taktującym zegar. Sygnał taktujący jest zawsze generowany przez układ master. Transmisja danych na obydwu liniach jest zawsze dwukierunkowa i odbywa się jednocześnie - nadanie danych na linii MISO wiąże się z nadaniem danych na linii MOSI. Nie zawsze jednak nadane dane niosą ze sobą informację - najczęściej nadawane informacje płyną w jedną stronę podczas, gdy w tym samym czasie wysyłane zostają puste dane.\cite{dorra}
+Linia MISO\footnote{ang. Master In Slave Out} jest linią wejścia danych dla urządzenia nadrzędnego (master), a wyjściem dla urządzenia podrzędnego (slave), linia MOSI\footnote{ang. Master Out Slave In} jest wyjściem dla urządzenia master, a wejściem dla slave. Linia SCK\footnote{ang. Serial Clock} jest wejściem taktującym zegar. Sygnał taktujący jest zawsze generowany przez układ master. Transmisja danych na obydwu liniach jest zawsze dwukierunkowa i odbywa się jednocześnie - nadanie danych na linii MISO wiąże się z nadaniem danych na linii MOSI. Nie zawsze jednak nadane dane niosą ze sobą informację - najczęściej nadawane informacje płyną w jedną stronę podczas, gdy w tym samym czasie wysyłane zostają puste dane.\cite{Dorra}
 
 \begin{figure}[!h]
     \centering
     \includegraphics[height=0.25\textheight]{images/spi.png}
     \caption{Przebiegi czasowe interfejsu SPI dla sygnału zegarowego o CPHA=0}
-    \source{\url{http://castor.am.gdynia.pl/~dorra}}
+    \source{\url{http://castor.am.gdynia.pl/~dorra}\cite{Dorra}}
 \end{figure}
-%ŻRÓDŁO: http://castor.am.gdynia.pl/~dorra/pliki/Magistrale%20%20-%20podstawy%20teoretyczne.pdf
 
 \subsection{Komunikacja poprzez protokół SPI}
 Komunikacja zawsze przebiega dwustronnie (duplex\footnote{Nadawanie i odbieranie informacji odbywa się w obu kierunkach}). Zmienia taktu zegara z niskiego na wysoki daje możliwość odczytania danych z linii MISO i jednocześnie wysłania danych na linię MOSI. W przypadku zmiany taktu zegara z wysokiego na niski dane zostają wysłane poprzez linię MISO i jednocześnie odczytane z linii MOSI. W porównaniu z $I^2C$ protokół SPI jest dużo szybszy. Maksymalna prędkość protokółu $I^2C$ w wydaniu z 2012r. to 5-MHz, gdy prędkość SPI jest praktycznie nieograniczona.
 
 \subsection{VM800B}
-\emph{FDTI EVE VM800B} jest to wyświetlacz dotykowy wraz z wbudowanym kontrolerem audio. Podstawowe cechy urządzenia:
+\emph{FDTI EVE VM800B} jest to wyświetlacz dotykowy wraz z wbudowanym kontrolerem audio. Podstawowe cechy urządzenia\cite{FTDI}:
 \begin{enumerate}
 	\item Pojedynczy układ scalony dla wyświetlacza oraz kontrolera Audio
 	\item Ekran 3.5" LCD
@@ -294,7 +293,6 @@ Komunikacja zawsze przebiega dwustronnie (duplex\footnote{Nadawanie i odbieranie
 
 Komunikacja Galileo z Ekranem odbywa się poprzez protokół komunikacyjny \emph{SPI}. DO tego celu została napisana własna wersja funkcji służących do wysłania oraz odczytania danych z ekranu.
 
-%Źródło: http://www.ftdichip.com/EVE.htm oraz http://www.ftdichip.com/Products/ICs/FT800.html
 \section{Założenia funkcjonalne projektu}
 Najważniejszym założeniem funkcjonalnym była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. czytanie z czujników, pisanie do ekranu, czytanie z ekranu
 włączanie i wyłączanie systemu
@@ -343,8 +341,8 @@ Digital I/O	& 14 & 8 & 14 \\ \hline
 PWM	& 6 & 1 & 6 \\ \hline
 \end{tabular}
 \caption{Specyfikacja dostępnych na rynku mikro kontrolerów}
-\source{\url{http://eu.mouser.com/applications/open-source-hardware-galileo-pi/}}
-\source{\url{http://botland.com.pl/arduino-moduly-glowne/1060-arduino-uno-r3.html}}
+\source{\url{http://eu.mouser.com/applications/open-source-hardware-galileo-pi/}\cite{GalileoVSRaspberry}}
+\source{\url{http://botland.com.pl/arduino-moduly-glowne/1060-arduino-uno-r3.html}\cite{Botland}}
 \end{table}
 
 \chapter{Mapowanie portów Intel Galileo na pliki w systemie Linux}
@@ -372,7 +370,7 @@ GPORT4 BIT4 & gpio48 & A4 \\ \hline
 GPORT4 BIT5 & gpio49 & A5 \\ \hline
 \end{tabular}
 \caption{Mapowanie portów Intel Galileo na pliki w systemie Linux}
-\source{\url{http://www.malinov.com/Home/sergey-s-blog}}
+\source{\url{http://www.malinov.com/Home/sergey-s-blog}\cite{SergeySBlog}}
 \end{table}
 
 \chapter{Programy}
@@ -383,7 +381,7 @@ Katalogi \emph{Galileo, PCF8574N} zawierają kod źródłowy oprogramowania stwo
 \noindent Katalog \emph{PCF8574N} zawiera oprogramowanie I/O Expander PCF8574N.
 
 \bibliographystyle{unsrt}
-\bibliography{xml.bibl}
+\bibliography{magisterka}
 
 \listoftables
 
