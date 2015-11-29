@@ -293,10 +293,6 @@ Komunikacja zawsze przebiega dwustronnie (duplex\footnote{Nadawanie i odbieranie
 
 Komunikacja Galileo z Ekranem odbywa się poprzez protokół komunikacyjny \emph{SPI}. DO tego celu została napisana własna wersja funkcji służących do wysłania oraz odczytania danych z ekranu.
 
-\section{Założenia funkcjonalne projektu}
-Najważniejszym założeniem funkcjonalnym była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. czytanie z czujników, pisanie do ekranu, czytanie z ekranu
-włączanie i wyłączanie systemu
-
 \subsection{Symulator samochodu}
 Do celów implementacjach komputer nie mógł zostać zamontowany do fizycznego samochodu. Do celów testowych zstał zabudowany symulator samochodu składający się z:
 \begin{enumerate}
@@ -316,9 +312,23 @@ Guziki wysyłają sygnały cyfrowe, a potencjometry sygnały analogowe. Komunika
     \caption{Schemat elektryczny symulatora samochodu}
     \source{Opracowanie własne}
 \end{figure}
+\chapter{Działanie komputera pokładowego}
+\section{Założenia funkcjonalne projektu}
+Najważniejszym założeniem funkcjonalnym była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. W projekcie zostały użyte czujniki otwarcia/zamknięcia drzwi, zapięcia pasów, włączenia/wyłączenia świateł oraz czujniki temperatury. Dodatkowym elementem była komunikacja z zewnętrznym ekranem dotykowym służącym do komunikacji pomiędzy użytkownikiem a komputerem.
+
+\section{Opis działania}
+Proponowany komputer pokładowy jest całkowicie osobnym systemem niezależnym od sprzętu aktualnie posiadanego w samochodzie. Użytkownik po wejściu do samochodu oraz włączeniu zapłonu powoduje automatyczny start systemu. Na ekranie pojawia się powitanie oraz ekran startowy, na którym można zobaczyć aktualną pozycję GPS, temperaturę panującą w środku samochodu, na zewnątrz oraz w silniku. Stan drzwi i pasów zwizualizowany został poprzez miniaturkę samochodu z aktywnie otwierającymi się drzwiami, zapalającymi światłami oraz ikonką obrazującą stan zapiętych pasów. Na ekranie widnieją 2 przyciski - \emph{Save data} oraz \emph{Smart Mirror}. Pierwszy z nich daje możliwość zapisu aktualnej pozycji GPS oraz temperatur na karcie pamięci microSD, drugi przechodzi w tryb aktywnego lusterka wstecznego, który może również służyć jako czujnik cofania co bardzo przydaje się podczas parkowania w ciasnych miejskich parkingach. Wyłączenie systemu następuje wraz z wyłączeniem zapłonu w samochodzie.
 
 \section{Dalsze kroki oraz propozycje}
-schemat blokowy z BAJERAMI i wybrane to co zrobię
+Komputer został tak zaprojektowany tak aby w łatwy sposób można było dodać kolejne funkcjonalności zależne od potrzeb użytkownika. Jako propozycje można uwzględnić:
+\begin{enumerate}
+	\item Czujnik deszczu - automatyczne włączenie wycieraczek i dopasowanie ich prędkości w zależności od obfitości opadów i prędkości samochodu, dodatkowe włączenie wycieraczki tylnej w momencie gdy zostanie wrzucony bieg wsteczny
+	\item Sterowanie głośnością radia w zależności od prędkości samochodu
+	\item Blokada immobilizer
+	\item Obsługa telefonu komórkowego za pomocą bluetooth
+	\item Router - dodanie modułu karty WiFi w połączeniu z odbieraniem sieci komórkowej GPRS oraz rozsyłanie jej w samochodzie
+\end{enumerate}
+Jednak na potrzeby tej wersji projektu nie zostały one zaimplementowane. Oczywiście ogranicza nas tylko nasza wyobraźnia oraz finanse jakie chcemy przeznaczyć na rozbudowę systemu o dodatkowe moduły. 
 %================KONIEC IMPLEMENTACJA=====================
 
 \summary
@@ -327,6 +337,11 @@ TO DO
 \appendix
 \chapter{Karty Katalogowe}
 Katalog \emph{datasheets} zawiera karty katalogowe użytych podzespołów
+\begin{enumerate} 
+\item Intel Galileo.pdf - Karta katalogowa Intel Galileo
+\item PCF8574.pdf - Karta katalogowa I/O Expander PCF 8574N
+\item VM800B.pdf - Karta katalogowa ekranu FTDI EVE VM800B
+\end{enumerate}
 \chapter{Porównanie dostępnych na rynku mikro kontrolerów}
 \begin{table}[!tbh]
 \begin{tabular}{|c|c|c|c|} \hline

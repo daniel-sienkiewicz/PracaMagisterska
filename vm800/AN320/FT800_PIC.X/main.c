@@ -496,7 +496,6 @@ void loop(){
 						// Start the display list
   cmdOffset = incCMDOffset(cmdOffset, 4);	// Update the command pointer
 
-
   ft800memWrite32(RAM_CMD + cmdOffset, (DL_CLEAR_RGB | BLACK));
 						// Set the default clear color to black
   cmdOffset = incCMDOffset(cmdOffset, 4);	// Update the command pointer
@@ -506,9 +505,6 @@ void loop(){
 						// Clear the screen - this and the previous prevent artifacts between lists
 						// Attributes are the color, stencil and tag buffers
   cmdOffset = incCMDOffset(cmdOffset, 4);	// Update the command pointer
-
-
- 
 
   ft800memWrite32(RAM_CMD + cmdOffset, (DL_POINT_SIZE | point_size));
 						// Select the size of the dot to draw
