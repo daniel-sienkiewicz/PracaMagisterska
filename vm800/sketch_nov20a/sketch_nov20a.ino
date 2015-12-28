@@ -663,10 +663,10 @@ void setup(void){
   
   Serial.println("Zaczynamy rysowanie");
   start(BLACK);
-  kropka(BLUE, 500, 1500, 2500);
-  linia(RED, 3000, 900, 1500, 1500, 16);
-  linia(WHITE, 3000, 900, 4000, 1500, 100);
-  //text(80, 60, 31, 0, "Daniel");
+  //kropka(BLUE, 500, 1500, 2500);
+  //linia(RED, 3000, 900, 1500, 1500, 16);
+  //linia(WHITE, 3000, 900, 4000, 1500, 100);
+  text(80, 60, 31, 0, "Daniel");
   wyswietl();
 }
 
@@ -687,11 +687,15 @@ void text( int16_t x,  int16_t y, int16_t font, uint16_t options, const char* st
   
   Serial.print("Text: ");
   
-  for(i = 0; i <= length; i++){
-    Serial.print(*(str + i));
-    ft800memWrite8(RAM_CMD+cmdOffset, (*(str + i)));
+  //for(i = 0; i <= length; i++){
+    //Serial.print(*(str + i));
+    ft800memWrite8(RAM_CMD+cmdOffset, 'J'));
     cmdOffset=incCMDOffset(cmdOffset,4);
-  }
+  //}
+  
+  ft800memWrite8(RAM_CMD+cmdOffset, '\0'));
+  cmdOffset=incCMDOffset(cmdOffset,4);
+  
   
   Serial.println("\nKoniec Text");
 }

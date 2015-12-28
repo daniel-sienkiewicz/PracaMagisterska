@@ -291,7 +291,14 @@ Komunikacja zawsze przebiega dwustronnie (duplex\footnote{Nadawanie i odbieranie
 	\item Zakres pracy wyświetlacza: $-40^{\circ} C$ do $85^{\circ} C$ 
 \end{enumerate}
 
-Komunikacja Galileo z Ekranem odbywa się poprzez protokół komunikacyjny \emph{SPI}. DO tego celu została napisana własna wersja funkcji służących do wysłania oraz odczytania danych z ekranu.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[height=0.6\textheight]{images/FTDIarchitecture.png}
+    \caption{Architektura Ekranu}
+    \source{FT800 Programmers Guide}
+\end{figure}
+
+Komunikacja Galileo z Ekranem odbywa się poprzez protokół komunikacyjny \emph{SPI}. Do tego celu została napisana własna wersja funkcji służących do wysłania oraz odczytania danych z ekranu.
 
 \subsection{Symulator samochodu}
 Do celów implementacjach komputer nie mógł zostać zamontowany do fizycznego samochodu. Do celów testowych zstał zabudowany symulator samochodu składający się z:
@@ -312,12 +319,85 @@ Guziki wysyłają sygnały cyfrowe, a potencjometry sygnały analogowe. Komunika
     \caption{Schemat elektryczny symulatora samochodu}
     \source{Opracowanie własne}
 \end{figure}
+
 \chapter{Działanie komputera pokładowego}
 \section{Założenia funkcjonalne projektu}
 Najważniejszym założeniem funkcjonalnym była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. W projekcie zostały użyte czujniki otwarcia/zamknięcia drzwi, zapięcia pasów, włączenia/wyłączenia świateł oraz czujniki temperatury. Dodatkowym elementem była komunikacja z zewnętrznym ekranem dotykowym służącym do komunikacji pomiędzy użytkownikiem a komputerem.
 
 \section{Opis działania}
 Proponowany komputer pokładowy jest całkowicie osobnym systemem niezależnym od sprzętu aktualnie posiadanego w samochodzie. Użytkownik po wejściu do samochodu oraz włączeniu zapłonu powoduje automatyczny start systemu. Na ekranie pojawia się powitanie oraz ekran startowy, na którym można zobaczyć aktualną pozycję GPS, temperaturę panującą w środku samochodu, na zewnątrz oraz w silniku. Stan drzwi i pasów zwizualizowany został poprzez miniaturkę samochodu z aktywnie otwierającymi się drzwiami, zapalającymi światłami oraz ikonką obrazującą stan zapiętych pasów. Na ekranie widnieją 2 przyciski - \emph{Save data} oraz \emph{Smart Mirror}. Pierwszy z nich daje możliwość zapisu aktualnej pozycji GPS oraz temperatur na karcie pamięci microSD, drugi przechodzi w tryb aktywnego lusterka wstecznego, który może również służyć jako czujnik cofania co bardzo przydaje się podczas parkowania w ciasnych miejskich parkingach. Wyłączenie systemu następuje wraz z wyłączeniem zapłonu w samochodzie.
+
+\begin{figure}[!h]
+    \centering
+    	\includegraphics[height=0.7\textheight]{images/dms.png}
+    \caption{Diagram maszyny stanowej}
+    \source{Opracowanie własne}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    	\includegraphics[height=0.6\textheight]{images/ucd.png}
+    \caption{Diagram przypadków użycia}
+    \source{Opracowanie własne}
+\end{figure}
+
+Komunikacja z Intel Galileo z ekranem odbywa się używając protokołu SPI. Łącznie użytych zostało 7 linii: SDI, SDO, clock, PD, CS\footnote{Linia Chip select wyświetlacza} oraz PWR\footnote{ang. Power - 5V} i GND\footnote{ang. Ground}. Rozpoczęcie pracy wyświetlacza polega na wpisaniu określonych wartości do pewnych obszarów jego pamięci określając w ten sposób np. rozdzielczość lub włączenie/wyłącznie modułu odpowiedzialnego za dźwięk czy dotyk. Procedura rysowania wygląda następująco:
+\begin{enumerate}
+	\item Poczekaj aż wszystko co miało zostać wyświetlone, zostanie wyświetlone - opróżnij bufor
+	\item Określ co będziemy rysować - np. linia lub kropka i dodaj to do bufora
+	\item Przesuń się o 4 bity w buforze
+	\item Ustaw wszystkie potrzebne parametry - np. wielkość, kolor lub położenie  i dodaj to do bufora
+	\item Przesuń się o 4 bity w buforze
+	\item Wyświetl wszystko do zostało dodane do bufora 
+\end{enumerate}
+
+Należy pamiętać, że wielkość bufora, którą mamy do dyspozycji wynosi 4 Kb. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[height=0.3\textheight]{images/buf.png}
+    \caption{Bufor dostępny podczas programowania ekranu FT800}
+    \source{FT800 Programmers Guide}
+\end{figure}
+
+Przykładowe wyświetlenie linii o pozycji, kolorze oraz pozycji podanej w parametrach:
+\begin{lstlisting}[label=bot-dirs-alg,caption=Narysowanie linii na ekranie]
+void linia(unsigned long color, unsigned long x1, unsigned long y1, 
+unsigned long x2, unsigned long y2, unsigned long width){
+ ft800memWrite32(RAM_CMD+cmdOffset, (DL_BEGIN|LINES));
+ cmdOffset=incCMDOffset(cmdOffset, 4);
+ 
+ ft800memWrite32(RAM_CMD+cmdOffset, (DL_COLOR_RGB|color));
+ cmdOffset=incCMDOffset(cmdOffset,4);
+
+ ft800memWrite32(RAM_CMD+cmdOffset, (DL_LINE_WIDTH|width));
+ cmdOffset=incCMDOffset(cmdOffset,4);
+
+ ft800memWrite32(RAM_CMD+cmdOffset, (DL_VERTEX2F|(x1<<15)|y1));
+ cmdOffset=incCMDOffset(cmdOffset,4);
+  
+ ft800memWrite32(RAM_CMD+cmdOffset, (DL_VERTEX2F|(x2<<15)|y2));
+ cmdOffset=incCMDOffset(cmdOffset,4);	
+}
+\end{lstlisting}
+
+Podobnie gdy chcemy wyświetlić na ekranie kropkę:
+\begin{lstlisting}[label=bot-dirs-alg,caption=Narysowanie kropki na ekranie]
+void kropka(unsigned long color, unsigned int size, unsigned long x, 
+unsigned long y){ 
+ ft800memWrite32(RAM_CMD+cmdOffset, (DL_POINT_SIZE|size));
+ cmdOffset=incCMDOffset(cmdOffset,4);
+
+ ft800memWrite32(RAM_CMD+cmdOffset, (DL_BEGIN|FTPOINTS));
+ cmdOffset=incCMDOffset(cmdOffset, 4);
+
+ ft800memWrite32(RAM_CMD+cmdOffset, (DL_COLOR_RGB|color));
+ cmdOffset=incCMDOffset(cmdOffset,4);
+ 
+ ft800memWrite32(RAM_CMD+cmdOffset, (DL_VERTEX2F|(x<<15)|y));
+ cmdOffset=incCMDOffset(cmdOffset,4);
+}
+\end{lstlisting}
 
 \section{Dalsze kroki oraz propozycje}
 Komputer został tak zaprojektowany tak aby w łatwy sposób można było dodać kolejne funkcjonalności zależne od potrzeb użytkownika. Jako propozycje można uwzględnić:
