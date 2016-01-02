@@ -21,6 +21,7 @@
 #define xclock 10  // Linia zegarowa wyścia od Galileo
 #define xPD 11     // Linia PD wyświatlacza, wyjście od Galileo
 #define xCS 12     // Linia Chip select wyświetlacza, wyjście od Galielo
+short int screenNR = 1;
 
 #ifdef PIC
 #pragma config FOSC = INTRCCLK  // Oscillator Selection bits (INTOSC oscillator: CLKOUT function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN)
@@ -105,15 +106,15 @@ void delay_ms(int ms){
 * @param data dane do wyslania
 *****************************************************************************/
 void sendData(int data){
-	int i;
-	for(i = 0x80; i; i >>= 1){
-          	digitalWrite(xSDO, data & i);
-                delay_us(2);
-		digitalWrite(xclock, HIGH);
-		delay_us(2);
-		digitalWrite(xclock, LOW);
-		delay_us(2);
-	}
+  int i;
+  for(i = 0x80; i; i >>= 1){
+    digitalWrite(xSDO, data & i);
+    delay_us(2);
+    digitalWrite(xclock, HIGH);
+    delay_us(2);
+    digitalWrite(xclock, LOW);
+    delay_us(2);
+  }
 }
 
 /**
@@ -121,17 +122,16 @@ void sendData(int data){
 *
 *****************************************************************************/
 unsigned char getData(){
-	int i, j;
-	unsigned char result = 0;
-        for(i = 0x80; i; i >>= 1){
-          if(digitalRead(xSDI)){
-                  result |= i;
-          }
-          digitalWrite(xclock, HIGH);
-          delay_ms(2);
-          digitalWrite(xclock, LOW);
-	}
-	
+  int i, j;
+  unsigned char result = 0;
+  for(i = 0x80; i; i >>= 1){
+    if(digitalRead(xSDI)){
+      result |= i;
+    }
+    digitalWrite(xclock, HIGH);
+    delay_ms(2);
+    digitalWrite(xclock, LOW);
+  }	
   return result;
 }
 
@@ -169,14 +169,14 @@ void ft800memWrite8(unsigned long ftAddress, unsigned char ftData8){
 
   RC6=1;                                            // Set CS# high
 #else
-	digitalWrite(xCS, LOW);
-	delay_us(2);
-	sendData(((ftAddress >> 16) | MEM_WRITE));
-	sendData((ftAddress >> 8));
-	sendData(ftAddress);
-	sendData(ftData8);
-	delay_us(2);
-	digitalWrite(xCS, HIGH);
+  digitalWrite(xCS, LOW);
+  delay_us(2);
+  sendData(((ftAddress >> 16) | MEM_WRITE));
+  sendData((ftAddress >> 8));
+  sendData(ftAddress);
+  sendData(ftData8);
+  delay_us(2);
+  digitalWrite(xCS, HIGH);
 #endif
 }
 
@@ -205,16 +205,16 @@ void ft800memWrite16(unsigned long ftAddress, unsigned int ftData16){
 
   RC6=1;                                             // Set CS# high
 #else
-	digitalWrite(xCS, LOW);
-	delay_us(2);
-	sendData(((ftAddress >> 16) | MEM_WRITE));
-	sendData((ftAddress >> 8));
-	sendData((ftAddress));
+  digitalWrite(xCS, LOW);
+  delay_us(2);
+  sendData(((ftAddress >> 16) | MEM_WRITE));
+  sendData((ftAddress >> 8));
+  sendData((ftAddress));
 	
-	sendData(ftData16);
-	sendData((ftData16 >> 8));
-	delay_us(2);
-	digitalWrite(xCS, HIGH);
+  sendData(ftData16);
+  sendData((ftData16 >> 8));
+  delay_us(2);
+  digitalWrite(xCS, HIGH);
 #endif
 }
 
@@ -245,19 +245,20 @@ void ft800memWrite32(unsigned long ftAddress, unsigned long ftData32){
   while(!SSPSTATbits.BF);
   delay_us(2);
   RC6=1;						// Set CS# high
+
 #else
-	digitalWrite(xCS, LOW);
-	delay_us(2);
-	sendData(((ftAddress >> 16) | MEM_WRITE));
-	sendData((ftAddress >> 8));
-	sendData(ftAddress);
+  digitalWrite(xCS, LOW);
+  delay_us(2);
+  sendData(((ftAddress >> 16) | MEM_WRITE));
+  sendData((ftAddress >> 8));
+  sendData(ftAddress);
 	
-        sendData(ftData32);
-	sendData((ftData32 >> 8));
-	sendData((ftData32 >> 16));
-	sendData((ftData32 >> 24));
-	delay_us(2);
-	digitalWrite(xCS, HIGH);
+  sendData(ftData32);
+  sendData((ftData32 >> 8));
+  sendData((ftData32 >> 16));
+  sendData((ftData32 >> 24));
+  delay_us(2);
+  digitalWrite(xCS, HIGH);
 #endif
 }
 
@@ -296,20 +297,18 @@ unsigned char ft800memRead8(unsigned long ftAddress){
  //delay_us(2);// Read data byte
   RC6=1;						// Set CS# high
 #else
-	digitalWrite(xCS, LOW);
-	delay_us(2);
-	sendData(((ftAddress >> 16) | MEM_READ)&255);
-	sendData((ftAddress >> 8)&255);
-	sendData(ftAddress&255);
-	sendData(0);
-        delay_us(2);
+  digitalWrite(xCS, LOW);
+  delay_us(2);
+  sendData(((ftAddress >> 16) | MEM_READ)&255);
+  sendData((ftAddress >> 8)&255);
+  sendData(ftAddress&255);
+  sendData(0);
+  delay_us(2);
         
-	ftData8 = getData();
-
-        delay_us(2);
-	digitalWrite(xCS, HIGH);
+  ftData8 = getData();
+  delay_us(2);
+  digitalWrite(xCS, HIGH);
 #endif
-
   return(ftData8);			                // Return byte read
 }
 
@@ -347,25 +346,24 @@ unsigned char ft800memRead16(unsigned long ftAddress){
   delay_us(2);						// Read data byte
   RC6=1;						// Set CS# high
 #else
-	digitalWrite(xCS, LOW);
-	delay_us(2);
-	sendData(((ftAddress >> 16) | MEM_READ)&255);
-	sendData((ftAddress >> 8)&255);
-	sendData(ftAddress&255);
-	sendData(0);
-        delay_us(2);
+  digitalWrite(xCS, LOW);
+  delay_us(2);
+  sendData(((ftAddress >> 16) | MEM_READ)&255);
+  sendData((ftAddress >> 8)&255);
+  sendData(ftAddress&255);
+  sendData(0);
+  delay_us(2);
         
-        tempData[0] = getData();
-        ftData16 = (tempData[0])|(ftData16);
-        sendData(0);
-        delay_us(2);
+  tempData[0] = getData();
+  ftData16 = (tempData[0])|(ftData16);
+  sendData(0);
+  delay_us(2);
         
-	tempData[1] = getData();
-	ftData16 = (ftData16) | (tempData[1] << 8);
-	delay_us(2);
-	digitalWrite(xCS, HIGH);
+  tempData[1] = getData();
+  ftData16 = (ftData16) | (tempData[1] << 8);
+  delay_us(2);
+  digitalWrite(xCS, HIGH);
 #endif
-
   return(ftData16);					// Return 16 bits
 }
 
@@ -412,35 +410,34 @@ unsigned long ft800memRead32(unsigned long ftAddress){
   delay_us(2);
   RC6=1;						// Set CS# high
 #else
-	digitalWrite(xCS, LOW);
-	delay_us(2);
-	sendData(((ftAddress >> 16) | MEM_READ));
-	sendData((ftAddress >> 8));
-	sendData(ftAddress);
-	sendData(0);
-        delay_us(2);
+  digitalWrite(xCS, LOW);
+  delay_us(2);
+  sendData(((ftAddress >> 16) | MEM_READ));
+  sendData((ftAddress >> 8));
+  sendData(ftAddress);
+  sendData(0);
+  delay_us(2);
 	
-        tempData[3] = getData();
-	ftData32 = tempData[3] | ftData32;
-        sendData(0);
-        delay_us(2);
+  tempData[3] = getData();
+  ftData32 = tempData[3] | ftData32;
+  sendData(0);
+  delay_us(2);
         
-	tempData[2] = getData();
-	ftData32 = (tempData[2] << 8) | ftData32;
-        sendData(0);
-        delay_us(2);
+  tempData[2] = getData();
+  ftData32 = (tempData[2] << 8) | ftData32;
+  sendData(0);
+  delay_us(2);
         
-	tempData[1] = getData();
-	ftData32 = (tempData[1] << 16) | ftData32;
-        sendData(0);
-        delay_us(2);
+  tempData[1] = getData();
+  ftData32 = (tempData[1] << 16) | ftData32;
+  sendData(0);
+  delay_us(2);
         
-	tempData[0] = getData();
-	ftData32 = ftData32 | (tempData[0] << 24);
-	delay_us(2);
-	digitalWrite(xCS, HIGH);
+  tempData[0] = getData();
+  ftData32 = ftData32 | (tempData[0] << 24);
+  delay_us(2);
+  digitalWrite(xCS, HIGH);
 #endif
-
   return(ftData32);
 }
 
@@ -464,13 +461,13 @@ unsigned long ft800memRead32(unsigned long ftAddress){
 * @retval the new ring buffer pointer after adding the command
 *****************************************************************************/
 unsigned int incCMDOffset(unsigned int currentOffset, unsigned char commandSize){
-	unsigned int newOffset;								// used to hold new offset
+  unsigned int newOffset;								// used to hold new offset
 
-	newOffset=currentOffset+commandSize;	                                        // Calculate new offset
-	if(newOffset>4095){								// If new offset past boundary...
-		newOffset=(newOffset-4096);				                // ... roll over pointer
-	}
-	return(newOffset);								// Return new offset
+  newOffset=currentOffset+commandSize;	                                        // Calculate new offset
+  if(newOffset>4095){								// If new offset past boundary...
+    newOffset=(newOffset-4096);				                // ... roll over pointer
+  }
+  return(newOffset);								// Return new offset
 }
 
 /******************************************************************************
@@ -500,15 +497,15 @@ void ft800cmdWrite(unsigned char ftCommand){
 
   RC6=1;							// Set CS# high
 #else
-        digitalWrite(xCS, LOW);
-	delay_us(2);
-	sendData(ftCommand);
-	delay_us(2);
-	sendData(0);
-	delay_us(2);
-        sendData(0);
-	delay_us(2);
-        digitalWrite(xCS, HIGH);
+  digitalWrite(xCS, LOW);
+  delay_us(2);
+  sendData(ftCommand);
+  delay_us(2);
+  sendData(0);
+  delay_us(2);
+  sendData(0);
+  delay_us(2);
+  digitalWrite(xCS, HIGH);
 #endif
 }
 
@@ -539,6 +536,7 @@ void setup(void){
   pinMode(xPD, OUTPUT);
   pinMode(xCS, OUTPUT);
 #endif
+
 // LCD display parameters
 #ifdef LCD_QVGA			// QVGA display parameters
   lcdWidth	 = 320;		// Active width of LCD display
@@ -574,46 +572,46 @@ void setup(void){
 
 //wake up FT800
 #ifdef PIC
-	RC7=0;				// set PD LOW
-	delay_ms(20);
-	RC7=1;				// set PD high
-	delay_ms(20);
+  RC7=0;				// set PD LOW
+  delay_ms(20);
+  RC7=1;				// set PD high
+  delay_ms(20);
 #else
-	digitalWrite(xPD, LOW);
-	delay_ms(2);
-	digitalWrite(xPD, HIGH);
-	delay_ms(2);
+  digitalWrite(xPD, LOW);
+  delay_ms(2);
+  digitalWrite(xPD, HIGH);
+  delay_ms(2);
 #endif
-	ft800cmdWrite(FT800_ACTIVE);	// Start FT800
-	delay_ms(5);			// Give some time to process
+  ft800cmdWrite(FT800_ACTIVE);	// Start FT800
+  delay_ms(5);			// Give some time to process
   
-	ft800cmdWrite(FT800_CLKEXT);	// Set FT800 for external clock
-        delay_ms(5);			//Give some time to process
+  ft800cmdWrite(FT800_CLKEXT);	// Set FT800 for external clock
+  delay_ms(5);			//Give some time to process
 
-	ft800cmdWrite(FT800_CLK48M);	// Set FT800 for 48MHz PLL
-	delay_ms(5);
+  ft800cmdWrite(FT800_CLK48M);	// Set FT800 for 48MHz PLL
+  delay_ms(5);
 
-	ft800cmdWrite(FT800_CORERST);	// Set FT800 for 48MHz PLL
-	delay_ms(5);
+  ft800cmdWrite(FT800_CORERST);	// Set FT800 for 48MHz PLL
+  delay_ms(5);
 
-	ft800cmdWrite(FT800_GPUACTIVE);	// Set FT800 for 48MHz PLL
-	delay_ms(5);
+  ft800cmdWrite(FT800_GPUACTIVE);	// Set FT800 for 48MHz PLL
+  delay_ms(5);
 
-	if(ft800memRead8(REG_ID)!=0x7C){  // Read ID register - is it 0x7C?
-          //SSPBUF=0xFF;
-          //while(!SSPSTATbits.BF);	  // If we don't get 0x7C, the interface isn't working - halt with infinite loop
-		//printf("Cos nie tak\n");
-               Serial.print("Cos nie tak: ");
-               Serial.println(ft800memRead8(REG_ID));
-               return;
-          }
-          Serial.println("OK");
-          delay_us(2);
+  if(ft800memRead8(REG_ID)!=0x7C){  // Read ID register - is it 0x7C?
+    //SSPBUF=0xFF;
+    //while(!SSPSTATbits.BF);	  // If we don't get 0x7C, the interface isn't working - halt with infinite loop
+    //printf("Cos nie tak\n");
+    Serial.print("Cos nie tak: ");
+    Serial.println(ft800memRead8(REG_ID));
+    return;
+  }
+  Serial.println("OK");
+  delay_us(2);
           
   ft800memWrite8(REG_PCLK, ZERO);		// Set PCLK to zero - don't clock the LCD until later
   ft800memWrite8(REG_PWM_DUTY, ZERO);		// Turn off backlight
 
-// Initialize Display
+  // Initialize Display
   ft800memWrite16(REG_HSIZE,  lcdWidth);	// active display width
   ft800memWrite16(REG_HCYCLE, lcdHcycle);	// total number of clocks per line, incl front/back porch
   ft800memWrite16(REG_HOFFSET,lcdHoffset);	// start of active line
@@ -626,19 +624,19 @@ void setup(void){
   ft800memWrite16(REG_VSYNC1, lcdVsync1);	// end of vertical sync pulse
   ft800memWrite8(REG_SWIZZLE, lcdSwizzle);	// FT800 output to LCD - pin order
   ft800memWrite8(REG_PCLK_POL,lcdPclkpol);	// LCD data is clocked in on this PCLK edge
-// Don't set PCLK yet - wait for just after the first display list
-// End of Initialize Display
+  // Don't set PCLK yet - wait for just after the first display list
+  // End of Initialize Display
 
-// Configure Touch and Audio - not used in this example, so disable both
-  ft800memWrite8(REG_TOUCH_MODE, ZERO);		// Disable touch
-  ft800memWrite16(REG_TOUCH_RZTHRESH, ZERO);    // Eliminate any false touches
+  // Configure Touch and Audio - not used in this example, so disable both
+  //ft800memWrite8(REG_TOUCH_MODE, 0x03);		
+  ft800memWrite16(REG_TOUCH_RZTHRESH, 1200);    // Eliminate any false touches
 
   ft800memWrite8(REG_VOL_PB, ZERO);		// turn recorded audio volume down
   ft800memWrite8(REG_VOL_SOUND, ZERO);		// turn synthesizer volume down
   ft800memWrite16(REG_SOUND, 0x6000);		// set synthesizer to mute
-// End of Configure Touch and Audio
+  // End of Configure Touch and Audio
 
-// Write Initial Display List & Enable Display
+  // Write Initial Display List & Enable Display
   ramDisplayList=RAM_DL;			  // start of Display List
   ft800memWrite32(ramDisplayList, DL_CLEAR_RGB);  // Clear Color RGB 00000010 RRRRRRRR GGGGGGGG BBBBBBBB  (R/G/B = Colour values) default zero / black
   ramDisplayList+=4;															// point to next location
@@ -647,6 +645,7 @@ void setup(void){
   ft800memWrite32(ramDisplayList, DL_DISPLAY);		// DISPLAY command 00000000 00000000 00000000 00000000 (end of display list)
 
   ft800memWrite32(REG_DLSWAP, DLSWAP_FRAME);		// 00000000 00000000 00000000 000000SS  (SS bits define when render occurs)
+  
   // Nothing is being displayed yet... the pixel clock is still 0x00
   ramDisplayList=RAM_DL;				// Reset Display List pointer for next list
 
@@ -660,47 +659,116 @@ void setup(void){
     delay_ms(10);
   }
   Serial.println("Koniec inicjalizacji");
-  
+  initScreen();
+}
+
+void initScreen(){
+  start(BLACK);
+  text(80, 10, 31, 0, "Welcome");
+  spinner(150, 150, 0, 1);
+  show();
+  mainScreen();
+}
+
+void mainScreen(){
   Serial.println("Zaczynamy rysowanie");
   start(BLACK);
-  //kropka(BLUE, 500, 1500, 2500);
-  //linia(RED, 3000, 900, 1500, 1500, 16);
-  //linia(WHITE, 3000, 900, 4000, 1500, 100);
-  text(80, 60, 31, 0, "Daniel");
-  wyswietl();
+  text(10, 10, 21, 0, "Temp Out:");
+  text(10, 30, 21, 0, "Temp In:");
+  text(10, 45, 21, 0, "Temp Engine:");
+  text(230, 10, 21, 0, "GPS:");
+  button(10, 200, 130, 30, 28, 0, "Smart Mirror"); 
+  button(200, 200, 110, 30, 28, 0, "Save data");
+  show();
+}
+
+void smartMirrorScreen(){
+  Serial.println("Zaczynamy rysowanie");
+  start(BLACK);
+  button(10, 200, 130, 30, 28, 0, "Back"); 
+  button(200, 200, 110, 30, 28, 0, "Save data");
+  show();
+}
+
+void spinner(int16_t x, int16_t y, uint16_t style, uint16_t scale)
+{  
+   Serial.println("Start Spinner");  
+   ft800memWrite32(RAM_CMD+cmdOffset, CMD_SPINNER);
+   cmdOffset=incCMDOffset(cmdOffset, 4);
+   ft800memWrite32(RAM_CMD+cmdOffset, ((uint32_t)y<<16)|(x & 0xffff) );
+   cmdOffset=incCMDOffset(cmdOffset, 4);
+   ft800memWrite32(RAM_CMD+cmdOffset, ((uint32_t)scale<<16)|style );
+   cmdOffset=incCMDOffset(cmdOffset, 4);
+   Serial.println("Koniec Spinner");
+}
+
+void button(int16_t x, int16_t y, int16_t w, int16_t h, int16_t font, uint16_t options, const char* str){
+  Serial.println("Start Guzik");
+  uint16_t i, j, q = 0;
+  const uint16_t length = strlen(str);
+  if(!length) return ;	
+	
+  uint32_t* data = (uint32_t*) calloc((length / 4) + 1, sizeof(uint32_t));
+	
+  for(i = 0; i < (length / 4); i++, q = q + 4){
+    data[i] = (uint32_t)str[q + 3] << 24 | (uint32_t)str[q + 2] << 16 | (uint32_t)str[q + 1] << 8 | (uint32_t)str[q];
+  }
+
+  for(j = 0; j < (length % 4); j++, q++){
+    data[i] |= (uint32_t)str[q] << (j * 8);
+  }
+	
+  ft800memWrite32(RAM_CMD+cmdOffset, CMD_BUTTON);
+  cmdOffset=incCMDOffset(cmdOffset, 4);
+  ft800memWrite32(RAM_CMD+cmdOffset,  ((uint32_t)y << 16)|(x & 0xffff) );
+  cmdOffset=incCMDOffset(cmdOffset, 4);
+  ft800memWrite32(RAM_CMD+cmdOffset,  ((uint32_t)h << 16)|(w & 0xffff) );
+  cmdOffset=incCMDOffset(cmdOffset, 4);
+  ft800memWrite32(RAM_CMD+cmdOffset,  ((uint32_t)options << 16)|(font & 0xffff) );
+  cmdOffset=incCMDOffset(cmdOffset, 4);
+	
+  for(j = 0; j < (length / 4) + 1; j++){
+    ft800memWrite32(RAM_CMD+cmdOffset, (data[j]));
+    cmdOffset=incCMDOffset(cmdOffset, 4);
+  }
+
+  free(data);
+  Serial.println("\nKoniec Guzik");
 }
 
 void text( int16_t x,  int16_t y, int16_t font, uint16_t options, const char* str){
-    Serial.println("Start Text");
-    int length = strlen(str);
-    int i;
-    if(!length) return;	
+  Serial.println("Start Text");
+  uint16_t i, j, q = 0;
+  const uint16_t length = strlen(str);
+  if(!length) return ;	
+	
+  uint32_t* data = (uint32_t*) calloc((length / 4) + 1, sizeof(uint32_t));
+	
+  for(i = 0; i < (length / 4); i++, q = q + 4){
+    data[i] = (uint32_t)str[q + 3] << 24 | (uint32_t)str[q + 2] << 16 | (uint32_t)str[q + 1] << 8 | (uint32_t)str[q];
+  }
 
+  for(j = 0; j < (length % 4); j++, q++){
+    data[i] |= (uint32_t)str[q] << (j * 8);
+  }
+	
   ft800memWrite32(RAM_CMD+cmdOffset, (DL_BEGIN|CMD_TEXT));
   cmdOffset=incCMDOffset(cmdOffset, 4);
+  ft800memWrite32(RAM_CMD+cmdOffset, ((uint32_t)y << 16)|(x & 0xffff));
+  cmdOffset=incCMDOffset(cmdOffset, 4);
+  ft800memWrite32(RAM_CMD+cmdOffset, ((uint32_t)options << 16)|(font & 0xffff) );
+  cmdOffset=incCMDOffset(cmdOffset, 4);
+  
+  for(j = 0; j < (length / 4) + 1; j++){
+      ft800memWrite32(RAM_CMD+cmdOffset, data[j]);
+      cmdOffset=incCMDOffset(cmdOffset, 4);
+  }
 
-  ft800memWrite32(RAM_CMD+cmdOffset, ((y<<16)|(x & 0xffff)));
-  cmdOffset=incCMDOffset(cmdOffset,4);
-  
-  ft800memWrite32(RAM_CMD+cmdOffset, ((options<<16)|(font&0xffff)));
-  cmdOffset=incCMDOffset(cmdOffset,4);
-  
-  Serial.print("Text: ");
-  
-  //for(i = 0; i <= length; i++){
-    //Serial.print(*(str + i));
-    ft800memWrite8(RAM_CMD+cmdOffset, 'J'));
-    cmdOffset=incCMDOffset(cmdOffset,4);
-  //}
-  
-  ft800memWrite8(RAM_CMD+cmdOffset, '\0'));
-  cmdOffset=incCMDOffset(cmdOffset,4);
-  
-  
+  free(data);
   Serial.println("\nKoniec Text");
 }
 
-void linia(unsigned long color, unsigned long line_x1, unsigned long line_y1, unsigned long line_x2, unsigned long line_y2, unsigned long width){
+void line(unsigned long color, unsigned long line_x1, unsigned long line_y1, unsigned long line_x2, unsigned long line_y2, unsigned long width){
   Serial.println("Start Linia");
 
   ft800memWrite32(RAM_CMD+cmdOffset, (DL_BEGIN|LINES));
@@ -721,7 +789,7 @@ void linia(unsigned long color, unsigned long line_x1, unsigned long line_y1, un
   Serial.println("Koniec Linia");
 }
 
-void kropka(unsigned long color, unsigned int point_size, unsigned long point_x, unsigned long point_y){ 
+void dot(unsigned long color, unsigned int point_size, unsigned long point_x, unsigned long point_y){ 
  Serial.println("Start Kropka"); 
 
   ft800memWrite32(RAM_CMD+cmdOffset, (DL_POINT_SIZE|point_size));
@@ -758,7 +826,7 @@ void start(unsigned long color){
   cmdOffset=incCMDOffset(cmdOffset, 4);
 }
 
-void wyswietl(){
+void show(){
   Serial.println("Start Wyswietlanie");
   ft800memWrite32(RAM_CMD+cmdOffset, (DL_END));
   cmdOffset=incCMDOffset(cmdOffset,4);
@@ -781,7 +849,14 @@ void wyswietl(){
 * Side Effects:    None
 * Overview:        None
 *****************************************************************************/
-void loop(){}
+void loop(){
+  int ReadWord;
+  int xvalue, yvalue;
+  ReadWord = ft800memRead32(REG_TOUCH_DIRECT_XY);
+
+  Serial.println(ReadWord);
+  Serial.println();
+}
 
 /**
 ******************************************************************************
@@ -806,3 +881,9 @@ void loop(){}
 	setup();
 	while(1) loop();
 }*/
+
+// DEMO
+//dot(BLUE, 500, 1500, 2500);
+//line(RED, 3000, 900, 1500, 1500, 16);
+//line(WHITE, 3000, 900, 4000, 1500, 100);
+//text(0, 0, 16, 0, "Daniel");
