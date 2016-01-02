@@ -149,7 +149,7 @@ unsigned char getData(){
 /**
 ******************************************************************************
 *
-* @param ftAddress FT800 memory space address (24 bity)
+* @param ftAddress FT800 memory space address (24 bits)
 * @param ftData8 a byte to send
 *****************************************************************************/
 void ft800memWrite8(unsigned long ftAddress, unsigned char ftData8){
@@ -183,8 +183,8 @@ void ft800memWrite8(unsigned long ftAddress, unsigned char ftData8){
 /**
 ******************************************************************************
 *
-* @param ftAddress FT800 memory space address (24 bity)
-* @param ftData16 a word (16 bitow) to send
+* @param ftAddress FT800 memory space address (24 bits)
+* @param ftData16 a word (16 bits) to send
 *****************************************************************************/
 void ft800memWrite16(unsigned long ftAddress, unsigned int ftData16){
 #ifdef PIC
@@ -221,8 +221,8 @@ void ft800memWrite16(unsigned long ftAddress, unsigned int ftData16){
 /**
 ******************************************************************************
 *
-* @param ftAddress FT800 memory space address (24 bity)
-* @param ftData32 long (32 bity) to send
+* @param ftAddress FT800 memory space address (24 bits)
+* @param ftData32 long (32 bits) to send
 *****************************************************************************/
 void ft800memWrite32(unsigned long ftAddress, unsigned long ftData32){
 #ifdef PIC
@@ -274,8 +274,8 @@ void ft800memWrite32(unsigned long ftAddress, unsigned long ftData32){
 /**
 ******************************************************************************
 *
-* @param ftAddress FT800 memory space address (24 bity)
-* @retval oczytany bajt
+* @param ftAddress FT800 memory space address (24 bits)
+* @retval Read byte
 *****************************************************************************/
 unsigned char ft800memRead8(unsigned long ftAddress){
   unsigned char ftData8=ZERO;
@@ -293,9 +293,8 @@ unsigned char ft800memRead8(unsigned long ftAddress){
   SSPBUF=ZERO;					        // Send dummy byte
   while((SSPSTAT&(1<<0))==0);                           //to samo co while(!SSPSTATbits.BF) ??
   ftData8=SSPBUF;
- //while(!SSPSTATbits.BF);
- //delay_us(2);// Read data byte
   RC6=1;						// Set CS# high
+
 #else
   digitalWrite(xCS, LOW);
   delay_us(2);
@@ -315,8 +314,8 @@ unsigned char ft800memRead8(unsigned long ftAddress){
 /**
 ******************************************************************************
 *
-* @param ftAddress FT800 memory space address (24 bity)
-* @retval oczytany word (16 bitow)
+* @param ftAddress FT800 memory space address (24 bits)
+* @retval Read word (16 bits)
 *****************************************************************************/
 unsigned char ft800memRead16(unsigned long ftAddress){
   unsigned int ftData16, tempData[2];
@@ -370,8 +369,8 @@ unsigned char ft800memRead16(unsigned long ftAddress){
 /**
 ******************************************************************************
 *
-* @param ftAddress FT800 memory space address (24 bity)
-* @retval oczytany long (32 bity)
+* @param ftAddress FT800 memory space address (24 bits)
+* @retval Read long (32 bits)
 *****************************************************************************/
 unsigned long ft800memRead32(unsigned long ftAddress){
   unsigned long ftData32, tempData[4];
@@ -453,13 +452,6 @@ unsigned long ft800memRead32(unsigned long ftAddress){
 *                  Checks for 4K ring-buffer offset roll-over
 * Note:            None
 *****************************************************************************/
-/**
-******************************************************************************
-*
-* @param currentOffset graphics processor command list pointer
-*	@param commandSize number of bytes to increment the offset
-* @retval the new ring buffer pointer after adding the command
-*****************************************************************************/
 unsigned int incCMDOffset(unsigned int currentOffset, unsigned char commandSize){
   unsigned int newOffset;								// used to hold new offset
 
@@ -479,11 +471,6 @@ unsigned int incCMDOffset(unsigned int currentOffset, unsigned char commandSize)
  * Overview:        Sends FT800 command
  * Note:            None
  *****************************************************************************/
-/**
-******************************************************************************
-*
-* @param ftCommand rozkaz do wyslania
-*****************************************************************************/
 void ft800cmdWrite(unsigned char ftCommand){
 #ifdef PIC
   RC6=0;							// Set CS# low
@@ -582,25 +569,22 @@ void setup(void){
   digitalWrite(xPD, HIGH);
   delay_ms(2);
 #endif
-  ft800cmdWrite(FT800_ACTIVE);	// Start FT800
-  delay_ms(5);			// Give some time to process
+  ft800cmdWrite(FT800_ACTIVE);    	// Start FT800
+  delay_ms(5);			        // Give some time to process
   
-  ft800cmdWrite(FT800_CLKEXT);	// Set FT800 for external clock
-  delay_ms(5);			//Give some time to process
+  ft800cmdWrite(FT800_CLKEXT);	        // Set FT800 for external clock
+  delay_ms(5);			        //Give some time to process
 
-  ft800cmdWrite(FT800_CLK48M);	// Set FT800 for 48MHz PLL
+  ft800cmdWrite(FT800_CLK48M);	        // Set FT800 for 48MHz PLL
   delay_ms(5);
 
-  ft800cmdWrite(FT800_CORERST);	// Set FT800 for 48MHz PLL
+  ft800cmdWrite(FT800_CORERST);	        // Set FT800 for 48MHz PLL
   delay_ms(5);
 
   ft800cmdWrite(FT800_GPUACTIVE);	// Set FT800 for 48MHz PLL
   delay_ms(5);
 
-  if(ft800memRead8(REG_ID)!=0x7C){  // Read ID register - is it 0x7C?
-    //SSPBUF=0xFF;
-    //while(!SSPSTATbits.BF);	  // If we don't get 0x7C, the interface isn't working - halt with infinite loop
-    //printf("Cos nie tak\n");
+  if(ft800memRead8(REG_ID)!=0x7C){      // Read ID register - is it 0x7C?
     Serial.print("Cos nie tak: ");
     Serial.println(ft800memRead8(REG_ID));
     return;
