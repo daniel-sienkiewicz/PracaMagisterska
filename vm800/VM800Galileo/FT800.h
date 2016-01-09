@@ -1,39 +1,6 @@
-/**************************************************************************
- *
- *                   FTDIChip AN_ FT800 with PIC - Version 1.0
- *
- **************************************************************************
- * FileName:        AN_.h
- * Dependencies:    See INCLUDES section below
- * Processor:       Microchip PIC16F690 @ 40MHz
- * IDE:             MPLAB X IDE v1.95 or later
- * Company:         Future Technology Devices International Ltd.
- *
- * Software License Agreement
- *
- * This code is provided as an example only and is not guaranteed by FTDI.
- * FTDI accept no responsibility for any issues resulting from its use.
- * The developer of the final application incorporating any parts of this
- * sample project is responsible for ensuring its safe and correct operation
- * and for any conequences resulting from its use.
- *
- * Author	Date		Rev		Comment
- **************************************************************************
- * SM		2014-13-03	1.0		Initial version
- **************************************************************************
- */
-
-
-#ifndef FT800_h
-#define FT800_h
-
-/*****************************************************************************/
-/************************* I N C L U D E S ***********************************/
-/*****************************************************************************/
-
-/*****************************************************************************/
-/********************** D E C L A R A T I O N S ******************************/
-/*****************************************************************************/
+#ifndef _FT800_H_
+#define _FT800_H_
+#import <Arduino.h>
 
 #define FT_DL_SIZE            (8*1024)  //8KB Display List buffer size
 #define FT_CMD_FIFO_SIZE      (4*1024)  //4KB coprocessor Fifo size
@@ -42,7 +9,6 @@
 #define FT800_VERSION         "1.9.0"
 
 // Refer to the FT800 Datasheet
-
 // FT800 Memory Map Addresses
 #define RAM_CMD               0x108000UL
 #define RAM_DL                0x100000UL
@@ -301,5 +267,64 @@
 #define INVALID_TOUCH_XY     0x8000
 #define ABS(x)               ((x) > (0) ? (x) : (-x))
 
-#endif  //FT800_h
-/** EOF FT800.h ********************************************************/
+//#define PIC		              // Wybrac gdy uzywamy PIC
+
+// Set LCD display resolution here
+#define LCD_QVGA	              // QVGA  = 320 x 240 (VM800B/C 3.5")
+//#define LCD_WQVGA		      // WQVGA = 480 x 272 (VM800B/C 4.3" and 5.0")
+
+#define xSDI 8     // Linia SDI intrefejsu SPI wejście do Galileo
+#define xSDO 9     // Linia SDI intrefejsu SPI wyjście od Galileo
+#define xclock 10  // Linia zegarowa wyścia od Galileo
+#define xPD 11     // Linia PD wyświatlacza, wyjście od Galileo
+#define xCS 12     // Linia Chip select wyświetlacza, wyjście od Galielo
+
+#ifdef PIC
+#pragma config FOSC = INTRCCLK  // Oscillator Selection bits (INTOSC oscillator: CLKOUT function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN)
+#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
+#pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
+#pragma config MCLRE = ON       // MCLR Pin Function Select bit (MCLR pin function is MCLR)
+#pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
+#pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
+#pragma config BOREN = ON       // Brown-out Reset Selection bits (BOR enabled)
+#pragma config IESO = OFF       // Internal External Switchover bit (Internal External Switchover mode is disabled)
+#pragma config FCMEN = ON       // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is enabled)
+#define _XTAL_FREQ 8000000      // Required for _delay() function, internal OSC Max
+#endif
+
+// FT800 Chip Commands - use with cmdWrite
+#define FT800_ACTIVE		0x00		// Initializes FT800
+#define FT800_STANDBY		0x41		// Place FT800 in Standby (clk running)
+#define FT800_SLEEP		0x42	        // Place FT800 in Sleep (clk off)
+#define FT800_PWRDOWN		0x50		// Place FT800 in Power Down (core off)
+#define FT800_CLKEXT		0x44		// Select external clock source
+#define FT800_CLK48M		0x62		// Select 48MHz PLL
+#define FT800_CLK36M		0x61		// Select 36MHz PLL
+#define FT800_CORERST		0x68		// Reset core - all registers default
+#define FT800_GPUACTIVE	0x40
+
+// FT800 Memory Commands - use with ft800memWritexx and ft800memReadxx
+#define MEM_WRITE		0x80		// FT800 Host Memory Write
+#define MEM_READ		0x00		// FT800 Host Memory Read
+
+// Colors - fully saturated colors defined here
+#define RED				0xFF0000		// Red
+#define GREEN				0x00FF00		// Green
+#define BLUE				0x0000FF		// Blue
+#define WHITE				0xFFFFFF		// White
+#define BLACK				0x000000		// Black
+
+void delay_us(int us);
+void delay_ms(int ms);
+void sendData(int data);
+unsigned char getData();
+void ft800memWrite8(unsigned long ftAddress, unsigned char ftData8);
+void ft800memWrite16(unsigned long ftAddress, unsigned int ftData16);
+void ft800memWrite32(unsigned long ftAddress, unsigned long ftData32);
+unsigned char ft800memRead8(unsigned long ftAddress);
+unsigned char ft800memRead16(unsigned long ftAddress);
+unsigned long ft800memRead32(unsigned long ftAddress);
+unsigned int incCMDOffset(unsigned int currentOffset, unsigned char commandSize);
+void ft800cmdWrite(unsigned char ftCommand);
+
+#endif
