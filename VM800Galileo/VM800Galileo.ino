@@ -36,8 +36,8 @@ unsigned int cmdBufferWr=0x0000;	                // Used to navigate command rin
 unsigned int cmdOffset=0x0000;		                // Used to navigate command rung buffer
 unsigned char ft800Gpio;				// Used for FT800 GPIO register
 
-short int screenNR = 1;				/**< Selected screen */
-struct car *audi;					/**< Main car structure */
+short int screenNR = 1;				        /**< Selected screen - 1 main screen, 2 - smart mirror, 3 - options */
+struct car *audi;					/**< Main car structure with data from sensors */
 int dataFormat = 3;					/**< Selected format to save in file 1 - CSV, 2 - XML, 3 - JSON */
                          
 /**
@@ -208,7 +208,36 @@ void setup(void){
 *
 *****************************************************************************/
 void loop(){
+  uint32_t ReadWord = ft800memRead8(REG_TOUCH_DIRECT_XY);
+  int y = ReadWord & 0xffff; 
+  int x = (ReadWord>>16) & 0xffff;
+  
+  Serial.print(" x = ");
+  Serial.println(x);
+  Serial.print(" y = ");
+  Serial.println(y);
 
+  // Screens controller
+  switch(screenNR){
+    case 1:
+      if(80 < y && y < 180){
+        screenNR = 2;
+        smartMirrorScreen();
+      }
+     break; 
+    case 2:
+      if(80 < y && y < 180){
+        screenNR = 1;
+        mainScreen();
+      }
+     break;
+     case 3:
+       if(80 < y && y < 180){
+         screenNR = 1;
+         mainScreen();
+       }
+       break;
+  }
 }
 
 /**

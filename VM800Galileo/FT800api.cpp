@@ -27,7 +27,7 @@ void mainScreen(){
   text(250, 10, 21, 0, "GPS:");
   text(200, 30, 21, 0, "54.360N 18.639E");
   button(10, 200, 130, 30, 28, 0, "Smart Mirror"); 
-  button(200, 200, 110, 30, 28, 0, "Save data");
+  button(200, 200, 110, 30, 28, 0, "Options");
   autko();
   show();
   Serial.println("Koniec Mainscreen");
@@ -36,10 +36,20 @@ void mainScreen(){
 void smartMirrorScreen(){
   Serial.println("Start SmartMirror");
   start(BLACK);
+  text(10, 10, 21, 0, "Smart mirror");
   button(10, 200, 130, 30, 28, 0, "Back"); 
-  button(200, 200, 110, 30, 28, 0, "Save data");
   show();
   Serial.println("Koniec SmartMirror");
+}
+
+void opctionsScreen(){
+  Serial.println("Start Options");
+  start(BLACK);
+  text(10, 10, 21, 0, "Options");
+  slider(150, 150, 40, 20, 0, 5, 4);
+  button(10, 200, 130, 30, 28, 0, "Back"); 
+  show();
+  Serial.println("Koniec Options");
 }
 
 void spinner(int16_t x, int16_t y, uint16_t style, uint16_t scale){  
@@ -171,6 +181,34 @@ void dot(unsigned long color, unsigned int point_size, unsigned long point_x, un
   cmdOffset=incCMDOffset(cmdOffset,4);
 
   Serial.println("Koniec Kropka");
+}
+
+void slider(unsigned long x, unsigned long y, unsigned long w, unsigned long h, uint16_t options, uint16_t val, uint16_t range){
+  Serial.println("Start slider");
+  
+  ft800memWrite32(RAM_CMD + cmdOffset, (DL_BEGIN|CMD_SLIDER));
+  cmdOffset=incCMDOffset(cmdOffset,4);
+  ft800memWrite32(RAM_CMD + cmdOffset, ((uint32_t)y << 16) | (x & 0xffff));
+  cmdOffset=incCMDOffset(cmdOffset,4);
+  ft800memWrite32(RAM_CMD + cmdOffset, ((uint32_t)h << 16) | (w & 0xffff));
+  cmdOffset=incCMDOffset(cmdOffset,4);
+  ft800memWrite32(RAM_CMD + cmdOffset, ((uint32_t)val << 16) | (options & 0xffff));
+  cmdOffset=incCMDOffset(cmdOffset,4);
+  ft800memWrite32(RAM_CMD + cmdOffset, (uint32_t)range);
+  cmdOffset=incCMDOffset(cmdOffset,4);
+  
+  Serial.println("Koniec Slider");
+}
+
+void calibrate(){
+  Serial.println("Start Calibrate");
+  
+  start(BLACK);
+  ft800memWrite32(RAM_CMD + cmdOffset, (DL_BEGIN|CMD_CALIBRATE));
+  cmdOffset=incCMDOffset(cmdOffset,4);
+  show();
+  
+  Serial.println("Koniec Calibrate"); 
 }
 
 void start(unsigned long color){
