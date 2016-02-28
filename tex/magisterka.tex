@@ -315,6 +315,8 @@ root@henio:~# echo -n "in" > /sys/class/gpio/gpio28/direction
 root@henio:~# cat /sys/class/gpio/gpio28/value
 \end{lstlisting}
 
+Należy pamiętać aby najpierw ustalić tryb w jakim ma działać port. W przypadku ustawienia portu w tryb wyjścia - \emph{OUT} - gdy nie zostanie to zrobione przed próbą wpisania wartości to otrzymamy błąd: \emph{write error: Operation not permitted}.
+
 %================KONIEC Programowanie z użyciem rożnych środowisk=====================
 
 %================IMPLEMENTACJA=====================
@@ -467,13 +469,12 @@ W projekcie zostały użyte czujniki otwarcia/zamknięcia drzwi, zapięcia pasó
 \section{Opis działania}
 Proponowany komputer pokładowy jest całkowicie osobnym systemem niezależnym od sprzętu aktualnie posiadanego w samochodzie. Użytkownik montuje zestaw czujników oraz łączy je z komputerem i ekranem. Po wejściu do samochodu oraz włączeniu zapłonu powoduje automatyczny start systemu. 
 
-Na ekranie pojawia się powitanie oraz ekran startowy, na którym można zobaczyć symulację aktualnej pozycji GPS, temperaturę panującą w środku samochodu, na zewnątrz oraz w silniku. Stan drzwi i pasów z wizualizowany został poprzez miniaturkę samochodu z aktywnie otwierającymi się drzwiami, zapalającymi światłami oraz ikonką obrazującą stan zapiętych pasów. 
+Na ekranie pojawia się powitanie oraz ekran startowy, na którym można zobaczyć symulację aktualnej pozycji \emph{GPS}, temperaturę panującą w środku samochodu, na zewnątrz oraz w silniku. Stan drzwi i pasów z wizualizowany został poprzez miniaturkę samochodu z aktywnie otwierającymi się drzwiami, zapalającymi światłami oraz ikonką obrazującą stan zapiętych pasów. 
 
-Na ekranie widnieją 2 przyciski - \emph{Save data} oraz \emph{Smart Mirror}. Pierwszy z nich daje możliwość zapisu aktualnej pozycji GPS oraz temperatur na karcie pamięci microSD, drugi przechodzi w tryb aktywnego lusterka wstecznego, który może również służyć jako czujnik cofania co bardzo przydaje się podczas parkowania w ciasnych miejskich parkingach. Wyłączenie systemu następuje wraz z wyłączeniem zapłonu w samochodzie. Zapis do pliku odbywa się poprzez użycie standardowych funkcji systemu operacyjnego. 
+Na ekranie widnieją 2 przyciski - \emph{Save data} oraz \emph{Smart Mirror}. Pierwszy z nich daje możliwość zapisu aktualnej pozycji \emph{GPS} oraz temperatur na karcie pamięci \emph{microSD}, drugi przechodzi w tryb aktywnego lusterka wstecznego, który może również służyć jako czujnik cofania co bardzo przydaje się podczas parkowania w ciasnych miejskich parkingach. Wyłączenie systemu następuje wraz z wyłączeniem zapłonu w samochodzie. Zapis do pliku odbywa się poprzez użycie standardowych funkcji języka C znajdujących się w \emph{stdlib.h}.
 
-Na początku przygotowana zostaje komenda a natępnie poprzez wywołanie funkcji \emph{system()} zostaje ona wykonana. Do tego celu można również użyć standardowego mechanizmu dostępnego w Arduino. Za pomocą funkcji \emph{SD.open(filename)}  należy otworzyć plik na karcie pamięci po czym zapis polega na wpisaniu danych za pomocą funkcji \emph{println()}. 
-
-W tym przypadku należy pamiętać o zaimportowaniu pliku nagłówkowego \emph{SD.h}.
+Zapis do pliku jest możliwy w 3 najbardziej popularnych formatach: CSV\footnote{ang. Comma-separated values. Format przechowywania danych w postaci tekstowej. W pierwszej linii pliku znajdują się oddzielone przecinkami nazwy danych jakie są przechowywane. W kolejnych liniach wpisane są odpowiednie wartości w kolejności ustalonej przez pierwszą linie.}, JSON\footnote{ang. JavaScript Object Notation - jest prostym formatem wymiany danych. Jego definicja opiera się o podzbiór języka programowania JavaScript, Standard ECMA-262 3rd Edition - December 1999. JSON jest formatem tekstowym, całkowicie niezależnym od języków programowania, ale używa konwencji, które są znane programistom korzystającym z języków z rodziny C, w tym C++, Java, JavaScript, Perl, Python i wielu innych. \cite{JSON}} oraz XML\footnote{ang. Extensible Markup Language. Wywodzi się od języka
+SGML i jest językiem znaczników służącym do opisu danych. Dane przechowywane są w postaci tekstowej w dokumencie o ściśle określonej strukturze. XML jest standardem przemysłowym i stosowany jest we wszystkich dziedzinach informatyki.\cite{XML}}. Format może zostać wybrany przez użytkownika poprzez zmianę w ustawieniach komputera.
 
 \begin{figure}[!h]
     \centering
@@ -517,6 +518,13 @@ void readSD(char *filename){
   command = "echo testTekst";
   command += " >> /tmp/daniel.txt";
   system(command.buffer);
+\end{lstlisting}
+
+\begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa karty microSD za pomocą języka C]
+  FILE *fp;
+  fp = fopen("/tmp/daniel.txt", "a");
+  fprintf(fp, "tekst");
+  fclose(fp);
 \end{lstlisting}
 
 Komunikacja z Intel Galileo z ekranem odbywa się używając protokołu SPI. Łącznie użytych zostało 7 linii: SDI, SDO, clock, PD, CS\footnote{Linia Chip select wyświetlacza} oraz PWR\footnote{ang. Power - 5V} i GND\footnote{ang. Ground}. 
@@ -604,7 +612,7 @@ GPORT4 BIT5 & gpio49 & A5 \\ \hline
 \end{table}
 
 \chapter{Programy}
-Katalogi \emph{Source} zawiera kod źródłowy oprogramowania stworzonego na potrzeby pracy. 
+Katalog \emph{Source} zawiera kod źródłowy oprogramowania stworzonego na potrzeby pracy. 
 \begin{enumerate} 
 	\item VM800Galileo.ino - główny kod programu
 	\item FT800.* - obsługa wyświetlacza LCD przy użyciu protokołu komunikacyjnego SPI

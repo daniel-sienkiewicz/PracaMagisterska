@@ -31,7 +31,8 @@ unsigned char ft800Gpio;				// Used for FT800 GPIO register
 
 short int screenNR = 1;
 struct car *audi;
-int dataFormat = 1;                                      // 1 - CSV, 2 - XML, 3 - JSON
+int dataFormat = 3
+;                                      // 1 - CSV, 2 - XML, 3 - JSON
 /**
 ******************************************************************************
 *
