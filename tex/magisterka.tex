@@ -31,10 +31,10 @@ Celem pracy jest stworzenie systemu komputera pokładowego do samochodu, w któr
 	\item Wyświetlacz LCD FTDI EVE VM800B z panelem dotykowym, 
 	\item Zestaw czujników symulujących odpowiedni dla rzeczywistego samochodu stan w szczególności:
 	\begin{enumerate}
-		\item Informacje na temat aktualnej temperatury w samochodzie, na zewnątrz oraz w silniku,
-		\item Informacje na temat stanu drzwi (otwarte/zamknięte), 
-		\item Informacje na temat stanu pasów (zapięte/odpięte), 
-		\item Ekran z obrazem służący jako inteligentne lusterko wsteczne,
+		\item Informacje na temat aktualnej temperatury w samochodzie, na zewnątrz oraz w silniku
+		\item Informacje na temat stanu drzwi (otwarte/zamknięte)
+		\item Informacje na temat stanu pasów (zapięte/odpięte)
+		\item Ekran z obrazem symulujący inteligentne lusterko wsteczne
 	\end{enumerate}
 	\item Oprogramowanie
 \end{enumerate}
@@ -54,15 +54,15 @@ Celem pracy jest stworzenie systemu komputera pokładowego do samochodu, w któr
 %================WPROWADZENIE=====================
 \chapter{Wprowadzenie}
 \section{Cele}
-Celem pracy jest konstrukcja oraz oprogramowanie systemu komputera pokładowego do samochodu. Komputer ma wczytywać temperaturę z czujników panującą w silniku, na zewnątrz, w środku oraz aktualnym stanie zapięcia pasów i zamknięcia drzwi. Jednym z założeń tworzenia systemu jest konstrukcja modułowa umożliwiająca późniejszą rozbudowę funkcjonalności na przykład funkcję rejestrującą pozycję GPS wraz z zapisaniem aktualnej pozycji \emph{GPS} na karcie pamięci \emph{microSD}. Komunikacja użytkownika z komputerem będzie odbywała się poprzez użycie wyświetlacza LCD \emph{FTDI EVE VM800B} z panelem dotykowym.
+Celem pracy jest konstrukcja oraz oprogramowanie systemu komputera pokładowego do samochodu. Komputer ma wczytywać temperaturę z czujników panującą w silniku, na zewnątrz, w środku oraz aktualnym stanie zapięcia pasów i zamknięcia drzwi. Jednym z założeń tworzenia systemu jest konstrukcja modułowa umożliwiająca późniejszą rozbudowę funkcjonalności na przykład funkcję rejestrującą pozycję \emph{GPS} wraz z zapisaniem na karcie pamięci \emph{microSD}. Komunikacja użytkownika z komputerem będzie odbywała się poprzez użycie wyświetlacza LCD \emph{FTDI EVE VM800B} z panelem dotykowym.
 
 \section{Założenia}
 Do wykonania pracy zostały przyjęte następujące założenia:
 \begin{enumerate}
-\item Użycie mikrokomputera Intel Galileo Gen 1 jako głównego silnika dla całego komputera wraz z zainstalowanym systemem operacyjnym Linux YOCTO, 
-\item Wyświetlacz LCD FTDI EVE VM800B z panelem dotykowym jako interfejs komunikacyjny komputera z użytkownikiem, 
-\item Kompilacja przy użyciu systemu Arduino studio oraz natywnego systemu dla Galileo Linux YOCTO,
-\item Symulacja funkcjonalności rzeczywistych czujników samochodu za pomocą dedykowanego symulatora składającego się z zestawu przełączników zapięcia pasów/zamknięcia drzwi oraz potencjometrów służących jako analogowe czujniki temperatury.
+	\item Użycie mikrokomputera \emph{Intel Galileo Gen 1} jako głównego silnika dla całego komputera wraz z zainstalowanym systemem operacyjnym \emph{Linux YOCTO}
+	\item Wyświetlacz LCD \emph{FTDI EVE VM800B} z panelem dotykowym jako interfejs komunikacyjny komputera z użytkownikiem, 
+	\item Kompilacja przy użyciu systemu Arduino studio oraz natywnego systemu dla Galileo - Linux YOCTO
+	\item Symulacja funkcjonalności rzeczywistych czujników samochodu za pomocą dedykowanego symulatora składającego się z zestawu przełączników zapięcia pasów/zamknięcia drzwi oraz potencjometrów służących jako analogowe czujniki temperatury
 \end{enumerate}
 
 Parametry takie jak prędkość oraz przebieg nie będą rejestrowane ponieważ są one standardowo dostępne na zegarach samochodowych więc nie ma potrzeby powtarzania tej informacji.
@@ -75,7 +75,7 @@ TO DO
 %================Architektura=====================
 \chapter{Architektura}
 \subsection{Intel Galileo}
-Intel Galileo jest  to mikro kontroler oparty na 32-bitowym procesorze Intel® Quark SoC X1000 i taktowaniu 400MHz. Został on wyposażony w standardowy interfejs Arduino składający się z: 14 pinów cyfrowych (w tym 6 pinów mogących pełnić funkcję \emph{PWM}\footnote{ang. Pulse-Width Modulation - technika pozyskiwania wyników analogowych poprzez użycie wyjść cyfrowych}) oraz 6 pinów analogowych. Każdy z tych pinów jest w stanie operować napięciem od 0V do max 5V. Bardzo dużym atutem Galileo jest wbudowana karta sieciowa, port \emph{RS-232}, port USB oraz slot karty \emph{microSD}.\cite{GalileoBook}
+Intel Galileo jest  to mikro kontroler oparty na 32-bitowym procesorze Intel® Quark SoC X1000 i taktowaniu 400MHz. Został on wyposażony w standardowy interfejs Arduino składający się z: 14 pinów cyfrowych (w tym 6 pinów mogących pełnić funkcję \emph{PWM}\footnote{ang. Pulse-Width Modulation - technika pozyskiwania wyników analogowych poprzez użycie wyjść cyfrowych}) oraz 6 pinów analogowych. Każdy z tych pinów jest w stanie operować napięciem od 0V do max 5V. Bardzo dużym atutem Galileo jest wbudowana karta sieciowa, port \emph{RS-232}, port \emph{USB} oraz slot karty \emph{microSD}.\cite{GalileoBook}
 
 \begin{figure}[!h]
     \centering
@@ -115,9 +115,11 @@ Podstawowe cechy urządzenia\cite{FTDI}:
 
 Komunikacja Galileo z Ekranem odbywa się poprzez protokół komunikacyjny \emph{SPI}. Do tego celu została napisana własna wersja funkcji służących do wysłania oraz odczytania danych z ekranu (dokładny opis w rozdziale: "Implementacja").
 
-Rozpoczęcie pracy wyświetlacza polega na wpisaniu określonych wartości do pewnych obszarów jego pamięci określając w ten sposób np. rozdzielczość lub włączenie/wyłącznie modułu odpowiedzialnego za dźwięk czy dotyk. Pamięć w systemie możemy zobrazować sobie jako tablica, w której każda komórka ma swój adres. Wysłanie pewnej wartości do pamięci oznacza więc wpisanie tej wartości do określonej przez adres komórki w tablicy.
+Rozpoczęcie pracy wyświetlacza polega na wpisaniu określonych wartości do pewnych obszarów jego pamięci określając w ten sposób np. rozdzielczość lub włączenie/wyłącznie modułu odpowiedzialnego za dźwięk czy dotyk. 
 
-Następnie należy wywołać zestaw funkcji odpowiedzialny za rysowanie niezbędnych do działania systemu elementów np. guzików. Wszystkie wyświetlane elementy są na początku zapisywane w buforze pamięci. Następnie gdy cały ekran zostanie już przygotowany następuje wyświetlenie wszystkiego co zostało zapisane do bufora po czym zostaje on wyczyszczony.
+Poprzez pamięć urządzenia możemy rozumieć tablicę, w której każda komórka ma swój adres. Wysłanie pewnej wartości do pamięci oznacza więc wpisanie tej wartości do określonej przez adres komórki w tablicy.
+
+Kolejnym krokiem jest wywołanie zestawu funkcji odpowiedzialnych za rysowanie niezbędnych do działania systemu elementów np. guzików. Wszystkie wyświetlane elementy są na początku zapisywane w buforze pamięci. Następnie gdy cały ekran zostanie już przygotowany następuje wyświetlenie wszystkiego co zostało zapisane do bufora po czym zostaje on wyczyszczony.
 
 Procedura rysowania wygląda następująco:
 \begin{enumerate}
@@ -147,8 +149,8 @@ Należy pamiętać, że wielkość bufora, którą mamy do dyspozycji wynosi 4 K
 \subsection{Symulator samochodu}
 Do celów demonstracyjnych oraz implementacjach komputer nie został zamontowany w fizycznym samochodzie. Z tego powodu został zabudowany symulator samochodu mający obrazować pełną pracę pojazdu składający się z:
 \begin{enumerate}
-	\item 7 przełączników bistabilnych symulujących drzwi samochodu (wraz z bagażnikiem), wrzucenie biegu wstecznego oraz włączenie świateł w samochodzie
-	\item 4 przełączników bistabilnych symulujący pasy pasażerów
+	\item 11 przełączników bistabilnych symulujących drzwi samochodu (wraz z bagażnikiem), pasy pasażerów, wrzucenie biegu wstecznego oraz włączenie świateł - wciśniecie przełącznika obrazowane jest poprzez zaświecenie diody półprzewodnikowej
+	\item 2 I/O Expandery PCF 8574N 
 	\item 3 potencjometrów symulujących czujniki temperatury w samochodzie
 \end{enumerate}
 
@@ -180,9 +182,9 @@ Porty cyfrowe charakteryzują się możliwością przyjęcia lub wysłania sygna
 \subsection{Przerwania}
 Przerwanie na poziomie procesora jest to sygnał elektryczny pochodzący bezpośrednio z urządzeń do mikroprocesora.
 
-Są to bezpośrednie funkcje systemu lub sprzętu ułatwiające komunikację ze światem zewnętrznym. Część z nich jest zarezerwowana przez system lecz część jest wolna do wykorzystania przez programistę. Przerwania możemy podzielić na trzy podstawowe rodzaje:
+Są to bezpośrednie funkcje systemu lub sprzętu ułatwiające komunikację ze światem zewnętrznym. Część z nich jest zarezerwowana przez system lecz część jest wolna do wykorzystania przez programistę.
 
-System Galileo bazując na Quark ma standardowy dla produktów Intela mechanizm obsługi przerwań obsługiwany za pomocą kontrolera przerwań, polegający na tym, że mamy do dyspozycji przerwania:
+System Galileo bazując na procesorze Quark ma standardowy dla produktów Intela mechanizm obsługi przerwań obsługiwany za pomocą kontrolera przerwań więc do dyspozycji mamy przerwania:
 \begin{enumerate}
 	\item Programowe
 	\item Sprzętowe
@@ -201,7 +203,7 @@ Przerwanie sprzętowe jest to rodzaj przerwań wywoływanych przez urządzenia w
 
 Ostatnim rodzajem przerwań są wyjątki. Wywoływane są podczas napotkania przez procesor błędów oraz niepowodzeń.
 
-Mechanizmem, który bazuje na przerwaniach jest mechanizm Timera. Polega on na wywołaniu funkcji co określony czas, którego zarządzaniem zajmuje się urządzenie (lub system operacyjny). Rozwiązanie to jest bardzo podobne do odpytywania w pętli, a następnie wywołania funkcji \emph{delay()} z tą różnicą, że użycie timera jest dokładniejsze ponieważ wykorzystuje zegar czasu rzeczywistego znajdującego się w CPU\footnote{ang. Central Processing Unit - jednostka arytmetyczno-logiczna wykorzystywana do wykonywania obliczeń niezbędnych do działania programu} zgłaszająca odpowiednie przerwanie.
+Mechanizmem, który bazuje na przerwaniach jest mechanizm Timera. Polega on na wywołaniu funkcji co określony czas (zgłaszane jako przerwanie), którego zarządzaniem zajmuje się urządzenie (lub system operacyjny). Rozwiązanie to jest bardzo podobne do odpytywania w pętli, a następnie wywołania funkcji \emph{delay()} z tą różnicą, że użycie timera jest dokładniejsze ponieważ wykorzystuje zegar czasu rzeczywistego znajdującego się w CPU\footnote{ang. Central Processing Unit - jednostka arytmetyczno-logiczna wykorzystywana do wykonywania obliczeń niezbędnych do działania programu}.
 
 %================KONIEC Mechanizmy komunikacji systemu mikroprocesorowego z otoczeniem=====================
 
@@ -219,7 +221,22 @@ Programy pisane w środowisku Arduino różnią się nieznacznie od klasycznych 
 
 Po skompilowaniu i przesłaniu programu z Arduino Studio do Galileo jednorazowo uruchomiona zostaje funkcja \emph{setup()}, która służy do inicjalizacji wszystkich niezbędnych portów. W tej funkcji należy określić początkowe tryby pracy portów. Następnie wywołana zostaje funkcja \emph{loop()}, która jest równoznaczna z funkcją \emph{main()} w języku C, z tą różnicą, że jest wykonywana od momentu startu (zaraz po jednorazowym wykonaniu funkcji \emph{setup()}) aż do wyłączenia systemu. Taką sytuację można utożsamiać z wywołaniem jakiejkolwiek funkcji w bloku \emph{while(1)}.
 
-W środowisku \emph{Arduino} aby obsłużyć port analogowy wystarczy ustalić tryb w jakim ma on działać (wejście/wyjście), a następnie wysłać/odczytać dane.  Wpisanie wartości \emph{LOW} jest równoznaczna z wysyłaniem napięcia 0V na określonym pinie, a wpisanie wartości \emph{HIGH} jest równoznaczna z wysyłaniem napięcia 5V na określonym pinie. Dla portu cyfrowego wygląda to następująco:
+\begin{lstlisting}[label=bot-dirs-alg,caption=Odpytywanie w nieskończonej pętli w środowisku Arduino]
+void loop() {
+	funcName();
+	delay(1000);
+}
+\end{lstlisting}
+
+W środowisku \emph{Arduino} aby obsłużyć port analogowy wystarczy ustalić tryb w jakim ma on działać (wejście/wyjście), a następnie wysłać/odczytać dane.  Wpisanie wartości \emph{LOW} jest równoznaczna z wysyłaniem napięcia 0V na określonym pinie, a wpisanie wartości \emph{HIGH} jest równoznaczna z wysyłaniem napięcia 5V na określonym pinie. Arduino dostarcza funkcje do obsługi portów. Podstawowe z nich to:
+
+\begin{enumerate}
+	\item \emph{pinMode(PIN, MODE);} - funkcja ustawiająca pin o podanym numerze (PIN) na podany tryb pracy - wejście/wyjście (MODE)
+	\item \emph{digitalWrite(PIN, VAL);} - funkcja wpisująca wartość (VAL) - HIGH/LOW - do podanego portu cyfrowego (PIN)
+	\item \emph{digitalRead(PIN);} - funkcja czytająca wartość z podanego portu cyfrowego (PIN)
+	\item \emph{analogWrite(PIN, VAL);} - funkcja wpisująca wartość (VAL) do podanego portu analogowego (PIN)
+	\item \emph{analogRead(PIN);}  - funkcja czytająca wartość z podanego portu analogowego (PIN)
+\end{enumerate}
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa portu cyfrowego w środowisku Arduino]
 int val = 0;
@@ -230,7 +247,6 @@ pinMode(digitalPin, INPUT);
 digitalWrite(digitalPin, HIGH);
 \end{lstlisting}
 
-Dla portów analogowych jest podobnie z jedną różnicą: zamiast wysyłać/odczytywać wartości HIGH oraz LOW możemy wysłać/odczytać dowolną liczbę 10 bitową.
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa portu analogowego w środowisku Arduino]
 int val = 0;
 int analogPin = A1;	
@@ -238,13 +254,6 @@ pinMode(analogPin, OUTPUT);
 val = analogRead(analogPin);
 pinMode(analogPin, INPUT);
 analogWrite(ledPin, val);
-\end{lstlisting}
-
-\begin{lstlisting}[label=bot-dirs-alg,caption=Odpytywanie w nieskończonej pętli w środowisku Arduino]
-void loop() {
-	funcName();
-	delay(1000);
-}
 \end{lstlisting}
 
 Arduino oczywiście obsługuje przerwania. Ich obsługa jest bardzo prosta. W środowisku Arduino aby obsłużyć port analogowy wystarczy wywołać funkcję \emph{attachInterrupt}:
@@ -313,9 +322,18 @@ root@henio:~# cat /sys/class/gpio/gpio28/value
 \section{Protokół komunikacyjny $I^2C$}
 \emph{$I^2C$}\footnote{ang. Inter-Integrated Circuit} jest szeregowym interfejsem stworzonym przez firmę \emph{Philips} służącym do przesyłania danych między urządzeniami elektrycznymi. 
 
-Podstawową cechą \emph{$I^2C$} jest wykorzystywanie dwóch linii służących do komunikacji: dwukierunkowa linia danych \emph{SDA\footnote{ang. Serial Data Line}} oraz jednokierunkowa linia zegarowa \emph{SCL\footnote{ang. Serial Clock Time}}. Protokół I2C bazuje na przesyłaniu ramek (pakietów) składających się z sekwencji: START -> dane -> STOP. Dane wysyłane są od najstarszego do najmłodszego bitu. Każda paczka potwierdzona jest przez odbiornik (bit ACK\footnote{ang. Acknowledge}). Należy również pamiętać, aby każdą komunikację z urządzeniem rozpocząć i zakończyć ustawiając linie \emph{SDA} oraz \emph{SCL} w stan nieaktywny (HIGH).
+Podstawową cechą \emph{$I^2C$} jest wykorzystywanie dwóch linii służących do komunikacji: dwukierunkowa linia danych \emph{SDA\footnote{ang. Serial Data Line}} oraz jednokierunkowa linia zegarowa \emph{SCL\footnote{ang. Serial Clock Time}}. Protokół I2C bazuje na przesyłaniu ramek (pakietów) składających się z sekwencji: START -> dane -> STOP. 
 
-%==== TUTAJ co to jest start i STOP plus rysunek!!!!!
+\begin{figure}[!h]
+    \centering
+    \includegraphics[height=0.3\textheight]{images/i2c.png}
+    \caption{Przebieg czasowy protokołu $I^2C$}
+    \source{\url{http://www.byteparadigm.com/applications/introduction-to-i2c-and-spi-protocols/}\cite{byteparadigm}}
+\end{figure}
+
+Do wygenerowania impulsu START oraz STOP wystarczy ustawić linię \emph{SDA} oraz \emph{SCL} w stan HIGH (5V) po czym należy chwilkę odczekać. Dane wysyłane/odbierane są bit po bicie - na początku należy ustawić linię \emph{SCL} w stan wysoki (HIGH), odczytać wartość na porcie \emph{SDA}, a następnie zmienić stan linii \emph{SCL} na niski (LOW).
+
+Dane wysyłane są od najstarszego do najmłodszego bitu. Każda paczka potwierdzona jest przez odbiornik (bit ACK\footnote{ang. Acknowledge}). Należy również pamiętać, aby każdą komunikację z urządzeniem rozpocząć i zakończyć ustawiając linie \emph{SDA} oraz \emph{SCL} w stan nieaktywny (HIGH) - wygenerowanie sekwencji STOP.
 
  Podstawowymi zaletami protokołu są:
 \begin{enumerate}
@@ -327,17 +345,10 @@ Podstawową cechą \emph{$I^2C$} jest wykorzystywanie dwóch linii służących 
 
 Nazwa $I^2C$ jest nazwą zastrzeżoną dlatego też w literaturze bardzo często spotyka się określenie \emph{TWI}\footnote{ang. Two Wire Interface}. Jest ono stosowane w mikro kontrolerach firmy \emph{Atmel}. 
 
-\begin{figure}[!h]
-    \centering
-    \includegraphics[height=0.3\textheight]{images/i2c.png}
-    \caption{Przebieg czasowy protokołu $I^2C$}
-    \source{\url{http://www.byteparadigm.com/applications/introduction-to-i2c-and-spi-protocols/}\cite{byteparadigm}}
-\end{figure}
-
 \subsection{I/O Expander PCF8574N}
-W symulatorze ze względu na dużą ilość wychodzących sygnałów zastosowano komunikacje poprzez $I^2C$. Do obsługi tego został zamontowane dwa I/O Expandery PCF 8574N zbierające wszystkie sygnały cyfrowe wychodzące z symulatora do Galileo. Dzięki temu zamiast używać dwunastu linii cyfrowych, wykorzystywane są jedynie dwie niezbędne do komunikacji poprzez $I^2C$ co znacznie ułatwiło dalsze korzystanie z Galileo ze względu na pozostałe wolne porty cyfrowe, które będą potrzebne w dalszej części do komunikacji z ekranem. Zaletą tego rozwiązania jest możliwość późniejszego podłączenia większej ilości czujników bez jakiejkolwiek ingerencji w okablowanie Galileo.
+W symulatorze ze względu na dużą ilość wychodzących sygnałów zastosowano komunikacje poprzez $I^2C$. Do obsługi tego został zamontowane dwa I/O Expandery PCF 8574N zbierające wszystkie sygnały cyfrowe wychodzące z symulatora do Galileo. Dzięki temu zamiast używać dwunastu linii cyfrowych, wykorzystywane są jedynie dwie niezbędne do komunikacji poprzez $I^2C$ co znacznie ułatwiło dalsze korzystanie z Galileo ze względu na pozostałe wolne porty cyfrowe, które będą potrzebne w dalszej części do komunikacji z wyświetlaczem. Zaletą tego rozwiązania jest możliwość późniejszego podłączenia większej ilości czujników bez jakiejkolwiek ingerencji w okablowanie Galileo.
 
-Wygenerowanie sygnału \emph{START} polega na ustawieniu linii \emph{SDA} oraz \emph{SCL} w stan niski (LOW), a wygenerowanie sygnału \emph{STOP} polega na ustawieniu linii \emph{SDA} oraz \emph{SCL} w stan wysoki (HIGH).
+Do rozpoczęcia komunikacji należy wygenerować bit START oraz zaadresować urządzenie, z którym będziemy się komunikować.
 
 Adresowanie urządzenia odbywa się poprzez wysłanie pojedynczych bitów adresu (pamiętając o kolejności MSB->LCB\footnote{Wysyłanie odbywa się w kolejności od najbardziej znaczących (najstarszych) bitów}) oraz wygenerowanie impulsu zegara. Gdy chcemy zaadresować urządzenie, którego adresem jest np. 4 należy wykonać:
 \begin{lstlisting}[label=bot-dirs-alg,caption=Adresowanie urządzenia $I^2C$ na przykładzie PCF8574N]
@@ -352,11 +363,8 @@ for(m = 0x80; m; m >>= 1){
    digitalWrite(scl, LOW); 
 }
 \end{lstlisting}
-Po otrzymaniu potwierdzenia na linii \emph{SDA} można zacząć czytać dane przesyłane z urządzenia.
 
-%==Obsługa I2C problem z WIRE. Standardowy kontrolec I2C w galileo jest wyposazony w sprzetowy interfejs I2C ktory obsługiwany sprzetowo. W zwiazku z tym napisałem swoje.!!!!
-
-Podobnie jak odbieranie danych, wysyłanie danych należy rozpocząć od wysłania sygnału \emph{START} wraz z adresem urządzenia oraz trybem (\emph{WRITE}). Po otrzymaniu potwierdzenia można rozpocząć wysyłanie danych w odpowiednich dla urządzenia paczkach x-bitowych. Po wysłaniu każdej z nich otrzymamy potwierdzenie. Na zakończenia transmisji należy wysłać sygnał \emph{STOP}.
+Kolejnym krokiem jest ustalenie czy będziemy chcieli z urządzenia przeczytać dane czy je wysłać. W tym celu należy wysłać 1 lub 0  jako kolejny bit. Po otrzymaniu potwierdzenia na linii \emph{SDA} można zacząć czytać dane przesyłane z urządzenia. Na zakończenia transmisji należy wysłać sygnał \emph{STOP}.
 
 \begin{figure}[!h]
     \centering
@@ -371,6 +379,8 @@ Podobnie jak odbieranie danych, wysyłanie danych należy rozpocząć od wysłan
     \caption{Przykładowy schemat wysyłania danych poprzez $I^2C$ na przykładzie PCF8574N\label{$I^2C$}}
     \source{Karta katalogowa I/O Expander PCF8574N}
 \end{figure}
+
+Galileo posiada dostarczoną od Arduino bibliotekę do obsługi $I^2C$ jednak podczas próby użycia jej w projekcie wystąpiły problemy z kompatybilnością z używanym sprzętem w związku z tym na potrzeby projektu napisana została własna wersja biblioteki obsługującej komunikację poprzez protokół $I^2C$.
 
 \section{Protokół komunikacyjny SPI}
 Wyświetlacz LCD wyposażony jest w protokół SPI\footnote{ang. Serial Peripherial Interface}. Składa się on z czterech podstawowych linii - dwóch służących do przesyłania danych w przeciwnych kierunkach, jednej z sygnałem taktującym, synchronizującym transfer danych oraz linii \emph{Chip Select}. 
@@ -452,12 +462,12 @@ unsigned long y){
 \section{Założenia funkcjonalne projektu}
 Najważniejszym założeniem funkcjonalnym była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. 
 
-W projekcie zostały użyte czujniki otwarcia/zamknięcia drzwi, zapięcia pasów, włączenia/wyłączenia świateł oraz czujniki temperatury. Dodatkowym elementem była komunikacja z zewnętrznym wyświetlaczem LCD służącym do komunikacji pomiędzy użytkownikiem a komputerem. Wciśniecie przełącznika obrazowane jest poprzez zaświecenie diody półprzewodnikowej.
+W projekcie zostały użyte czujniki otwarcia/zamknięcia drzwi, zapięcia pasów, włączenia/wyłączenia świateł oraz czujniki temperatury. Dodatkowym elementem była komunikacja z zewnętrznym wyświetlaczem LCD służącym do komunikacji pomiędzy użytkownikiem a komputerem. Samochód obrazowany został za pomocą zbudowanego symulatora.
 
 \section{Opis działania}
 Proponowany komputer pokładowy jest całkowicie osobnym systemem niezależnym od sprzętu aktualnie posiadanego w samochodzie. Użytkownik montuje zestaw czujników oraz łączy je z komputerem i ekranem. Po wejściu do samochodu oraz włączeniu zapłonu powoduje automatyczny start systemu. 
 
-Na ekranie pojawia się powitanie oraz ekran startowy, na którym można zobaczyć aktualną pozycję GPS, temperaturę panującą w środku samochodu, na zewnątrz oraz w silniku. Stan drzwi i pasów z wizualizowany został poprzez miniaturkę samochodu z aktywnie otwierającymi się drzwiami, zapalającymi światłami oraz ikonką obrazującą stan zapiętych pasów. 
+Na ekranie pojawia się powitanie oraz ekran startowy, na którym można zobaczyć symulację aktualnej pozycji GPS, temperaturę panującą w środku samochodu, na zewnątrz oraz w silniku. Stan drzwi i pasów z wizualizowany został poprzez miniaturkę samochodu z aktywnie otwierającymi się drzwiami, zapalającymi światłami oraz ikonką obrazującą stan zapiętych pasów. 
 
 Na ekranie widnieją 2 przyciski - \emph{Save data} oraz \emph{Smart Mirror}. Pierwszy z nich daje możliwość zapisu aktualnej pozycji GPS oraz temperatur na karcie pamięci microSD, drugi przechodzi w tryb aktywnego lusterka wstecznego, który może również służyć jako czujnik cofania co bardzo przydaje się podczas parkowania w ciasnych miejskich parkingach. Wyłączenie systemu następuje wraz z wyłączeniem zapłonu w samochodzie. Zapis do pliku odbywa się poprzez użycie standardowych funkcji systemu operacyjnego. 
 
@@ -520,6 +530,8 @@ Gdy została wybrana opcja zapisu danych na kartę pamięci wtedy w nieskończon
 \section{Wnioski oraz własne doświadczenia}
 Komputer został tak zaprojektowany tak aby w łatwy sposób można było dodać kolejne funkcjonalności zależne od potrzeb użytkownika. Jako propozycje można uwzględnić:
 \begin{enumerate}
+	\item Lokalizator GPS - wczytywanie aktualnej pozycji GPS i wyświetlanie jej na wyświetlaczu
+	\item Kamerka cofania - wyświetlanie obrazu z kamerki cofania na wyświetlaczu
 	\item Czujnik deszczu - automatyczne włączenie wycieraczek i dopasowanie ich prędkości w zależności od obfitości opadów i prędkości samochodu, dodatkowe włączenie wycieraczki tylnej w momencie gdy zostanie wrzucony bieg wsteczny
 	\item Sterowanie głośnością radia w zależności od prędkości samochodu
 	\item Blokada immobilizer
@@ -527,8 +539,6 @@ Komputer został tak zaprojektowany tak aby w łatwy sposób można było dodać
 	\item Router - dodanie modułu karty WiFi w połączeniu z odbieraniem sieci komórkowej GPRS oraz rozsyłanie jej w samochodzie
 \end{enumerate}
 Jednak na potrzeby tej wersji projektu nie zostały one zaimplementowane. Oczywiście ogranicza nas tylko nasza wyobraźnia oraz finanse jakie chcemy przeznaczyć na rozbudowę systemu o dodatkowe moduły. 
-
-%== moja ocena, nie ma pełnej funkcjonalności systemu!!!!!!
 
 %================KONIEC Działanie komputera pokładowego=====================
 

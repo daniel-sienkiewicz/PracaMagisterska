@@ -28,34 +28,29 @@ void printObj(struct car * obj){
   Serial.println(obj->tempEngine);
   Serial.println("+-------------------+");
   
-  system("echo +--------------------+ >> /tmp/daniel.txt");                    // Print data into log file
-  system("echo  Audi object:        >> /tmp/daniel.txt");
+  // Save data to file
   
-  command = "echo  Doors = ";
-  command += obj->doors;
-  command += " >> /tmp/daniel.txt";
-  system(command.buffer);
-  command = "";
-  
-  command = "echo  Seatbelts = ";
-  command += obj->seatbelts;
-  command += " >> /tmp/daniel.txt";
-  system(command.buffer);
-  command = "";
-  
-  command = "echo  Lights = ";
-  command += obj->lights;
-  command += " >> /tmp/daniel.txt";
-  system(command.buffer);
-  command = "";
-  
-  command = "echo  R = ";
-  command += obj->r;
-  command += " >> /tmp/daniel.txt";
-  system(command.buffer);
-  command = "";
-  
-  system("echo +-------------------+ >> /tmp/daniel.txt");
+  FILE *fp;
+  switch(dataFormat){
+    case 1:                // CSV
+            
+            fp = fopen("/tmp/carData.csv", "a");
+            fseek(fp, 0L, SEEK_END);
+            if(ftell(fp) == 0)
+              fprintf(fp, "doors, seatbelts, lights, r\n");
+            
+            fprintf(fp, "%d, %d, %d, %d\n", obj->doors, obj->seatbelts, obj->lights, obj->r);
+            break;
+    case 2:                // XML
+            fp = fopen("/tmp/carData.xml", "a");
+            fprintf(fp, "<car>\n\t<doors> %d </doors>\n\t<seatbelts> %d </seatbelts>\n\t<lights> %d </lights>\n\t<r> %d </r>\n</car>\n", obj->doors, obj->seatbelts, obj->lights, obj->r);
+            break;
+    case 3:                // JSON
+            fp = fopen("/tmp/carData.json", "a");
+            fprintf(fp, "{ \"Car\" :{ \"doors \" : %d, \"seatbelts\" : %d, \"lights\" : %d, \"r\" : %d}}\n", obj->doors, obj->seatbelts, obj->lights, obj->r);
+            break;
+  }
+  fclose(fp);
 }
 
 /**

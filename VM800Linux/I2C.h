@@ -3,9 +3,9 @@
 #import "arduino.h"
 #include <stdio.h>
 
-#define sda      7
-#define scl      6
-#define pinInt0  2
+#define sda      27
+#define scl      24
+#define pinInt0  14
 
 /**
 ******************************************************************************

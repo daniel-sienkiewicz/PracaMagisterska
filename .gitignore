@@ -60,3 +60,4 @@ bld/
 #Other
 *.autosave
 tools/
+VM800Linux/tests/

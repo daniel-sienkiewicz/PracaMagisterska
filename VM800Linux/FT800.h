@@ -275,11 +275,11 @@
 #define LCD_QVGA	              // QVGA  = 320 x 240 (VM800B/C 3.5")
 //#define LCD_WQVGA		      // WQVGA = 480 x 272 (VM800B/C 4.3" and 5.0")
 
-#define xSDI 8     // Linia SDI intrefejsu SPI wejście do Galileo
-#define xSDO 9     // Linia SDI intrefejsu SPI wyjście od Galileo
-#define xclock 10  // Linia zegarowa wyścia od Galileo
-#define xPD 11     // Linia PD wyświatlacza, wyjście od Galileo
-#define xCS 12     // Linia Chip select wyświetlacza, wyjście od Galielo
+#define xSDI 26     // Linia SDI intrefejsu SPI wejście do Galileo
+#define xSDO 19     // Linia SDI intrefejsu SPI wyjście od Galileo
+#define xclock 16  // Linia zegarowa wyścia od Galileo
+#define xPD 25     // Linia PD wyświatlacza, wyjście od Galileo
+#define xCS 38     // Linia Chip select wyświetlacza, wyjście od Galielo
 
 #ifdef PIC
 #pragma config FOSC = INTRCCLK  // Oscillator Selection bits (INTOSC oscillator: CLKOUT function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN)

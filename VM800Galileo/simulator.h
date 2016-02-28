@@ -2,8 +2,10 @@
 #define _SIMULATOR_H_
 #import <Arduino.h>
 #include "I2C.h"
+#include <stdio.h>
 
 extern struct car *audi;
+extern int dataFormat;
 
 /**
 ******************************************************************************

@@ -115,7 +115,7 @@ struct car * readData(){
 ******************************************************************************
 */
 void checkChangesDigital(){
-  digitalWrite(13, HIGH);
+  digitalWrite(39, HIGH);
   struct car * tmp = readData();
   
   if(tmp->doors != audi->doors)
@@ -134,7 +134,7 @@ void checkChangesDigital(){
   free(tmp);
 
   printObj(audi);
-  digitalWrite(13, LOW);
+  digitalWrite(39, LOW);
 }
 
 /**

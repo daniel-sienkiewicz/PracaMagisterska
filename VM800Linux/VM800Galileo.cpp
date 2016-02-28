@@ -40,7 +40,7 @@ struct car *audi;
 *****************************************************************************/
 void setup(void){
   // Setup Car simulator
-  pinMode(13, OUTPUT);    
+  pinMode(39, OUTPUT);    
   //Serial.begin(9600);
   printf("Setup...\n");
   pinMode(sda, OUTPUT);

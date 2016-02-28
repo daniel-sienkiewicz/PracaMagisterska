@@ -2,10 +2,14 @@
 #define _arduino_H_
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
+
 #define HIGH 1
 #define LOW 0
 #define OUTPUT 0
 #define INPUT 1
+
 
 void digitalWrite(int, int);
 void pinMode(int, int);
