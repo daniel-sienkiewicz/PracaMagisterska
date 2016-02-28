@@ -1,13 +1,6 @@
 #include "I2C.h"
 
-/**
-******************************************************************************
-* @details        Reading value from PCF8574N I/O Expander                   *
-* @param          adres The address of PCF8574N I/O Expander                 *
-* @return         Value from the specified PCF8574N I/O Expander             *
-******************************************************************************
-*/
-int d = 1;                                                                    // Delay time - for PCF handing
+int d = 1; 																	/**< Delay time - for PCF handing */
 
 int readPCF(char adres){
   int m, ack, wynik = 0;

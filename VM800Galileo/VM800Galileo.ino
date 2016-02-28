@@ -1,3 +1,10 @@
+/**
+ * @file VM800Galileo.ino
+ * @author Daniel Sienkiewicz
+ * @date 28 February 2016
+ * @brief Main program file with support computer system.
+ */
+
 #include "FT800.h"
 #include "FT800api.h"
 #include "I2C.h"
@@ -5,7 +12,7 @@
 #include <stdio.h>
 #include <TimerOne.h>
 
-//Global Variables
+// Global Variables
 // LCD display parameters
 unsigned int lcdWidth;					// Active width of LCD display
 unsigned int lcdHeight;					// Active height of LCD display
@@ -29,10 +36,10 @@ unsigned int cmdBufferWr=0x0000;	                // Used to navigate command rin
 unsigned int cmdOffset=0x0000;		                // Used to navigate command rung buffer
 unsigned char ft800Gpio;				// Used for FT800 GPIO register
 
-short int screenNR = 1;
-struct car *audi;
-int dataFormat = 3
-;                                      // 1 - CSV, 2 - XML, 3 - JSON
+short int screenNR = 1;				/**< Selected screen */
+struct car *audi;					/**< Main car structure */
+int dataFormat = 3;					/**< Selected format to save in file 1 - CSV, 2 - XML, 3 - JSON */
+                         
 /**
 ******************************************************************************
 *
@@ -196,13 +203,9 @@ void setup(void){
   initScreen();
 }
 
-/******************************************************************************
-* Function:        void loop(void)
-* PreCondition:    None
-* Input:           None
-* Output:          None
-* Side Effects:    None
-* Overview:        None
+/**
+******************************************************************************
+*
 *****************************************************************************/
 void loop(){
 
@@ -231,9 +234,3 @@ void loop(){
 	setup();
 	while(1) loop();
 }*/
-
-// DEMO
-//dot(BLUE, 500, 1500, 2500);
-//line(RED, 3000, 900, 1500, 1500, 16);
-//line(WHITE, 3000, 900, 4000, 1500, 100);
-//text(0, 0, 16, 0, "Daniel");

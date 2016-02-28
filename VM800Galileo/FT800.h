@@ -1,3 +1,10 @@
+/**
+ * @file FT800.h
+ * @author Daniel Sienkiewicz
+ * @date 28 February 2016
+ * @brief File containing declarations of all functions required to use with VM800.
+ */
+
 #ifndef _FT800_H_
 #define _FT800_H_
 #import <Arduino.h>
@@ -273,11 +280,11 @@
 #define LCD_QVGA	              // QVGA  = 320 x 240 (VM800B/C 3.5")
 //#define LCD_WQVGA		      // WQVGA = 480 x 272 (VM800B/C 4.3" and 5.0")
 
-#define xSDI 8     // Linia SDI intrefejsu SPI wejście do Galileo
-#define xSDO 9     // Linia SDI intrefejsu SPI wyjście od Galileo
-#define xclock 10  // Linia zegarowa wyścia od Galileo
-#define xPD 11     // Linia PD wyświatlacza, wyjście od Galileo
-#define xCS 12     // Linia Chip select wyświetlacza, wyjście od Galielo
+#define xSDI 8     /**< SDI line for SPI interface - input for Galileo */ 
+#define xSDO 9     /**< SDO line for SPI interface - output for Galileo */
+#define xclock 10  /**< Closk line - output for Galileo */
+#define xPD 11     /**< PD line for screen - output for Galileo */
+#define xCS 12     /**< Chip Select line for screen - output for Galileo */
 
 #ifdef PIC
 #pragma config FOSC = INTRCCLK  // Oscillator Selection bits (INTOSC oscillator: CLKOUT function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN)
@@ -295,36 +302,152 @@
 // FT800 Chip Commands - use with cmdWrite
 #define FT800_ACTIVE		0x00		// Initializes FT800
 #define FT800_STANDBY		0x41		// Place FT800 in Standby (clk running)
-#define FT800_SLEEP		0x42	        // Place FT800 in Sleep (clk off)
+#define FT800_SLEEP			0x42	    // Place FT800 in Sleep (clk off)
 #define FT800_PWRDOWN		0x50		// Place FT800 in Power Down (core off)
 #define FT800_CLKEXT		0x44		// Select external clock source
 #define FT800_CLK48M		0x62		// Select 48MHz PLL
 #define FT800_CLK36M		0x61		// Select 36MHz PLL
 #define FT800_CORERST		0x68		// Reset core - all registers default
-#define FT800_GPUACTIVE	0x40
+#define FT800_GPUACTIVE		0x40
 
 // FT800 Memory Commands - use with ft800memWritexx and ft800memReadxx
 #define MEM_WRITE		0x80		// FT800 Host Memory Write
 #define MEM_READ		0x00		// FT800 Host Memory Read
 
 // Colors - fully saturated colors defined here
-#define RED				0xFF0000		// Red
+#define RED					0xFF0000		// Red
 #define GREEN				0x00FF00		// Green
 #define BLUE				0x0000FF		// Blue
 #define WHITE				0xFFFFFF		// White
 #define BLACK				0x000000		// Black
 
+/**
+******************************************************************************
+* @details                            *
+* @param                            *
+* @return                       *
+******************************************************************************
+*/
 void delay_us(int us);
+
+/**
+******************************************************************************
+* @details                            *
+* @param                            *
+* @return                       *
+******************************************************************************
+*/
 void delay_ms(int ms);
+
+/**
+******************************************************************************
+* @details                            *
+* @param                            *
+* @return                       *
+******************************************************************************
+*/
 void sendData(int data);
+
+/**
+******************************************************************************
+* @details                            *
+* @param                            *
+* @return                       *
+******************************************************************************
+*/
 unsigned char getData();
+
+/******************************************************************************
+* Function:        void ft800memWritexx(ftAddress, ftDataxx, ftLength)
+* PreCondition:    None
+* Input:           ftAddress = FT800 memory space address
+*                  ftDataxx = a byte, int or long to send
+* Output:          None
+* Side Effects:    None
+* Overview:        Writes FT800 internal address space
+* Note:            "xx" is one of 8, 16 or 32
+*****************************************************************************/
+
+/**
+******************************************************************************
+*
+* @param ftAddress FT800 memory space address (24 bits)
+* @param ftData8 a byte to send
+*****************************************************************************/
 void ft800memWrite8(unsigned long ftAddress, unsigned char ftData8);
+
+/**
+******************************************************************************
+*
+* @param ftAddress FT800 memory space address (24 bits)
+* @param ftData16 a word (16 bits) to send
+*****************************************************************************/
 void ft800memWrite16(unsigned long ftAddress, unsigned int ftData16);
+
+/**
+******************************************************************************
+*
+* @param ftAddress FT800 memory space address (24 bits)
+* @param ftData32 long (32 bits) to send
+*****************************************************************************/
 void ft800memWrite32(unsigned long ftAddress, unsigned long ftData32);
+
+/******************************************************************************
+ * Function:        unsigned char ft800memReadxx(ftAddress, ftLength)
+ * PreCondition:    None
+ * Input:           ftAddress = FT800 memory space address
+ * Output:          ftDataxx (byte, int or long)
+ * Side Effects:    None
+ * Overview:        Reads FT800 internal address space
+ * Note:            "xx" is one of 8, 16 or 32
+ *****************************************************************************/
+/**
+******************************************************************************
+*
+* @param ftAddress FT800 memory space address (24 bits)
+* @retval Read byte
+*****************************************************************************/
 unsigned char ft800memRead8(unsigned long ftAddress);
+
+/**
+******************************************************************************
+*
+* @param ftAddress FT800 memory space address (24 bits)
+* @retval Read word (16 bits)
+*****************************************************************************/
 unsigned char ft800memRead16(unsigned long ftAddress);
+
+/**
+******************************************************************************
+*
+* @param ftAddress FT800 memory space address (24 bits)
+* @retval Read long (32 bits)
+*****************************************************************************/
 unsigned long ft800memRead32(unsigned long ftAddress);
+
+/******************************************************************************
+* Function:        void incCMDOffset(currentOffset, commandSize)
+* PreCondition:    None
+*                    starting a command list
+* Input:           currentOffset = graphics processor command list pointer
+*                  commandSize = number of bytes to increment the offset
+* Output:          newOffset = the new ring buffer pointer after adding the command
+* Side Effects:    None
+* Overview:        Adds commandSize to the currentOffset.
+*                  Checks for 4K ring-buffer offset roll-over
+* Note:            None
+*****************************************************************************/
 unsigned int incCMDOffset(unsigned int currentOffset, unsigned char commandSize);
+
+/******************************************************************************
+ * Function:        void ft800cmdWrite(ftCommand)
+ * PreCondition:    None
+ * Input:           None
+ * Output:          None
+ * Side Effects:    None
+ * Overview:        Sends FT800 command
+ * Note:            None
+ *****************************************************************************/
 void ft800cmdWrite(unsigned char ftCommand);
 
 #endif

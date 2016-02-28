@@ -1,16 +1,7 @@
 #include "simulator.h"
 
-/**
-******************************************************************************
-* @details        Debug function to print car structure on a serial monitor  *
-*                 console and to log file on SD car                          *
-* @param          Car struct to print                                        *
-******************************************************************************
-*/
 void printObj(struct car * obj){
-  String command = "";
-  
-  Serial.println("+--------------------+");                                  // Print data into serial monitor console
+  Serial.println("+--------------------+");                                  // DEBUG Print data into serial monitor console
   Serial.println("| Audi object:       |");
   Serial.print("| Doors = ");
   Serial.println(obj->doors);
@@ -29,7 +20,6 @@ void printObj(struct car * obj){
   Serial.println("+-------------------+");
   
   // Save data to file
-  
   FILE *fp;
   switch(dataFormat){
     case 1:                // CSV
@@ -53,23 +43,10 @@ void printObj(struct car * obj){
   fclose(fp);
 }
 
-/**
-******************************************************************************
-* @details        Reading value from analog ports (temperatures)             *
-* @param          portNumber The number of the analog input pin to read      *
-* @return         Value from the specified analog pin                        *
-******************************************************************************
-*/
 int readTemp(int portNumber){
   return analogRead(portNumber);
 }
 
-/**
-******************************************************************************
-* @details        Copying data function from temporary to main struct        *
-* @param          *audi, *tmp Structures to and from which data are copied   *
-******************************************************************************
-*/
 void save(struct car *audi, struct car *tmp){
   audi->doors = tmp->doors;
   audi->seatbelts = tmp->seatbelts;
@@ -80,11 +57,6 @@ void save(struct car *audi, struct car *tmp){
   audi->tempEngine = tmp->tempEngine;
 }
 
-/**
-******************************************************************************
-* @details        Reading data about car status                              *
-******************************************************************************
-*/
 struct car * readData(){
   struct car * tmp = (struct car *)malloc(sizeof(struct car));
   
@@ -104,11 +76,6 @@ struct car * readData(){
   return tmp;
 }
 
-/**
-******************************************************************************
-* @details        Check if sth on digital ports was changed                  *
-******************************************************************************
-*/
 void checkChangesDigital(){
   digitalWrite(13, HIGH);
   struct car * tmp = readData();
@@ -132,11 +99,6 @@ void checkChangesDigital(){
   digitalWrite(13, LOW);
 }
 
-/**
-******************************************************************************
-* @details        Check if sth on analog ports was changed                  *
-******************************************************************************
-*/
 void checkChangesAnalog(){
   digitalWrite(13, HIGH);
   struct car * tmp = readData();
