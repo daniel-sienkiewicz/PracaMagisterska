@@ -14,32 +14,33 @@
 
 // Global Variables
 // LCD display parameters
-unsigned int lcdWidth;					// Active width of LCD display
-unsigned int lcdHeight;					// Active height of LCD display
-unsigned int lcdHcycle;					// Total number of clocks per line
-unsigned int lcdHoffset;				// Start of active line
-unsigned int lcdHsync0;					// Start of horizontal sync pulse
-unsigned int lcdHsync1;					// End of horizontal sync pulse
-unsigned int lcdVcycle;					// Total number of lines per screen
-unsigned int lcdVoffset;				// Start of active screen
-unsigned int lcdVsync0;					// Start of vertical sync pulse
-unsigned int lcdVsync1;					// End of vertical sync pulse
-unsigned char lcdPclk;					// Pixel Clock
-unsigned char lcdSwizzle;				// Define RGB output pins
-unsigned char lcdPclkpol;				// Define active edge of PCLK
+unsigned int lcdWidth;					/**< Active width of LCD display */
+unsigned int lcdHeight;					/**< Active height of LCD display */
+unsigned int lcdHcycle;					/**< Total number of clocks per line */
+unsigned int lcdHoffset;				/**< Start of active line */
+unsigned int lcdHsync0;					/**< Start of horizontal sync pulse */
+unsigned int lcdHsync1;					/**< End of horizontal sync pulse */
+unsigned int lcdVcycle;					/**< Total number of lines per screen */
+unsigned int lcdVoffset;				/**< Start of active screen */
+unsigned int lcdVsync0;					/**< Start of vertical sync pulse */
+unsigned int lcdVsync1;					/**< End of vertical sync pulse */
+unsigned char lcdPclk;					/**< Pixel Clock */
+unsigned char lcdSwizzle;				/**< Define RGB output pins */
+unsigned char lcdPclkpol;				/**< Define active edge of PCLK */
 
-unsigned long ramDisplayList=RAM_DL;		        // Set beginning of display list memory
-unsigned long ramCommandBuffer=RAM_CMD;	                // Set beginning of graphics command memory
+unsigned long ramDisplayList=RAM_DL;		        /**< Set beginning of display list memory */
+unsigned long ramCommandBuffer=RAM_CMD;	                /**< Set beginning of graphics command memory */
 
-unsigned int cmdBufferRd;				// Used to navigate command ring buffer
-unsigned int cmdBufferWr=0x0000;	                // Used to navigate command ring buffer
-unsigned int cmdOffset=0x0000;		                // Used to navigate command rung buffer
-unsigned char ft800Gpio;				// Used for FT800 GPIO register
+unsigned int cmdBufferRd;				/**< Used to navigate command ring buffer */
+unsigned int cmdBufferWr=0x0000;	                /**< Used to navigate command ring buffer */
+unsigned int cmdOffset=0x0000;		                /**< Used to navigate command rung buffer */
+unsigned char ft800Gpio;				/**< Used for FT800 GPIO register */
 
 short int screenNR = 1;				        /**< Selected screen - 1 main screen, 2 - smart mirror, 3 - options */
 struct car *audi;					/**< Main car structure with data from sensors */
 int dataFormat = 3;					/**< Selected format to save in file 1 - CSV, 2 - XML, 3 - JSON */
-                         
+int saveData = 0;                                       /**< If data will be saving on SD card */
+
 /**
 ******************************************************************************
 *
@@ -82,36 +83,36 @@ void setup(void){
 #endif
 
 // LCD display parameters
-#ifdef LCD_QVGA			// QVGA display parameters
-  lcdWidth	 = 320;		// Active width of LCD display
-  lcdHeight  = 240;		// Active height of LCD display
-  lcdHcycle  = 408;		// Total number of clocks per line
-  lcdHoffset = 70;		// Start of active line
-  lcdHsync0  = 0;		// Start of horizontal sync pulse
-  lcdHsync1  = 10;		// End of horizontal sync pulse
-  lcdVcycle  = 263;		// Total number of lines per screen
-  lcdVoffset = 13;		// Start of active screen
-  lcdVsync0  = 0;		// Start of vertical sync pulse
-  lcdVsync1  = 2;		// End of vertical sync pulse
-  lcdPclk    = 8;		// Pixel Clock
-  lcdSwizzle = 2;		// Define RGB output pins
-  lcdPclkpol = 0;		// Define active edge of PCLK
+#ifdef LCD_QVGA			/**< QVGA display parameters */
+  lcdWidth	 = 320;		/**< Active width of LCD display */
+  lcdHeight  = 240;		/**< Active height of LCD display */
+  lcdHcycle  = 408;		/**< Total number of clocks per line */
+  lcdHoffset = 70;		/**< Start of active line */
+  lcdHsync0  = 0;		/**< Start of horizontal sync pulse */
+  lcdHsync1  = 10;		/**< End of horizontal sync pulse */
+  lcdVcycle  = 263;		/**< Total number of lines per screen */
+  lcdVoffset = 13;		/**< Start of active screen */
+  lcdVsync0  = 0;		/**< Start of vertical sync pulse */
+  lcdVsync1  = 2;		/**< End of vertical sync pulse */
+  lcdPclk    = 8;		/**< Pixel Clock */
+  lcdSwizzle = 2;		/**< Define RGB output pins */
+  lcdPclkpol = 0;		/**< Define active edge of PCLK */
 #endif
 
-#ifdef LCD_WQVGA		// WQVGA display parameters
-  lcdWidth   = 480;		// Active width of LCD display
-  lcdHeight  = 272;		// Active height of LCD display
-  lcdHcycle  = 548;		// Total number of clocks per line
-  lcdHoffset = 43;		// Start of active line
-  lcdHsync0  = 0;		// Start of horizontal sync pulse
-  lcdHsync1  = 41;		// End of horizontal sync pulse
-  lcdVcycle  = 292;		// Total number of lines per screen
-  lcdVoffset = 12;		// Start of active screen
-  lcdVsync0  = 0;		// Start of vertical sync pulse
-  lcdVsync1  = 10;		// End of vertical sync pulse
-  lcdPclk    = 5;		// Pixel Clock
-  lcdSwizzle = 0;		// Define RGB output pins
-  lcdPclkpol = 1;		// Define active edge of PCLK
+#ifdef LCD_WQVGA		/**< WQVGA display parameters */
+  lcdWidth   = 480;		/**< Active width of LCD display */
+  lcdHeight  = 272;		/**< Active height of LCD display */
+  lcdHcycle  = 548;		/**< Total number of clocks per line */
+  lcdHoffset = 43;		/**< Start of active line */
+  lcdHsync0  = 0;		/**< Start of horizontal sync pulse */
+  lcdHsync1  = 41;		/**< End of horizontal sync pulse */
+  lcdVcycle  = 292;		/**< Total number of lines per screen */
+  lcdVoffset = 12;		/**< Start of active screen */
+  lcdVsync0  = 0;		/**< Start of vertical sync pulse */
+  lcdVsync1  = 10;		/**< End of vertical sync pulse */
+  lcdPclk    = 5;		/**< Pixel Clock */
+  lcdSwizzle = 0;		/**< Define RGB output pins */
+  lcdPclkpol = 1;		/**< Define active edge of PCLK */
 #endif
 
 //wake up FT800
@@ -208,9 +209,9 @@ void setup(void){
 *
 *****************************************************************************/
 void loop(){
-  uint32_t ReadWord = ft800memRead8(REG_TOUCH_DIRECT_XY);
-  int y = ReadWord & 0xffff; 
-  int x = (ReadWord>>16) & 0xffff;
+  uint32_t ReadWord = ft800memRead32(REG_TOUCH_DIRECT_XY);
+  uint32_t y = (uint32_t) (ReadWord & 0xffff); 
+  uint32_t x = (uint32_t) ((ReadWord >> 16) & 0xffff);
   
   Serial.print(" x = ");
   Serial.println(x);
@@ -220,29 +221,38 @@ void loop(){
   // Screens controller
   switch(screenNR){
     case 1:
-      if(80 < y && y < 180){
+      if(18000 < y && y < 50000 && 12000 < x && x < 65000){
         screenNR = 2;
+        smartMirrorScreen();
+      }
+      if(30000 < y && y < 47000 && 30000 < x && x < 46000){
+        screenNR = 3;
         smartMirrorScreen();
       }
      break; 
     case 2:
-      if(80 < y && y < 180){
+      if(18000 < y && y < 50000 && 12000 < x && x < 65000){
         screenNR = 1;
         mainScreen();
       }
      break;
      case 3:
-       if(80 < y && y < 180){
+       if(18000 < y && y < 50000 && 12000 < x && x < 65000){
          screenNR = 1;
          mainScreen();
        }
+       if(30000 < y && y < 47000 && 30000 < x && x < 46000){
+        screenNR = 3;
+        calibrate();
+      }
        break;
   }
+  Serial.println(screenNR);
 }
 
 /**
 ******************************************************************************
-*
+* Main function if MicroControler is PIC
 *****************************************************************************/
 /*void main(void){
 

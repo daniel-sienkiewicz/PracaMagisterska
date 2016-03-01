@@ -5,12 +5,15 @@ void initScreen(){
   text(80, 10, 31, 0, "Welcome");
   spinner(150, 150, 0, 1);
   show();
-  mainScreen();
+  opctionsScreen();
 }
 
 void autko(){
   Serial.println("Start Autko");
-  
+  line(WHITE, 1500, 1700, 3500, 1700, 50);
+  line(WHITE, 1500, 1700, 1500, 2500, 50);
+  line(WHITE, 3500, 1700, 3500, 2500, 50);
+  line(WHITE, 1500, 2500, 3500, 2500, 50);
   Serial.println("Koniec Autko");
 }
 
@@ -45,8 +48,23 @@ void smartMirrorScreen(){
 void opctionsScreen(){
   Serial.println("Start Options");
   start(BLACK);
-  text(10, 10, 21, 0, "Options");
-  slider(150, 150, 40, 20, 0, 5, 4);
+  text(10, 30, 21, 0, "Data format");
+  switch(dataFormat){
+    case 1: button(100, 30, 130, 25, 21, 0, "CSV");
+            break;
+    case 2: button(100, 30, 130, 25, 21, 0, "XML");
+            break;
+    case 3: button(100, 30, 130, 25, 21, 0, "JSON");
+            break;
+  }
+  
+  text(10, 70, 21, 0, "Saving data");
+  if(!saveData)
+    button(100, 70, 130, 25, 21, 0, "OK");
+  else
+    button(100, 70, 130, 25, 21, 0, "NO");
+   
+  button(200, 200, 110, 30, 28, 0, "Calibrate");
   button(10, 200, 130, 30, 28, 0, "Back"); 
   show();
   Serial.println("Koniec Options");

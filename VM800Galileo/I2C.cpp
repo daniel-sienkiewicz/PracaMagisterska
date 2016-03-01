@@ -1,6 +1,6 @@
 #include "I2C.h"
 
-int d = 1; 																	/**< Delay time - for PCF handing */
+int d = 1; 				/**< Delay time - for PCF handing */
 
 int readPCF(char adres){
   int m, ack, wynik = 0;

@@ -27,17 +27,17 @@ void printObj(struct car * obj){
             fp = fopen("/tmp/carData.csv", "a");
             fseek(fp, 0L, SEEK_END);
             if(ftell(fp) == 0)
-              fprintf(fp, "doors, seatbelts, lights, r\n");
+              fprintf(fp, "doors, seatbelts, lights, r, temp out, temp in, temp engine\n");
             
-            fprintf(fp, "%d, %d, %d, %d\n", obj->doors, obj->seatbelts, obj->lights, obj->r);
+            fprintf(fp, "%d, %d, %d, %d, %f, %f, %f\n", obj->doors, obj->seatbelts, obj->lights, obj->r, obj->tempOut, obj->tempIn, obj->tempEngine);
             break;
     case 2:                // XML
             fp = fopen("/tmp/carData.xml", "a");
-            fprintf(fp, "<car>\n\t<doors> %d </doors>\n\t<seatbelts> %d </seatbelts>\n\t<lights> %d </lights>\n\t<r> %d </r>\n</car>\n", obj->doors, obj->seatbelts, obj->lights, obj->r);
+            fprintf(fp, "<car>\n\t<doors> %d </doors>\n\t<seatbelts> %d </seatbelts>\n\t<lights> %d </lights>\n\t<r> %d </r>\n\t<Temp Out> %f </Temp Out>\n\t<Temp In> %f </Temp In>\n\t<Temp Engine> %f </Temp Engine>\n</car>\n", obj->doors, obj->seatbelts, obj->lights, obj->r, obj->tempOut, obj->tempIn, obj->tempEngine);
             break;
     case 3:                // JSON
             fp = fopen("/tmp/carData.json", "a");
-            fprintf(fp, "{ \"Car\" :{ \"doors \" : %d, \"seatbelts\" : %d, \"lights\" : %d, \"r\" : %d}}\n", obj->doors, obj->seatbelts, obj->lights, obj->r);
+            fprintf(fp, "{ \"Car\" :{ \"doors \" : %d, \"seatbelts\" : %d, \"lights\" : %d, \"r\" : %d, \"Temp Out\" : %f, \"Temp In\" : %f, \"Temp Engine\" : %f}}\n", obj->doors, obj->seatbelts, obj->lights, obj->r, obj->tempOut, obj->tempIn, obj->tempEngine);
             break;
   }
   fclose(fp);

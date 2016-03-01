@@ -9,9 +9,9 @@
 #define _FT800_H_
 #import <Arduino.h>
 
-#define FT_DL_SIZE            (8*1024)  //8KB Display List buffer size
-#define FT_CMD_FIFO_SIZE      (4*1024)  //4KB coprocessor Fifo size
-#define FT_CMD_SIZE           (4)       //4 byte per coprocessor command of EVE
+#define FT_DL_SIZE            (8*1024)  /**< 8KB Display List buffer size */
+#define FT_CMD_FIFO_SIZE      (4*1024)  /**< 4KB coprocessor Fifo size */
+#define FT_CMD_SIZE           (4)       /**< 4 byte per coprocessor command of EVE */
 
 #define FT800_VERSION         "1.9.0"
 
@@ -300,26 +300,26 @@
 #endif
 
 // FT800 Chip Commands - use with cmdWrite
-#define FT800_ACTIVE		0x00		// Initializes FT800
-#define FT800_STANDBY		0x41		// Place FT800 in Standby (clk running)
-#define FT800_SLEEP			0x42	    // Place FT800 in Sleep (clk off)
-#define FT800_PWRDOWN		0x50		// Place FT800 in Power Down (core off)
-#define FT800_CLKEXT		0x44		// Select external clock source
-#define FT800_CLK48M		0x62		// Select 48MHz PLL
-#define FT800_CLK36M		0x61		// Select 36MHz PLL
-#define FT800_CORERST		0x68		// Reset core - all registers default
+#define FT800_ACTIVE		0x00		/**< Initializes FT800 */
+#define FT800_STANDBY		0x41		/**< Place FT800 in Standby (clk running) */
+#define FT800_SLEEP		0x42	        /**< Place FT800 in Sleep (clk off) */
+#define FT800_PWRDOWN		0x50		/**< Place FT800 in Power Down (core off) */
+#define FT800_CLKEXT		0x44		/**< Select external clock source */
+#define FT800_CLK48M		0x62		/**< Select 48MHz PLL */
+#define FT800_CLK36M		0x61		/**< Select 36MHz PLL */
+#define FT800_CORERST		0x68		/**< Reset core - all registers default */
 #define FT800_GPUACTIVE		0x40
 
 // FT800 Memory Commands - use with ft800memWritexx and ft800memReadxx
-#define MEM_WRITE		0x80		// FT800 Host Memory Write
-#define MEM_READ		0x00		// FT800 Host Memory Read
+#define MEM_WRITE		0x80		/**< FT800 Host Memory Write */
+#define MEM_READ		0x00		/**< FT800 Host Memory Read */
 
 // Colors - fully saturated colors defined here
-#define RED					0xFF0000		// Red
-#define GREEN				0x00FF00		// Green
-#define BLUE				0x0000FF		// Blue
-#define WHITE				0xFFFFFF		// White
-#define BLACK				0x000000		// Black
+#define RED				0xFF0000		/**< Red */
+#define GREEN				0x00FF00		/**< Green */
+#define BLUE				0x0000FF		/**< Blue */
+#define WHITE				0xFFFFFF		/**< White */
+#define BLACK				0x000000		/**< Black */
 
 /**
 ******************************************************************************

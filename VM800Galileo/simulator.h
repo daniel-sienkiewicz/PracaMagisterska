@@ -13,6 +13,7 @@
 
 extern struct car *audi;
 extern int dataFormat;
+extern int saveData;
 
 /**
 ******************************************************************************
