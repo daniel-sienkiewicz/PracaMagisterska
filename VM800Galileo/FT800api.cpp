@@ -5,7 +5,7 @@ void initScreen(){
   text(80, 10, 31, 0, "Welcome");
   spinner(150, 150, 0, 1);
   show();
-  opctionsScreen();
+  mainScreen();
 }
 
 void autko(){
