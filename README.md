@@ -13,6 +13,6 @@ Uniwersytet Gdański
 * symulator - opis symulatora samochodowego
 * tex - pliki pracy magisterskiej (LaTeX)
 * PCF8574N - własna wersji biblioteki potrzebnej do obs³ugi I/O Expander PCF8574N
-
+* website - strona www obrazujaca aktualny stan samochodu z REST API
 ##Autor
 [Daniel Sienkiewicz](mailto:daniel@sienkiewicz.ovh)

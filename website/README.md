@@ -1,4 +1,4 @@
-# Strona www obrazująca aktualny stan samochodu"
+# Strona www obrazująca aktualny stan samochodu
 
 ### Instalacja
 ~~~
