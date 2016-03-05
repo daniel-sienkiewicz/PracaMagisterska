@@ -1,0 +1,21 @@
+{
+  "name": "Panstwa Miasta",
+  "version": "1.0.0",
+  "authors": [
+    "Daniel Sienkiewicz <d.sienkiewicz@interia.eu>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.2.x",
+    "jquery": "2.1.x",
+    "bootstrap": "~3.0.0"
+  }
+}

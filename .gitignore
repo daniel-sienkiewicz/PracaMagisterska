@@ -61,3 +61,5 @@ bld/
 *.autosave
 tools/
 VM800Linux/tests/
+website/bower_components/
+website/node_modules/
