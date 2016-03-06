@@ -22,21 +22,36 @@ app.use(express.static("public"));
 app.use(express.static("bower_components"));
 app.use(express.static(path.join(__dirname, 'bower_components/jquery/dist')));
 
+var tempIn = NaN;
+var tempOut = NaN;
+var tempEngine = NaN;
+var GPS = NaN;
+
 app.post('/updateData', function (req, res) {
     var car = req.body;
     console.log('New car Data\n TempIn: ' + car.tempIn + "\n TempOut: " + car.tempOut + "\n TempEngine: " + car.tempEngine);
-	io.sockets.emit('tempIn', car.tempIn);
-	io.sockets.emit('tempOut', car.tempOut);
-	io.sockets.emit('tempEngine', car.tempEngine);
-	io.sockets.emit('GPS', car.GPS);
+	tempIn = car.tempIn
+	tempOut = car.tempOut
+	tempEngine =car.tempEngine
+	GPS = car.GPS;
+	
+	io.sockets.emit('tempIn', tempIn);
+	io.sockets.emit('tempOut', tempOut);
+	io.sockets.emit('tempEngine', tempEngine);
+	io.sockets.emit('GPS', GPS);
 	res.send("ok");
 });
+
+
 
 /**
  * Wlasciwa logika
  */
 io.sockets.on('connection', function(socket) {
-    
+    io.sockets.emit('tempIn', tempIn);
+	io.sockets.emit('tempOut', tempOut);
+	io.sockets.emit('tempEngine', tempEngine);
+	io.sockets.emit('GPS', GPS);
 });
 
 /**

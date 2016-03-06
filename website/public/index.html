@@ -2,26 +2,21 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<script src="/socket.io/socket.io.js"></script>
-  <script src="angular/angular.min.js"></script>
-  <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="js/main.js"></script>
-	<script src="jquery.min.js"></script>
-  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-	<link rel="stylesheet" href="css/styl.css">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="custom/custom.css">
 	<title>Praca Magisterska</title>
 
 </head>
 <body data-ng-app="Autko">
 <div data-ng-controller="ctrlr">
-
-GPS: {{getGPS()}}
-
-	<div class="container">
-		<table class="table"> 
-			<thead> <tr><th>Temp. Inside</th> <th>Temp. Outside</th> <th>Temp. Engine</th> </tr> </thead> 
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    <div class="bs-example" data-example-id="hoverable-table">
+                        <table class="table table-hover">
+                            <thead> <tr><th>Temp. Inside</th> <th>Temp. Outside</th> <th>Temp. Engine</th> </tr> </thead> 
 			<tbody> 
 				<tr> 
 					<td>{{getTempIn()}} C</td> 
@@ -29,16 +24,45 @@ GPS: {{getGPS()}}
 					<td>{{getTempEngine()}} C</td> 
 				</tr> 
 			</tbody> 
-		</table>
-		
-		<img src="img/autko.png" alt="Car">
-		
-	<footer class="footer">
-      <div class="container">
-        <p class="text-muted"><a href="http://sienkiewicz.ovh">Daniel Sienkiewicz, &copy; 2016</a></p>
-      </div>
-    </footer>
-	</div>
-	</div>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div>
+                        <img src="img/autko.png" alt="audi" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    <div>
+                        <section class="map">
+                            <div id="map"></div>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-12">
+
+                    <div><p>
+                       OPCJE </p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+       <p class="text-muted"><a href="http://sienkiewicz.ovh">Daniel Sienkiewicz, &copy; 2016</a></p>
+    </div>
+</footer>
+
+<script type="text/javascript" src="jQuery/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="custom/map.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="angular/angular.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
