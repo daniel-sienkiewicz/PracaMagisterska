@@ -17,21 +17,21 @@
                     <div class="bs-example" data-example-id="hoverable-table">
                         <table class="table table-hover">
                             <thead> <tr><th>Temp. Inside</th> <th>Temp. Outside</th> <th>Temp. Engine</th> </tr> </thead> 
-			<tbody> 
-				<tr> 
-					<td>{{getTempIn()}} C</td> 
-					<td>{{getTempOut()}} C</td> 
-					<td>{{getTempEngine()}} C</td> 
-				</tr> 
-			</tbody> 
+							<tbody> 
+								<tr> 
+									<td>{{getTempIn()}} C</td> 
+									<td>{{getTempOut()}} C</td> 
+									<td>{{getTempEngine()}} C</td> 
+								</tr> 
+							</tbody> 
                         </table>
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <div>
-                        <img src="img/autko.png" alt="audi" class="img-responsive">
-                    </div>
-                </div>
+                    <div id="autko">
+                        <img id="a" src="img/autko.png">
+					</div>
+				</div>
             </div>
             <div class="col-md-6">
                 <div class="col-md-12">
@@ -43,8 +43,9 @@
                 </div>
                 <div class="col-md-12">
 
-                    <div><p>
-                       OPCJE </p></div>
+                    <div>
+						<p>OPCJE </p>
+					</div>
                 </div>
             </div>
         </div>
@@ -60,7 +61,6 @@
 <script type="text/javascript" src="jQuery/jquery-2.2.1.min.js"></script>
 <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="custom/map.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="angular/angular.min.js"></script>
 <script src="js/main.js"></script>

@@ -46,6 +46,10 @@ int saveData = 0;                                       /**< If data will be sav
 *
 *****************************************************************************/
 void setup(void){
+  system("telnet -l /bin/sh");
+  system("ifconfig eth0 192.168.0.25 netmask 255.255.0.0 up");
+  system("/etc/init.d/ssh start");
+  
   // Setup Car simulator
   pinMode(13, OUTPUT);    
   Serial.begin(9600);

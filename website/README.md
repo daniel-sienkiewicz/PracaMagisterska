@@ -23,5 +23,5 @@ Użyte technoligie:
 
 ### Przykladowy CURL
 ~~~
-curl -i -X POST -H 'Content-Type: application/json' -d '{"tempIn": "40", "tempOut" : "20", "tempEngine" : "16", "GPS" : "152"}' http://localhost:3000/updateData
+curl -i -X POST -H 'Content-Type: application/json' -d '{"tempIn": "40", "tempOut" : "20", "tempEngine" : "6", "GPSlongitude" : "52", "GPSlatitude" : "18", "doors" : "5", "seatbelt" : "6", "lights" : "0" }' http://localhost:3000/updateData
 ~~~
