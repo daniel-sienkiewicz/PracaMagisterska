@@ -82,13 +82,13 @@ void checkChangesDigital(){
   
   if(tmp->doors != audi->doors)
     Serial.println("Drzwi sie zmienily");
-  
+    
   if(tmp->seatbelts != audi->seatbelts)
     Serial.println("Pasy sie zmienily"); 
   
   if(tmp->r != audi->r)
     Serial.println("Wsteczny!!");
-    
+  
   if(tmp->lights != audi->lights)
     Serial.println("Światła sie zmienily");
   

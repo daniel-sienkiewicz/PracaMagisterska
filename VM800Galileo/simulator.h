@@ -10,6 +10,7 @@
 #import <Arduino.h>
 #include "I2C.h"
 #include <stdio.h>
+#include "FT800api.h"
 
 extern struct car *audi;
 extern int dataFormat;

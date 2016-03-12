@@ -112,6 +112,7 @@ void button(int16_t x, int16_t y, int16_t w, int16_t h, int16_t font, uint16_t o
   }
 
   free(data);
+  
   Serial.println("Koniec Guzik");
 }
 
@@ -179,7 +180,7 @@ void line(unsigned long color, unsigned long line_x1, unsigned long line_y1, uns
   
   ft800memWrite32(RAM_CMD+cmdOffset, (DL_VERTEX2F|(line_x2<<15)|line_y2));
   cmdOffset=incCMDOffset(cmdOffset,4);	
-
+  
   Serial.println("Koniec Linia");
 }
 

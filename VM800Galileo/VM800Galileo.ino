@@ -50,6 +50,13 @@ void setup(void){
   system("ifconfig eth0 192.168.0.25 netmask 255.255.0.0 up");
   system("/etc/init.d/ssh start");
   
+  system("date '+%H:%M:%S' > /tmp/time.txt");
+  char buf[9];
+  FILE *fp;
+  fp = fopen("/tmp/time.txt", "r");
+  fgets(buf, 9, fp);
+  fclose(fp);
+  
   // Setup Car simulator
   pinMode(13, OUTPUT);    
   Serial.begin(9600);
@@ -204,7 +211,10 @@ void setup(void){
     ft800memWrite8(REG_PWM_DUTY,duty);			// Turn on backlight - ramp up slowly to full brighness
     delay_ms(10);
   }
-  Serial.println("Koniec inicjalizacji");
+  Serial.println("Koniec inicjalizacji"); 
+  Serial.print("Aktualny czas: ");
+  Serial.println(buf);
+  
   initScreen();
 }
 
@@ -213,17 +223,13 @@ void setup(void){
 *
 *****************************************************************************/
 void loop(){
-  uint32_t ReadWord = ft800memRead32(REG_TOUCH_DIRECT_XY);
-  uint32_t y = (uint32_t) (ReadWord & 0xffff); 
-  uint32_t x = (uint32_t) ((ReadWord >> 16) & 0xffff);
   
+  uint32_t ReadWord = ft800memRead32((REG_TOUCH_TAG));
   Serial.print(" x = ");
-  Serial.println(x);
-  Serial.print(" y = ");
-  Serial.println(y);
+  Serial.println(ReadWord);
 
   // Screens controller
-  switch(screenNR){
+  /*switch(screenNR){
     case 1:
       if(18000 < y && y < 50000 && 12000 < x && x < 65000){
         screenNR = 2;
@@ -250,8 +256,7 @@ void loop(){
         calibrate();
       }
        break;
-  }
-  Serial.println(screenNR);
+  }*/
 }
 
 /**
