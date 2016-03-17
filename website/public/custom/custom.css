@@ -11,8 +11,8 @@ html,
 body {
   height: 100%;
   background-color: #333;
-
 }
+
 body {
   color: #fff;
   text-align: center;
@@ -25,5 +25,5 @@ body {
 
 img{
 	margin : auto;
-	position: absolute; 
+	position: absolute;
 }

@@ -17,7 +17,7 @@ var path = require('path');
   app.use(express.bodyParser());
   app.use(app.router);
 });
- 
+
 app.use(express.static("public"));
 app.use(express.static("bower_components"));
 app.use(express.static(path.join(__dirname, 'bower_components/jquery/dist')));
@@ -31,7 +31,7 @@ var lights = NaN;
 var doors = NaN;
 
 app.post('/updateData', function (req, res) {
-    var car = req.body;
+  var car = req.body;
 	tempIn = car.tempIn
 	tempOut = car.tempOut
 	tempEngine =car.tempEngine
@@ -39,7 +39,7 @@ app.post('/updateData', function (req, res) {
 	GPSlatitude = car.GPSlatitude;
 	lights = car.lights
 	doors = car.doors;
-	
+
 	io.sockets.emit('tempIn', tempIn);
 	io.sockets.emit('tempOut', tempOut);
 	io.sockets.emit('tempEngine', tempEngine);
@@ -66,6 +66,6 @@ io.sockets.on('connection', function(socket) {
 /**
  * Nasluch - port 3000
  */
-httpServer.listen(3000, function() {	
+httpServer.listen(3000, function() {
     console.log('Serwer HTTP działa na pocie 3000');
 });

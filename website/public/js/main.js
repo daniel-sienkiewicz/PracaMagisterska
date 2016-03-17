@@ -15,66 +15,93 @@ app.controller('ctrlr', ['$scope', 'socket',
 		$scope.lights = 0;
 		$scope.doors = 0;
 		$scope.seatbelts = 0;
-		
+
 		$scope.getTempIn = function() {
             return $scope.tempIn;
-        };
-        
+    };
+
 		$scope.getTempOut = function() {
             return $scope.tempOut;
-        };
-		
+    };
+
 		$scope.getTempEngine = function() {
             return $scope.tempEngine;
-        };
-		
+    };
+
 		$scope.getGPS = function() {
             return $scope.GPS;
-        };
-		
+    };
+
 		socket.on('tempIn', function(data) {
-            $scope.tempIn = data;
+      $scope.tempIn = data;
 			$scope.$digest();
-        });
-		
+    });
+
 		socket.on('tempOut', function(data) {
-            $scope.tempOut = data;
+      $scope.tempOut = data;
 			$scope.$digest();
-        });
-		
+    });
+
 		socket.on('tempEngine', function(data) {
-            $scope.tempEngine = data;
+      $scope.tempEngine = data;
 			$scope.$digest();
-        });
-		
+    });
+
 		socket.on('GPSlatitude', function(data) {
-            $scope.GPSlatitude = data;
+      $scope.GPSlatitude = data;
 			$scope.$digest();
 			init();
-        });
-		
+    });
+
 		socket.on('GPSlongitude', function(data) {
-            $scope.GPSlongitude = data;
+      $scope.GPSlongitude = data;
 			$scope.$digest();
 			init();
-        });
+    });
 
 		socket.on('lights', function(data) {
-            $scope.lights = data;
+      $scope.lights = data;
 			$scope.$digest();
 
 			if($scope.lights == 1){
-				$("#autko").append("<img id ='l' src='img/swiatla.png'>");
-			} else
-				$("#l").remove();
-        });
-		
+				$("#s").show();
+			} else if($scope.lights == 0)
+				  $("#s").hide();
+      });
+
 		socket.on('doors', function(data) {
-            $scope.doors = data;
+      $scope.doors = data;
 			$scope.$digest();
-				$("#autko").append("<img id ='l' src='img/drzwi1.png'>");
-        });
-		
+      if($scope.doors & 16){
+        $("#1").show();
+      } else{
+        $("#1").hide();
+      }
+
+      if($scope.doors & 8){
+        $("#2").show();
+      } else{
+        $("#2").hide();
+      }
+
+      if($scope.doors & 4){
+        $("#3").show();
+      } else{
+        $("#3").hide();
+      }
+
+      if($scope.doors & 2){
+        $("#4").show();
+      } else{
+        $("#4").hide();
+      }
+
+      if($scope.doors & 1){
+        $("#5").show();
+      } else{
+        $("#5").hide();
+      }});
+
 		google.maps.event.addDomListener(window, 'load', init);
 
 		function init() {
