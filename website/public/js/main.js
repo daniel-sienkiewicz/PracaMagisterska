@@ -14,7 +14,7 @@ app.controller('ctrlr', ['$scope', 'socket',
 		$scope.GPSlatitude = NaN;
 		$scope.lights = 0;
 		$scope.doors = 0;
-		$scope.seatbelts = 0;
+		$scope.seatbelt = 0;
 
 		$scope.getTempIn = function() {
             return $scope.tempIn;
@@ -31,6 +31,17 @@ app.controller('ctrlr', ['$scope', 'socket',
 		$scope.getGPS = function() {
             return $scope.GPS;
     };
+
+    socket.on('seatbelt', function(data) {
+      $scope.seatbelt = data;
+      $scope.$digest();
+
+      if($scope.seatbelt != 0){
+        $("#p").show();
+      } else{
+        $("#p").hide();
+      }
+    });
 
 		socket.on('tempIn', function(data) {
       $scope.tempIn = data;
@@ -66,7 +77,7 @@ app.controller('ctrlr', ['$scope', 'socket',
 			if($scope.lights == 1){
 				$("#s").show();
 			} else if($scope.lights == 0)
-				  $("#s").hide();
+				$("#s").hide();
       });
 
 		socket.on('doors', function(data) {

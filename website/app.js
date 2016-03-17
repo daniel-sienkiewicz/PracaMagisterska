@@ -29,6 +29,7 @@ var GPSlatitude = NaN;
 var GPSlongitude = NaN;
 var lights = NaN;
 var doors = NaN;
+var seatbelt = NaN;
 
 app.post('/updateData', function (req, res) {
   var car = req.body;
@@ -39,6 +40,7 @@ app.post('/updateData', function (req, res) {
 	GPSlatitude = car.GPSlatitude;
 	lights = car.lights
 	doors = car.doors;
+  seatbelt = car.seatbelt;
 
 	io.sockets.emit('tempIn', tempIn);
 	io.sockets.emit('tempOut', tempOut);
@@ -47,6 +49,7 @@ app.post('/updateData', function (req, res) {
 	io.sockets.emit('GPSlatitude', GPSlatitude);
 	io.sockets.emit('lights', lights);
 	io.sockets.emit('doors', doors);
+  io.sockets.emit('seatbelt', seatbelt);
 	res.send("ok");
 });
 
@@ -54,13 +57,14 @@ app.post('/updateData', function (req, res) {
  * Wlasciwa logika
  */
 io.sockets.on('connection', function(socket) {
-    io.sockets.emit('tempIn', tempIn);
+  io.sockets.emit('tempIn', tempIn);
 	io.sockets.emit('tempOut', tempOut);
 	io.sockets.emit('tempEngine', tempEngine);
 	io.sockets.emit('GPSlongitude', GPSlongitude);
 	io.sockets.emit('GPSlatitude', GPSlatitude);
 	io.sockets.emit('lights', lights);
 	io.sockets.emit('doors', doors);
+  io.sockets.emit('seatbelt', seatbelt);
 });
 
 /**
