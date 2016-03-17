@@ -503,30 +503,14 @@ unsigned long y){
 %================Działanie komputera pokładowego=====================
 \chapter{Działanie komputera pokładowego}
 \section{Założenia funkcjonalne projektu}
-Najważniejszym założeniem funkcjonalnym projektowanego systemu była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. 
-
-W projekcie zostały użyte czujniki otwarcia/zamknięcia drzwi, zapięcia pasów, włączenia/wyłączenia świateł oraz czujniki temperatury. Dodatkowym elementem była komunikacja z zewnętrznym wyświetlaczem TFT służącym do komunikacji pomiędzy użytkownikiem a komputerem. Samochód obrazowany został za pomocą zbudowanego symulatora.
-
-\section{Opis budowy i działania}
-Proponowany komputer pokładowy jest całkowicie osobnym systemem niezależnym od sprzętu aktualnie posiadanego w samochodzie. Użytkownik montuje zestaw czujników oraz łączy je z komputerem i ekranem. 
+Najważniejszym założeniem funkcjonalnym projektowanego systemu była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. W projekcie zostały użyte czujniki otwarcia/zamknięcia drzwi, zapięcia pasów, włączenia/wyłączenia świateł oraz czujniki temperatury. Dodatkowym elementem była komunikacja z zewnętrznym wyświetlaczem TFT służącym do komunikacji pomiędzy użytkownikiem a komputerem. Samochód obrazowany został za pomocą zbudowanego symulatora.
 
 \begin{figure}[!h]
     \centering
-    	\includegraphics[height=0.5\textheight]{images/zestaw.jpg}
+    	\includegraphics[height=0.35\textheight]{images/zestaw.jpg}
     \caption{Zdjęcie gotowego zestawu}
     \source{Opracowanie własne}
 \end{figure}
-
-Po wejściu do samochodu oraz włączeniu zapłonu powoduje automatyczny start systemu. Na ekranie pojawia się powitanie oraz ekran startowy, na którym można zobaczyć symulację aktualnej pozycji \emph{GPS}, temperaturę panującą w środku samochodu, na zewnątrz oraz w silniku. Stan drzwi i pasów z wizualizowany został poprzez miniaturkę samochodu z aktywnie otwierającymi się drzwiami, zapalającymi światłami oraz ikonką obrazującą stan zapiętych pasów
-
-TU FOTKI ZE STARTU 
-
-Na ekranie znajdują się 2 przyciski - \emph{Options} oraz \emph{Smart Mirror}. Pierwszy z nich umożliwia przejście w tryb aktywnego lusterka wstecznego, który może również służyć jako czujnik cofania co może przydać się podczas parkowania w ciasnych miejskich parkingach. Drugi pozwala na przejście do ekranu opcji systemu. W opcjach znajduje się możliwość rozpoczęcia zapisu danych dotyczących stanu samochodu na karcie pamięci wraz z wybranym jednym z trzech formatów zapisu danych - JSON\footnote{ang. JavaScript Object Notation - jest prostym formatem wymiany danych. Jego definicja opiera się o podzbiór języka programowania JavaScript, Standard ECMA-262 3rd Edition - December 1999. JSON jest formatem tekstowym, całkowicie niezależnym od języków programowania, ale używa konwencji, które są znane programistom korzystającym z języków z rodziny C, w tym C++, Java, JavaScript, Perl, Python i wielu innych. \cite{JSON}}, XML\footnote{ang. Extensible Markup Language. Wywodzi się od języka
-SGML i jest językiem znaczników służącym do opisu danych. Dane przechowywane są w postaci tekstowej w dokumencie o ściśle określonej strukturze. XML jest standardem przemysłowym i stosowany jest we wszystkich dziedzinach informatyki.\cite{XML}} oraz CSV\footnote{ang. Comma-separated values. Format przechowywania danych w postaci tekstowej. W pierwszej linii pliku znajdują się oddzielone przecinkami nazwy danych jakie są przechowywane. W kolejnych liniach wpisane są odpowiednie wartości w kolejności ustalonej przez pierwszą linie.}. Wyłączenie systemu następuje wraz z wyłączeniem zapłonu w samochodzie. 
-
-TU FOTKA Z EKRANU GLOWNEGO
-
-Komunikacja z Intel Galileo z ekranem odbywa się używając protokołu SPI. Łącznie użytych zostało 7 linii: SDI, SDO, clock, PD, CS\footnote{Linia Chip Select wyświetlacza} oraz PWR\footnote{ang. Power - 5V} i GND\footnote{ang. Ground}, natomiast komunikacja komputera z symulatorem odbywa się poprzez użycie protokołu $I^2C$. Odczytanie wartości czujników cyfrowych odbywa się po otrzymaniu przerwania sprzętowego zgłaszanego przez I/O Expander przy zmianie jakiejkolwiek wartości np. przy otworzeniu drzwi. Odczyt czujników analogowych (temperatura) odbywa się przy użyciu timera co określony w programie czas. 
 
 \begin{figure}[!hp]
     \centering
@@ -535,7 +519,43 @@ Komunikacja z Intel Galileo z ekranem odbywa się używając protokołu SPI. Ł�
     \source{Opracowanie własne}
 \end{figure}
 
-Gdy została wybrana opcja zapisu danych na kartę pamięci wtedy w nieskończonej pętli aktualna pozycja GPS zostaje zapisywana do pliku tekstowego do momentu wyłączenia systemu, wyczerpania miejsca na karcie lub zmiany tej opcji przez użytkownika. Zapis do pliku odbywa się poprzez użycie standardowych funkcji języka C znajdujących się w \emph{stdlib.h}. Możliwy jest w 3 najbardziej popularnych formatach: CSV, JSON oraz XML. Format może zostać wybrany przez użytkownika poprzez zmianę w ustawieniach komputera.
+\section{Opis budowy i działania}
+Proponowany komputer pokładowy jest całkowicie osobnym systemem niezależnym od sprzętu aktualnie posiadanego w samochodzie. Użytkownik montuje zestaw czujników oraz łączy je z komputerem i ekranem. 
+
+Po wejściu do samochodu oraz włączeniu zapłonu powoduje automatyczny start systemu. Na ekranie pojawia się powitanie oraz ekran startowy, na którym można zobaczyć symulację aktualnej pozycji \emph{GPS}, temperaturę panującą w środku samochodu, na zewnątrz oraz w silniku. 
+
+Stan drzwi i pasów z wizualizowany został poprzez miniaturkę samochodu z aktywnie otwierającymi się drzwiami, zapalającymi światłami oraz ikonką obrazującą stan zapiętych pasów.
+
+\begin{figure}[!h]
+    \centering
+    	\includegraphics[height=0.3\textheight]{images/start.JPG}
+    \caption{Ekran startowy}
+    \source{Opracowanie własne}
+\end{figure} 
+
+Na ekranie głównym znajdują się 2 przyciski - \emph{Options} oraz \emph{Smart Mirror}. Pierwszy z nich umożliwia przejście w tryb aktywnego lusterka wstecznego, który może również służyć jako czujnik cofania co może przydać się podczas parkowania w ciasnych miejskich parkingach. Drugi pozwala na przejście do ekranu opcji systemu. 
+
+\begin{figure}[!h]
+    \centering
+    	\includegraphics[height=0.3\textheight]{images/mainScreen.JPG}
+    \caption{Ekran główny}
+    \source{Opracowanie własne}
+\end{figure}
+
+W opcjach znajduje się możliwość rozpoczęcia zapisu danych dotyczących stanu samochodu na karcie pamięci wraz z wybranym jednym z trzech formatów zapisu danych - JSON\footnote{ang. JavaScript Object Notation - jest prostym formatem wymiany danych. Jego definicja opiera się o podzbiór języka programowania JavaScript, Standard ECMA-262 3rd Edition - December 1999. JSON jest formatem tekstowym, całkowicie niezależnym od języków programowania, ale używa konwencji, które są znane programistom korzystającym z języków z rodziny C, w tym C++, Java, JavaScript, Perl, Python i wielu innych. \cite{JSON}}, XML\footnote{ang. Extensible Markup Language. Wywodzi się od języka SGML i jest językiem znaczników służącym do opisu danych. Dane przechowywane są w postaci tekstowej w dokumencie o ściśle określonej strukturze. XML jest standardem przemysłowym i stosowany jest we wszystkich dziedzinach informatyki.\cite{XML}} oraz CSV\footnote{ang. Comma-separated values. Format przechowywania danych w postaci tekstowej. W pierwszej linii pliku znajdują się oddzielone przecinkami nazwy danych jakie są przechowywane. W kolejnych liniach wpisane są odpowiednie wartości w kolejności ustalonej przez pierwszą linie.}. Po wybraniu opcji zapisu danych, będą one zapisywane do momentu jej wyłączenia lub wyczerpania miejsca na karcie pamięci. Interwał zapisu jest również jedną z dostępnych opcji wyboru - standardowo użytkownik ma do wyboru zapis co 5s, 10s, 30s, 1 min, 15 min.
+
+Wyłączenie systemu następuje wraz z wyłączeniem zapłonu w samochodzie. 
+
+\begin{figure}[!h]
+    \centering
+    	\includegraphics[height=0.3\textheight]{images/opcje.JPG}
+    \caption{Ekran opcji}
+    \source{Opracowanie własne}
+\end{figure}
+
+Komunikacja z Intel Galileo z ekranem odbywa się używając protokołu \emph{SPI}. Łącznie użytych zostało 7 linii: \emph{SDI}, \emph{SDO}, \emph{clock}, \emph{PD}, CS\footnote{Linia Chip Select wyświetlacza} oraz PWR\footnote{ang. Power - 5V} i \emph{GND}\footnote{ang. Ground}, natomiast komunikacja komputera z symulatorem odbywa się poprzez użycie protokołu $I^2C$. Odczytanie wartości czujników cyfrowych odbywa się po otrzymaniu przerwania sprzętowego zgłaszanego przez I/O Expander przy zmianie jakiejkolwiek wartości np. przy otworzeniu drzwi. Odczyt czujników analogowych (temperatura) odbywa się przy użyciu timera co określony w programie czas. 
+
+Gdy została wybrana opcja zapisu danych na kartę pamięci wtedy w nieskończonej pętli w odstępach czasu wybranych przez użytkownika aktualna pozycja \emph{GPS} zostaje zapisywana do pliku tekstowego do momentu wyłączenia systemu, wyczerpania miejsca na karcie lub zmiany tej opcji przez użytkownika. Zapis do pliku odbywa się poprzez użycie standardowych funkcji języka C znajdujących się w \emph{stdlib.h}. Możliwy jest w 3 najbardziej popularnych formatach: CSV, JSON oraz XML. Format może zostać wybrany przez użytkownika poprzez zmianę w ustawieniach komputera.
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa karty microSD za pomocą mechanizmu Arduino]
 void writeSD(char *filename, char * data){
@@ -543,7 +563,6 @@ void writeSD(char *filename, char * data){
   dataFile.println(data);
   dataFile.close();
 }
-  
 void readSD(char *filename){
   File dataFile = SD.open(filename);
   while (dataFile.available()) {
@@ -569,9 +588,20 @@ void writeSD(){
   fclose(fp);
 \end{lstlisting}
 
-\begin{figure}[!hp]
+Intel Galileo został wyposażony w zegar czasu rzeczywistego (RTC), który został wykorzystany do zapisu danych do pliku. Dane zapisywane są do pliku, którego nazwa jest taka sama jak data. Do odczytania aktualnej daty wystarczy użyć standardowych funkcji dostępnych w języku C. Należy jednak pamiętać o tym, aby zegar był cały czas zasilany poprzez zewnętrzną baterię. W przeciwnym wypadku za każdym razem będzie on resetowany do standardowej daty.
+
+\begin{lstlisting}[label=bot-dirs-alg,caption=Odczyt aktualnej daty]
+  system("date '+%H:%M:%S' > /tmp/time.txt");
+  char buf[9];
+  FILE *fp;
+  fp = fopen("/tmp/time.txt", "r");
+  fgets(buf, 9, fp);
+  fclose(fp);
+\end{lstlisting}
+
+\begin{figure}[!h]
     \centering
-    	\includegraphics[height=0.7\textheight]{images/codeDiagram.png}
+    	\includegraphics[height=0.6\textheight]{images/codeDiagram.png}
     \caption{Schemat blokowy działania programu}
     \source{Opracowanie własne}
 \end{figure}
@@ -592,26 +622,40 @@ struct car {
 
 Dokumentacja kodu została napisana za pomocą notacji wykorzystanej w systemie \emph{DOXYGEN} i zapisana do pliku \emph{PDF}.
 
-Dodatkowym modułem systemu jest uruchomiony na nim napisany w technologii \emph{NodeJS} serwer www udostępniający usługę śledzenia pojazdu. Gdy system zostanie podłączony do internetu (np. poprzez wejście Ethernet lub kartę Wi-Fi) użytkownik ma możliwość wejścia na stronę www gdzie może na bieżąco sprawdzać położenie samochodu na mapie oraz aktualną temperaturę wraz ze stanem drzwi oraz pasów. Komunikacja systemu z serwerem odbywa się poprzez udostępnione \emph{REST API}. Użycie technologii \emph{AngularJS} pozwala na odczytanie bieżących danych bez konieczności odświeżania strony.
+Dodatkowym modułem systemu jest uruchomiony na nim napisany w technologii \emph{NodeJS} serwer www udostępniający usługę śledzenia pojazdu. Gdy system zostanie podłączony do internetu (np. poprzez wejście Ethernet lub kartę Wi-Fi) użytkownik ma możliwość wejścia na stronę www gdzie może na bieżąco sprawdzać położenie samochodu na mapie oraz aktualną temperaturę wraz ze stanem drzwi oraz pasów. Komunikacja systemu z serwerem odbywa się poprzez udostępnione \emph{REST API}. Użycie technologii \emph{AngularJS} pozwala na wyświetlanie bieżących danych bez konieczności odświeżania strony.
 
-TU FOTKA ZE STRONY
+\begin{lstlisting}[label=bot-dirs-alg,caption=Request wysyłany do serwera www]
+curl -i -X POST -H 'Content-Type: application/json' -d 
+'{"tempIn": "40", "tempOut" : "20", "tempEngine" : "6", 
+"GPSlongitude" : "52", "GPSlatitude" : "18", 
+"doors" : "5", "seatbelt" : "6", "lights" : "0" }' 
+http://localhost:3000/updateData
+\end{lstlisting}
+
+Wygląd strony został przedstawiony na zrzucie ekranu poniżej.
+\begin{figure}[!h]
+    \centering
+    	\includegraphics[height=0.35\textheight]{images/www.png}
+    \caption{Strona www}
+    \source{Opracowanie własne}
+\end{figure}
 
 \section{Wnioski oraz własne doświadczenia}
 Komputer został tak zaprojektowany tak aby w łatwy sposób można było dodać kolejne funkcjonalności zależne od potrzeb użytkownika. Jako propozycje można uwzględnić:
 \begin{enumerate}
-	\item Lokalizator GPS - wczytywanie aktualnej pozycji GPS i wyświetlanie jej na wyświetlaczu
+	\item Lokalizator \emph{GPS} - wczytywanie aktualnej pozycji \emph{GPS} i wyświetlanie jej na wyświetlaczu
 	\item Kamerka cofania - wyświetlanie obrazu z kamerki cofania na wyświetlaczu
 	\item Czujnik deszczu - automatyczne włączenie wycieraczek i dopasowanie ich prędkości w zależności od obfitości opadów i prędkości samochodu, dodatkowe włączenie wycieraczki tylnej w momencie gdy zostanie wrzucony bieg wsteczny
 	\item Sterowanie głośnością radia w zależności od prędkości samochodu
 	\item Blokada immobilizer
 	\item Obsługa telefonu komórkowego za pomocą bluetooth
-	\item Router - dodanie modułu karty WiFi w połączeniu z odbieraniem sieci komórkowej GPRS oraz rozsyłanie jej w samochodzie
+	\item Router - dodanie modułu karty WiFi w połączeniu z odbieraniem sieci komórkowej \emph{GPRS} oraz rozsyłanie jej w samochodzie
 \end{enumerate}
 Jednak na potrzeby tej wersji projektu nie zostały one zaimplementowane. Oczywiście ogranicza nas tylko nasza wyobraźnia oraz finanse jakie chcemy przeznaczyć na rozbudowę systemu o dodatkowe moduły.
 
 Intel Galileo ma wiele zalet ale niestety posiada również i wady. Największą zaletą jest możliwość obsługi systemu operacyjnego Linux oraz standard pinów \emph{GPIO} w pełni kompatybilny z popularnym Arduino co daje możliwość zakupu wielu dodatkowych dedykowanych modułów. Posiadanie pełnego systemu operacyjnego daje możliwość wykorzystania go jako na przykład serwer www lub domowego serwera multimedialnego. 
 
-Pierwszą rzeczą na którą należy uważać jest zasilanie. Galileo ma możliwość zasilania poprzez port USB lecz w praktyce nie jest to możliwe. Podczas uruchomienia prąd dostarczany poprzez USB jest nie wystarczający i następuję automatyczne wyłączenie sprzętu podczas którego Software zostaje uszkodzony. Kolejną wadą jest szybkość pinów GPIO. Są one w porównaniu do innych urządzeń dostępnych na rynku bardzo wolne co znacznie ogranicza jego możliwości.
+Pierwszą rzeczą na którą należy uważać jest zasilanie. Galileo ma możliwość zasilania poprzez port \emph{USB} lecz w praktyce nie jest to możliwe. Podczas uruchomienia prąd dostarczany poprzez \emph{USB} jest nie wystarczający i następuję automatyczne wyłączenie sprzętu podczas którego Software zostaje uszkodzony. Kolejną wadą jest szybkość pinów \emph{GPIO}. Są one w porównaniu do innych urządzeń dostępnych na rynku bardzo wolne co znacznie ogranicza jego możliwości.
 %================KONIEC Działanie komputera pokładowego=====================
 
 %================Zakończenie=====================
