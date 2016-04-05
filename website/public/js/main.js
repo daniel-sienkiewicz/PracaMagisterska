@@ -37,9 +37,9 @@ app.controller('ctrlr', ['$scope', 'socket',
       $scope.$digest();
 
       if($scope.seatbelt != 0){
-        $("#p").show();
+        $("#p").css("visibility", "visible");
       } else{
-        $("#p").hide();
+        $("#p").css("visibility", "hidden");
       }
     });
 
@@ -75,42 +75,43 @@ app.controller('ctrlr', ['$scope', 'socket',
 			$scope.$digest();
 
 			if($scope.lights == 1){
-				$("#s").show();
+				$("#s").css("visibility", "visible");
 			} else if($scope.lights == 0)
-				$("#s").hide();
+				$("#s").css("visibility", "hidden");
       });
 
 		socket.on('doors', function(data) {
       $scope.doors = data;
 			$scope.$digest();
+
       if($scope.doors & 16){
-        $("#1").show();
+        $("#1").css("visibility", "visible");
       } else{
-        $("#1").hide();
+        $("#1").css("visibility", "hidden");
       }
 
       if($scope.doors & 8){
-        $("#2").show();
+        $("#2").css("visibility", "visible");
       } else{
-        $("#2").hide();
+        $("#2").css("visibility", "hidden");
       }
 
       if($scope.doors & 4){
-        $("#3").show();
+        $("#3").css("visibility", "visible");
       } else{
-        $("#3").hide();
+        $("#3").css("visibility", "hidden");
       }
 
       if($scope.doors & 2){
-        $("#4").show();
+        $("#4").css("visibility", "visible");
       } else{
-        $("#4").hide();
+        $("#4").css("visibility", "hidden");
       }
 
       if($scope.doors & 1){
-        $("#5").show();
+        $("#5").css("visibility", "visible");
       } else{
-        $("#5").hide();
+        $("#5").css("visibility", "hidden");
       }});
 
 		google.maps.event.addDomListener(window, 'load', init);

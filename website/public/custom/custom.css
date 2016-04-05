@@ -21,10 +21,12 @@ body {
 }
 
 #autko{
-	position: relative;
+  margin : 0 auto;
+  Left:0;
+  Right: 0;
+  position: absolute;
 }
 
 img{
-	margin : auto;
 	position: absolute;
 }
