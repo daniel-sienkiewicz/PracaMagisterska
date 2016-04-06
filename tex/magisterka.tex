@@ -55,7 +55,7 @@ Dodatkowym celem było praktyczne sprawdzenie możliwości oprogramowania i funk
 %================WPROWADZENIE=====================
 \chapter{Wprowadzenie}
 \section{Cele}
-Celem pracy była konstrukcja oraz oprogramowanie systemu komputera pokładowego do samochodu. Komputer ma wczytywać temperaturę z czujników panującą w silniku, na zewnątrz, w środku oraz aktualnym stanie zapięcia pasów i zamknięcia drzwi. Jednym z założeń tworzenia systemu jest konstrukcja modułowa umożliwiająca późniejszą rozbudowę funkcjonalności na przykład funkcję rejestrującą pozycję \emph{GPS} wraz z zapisaniem danych obrazujących aktualny stan samochodu na karcie pamięci \emph{microSD}. Komunikacja użytkownika z komputerem będzie odbywała się poprzez użycie wyświetlacza TFT \emph{FTDI EVE VM800B} z panelem dotykowym.
+Celem pracy była konstrukcja oraz oprogramowanie systemu komputera pokładowego do samochodu. Komputer ma wczytywać temperaturę z czujników panującą w silniku, na zewnątrz, w środku oraz aktualnym stanie zapięcia pasów i zamknięcia drzwi. Jednym z założeń tworzenia systemu jest konstrukcja modułowa umożliwiająca późniejszą rozbudowę funkcjonalności o na przykład funkcję rejestrującą pozycję \emph{GPS}. Dodatkową funkcjonalnością jest możliwość zapisania danych obrazujących aktualny stan samochodu na karcie pamięci \emph{microSD}. Komunikacja użytkownika z komputerem będzie odbywała się poprzez użycie wyświetlacza TFT \emph{FTDI EVE VM800B} z panelem dotykowym.
 
 \section{Założenia}
 Do wykonania pracy zostały przyjęte następujące założenia:
@@ -95,22 +95,10 @@ Intel Galileo zostało wyposażone w:
   \item Arduino Pro
 \end{enumerate}
 
+W standardzie TTL\footnote{ang. Transistor-transistor logic} wartość logiczna 1 równa jest napięciu 5V, a wartość 0 odpowiada napięciu 0V. W Arduino odpowiednikiem tego są wartości \emph{HIGH} oraz \emph{LOW}.
+ 
 \subsection{Intel Galileo}
 Zestaw Intel Galileo jest  to mikrokomputer oparty na 32-bitowym procesorze Intel® Quark SoC X1000 i taktowaniu 400MHz. Posiada on standardowy interfejs Arduino składający się z: 14 pinów cyfrowych (w tym 6 pinów mogących pełnić funkcję \emph{PWM}\footnote{ang. Pulse-Width Modulation - technika pozyskiwania wyników analogowych poprzez użycie wyjść cyfrowych}) oraz 6 pinów analogowych. Każdy z tych pinów jest w stanie operować napięciem od 0V do max 5V.
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[height=0.4\textwidth]{images/galileo.png}
-    \caption{Galileo Gen 1 Board \label{Galileo Gen 1 Board}}
-    \source{\url{http://www.intel.com/content/www/us/en/embedded/products/galileo/galileo-g1-datasheet.html}\cite{GalileoBoard}}
-\end{figure}
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[height=0.6\textwidth]{images/IntelGalileoLogicSchematics.jpg}
-    \caption{Schemat logiczny układu Intel Galileo\label{IntelGalileoLogicSchematics}}
-    \source{\url{https://www.arduino.cc/en/ArduinoCertified/IntelGalileo}\cite{IntelGalileo}}
-\end{figure}
 
 Intel Galileo zostało wyposażone w:
 \begin{enumerate}
@@ -124,9 +112,23 @@ Intel Galileo zostało wyposażone w:
   \item Slot karty \emph{microSD}.\cite{GalileoBook}
 \end{enumerate}
 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[height=0.4\textwidth]{images/galileo.png}
+    \caption{Galileo Gen 1 Board \label{Galileo Gen 1 Board}}
+    \source{\url{http://www.intel.com/content/www/us/en/embedded/products/galileo/galileo-g1-datasheet.html}\cite{GalileoBoard}}
+\end{figure}
+
 Do komunikacji z Intel Galileo programista ma do dyspozycji port RS-232, USB (działające w trybie host oraz client) oraz wyjście Ehernet. Intel Galileo jest zasilane napięciem 5V 2.0A, które może zostać dostarczone poprzez zasilacz z zestawu lub poprzez podłączenie zasilania do portów PWR\footnote{Port używany jako port zasilania (5V)} oraz GND\footnote{Port używany jako masa - GROUND}. Standardowym środowiskiem programistycznym mikrokomputera jest Intel Arduino Studio. Programista pisząc w języku C i używając dostarczonych przez producenta Arduino funkcji do obsługi portów może się z nimi komunikować. Następnie przesyła skompilowaną wersję oprogramowania poprzez kabel USB do urządzenia. Po przesłaniu program zostaje załadowany do pamięci urządzenia i uruchomiony. 
 
 Standardowo w Intel Galileo znajduje się podstawowa wersja systemu mini Linux. Użytkownik może jednak użyć własnego obrazu systemu uruchamiając go z karty pamięci. Komunikację z systemem operacyjnym można prowadzić w dowolnym języku programowania (np. C, NodeJS, python) łącząc się poprzez dowolny port komunikacyjny na przykład: SSH\footnote{ang. secure shell - protokół komunikacyjny służący do połączenia się ze zdalnym komputerem będącym w sieci} lub port RS-232.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[height=0.6\textwidth]{images/IntelGalileoLogicSchematics.jpg}
+    \caption{Schemat logiczny układu Intel Galileo\label{IntelGalileoLogicSchematics}}
+    \source{\url{https://www.arduino.cc/en/ArduinoCertified/IntelGalileo}\cite{IntelGalileo}}
+\end{figure}
 
 \subsection{FDTI EVE VM800B}
 Do komunikacji komputera z użytkownikiem został użyty wyświetlacz \emph{TFT FDTI EVE VM800B} wraz z panelem dotykowym oraz wbudowanym kontrolerem audio. 
@@ -142,7 +144,7 @@ Podstawowe cechy urządzenia\cite{FTDI}:
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[height=0.4\textheight]{images/FTDIarchitecture.png}
+    \includegraphics[height=0.3\textheight]{images/FTDIarchitecture.png}
     \caption{Architektura Ekranu FTDI EVE VM800B}
     \source{FT800 Programmers Guide}
 \end{figure}
@@ -204,7 +206,7 @@ Porty najczęściej dzieli się na:
 	\item Analogowe
 \end{enumerate}
 
-Porty cyfrowe charakteryzują się możliwością przyjęcia lub wysłania sygnału binarnego (1 - jest sygnał, 0 - sygnału nie ma). Najczęściej wysłanie sygnału równego 1 jest równoznaczne z wysłaniem napięcia o wartości 5V oraz odpowiednio wysłanie 0 jest równoznaczne z wysłaniem napięcia równego 0V. Z kolei porty analogowe mogą przesyłać sygnały o większej ilości danych lecz do ich obsługi konieczny jest przetwornik analogowo-cyfrowy, który w Intel Galileo jest 10 bitowy - co oznacz możliwość wysłania jednorazowo do 10 bitów danych. Każdy z portów może działać w jednym  z dwóch trybów: wejścia - oczekiwać na przyjęcie danych od urządzenia zewnętrznego oraz wyjścia - wysyłać dane do urządzenia zewnętrznego.
+Porty cyfrowe charakteryzują się możliwością przyjęcia lub wysłania sygnału binarnego (1 - jest sygnał, 0 - sygnału nie ma). Najczęściej wysłanie sygnału równego 1 jest równoznaczne z wysłaniem napięcia o wartości 5V oraz odpowiednio wysłanie 0 jest równoznaczne z wysłaniem napięcia równego 0V. Z kolei porty analogowe mogą przesyłać sygnały o większej ilości danych lecz do ich obsługi konieczny jest przetwornik analogowo-cyfrowy, który w Intel Galileo jest 10 bitowy - co oznacza możliwość wysłania jednorazowo do 10 bitów danych. Każdy z portów może działać w jednym  z dwóch trybów: wejścia - oczekiwać na przyjęcie danych od urządzenia zewnętrznego lub wyjścia - wysyłać dane do urządzenia zewnętrznego.
 
 \subsection{Odpytywanie w pętli}
 Jednym z najprostszych metod pozyskania danych z urządzeń wejścia/wyjścia mikro kontrolera jest odpytywanie urządzeń zewnętrznych w nieskończonej pętli. Jest to najmniej efektywny sposób ponieważ większość czasu zajmuje zasoby sprzętu zapytaniami, które nie zawsze są konieczne. Odczyt stanu urządzeń wejścia/wyjścia może być realizowane mechanizmami systemu operacyjnego (wykorzystując gotowe biblioteki np. Arduino/Wire) lub niskopoziomowo z wykorzystaniem funkcji języka C i/lub Asemblera.
@@ -229,7 +231,7 @@ System Galileo bazując na procesorze Quark ma standardowy dla produktów Intela
 
 W momencie gdy zostaje zgłoszone przerwanie wątek programu zostaje zatrzymany po czym wykonywany jest skok do odpowiedniej funkcji.
 
-Przerwania programowe wywołuje się za pomocą instrukcji asemblera \emph{INT XX}, gdzie \emph{XX} oznacza numer przerwania zadeklarowanego w tablicy wektorów przerwań\footnote{ang. interrupt vector table - tablica zawierająca adresy podprogramów służących do obsługi wektorów przerwań}, która jest tworzona przy każdorazowym starcie systemu. W iAPX znajduje się 255 wektorów przerwań.
+Przerwania programowe wywołuje się za pomocą instrukcji asemblera \emph{INT XX}, gdzie \emph{XX} oznacza numer przerwania zadeklarowanego w tablicy wektorów przerwań\footnote{ang. interrupt vector table - tablica zawierająca adresy podprogramów służących do obsługi wektorów przerwań}, która jest tworzona przy każdorazowym starcie systemu. W IAPX znajduje się 255 wektorów przerwań.
 
 Przerwanie sprzętowe jest to rodzaj przerwań wywoływanych przez urządzenia wejścia/wyjścia lub zgłaszane przez procesor. Efektem zgłoszenia przerwania sprzętowego jest obsłużenie go poprzez wywołanie przerwania programowego. Przerwania te dzielimy na maskowalne oraz niemaskowalne. Główna różnica między nimi polega na możliwości zablokowania przerwań maskowalnych podczas gdy przerwania niemaskowalne muszą zostać obsłużone. Przykładem przerwania niemaskowalnego w systemach IAPX 86 jest \emph{INT2}, który w środowisku Windows znany jest jako popularny \emph{Blue Screen of Death}\footnote{Ekran błędu w systemach Windows pojawiający się po krytycznym błędzie systemu}.
 
@@ -274,18 +276,18 @@ Arduino dostarcza funkcje do obsługi portów. Podstawowe z nich to:
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa portu cyfrowego w środowisku Arduino]
 int val = 0;
 int digitalPin = 1;	
-pinMode(digitalgPin, OUTPUT);
-val = digitalRead(analogPin);
-pinMode(digitalPin, INPUT);
+pinMode(digitalgPin, INPUT);
+val = digitalRead(digitalPin);
+pinMode(digitalPin, OUTPUT);
 digitalWrite(digitalPin, HIGH);
 \end{lstlisting}
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa portu analogowego w środowisku Arduino]
-int val = 0;
+int val = 2;
 int analogPin = A1;	
-pinMode(analogPin, OUTPUT);
-val = analogRead(analogPin);
 pinMode(analogPin, INPUT);
+val = analogRead(analogPin);
+pinMode(analogPin, OUTPUT);
 analogWrite(ledPin, val);
 \end{lstlisting}
 
@@ -315,7 +317,7 @@ void setup(){
 \end{lstlisting}
 
 \section{Komunikacja z urządzeniami poprzez mechanizmy systemu operacyjnego Linux YOCTO}
-Z punktu widzenia systemu operacyjnego Linux YOCTO urządzenia są traktowane tak jak pliki. W systemie YOCTO Linux dostępne są pliki w katalogu /sys/class/gpio/ odpowiadające poszczególnym portom w Galileo. Przy komunikacji należy jednak pamiętać, że nazwy urządzeń nie są intuicyjne tzn. port IO4 nie jest plikiem \emph{/sys/class/gpio/gpio4} (Patrz Dodatek C). Komunikację z portami można obrazować jako wpisanie lub odczytanie danych z pliku. Na początku należy ustalić w jakim trybie ma działać port. W tym celu do pliku \emph{/sys/class/gpio/PORT/direction} trzeba wpisać wartość \emph{out} dla ustawienia jako wyjście lub \emph{in} dla ustawienia jako wejście. Następnie można odczytać lub wpisać dane do wcześniej skonfigurowanego portu. W tym celu do pliku \emph{/sys/class/gpio/PORT/value} należy wpisać wartość \emph{1} dla ustawienia stanu wysokiego - odpowiednik \emph{HIGH} z Arduino lub \emph{0} dla ustawienia stanu niskiego - odpowiednik \emph{LOW} z Arduino, gdzie \emph{PORT} jest to numer odpowiedniego portu według numeracji Galileo. Warto zauważyć, że przesyłane wartości tym mechanizmem nie są wartościami 8 tylko 1 bitowymi.
+Z punktu widzenia systemu operacyjnego Linux YOCTO urządzenia są traktowane tak jak pliki. W systemie YOCTO Linux dostępne są pliki w katalogu /sys/class/gpio/ odpowiadające poszczególnym portom w Galileo. Przy komunikacji należy jednak pamiętać, że nazwy urządzeń nie są intuicyjne tzn. port IO4 nie jest plikiem \emph{/sys/class/gpio/gpio4} (Patrz Dodatek C). Komunikację z portami można obrazować jako wpisanie lub odczytanie danych z pliku. Na początku należy ustalić w jakim trybie ma działać port. W tym celu do pliku \emph{/sys/class/gpio/PORT/direction} należy wpisać wartość \emph{out} dla ustawienia jako wyjście lub \emph{in} dla ustawienia jako wejście. Następnie można odczytać lub wpisać dane do wcześniej skonfigurowanego portu. W tym celu do pliku \emph{/sys/class/gpio/PORT/value} należy wpisać wartość \emph{1} dla ustawienia stanu wysokiego - odpowiednik \emph{HIGH} z Arduino lub \emph{0} dla ustawienia stanu niskiego - odpowiednik \emph{LOW} z Arduino, gdzie \emph{PORT} jest to numer odpowiedniego portu według numeracji Galileo. Warto zauważyć, że przesyłane wartości tym mechanizmem nie są wartościami 8 tylko 1 bitowymi.
 
 Dla języka C wygląda to następująco:
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa portu cyfrowego w środowisku Linux (język C)]
@@ -371,7 +373,7 @@ Protokół komunikacyjny \emph{$I^2C$}\footnote{ang. Inter-Integrated Circuit} j
 
 Podstawową cechą \emph{$I^2C$} jest wykorzystywanie dwóch linii służących do komunikacji: dwukierunkowa linia danych \emph{SDA\footnote{ang. Serial Data Line}} oraz jednokierunkowa linia zegarowa \emph{SCL\footnote{ang. Serial Clock Time}}. Protokół $I^2C$ bazuje na przesyłaniu ramek (pakietów) składających się z sekwencji: START -> adres -> dane -> STOP.
 
-Do wygenerowania impulsu START należy ustawić linię \emph{SDA} oraz \emph{SCL} w stan \emph{HIGH} (5V) po czym w trakcie gdy linia \emph{SCL} jest w stanie \emph{HIGH} należy zmienić stan linii \emph{SDA} na stan \emph{LOW}. Analogicznie do wygenerowania impulsu STOP należy w trakcie gdy linia \emph{SCL} jest w stanie \emph{HIGH} zmienić stan linii \emph{SDA} ze stanu \emph{LOW} na stan \emph{HIGH}. Dane wysyłane/odbierane są bit po bicie - na początku należy ustawić linię \emph{SCL} w stan wysoki (HIGH), odczytać wartość na porcie \emph{SDA}, a następnie zmienić stan linii \emph{SCL} na niski (LOW).
+Do wygenerowania impulsu START należy ustawić linię \emph{SDA} oraz \emph{SCL} w stan \emph{HIGH} (5V) po czym w trakcie gdy linia \emph{SCL} jest w stanie \emph{HIGH} należy zmienić stan linii \emph{SDA} na stan \emph{LOW}. Analogicznie do wygenerowania impulsu STOP należy w trakcie gdy linia \emph{SCL} jest w stanie \emph{HIGH} zmienić stan linii \emph{SDA} ze stanu \emph{LOW} na stan \emph{HIGH}. Dane wysyłane/odbierane są bit po bicie - na początku należy ustawić linię \emph{SCL} w stan wysoki (HIGH), odczytać wartość na linii \emph{SDA}, a następnie zmienić stan linii \emph{SCL} na niski (LOW).
 
 Adresowanie urządzenia odbywa się poprzez wysłanie pojedynczych bitów adresu (pamiętając o kolejności MSB->LCB\footnote{Wysyłanie odbywa się w kolejności od najbardziej znaczących (najstarszych) bitów}) oraz wygenerowanie impulsu zegara. Gdy chcemy zaadresować urządzenie, którego adresem jest np. 4 należy wykonać:
 \begin{lstlisting}[label=bot-dirs-alg,caption=Własna wersja adresowania urządzenia $I^2C$ na przykładzie PCF8574N]
@@ -387,7 +389,7 @@ for(m = 0x80; m; m >>= 1){
 }
 \end{lstlisting}
 
-Kolejnym krokiem jest ustalenie czy będziemy chcieli z urządzenia przeczytać dane czy je wysłać. W tym celu należy wysłać 1 lub 0  jako kolejny bit. Po otrzymaniu potwierdzenia na linii \emph{SDA} można zacząć czytać dane przesyłane z urządzenia. Na zakończenia transmisji należy wysłać sygnał \emph{STOP}.
+Kolejnym krokiem jest ustalenie czy będziemy chcieli z urządzenia przeczytać dane czy je wysłać. W tym celu należy wysłać 1 lub 0  jako kolejny bit. Po otrzymaniu potwierdzenia na linii \emph{SDA} można zacząć komunikację z urządzeniem. Na zakończenia transmisji należy wysłać sygnał \emph{STOP}.
 
 \begin{figure}[!h]
     \centering
@@ -427,7 +429,7 @@ Linia MISO\footnote{ang. Master In Slave Out} jest linią wejścia danych dla ur
     \source{\url{http://castor.am.gdynia.pl/~dorra}\cite{Dorra}}
 \end{figure}
 
-Gdy chcemy wysłać dane 8 bitowe poprzez protokół SPI: aktywować odpowiednią linię \emph{Chip Select}, a następnie wysłać dane. Gdy mamy do dyspozycji porty cyfrowe należy to zrobić bit po bicie.
+Gdy chcemy wysłać dane 8 bitowe poprzez protokół SPI należy: aktywować odpowiednią linię \emph{Chip Select}, a następnie wysłać dane. Gdy mamy do dyspozycji porty cyfrowe należy to zrobić bit po bicie.
 \begin{lstlisting}[label=bot-dirs-alg,caption=Wysłanie danych 8 bitowych za pomocą protokołu SPI]
 void sendData(int data, int CS, int clock, int SDO){
   digitalWrite(CS, LOW);
@@ -451,17 +453,17 @@ Podobnie jak w przypadku protokołu $I^2C$ została napisana własna wersja bibl
 	\item \emph{void ft800cmdWrite(unsigned char ftCommand)} - funkcja wysyłająca podaną komendę do ekranu - np. Start urządzenia ($FT800_ACTIVE$)
 \end{enumerate}
 
-Wyświetlacz ma możliwość korzystania z systemu \emph{HMI} więc do obsługi zostały napisane proste API, które dostarcza następujące funkcjonalności:
+Wyświetlacz ma możliwość korzystania z systemu \emph{HMI} więc do obsługi zostało napisane proste API, które dostarcza następujące funkcjonalności:
  \begin{enumerate}
 	\item inicjalizacja ekranu
-	\item rysowanie kółka o podanym rozmiarze w podanym miejscu
-	\item rysowanie linii po podanych końcach
+	\item rysowanie kółka o podanym rozmiarze, kolorze i w podanym miejscu
+	\item rysowanie linii o podanych końcach, szerokości oraz kolorze
 	\item wypisanie tekstu
 	\item wypisanie cyfr
-	\item narysowanie guzika po podanym miejscu i podanym rozmiarze
+	\item narysowanie guzika w podanym miejscu i podanym rozmiarze
 \end{enumerate}
 
-Przykładowe wyświetlenie linii o pozycji, kolorze oraz pozycji podanej w parametrach:
+Przykładowe wyświetlenie linii o pozycji, kolorze oraz szerokościs podanej w parametrach:
 \begin{lstlisting}[label=bot-dirs-alg,caption=Narysowanie linii na ekranie]
 void linia(unsigned long color, unsigned long x1, unsigned long y1, 
 unsigned long x2, unsigned long y2, unsigned long width){
@@ -505,7 +507,7 @@ unsigned long y){
 %================Działanie komputera pokładowego=====================
 \chapter{Działanie komputera pokładowego}
 \section{Założenia funkcjonalne projektu}
-Najważniejszym założeniem funkcjonalnym projektowanego systemu była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. W projekcie zostały użyte czujniki otwarcia/zamknięcia drzwi, zapięcia pasów, włączenia/wyłączenia świateł oraz czujniki temperatury. Dodatkowym elementem była komunikacja z zewnętrznym wyświetlaczem TFT służącym do komunikacji pomiędzy użytkownikiem a komputerem. Samochód obrazowany został za pomocą zbudowanego symulatora.
+Najważniejszym założeniem funkcjonalnym projektowanego systemu była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. W projekcie zostały użyte czujniki otwarcia/zamknięcia drzwi, zapięcia pasów, włączenia/wyłączenia świateł oraz czujniki temperatury. Dodatkowym elementem była komunikacja z zewnętrznym wyświetlaczem TFT służącym do komunikacji pomiędzy użytkownikiem a komputerem. Samochód obrazowany został za pomocą zbudowanego symulatora, którego schemat elektryczny został przedstawiony na rysunku 6.2.
 
 \begin{figure}[!h]
     \centering
@@ -524,7 +526,9 @@ Najważniejszym założeniem funkcjonalnym projektowanego systemu była komunika
 \section{Opis budowy i działania}
 Proponowany komputer pokładowy jest całkowicie osobnym systemem niezależnym od sprzętu aktualnie posiadanego w samochodzie. Użytkownik montuje zestaw czujników oraz łączy je z komputerem i ekranem. 
 
-Po wejściu do samochodu oraz włączeniu zapłonu powoduje automatyczny start systemu. Na ekranie pojawia się powitanie oraz ekran startowy, na którym można zobaczyć symulację aktualnej pozycji \emph{GPS}, temperaturę panującą w środku samochodu, na zewnątrz oraz w silniku. 
+Po wejściu do samochodu oraz włączeniu zapłonu powoduje automatyczny start systemu. 
+
+Na ekranie pojawia się powitanie oraz ekran startowy, na którym można zobaczyć symulację aktualnej pozycji \emph{GPS}, temperaturę panującą w środku samochodu, na zewnątrz oraz w silniku. 
 
 Stan drzwi i pasów z wizualizowany został poprzez miniaturkę samochodu z aktywnie otwierającymi się drzwiami, zapalającymi światłami oraz ikonką obrazującą stan zapiętych pasów.
 
@@ -535,7 +539,7 @@ Stan drzwi i pasów z wizualizowany został poprzez miniaturkę samochodu z akty
     \source{Opracowanie własne}
 \end{figure} 
 
-Na ekranie głównym znajdują się 2 przyciski - \emph{Options} oraz \emph{Smart Mirror}. Pierwszy z nich umożliwia przejście w tryb aktywnego lusterka wstecznego, który może również służyć jako czujnik cofania co może przydać się podczas parkowania w ciasnych miejskich parkingach. Drugi pozwala na przejście do ekranu opcji systemu. 
+Na ekranie głównym znajdują się 2 przyciski - \emph{Options} oraz \emph{Smart Mirror}. Pierwszy z nich umożliwia przejście w tryb aktywnego lusterka wstecznego, który może również służyć jako czujnik cofania co może przydać się podczas parkowania w ciasnych miejskich. Drugi pozwala na przejście do ekranu opcji systemu. 
 
 \begin{figure}[!h]
     \centering
@@ -590,7 +594,7 @@ void writeSD(){
   fclose(fp);
 \end{lstlisting}
 
-Intel Galileo został wyposażony w zegar czasu rzeczywistego (RTC), który został wykorzystany do zapisu danych do pliku. Dane zapisywane są do pliku, którego nazwa jest taka sama jak data. Do odczytania aktualnej daty wystarczy użyć standardowych funkcji dostępnych w języku C. Należy jednak pamiętać o tym, aby zegar był cały czas zasilany poprzez zewnętrzną baterię. W przeciwnym wypadku za każdym razem będzie on resetowany do standardowej daty.
+Intel Galileo został wyposażony w zegar czasu rzeczywistego (RTC), który został wykorzystany do zapisu danych do pliku. Dane zapisywane są do pliku, którego nazwa jest taka sama jak data. Do odczytania aktualnej daty wystarczy użyć standardowych funkcji dostępnych w języku C. Należy jednak pamiętać o tym, aby zegar był cały czas zasilany poprzez zewnętrzną baterię. W przeciwnym wypadku za każdym razem będzie on resetowany do domyślnej daty.
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Odczyt aktualnej daty]
   system("date '+%H:%M:%S' > /tmp/time.txt");
