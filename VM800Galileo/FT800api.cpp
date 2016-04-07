@@ -5,7 +5,7 @@ void initScreen(){
   text(80, 10, 31, 0, "Welcome");
   spinner(150, 150, 0, 1);
   show();
-  mainScreen();
+  opctionsScreen();
 }
 
 void autko(){
@@ -63,6 +63,20 @@ void opctionsScreen(){
     button(100, 70, 130, 25, 21, 0, "OK");
   else
     button(100, 70, 130, 25, 21, 0, "NO");
+    
+  text(10, 110, 21, 0, "Refresh time");
+  switch(timeR){
+    case 1: button(100, 110, 130, 25, 21, 0, "5s");
+            break;
+    case 2: button(100, 110, 130, 25, 21, 0, "10s");
+            break;
+    case 3: button(100, 110, 130, 25, 21, 0, "30s");
+            break;
+    case 4: button(100, 110, 130, 25, 21, 0, "1min");
+            break;
+    case 5: button(100, 110, 130, 25, 21, 0, "15min");
+            break;
+  }
    
   button(200, 200, 110, 30, 28, 0, "Calibrate");
   button(10, 200, 130, 30, 28, 0, "Back"); 

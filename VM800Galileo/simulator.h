@@ -15,6 +15,7 @@
 extern struct car *audi;
 extern int dataFormat;
 extern int saveData;
+extern short int screenNR;
 
 /**
 ******************************************************************************
@@ -31,10 +32,10 @@ extern int saveData;
 ******************************************************************************
 */
 struct car {
- int doors;			/**< status of doors in car. 1 - open, 0 closed */
+ int doors;		/**< status of doors in car. 1 - open, 0 closed */
  int seatbelts;		/**< status of seatbelts in car. 1 - open, 0 - closed */
  int lights; 		/**< status of lights. 1 -turn on, 0 - turn off */          
- int r; 			/**< statu of reverse gear */
+ int r; 		/**< statu of reverse gear */
  float tempOut;		/**< temperature outside */
  float tempIn; 		/**< temperature inside */
  float tempEngine;	/**< temperature engine */
@@ -47,7 +48,7 @@ struct car {
 * @param          Car struct to print and save with selected format into file*
 ******************************************************************************
 */
-void printObj(struct car * obj);
+void printObj(struct car * obj, char *d);
 
 /**
 ******************************************************************************

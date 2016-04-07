@@ -2,11 +2,11 @@
 #import <Arduino.h>
 
 void delay_us(int us){
-
+  delayMicroseconds(us);
 }
 
 void delay_ms(int ms){
-
+  delay(ms);
 }
 
 void sendData(int data){

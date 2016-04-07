@@ -1,3 +1,4 @@
+
 /**
  * @file VM800Galileo.ino
  * @author Daniel Sienkiewicz
@@ -40,6 +41,8 @@ short int screenNR = 1;				        /**< Selected screen - 1 main screen, 2 - sma
 struct car *audi;					/**< Main car structure with data from sensors */
 int dataFormat = 3;					/**< Selected format to save in file 1 - CSV, 2 - XML, 3 - JSON */
 int saveData = 0;                                       /**< If data will be saving on SD card */
+int timeR = 1;                                          /**< Data refresh time to save to file */
+char buf[9];                                            /**< Actual date */
 
 /**
 ******************************************************************************
@@ -50,8 +53,7 @@ void setup(void){
   system("ifconfig eth0 192.168.0.25 netmask 255.255.0.0 up");
   system("/etc/init.d/ssh start");
   
-  system("date '+%H:%M:%S' > /tmp/time.txt");
-  char buf[9];
+  system("date +'%m-%d-%y' > /tmp/time.txt");
   FILE *fp;
   fp = fopen("/tmp/time.txt", "r");
   fgets(buf, 9, fp);
@@ -223,11 +225,6 @@ void setup(void){
 *
 *****************************************************************************/
 void loop(){
-  
-  uint32_t ReadWord = ft800memRead32((REG_TOUCH_TAG));
-  Serial.print(" x = ");
-  Serial.println(ReadWord);
-
   // Screens controller
   /*switch(screenNR){
     case 1:

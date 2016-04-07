@@ -15,6 +15,7 @@ extern unsigned int cmdOffset;
 extern unsigned int cmdBufferRd;
 extern unsigned int cmdBufferWr;
 extern struct car *audi;
+extern int timeR;
 
 /**
 ******************************************************************************
