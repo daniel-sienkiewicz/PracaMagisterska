@@ -626,6 +626,27 @@ struct car {
 };
 \end{lstlisting}
 
+Porty użyte do działania systemu zostały wypisane w tebeli poniżej.
+
+\begin{table}[!tbh]
+\begin{tabular}{|c|c|c|} \hline
+\textbf{Port} & \textbf{Opis} & \textbf{Typ} \\ \hline
+	2 & Nasłuch na przerwania z I/O Expander & Cyfrowy \\ \hline
+	6 & Linia SCL & Cyfrowy \\ \hline
+	7 & Linia SDA & Cyfrowy \\ \hline
+	8 & Linia SDI & Cyfrowy \\ \hline
+	9 & Linia SDO & Cyfrowy \\ \hline
+	10 & Linia clock & Cyfrowy \\ \hline
+	11 & Linia PD & Cyfrowy \\ \hline
+	12 & Linia CS & Cyfrowy \\ \hline
+	14 & GROUND & Cyfrowy \\ \hline
+	A0 & Temperatura w środku & Analogowy \\ \hline
+	A1 & Temperatura na zewnątrz & Analogowy \\ \hline
+	A2 & Temperatura silnika & Analogowy \\ \hline
+\end{tabular}
+\caption{Porty użyte do działania systemu}
+\end{table}
+
 Dokumentacja kodu została napisana za pomocą notacji wykorzystanej w systemie \emph{DOXYGEN} i zapisana do pliku \emph{PDF}.
 
 Dodatkowym modułem systemu jest uruchomiony na nim napisany w technologii \emph{NodeJS} serwer www udostępniający usługę śledzenia pojazdu. Gdy system zostanie podłączony do internetu (np. poprzez wejście Ethernet lub kartę Wi-Fi) użytkownik ma możliwość wejścia na stronę www gdzie może na bieżąco sprawdzać położenie samochodu na mapie oraz aktualną temperaturę wraz ze stanem drzwi oraz pasów. Komunikacja systemu z serwerem odbywa się poprzez udostępnione \emph{REST API}. Użycie technologii \emph{AngularJS} pozwala na wyświetlanie bieżących danych bez konieczności odświeżania strony.
@@ -661,7 +682,7 @@ Jednak na potrzeby tej wersji projektu nie zostały one zaimplementowane. Oczywi
 
 Intel Galileo ma wiele zalet ale niestety posiada również i wady. Największą zaletą jest możliwość obsługi systemu operacyjnego Linux oraz standard pinów \emph{GPIO} w pełni kompatybilny z popularnym Arduino co daje możliwość zakupu wielu dodatkowych dedykowanych modułów. Posiadanie pełnego systemu operacyjnego daje możliwość wykorzystania go jako na przykład serwer www lub domowego serwera multimedialnego. 
 
-Pierwszą rzeczą na którą należy uważać jest zasilanie. Galileo ma możliwość zasilania poprzez port \emph{USB} lecz w praktyce nie jest to możliwe. Podczas uruchomienia prąd dostarczany poprzez \emph{USB} jest nie wystarczający i następuję automatyczne wyłączenie sprzętu podczas którego Software zostaje uszkodzony. Kolejną wadą jest szybkość pinów \emph{GPIO}. Są one w porównaniu do innych urządzeń dostępnych na rynku bardzo wolne co znacznie ogranicza jego możliwości.
+Pierwszą rzeczą na którą należy uważać jest zasilanie. Galileo ma możliwość zasilania poprzez port \emph{USB} lecz w praktyce nie jest to możliwe. Podczas uruchomienia prąd dostarczany poprzez \emph{USB} jest nie wystarczający i następuję automatyczne wyłączenie sprzętu podczas którego Software zostaje uszkodzony. Kolejną wadą jest szybkość pinów \emph{GPIO}. Są one w porównaniu do innych urządzeń dostępnych na rynku bardzo wolne co znacznie ogranicza jego możliwości. Podczas pracy nad projektem niestety uszkodzone zostało Galileo - spalił się port USB niezbędny do ładowanie programów. Po zamianie na Galileo Gen 2 i przetestowaniu tego samego programu okazało się, że w wersji 2 znacznie poprawione zostały porty GPIO. Program, który na Gen 1 uruchamiał się w 40s, na Gen 2 uruchamia się 4s.
 %================KONIEC Działanie komputera pokładowego=====================
 
 %================Zakończenie=====================
