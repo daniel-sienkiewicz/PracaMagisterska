@@ -69,7 +69,19 @@ Do wykonania pracy zostały przyjęte następujące założenia:
 Parametry takie jak prędkość oraz przebieg nie będą rejestrowane ponieważ są one standardowo dostępne na zegarach samochodowych więc nie ma potrzeby powtarzania tej informacji.
 
 \section{Plan pracy}
-TO DO
+Praca została podzielona na sześć części. Pierwsza z nich opisuje cele projektu wraz ze wstępnymi założeniami. 
+
+W części \emph{Architektura} zostały opisane komponenty użyte do stworzenia pracy: Intel Galielo, FTDI EVE VM800B oraz symulator samochodu. W kolejnej części opisane zostały mechanizmy komunikacji systemu z otoczeniem takie jak:
+\begin{enumerate}
+  \item Porty
+  \item Odpytywanie w pętli
+  \item Przerwania
+\end{enumerate}
+W czwartej części opisane zostały sposoby programowania Intel Galileo z użyciem różnych środowisk. 
+
+W części \emph{Implementacja} wyjaśnione zostało jak działają użyte protokoły komunikacyjne wraz z opisem ich wykorzystania w projekcie.
+
+Ostatnia część pracy opisuje działanie stworzonego komputera pokładowego wraz z jego wszystkimi możliwościami i propozycjami dalszej rozbudowy.
 %================KONIEC WPROWADZENIE=====================
 
 %================Architektura=====================
@@ -605,7 +617,7 @@ Intel Galileo został wyposażony w zegar czasu rzeczywistego (RTC), który zost
   fclose(fp);
 \end{lstlisting}
 
-\begin{figure}[!h]
+\begin{figure}[!hp]
     \centering
     	\includegraphics[height=0.6\textheight]{images/codeDiagram.png}
     \caption{Schemat blokowy działania programu}
@@ -625,8 +637,6 @@ struct car {
  	float tempEngine;
 };
 \end{lstlisting}
-
-Porty użyte do działania systemu zostały wypisane w tebeli poniżej.
 
 \begin{table}[!tbh]
 \begin{tabular}{|c|c|c|} \hline
@@ -682,12 +692,18 @@ Jednak na potrzeby tej wersji projektu nie zostały one zaimplementowane. Oczywi
 
 Intel Galileo ma wiele zalet ale niestety posiada również i wady. Największą zaletą jest możliwość obsługi systemu operacyjnego Linux oraz standard pinów \emph{GPIO} w pełni kompatybilny z popularnym Arduino co daje możliwość zakupu wielu dodatkowych dedykowanych modułów. Posiadanie pełnego systemu operacyjnego daje możliwość wykorzystania go jako na przykład serwer www lub domowego serwera multimedialnego. 
 
-Pierwszą rzeczą na którą należy uważać jest zasilanie. Galileo ma możliwość zasilania poprzez port \emph{USB} lecz w praktyce nie jest to możliwe. Podczas uruchomienia prąd dostarczany poprzez \emph{USB} jest nie wystarczający i następuję automatyczne wyłączenie sprzętu podczas którego Software zostaje uszkodzony. Kolejną wadą jest szybkość pinów \emph{GPIO}. Są one w porównaniu do innych urządzeń dostępnych na rynku bardzo wolne co znacznie ogranicza jego możliwości. Podczas pracy nad projektem niestety uszkodzone zostało Galileo - spalił się port USB niezbędny do ładowanie programów. Po zamianie na Galileo Gen 2 i przetestowaniu tego samego programu okazało się, że w wersji 2 znacznie poprawione zostały porty GPIO. Program, który na Gen 1 uruchamiał się w 40s, na Gen 2 uruchamia się 4s.
+Pierwszą rzeczą na którą należy uważać jest zasilanie. Galileo ma możliwość zasilania poprzez port \emph{USB} lecz w praktyce nie jest to możliwe. Podczas uruchomienia prąd dostarczany poprzez \emph{USB} jest nie wystarczający i następuję automatyczne wyłączenie sprzętu podczas którego Software zostaje uszkodzony. Kolejną wadą jest szybkość pinów \emph{GPIO}. Są one w porównaniu do innych urządzeń dostępnych na rynku bardzo wolne co znacznie ogranicza jego możliwości.
+
+Podczas pracy nad projektem niestety uszkodzone zostało Galileo - spalił się port USB niezbędny do ładowanie programów. Po zamianie na Galileo Gen 2 i przetestowaniu tego samego programu okazało się, że w wersji 2 znacznie poprawione zostały porty GPIO. Program, który na Gen 1 uruchamiał się w 40s, na Gen 2 uruchamia się 4s.
 %================KONIEC Działanie komputera pokładowego=====================
 
 %================Zakończenie=====================
 \summary
-TO DO
+Celem niniejszej pracy było wykonanie komputera pokładowego do samochodu bazującego na mikrokomputerze Intel Galileo oraz sprawdzenie możliwości tego mikrokomputera. Przedstawiony projekt nie jest w pełni kompletnym rozwiązaniem. Funkcjonalności takie jak określanie pozycji GPS oraz inteligentne lusterko wsteczne zostały za symulowane na potrzeby pracy.
+
+Podczas pracy nad projektem udało się sprawdzić możliwości Intel Galileo wykorzystując rożne interfejsy komunikacyjne (porty GPIO, Ethernet, USB, RS-232) oraz możliwości systemu Linux YOCTO.
+
+Reasumując Intel Galileo jest bardzo ciekawym rozwiązaniem w świecie IoT\footnote{ang. Internet of things - system powiązanych ze sobą urządzeń gromadzących i przetwarzających informacje najczęściej za pośrednictwem sieci komputerowej}. Posiada ogromne możliwości do wykorzystania jako na przykład domowy serwer multimedialny lub kontroler urządzeń wejścia/wyjścia. Osobiście polecałbym generację 2 ze względu na poprawioną obsługę portów GPIO co znacznie ułatwia korzystanie z nich.
 %================KONIEC Zakonczenie=====================
 
 %================Dodatki=====================
@@ -705,7 +721,7 @@ Katalog \emph{datasheets} zawiera karty katalogowe użytych podzespołów
  & \textbf{Intel Galileo} & \textbf{Raspberry Pi (Model B)} & \textbf{Arduino Uno} \\ \hline
 Wymiary & 10cm x 7cm & 85.60mm x 56mm x 21mm & 5.59cm x 16.5cm \\ \hline
 Procesor & Intel Quark X1000 & Broadcom BCM2835 & ATmega328 \\ \hline
-Taktowanie & 400MHz	& 700MHziv & 16 MHz\\ \hline
+Taktowanie & 400MHz	& 700MHz & 16 MHz\\ \hline
 Cache & 16 KB & 32KB L1 cache, 128KB L2 cache & - \\ \hline
 RAM & 512 SRAM & 512 SRAM & 2 kB \\ \hline
 Analog I/O	& 6 & 17 & 6 \\ \hline
