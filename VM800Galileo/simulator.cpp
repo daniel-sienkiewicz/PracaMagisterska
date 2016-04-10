@@ -89,7 +89,9 @@ struct car * readData(){
 void checkChangesDigital(){
   digitalWrite(13, HIGH);
   struct car * tmp = readData();
-  
+  Serial.println("Zamiana danych");
+   Serial.println(screenNR);
+    Serial.println(tmp->doors);
   if(tmp->doors != audi->doors && screenNR == 1){
     Serial.println("Drzwi sie zmienily");
     mainScreen();
@@ -109,9 +111,16 @@ void checkChangesDigital(){
   
   save(audi, tmp);
   free(tmp);
+  sendData();
 
   //printObj(audi);
   digitalWrite(13, LOW);
+}
+
+void sendData(){
+  char buffer [1000];
+  snprintf(buffer, sizeof(buffer), "curl -i -X POST -H 'Content-Type: application/json' -d '{\"tempIn\": \"%lf\", \"tempOut\" : \"%lf\", \"tempEngine\" : \"%lf\", \"GPSlongitude\" : \"%s\", \"GPSlatitude\" : \"%s\", \"doors\" : \"%d\", \"seatbelt\" : \"%d\", \"lights\" : \"%d\" }' http://localhost:3000/updateData", audi->tempIn, audi->tempOut, audi->tempEngine, "54.360N", "18.639E", audi->doors, audi->seatbelts, audi->lights);
+  system(buffer);
 }
 
 void checkChangesAnalog(){

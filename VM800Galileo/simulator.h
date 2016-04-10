@@ -88,4 +88,11 @@ void save(struct car *audi, struct car *tmp);
 */
 int readTemp(int portNumber);
 
+/**
+******************************************************************************
+* @details        Sending actial data to web server                          *
+******************************************************************************
+*/
+void sendData();
+
 #endif
