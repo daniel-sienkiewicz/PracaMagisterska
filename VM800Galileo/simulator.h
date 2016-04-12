@@ -28,13 +28,13 @@ extern short int screenNR;
 
 /**
 ******************************************************************************
-* @details 			A global car structure                    				 *   
+* @details 			A global car structure                              				 *
 ******************************************************************************
 */
 struct car {
  int doors;		/**< status of doors in car. 1 - open, 0 closed */
  int seatbelts;		/**< status of seatbelts in car. 1 - open, 0 - closed */
- int lights; 		/**< status of lights. 1 -turn on, 0 - turn off */          
+ int lights; 		/**< status of lights. 1 -turn on, 0 - turn off */
  int r; 		/**< statu of reverse gear */
  float tempOut;		/**< temperature outside */
  float tempIn; 		/**< temperature inside */
@@ -46,13 +46,15 @@ struct car {
 * @details        Debug function to print car structure on a serial monitor  *
 *                 console and to log file on SD car                          *
 * @param          Car struct to print and save with selected format into file*
+* @param          d actual date                                              *
 ******************************************************************************
 */
 void printObj(struct car * obj, char *d);
 
 /**
 ******************************************************************************
-* @details        Check if sth on analog ports was changed                  *
+* @details        Check if sth on analog ports was changed                   *
+* @param          audi structure to save dage read from analog sensors       *
 ******************************************************************************
 */
 void checkChangesAnalog(struct car *audi);

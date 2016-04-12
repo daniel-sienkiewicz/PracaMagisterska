@@ -248,7 +248,7 @@
 #define OPT_SIGNED           256UL     // 0x0100
 #define PALETTED             8UL
 #define PLAYCOLOR            0x00a0a080
-#define FTPOINTS             2UL       // "POINTS" is a reserved word
+#define FTPOINTS             2UL       /**< "POINTS" is a reserved word */
 #define RECTS                9UL
 #define REPEAT               1UL
 #define REPLACE              2UL
@@ -274,180 +274,155 @@
 #define INVALID_TOUCH_XY     0x8000
 #define ABS(x)               ((x) > (0) ? (x) : (-x))
 
-//#define PIC		              // Wybrac gdy uzywamy PIC
+//#define PIC		              // Select if we are using PIC
 
 // Set LCD display resolution here
-#define LCD_QVGA	              // QVGA  = 320 x 240 (VM800B/C 3.5")
+#define LCD_QVGA	              /**< QVGA  = 320 x 240 (VM800B/C 3.5") */
 //#define LCD_WQVGA		      // WQVGA = 480 x 272 (VM800B/C 4.3" and 5.0")
 
-#define xSDI 8     /**< SDI line for SPI interface - input for Galileo */ 
+#define xSDI 8     /**< SDI line for SPI interface - input for Galileo */
 #define xSDO 9     /**< SDO line for SPI interface - output for Galileo */
-#define xclock 10  /**< Closk line - output for Galileo */
+#define xclock 10  /**< Clock line - output for Galileo */
 #define xPD 11     /**< PD line for screen - output for Galileo */
 #define xCS 12     /**< Chip Select line for screen - output for Galileo */
 
 #ifdef PIC
-#pragma config FOSC = INTRCCLK  // Oscillator Selection bits (INTOSC oscillator: CLKOUT function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN)
-#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
-#pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
-#pragma config MCLRE = ON       // MCLR Pin Function Select bit (MCLR pin function is MCLR)
-#pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
-#pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
-#pragma config BOREN = ON       // Brown-out Reset Selection bits (BOR enabled)
-#pragma config IESO = OFF       // Internal External Switchover bit (Internal External Switchover mode is disabled)
-#pragma config FCMEN = ON       // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is enabled)
-#define _XTAL_FREQ 8000000      // Required for _delay() function, internal OSC Max
+#pragma config FOSC = INTRCCLK  /**< Oscillator Selection bits (INTOSC oscillator: CLKOUT function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN) */
+#pragma config WDTE = OFF       /**< Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register) */
+#pragma config PWRTE = OFF      /**< Power-up Timer Enable bit (PWRT disabled) */
+#pragma config MCLRE = ON       /**< MCLR Pin Function Select bit (MCLR pin function is MCLR) */
+#pragma config CP = OFF         /**< Code Protection bit (Program memory code protection is disabled) */
+#pragma config CPD = OFF        /**< Data Code Protection bit (Data memory code protection is disabled) */
+#pragma config BOREN = ON       /**< Brown-out Reset Selection bits (BOR enabled) */
+#pragma config IESO = OFF       /**< Internal External Switchover bit (Internal External Switchover mode is disabled) */
+#pragma config FCMEN = ON       /**< Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is enabled) */
+#define _XTAL_FREQ 8000000      /**< Required for _delay() function, internal OSC Max */
 #endif
 
 // FT800 Chip Commands - use with cmdWrite
 #define FT800_ACTIVE		0x00		/**< Initializes FT800 */
 #define FT800_STANDBY		0x41		/**< Place FT800 in Standby (clk running) */
-#define FT800_SLEEP		0x42	        /**< Place FT800 in Sleep (clk off) */
+#define FT800_SLEEP		  0x42	  /**< Place FT800 in Sleep (clk off) */
 #define FT800_PWRDOWN		0x50		/**< Place FT800 in Power Down (core off) */
 #define FT800_CLKEXT		0x44		/**< Select external clock source */
 #define FT800_CLK48M		0x62		/**< Select 48MHz PLL */
 #define FT800_CLK36M		0x61		/**< Select 36MHz PLL */
 #define FT800_CORERST		0x68		/**< Reset core - all registers default */
-#define FT800_GPUACTIVE		0x40
+#define FT800_GPUACTIVE	0x40
 
 // FT800 Memory Commands - use with ft800memWritexx and ft800memReadxx
 #define MEM_WRITE		0x80		/**< FT800 Host Memory Write */
 #define MEM_READ		0x00		/**< FT800 Host Memory Read */
 
 // Colors - fully saturated colors defined here
-#define RED				0xFF0000		/**< Red */
-#define GREEN				0x00FF00		/**< Green */
-#define BLUE				0x0000FF		/**< Blue */
-#define WHITE				0xFFFFFF		/**< White */
-#define BLACK				0x000000		/**< Black */
+#define RED				  0xFF0000		/**< Red colour */
+#define GREEN				0x00FF00		/**< Green colour */
+#define BLUE				0x0000FF		/**< Blue colour */
+#define WHITE				0xFFFFFF		/**< White colour */
+#define BLACK				0x000000		/**< Black colour */
 
 /**
-******************************************************************************
-* @details                            *
-* @param                            *
-* @return                       *
-******************************************************************************
+**********************************************************************************************
+* @details Pauses the program for the amount of time (in microsecond) specified as parameter *
+* @param us microseconds to delay                                                            *
+**********************************************************************************************
 */
 void delay_us(int us);
 
 /**
-******************************************************************************
-* @details                            *
-* @param                            *
-* @return                       *
-******************************************************************************
+*********************************************************************************************
+* @details Pauses the program for the amount of time (in milisecond) specified as parameter *
+* @param ms milisecond to delay                                                             *
+*********************************************************************************************
 */
 void delay_ms(int ms);
 
 /**
-******************************************************************************
-* @details                            *
-* @param                            *
-* @return                       *
-******************************************************************************
+*********************************************************************************************
+* @details Function sending data to active device with using SPI interface                  *
+* @param data 8 bit value to send to device                                                 *
+*********************************************************************************************
 */
 void sendData(int data);
 
 /**
-******************************************************************************
-* @details                            *
-* @param                            *
-* @return                       *
-******************************************************************************
+*********************************************************************************************
+* @details Function getting data from active device with using SPI interface                *
+* @return 8 bit vcalue with obtained value                                                  *
+*********************************************************************************************
 */
 unsigned char getData();
 
-/******************************************************************************
-* Function:        void ft800memWritexx(ftAddress, ftDataxx, ftLength)
-* PreCondition:    None
-* Input:           ftAddress = FT800 memory space address
-*                  ftDataxx = a byte, int or long to send
-* Output:          None
-* Side Effects:    None
-* Overview:        Writes FT800 internal address space
-* Note:            "xx" is one of 8, 16 or 32
-*****************************************************************************/
-
 /**
-******************************************************************************
-*
-* @param ftAddress FT800 memory space address (24 bits)
-* @param ftData8 a byte to send
-*****************************************************************************/
+*********************************************************************************************
+* @details Funtion to send 8 bit value to active device with using SPI interface            *
+* @param ftAddress FT800 memory space address (24 bits)                                     *
+* @param ftData8 a byte to send                                                             *
+*********************************************************************************************
+*/
 void ft800memWrite8(unsigned long ftAddress, unsigned char ftData8);
 
 /**
-******************************************************************************
-*
-* @param ftAddress FT800 memory space address (24 bits)
-* @param ftData16 a word (16 bits) to send
-*****************************************************************************/
+*********************************************************************************************
+* @details Funtion to send 16 bit value to active device with using SPI interface           *
+* @param ftAddress FT800 memory space address (24 bits)                                     *
+* @param ftData8 a byte to send                                                             *
+*********************************************************************************************
+*/
 void ft800memWrite16(unsigned long ftAddress, unsigned int ftData16);
 
 /**
-******************************************************************************
-*
-* @param ftAddress FT800 memory space address (24 bits)
-* @param ftData32 long (32 bits) to send
-*****************************************************************************/
+*********************************************************************************************
+* @details Funtion to send 32 bit value to active device with using SPI interface           *
+* @param ftAddress FT800 memory space address (24 bits)                                     *
+* @param ftData8 a byte to send                                                             *
+*********************************************************************************************
+*/
 void ft800memWrite32(unsigned long ftAddress, unsigned long ftData32);
 
-/******************************************************************************
- * Function:        unsigned char ft800memReadxx(ftAddress, ftLength)
- * PreCondition:    None
- * Input:           ftAddress = FT800 memory space address
- * Output:          ftDataxx (byte, int or long)
- * Side Effects:    None
- * Overview:        Reads FT800 internal address space
- * Note:            "xx" is one of 8, 16 or 32
- *****************************************************************************/
 /**
-******************************************************************************
-*
-* @param ftAddress FT800 memory space address (24 bits)
-* @retval Read byte
-*****************************************************************************/
+*********************************************************************************************
+* @details Funtion to read 8 bit value from active device with using SPI interface          *
+* @param ftAddress FT800 memory space address (24 bits)                                     *
+* @return 8 bit data obtained from device                                                   *
+*********************************************************************************************
+*/
 unsigned char ft800memRead8(unsigned long ftAddress);
 
 /**
-******************************************************************************
-*
-* @param ftAddress FT800 memory space address (24 bits)
-* @retval Read word (16 bits)
-*****************************************************************************/
+*********************************************************************************************
+* @details Funtion to read 16 bit value from active device with using SPI interface         *
+* @param ftAddress FT800 memory space address (24 bits)                                     *
+* @return 16 bit data obtained from device                                                  *
+*********************************************************************************************
+*/
 unsigned char ft800memRead16(unsigned long ftAddress);
 
 /**
-******************************************************************************
-*
-* @param ftAddress FT800 memory space address (24 bits)
-* @retval Read long (32 bits)
-*****************************************************************************/
+*********************************************************************************************
+* @details Funtion to read 32 bit value from active device with using SPI interface         *
+* @param ftAddress FT800 memory space address (24 bits)                                     *
+* @return 32 bit data obtained from device                                                  *
+*********************************************************************************************
+*/
 unsigned long ft800memRead32(unsigned long ftAddress);
 
-/******************************************************************************
-* Function:        void incCMDOffset(currentOffset, commandSize)
-* PreCondition:    None
-*                    starting a command list
-* Input:           currentOffset = graphics processor command list pointer
-*                  commandSize = number of bytes to increment the offset
-* Output:          newOffset = the new ring buffer pointer after adding the command
-* Side Effects:    None
-* Overview:        Adds commandSize to the currentOffset.
-*                  Checks for 4K ring-buffer offset roll-over
-* Note:            None
-*****************************************************************************/
+/**
+**********************************************************************************************
+* @details Adds commandSize to the currentOffset. Checks for 4K ring-buffer offset roll-over *
+* @param currentOffset graphics processor command list pointer                               *
+* @param commandSize number of bytes to increment the offset                                 *
+* @return the new ring buffer pointer after adding the command                               *
+**********************************************************************************************
+*/
 unsigned int incCMDOffset(unsigned int currentOffset, unsigned char commandSize);
 
-/******************************************************************************
- * Function:        void ft800cmdWrite(ftCommand)
- * PreCondition:    None
- * Input:           None
- * Output:          None
- * Side Effects:    None
- * Overview:        Sends FT800 command
- * Note:            None
- *****************************************************************************/
+ /**
+ **********************************************************************************************
+ * @details  Sends FT800 command                                                              *
+ * @param ftCommand command to send to device                                                 *
+ **********************************************************************************************
+ */
 void ft800cmdWrite(unsigned char ftCommand);
 
 #endif

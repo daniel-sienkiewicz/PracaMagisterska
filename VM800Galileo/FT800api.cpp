@@ -1,3 +1,10 @@
+/**
+ * @file FT800api.cpp
+ * @author Daniel Sienkiewicz
+ * @date 28 February 2016
+ * @brief File containing declarations of all API functions for VM800.
+ */
+
 #include "FT800api.h"
 
 void initScreen(){
@@ -14,7 +21,7 @@ void autko(){
   line(WHITE, 1500, 1700, 1500, 2500, 50);
   line(WHITE, 3500, 1700, 3500, 2500, 50);
   line(WHITE, 1500, 2500, 3500, 2500, 50);
-  
+
   if(audi->doors & 16)
     line(WHITE, 3500, 1700, 2600, 1400, 50);
   if(audi->doors & 8)
@@ -34,7 +41,7 @@ void autko(){
     text(250, 110, 21, 0, "Turn on");
     text(250, 130, 21, 0, "lights");
   }
-    
+
   Serial.println("Koniec Autko");
 }
 
@@ -50,7 +57,7 @@ void mainScreen(){
   number(99, 50, 21, 0, (int)(audi->tempEngine)%100);
   text(250, 10, 21, 0, "GPS:");
   text(200, 30, 21, 0, "54.360N 18.639E");
-  button(10, 200, 130, 30, 28, 0, "Smart Mirror"); 
+  button(10, 200, 130, 30, 28, 0, "Smart Mirror");
   button(200, 200, 110, 30, 28, 0, "Options");
   autko();
   show();
@@ -61,7 +68,7 @@ void smartMirrorScreen(){
   Serial.println("Start SmartMirror");
   start(BLACK);
   text(10, 10, 21, 0, "Smart mirror");
-  button(10, 200, 130, 30, 28, 0, "Back"); 
+  button(10, 200, 130, 30, 28, 0, "Back");
   show();
   Serial.println("Koniec SmartMirror");
 }
@@ -78,13 +85,13 @@ void opctionsScreen(){
     case 3: button(100, 30, 130, 25, 21, 0, "JSON");
             break;
   }
-  
+
   text(10, 70, 21, 0, "Saving data");
   if(!saveData)
     button(100, 70, 130, 25, 21, 0, "OK");
   else
     button(100, 70, 130, 25, 21, 0, "NO");
-    
+
   text(10, 110, 21, 0, "Refresh time");
   switch(timeR){
     case 1: button(100, 110, 130, 25, 21, 0, "5s");
@@ -98,15 +105,15 @@ void opctionsScreen(){
     case 5: button(100, 110, 130, 25, 21, 0, "15min");
             break;
   }
-   
+
   button(200, 200, 110, 30, 28, 0, "Calibrate");
-  button(10, 200, 130, 30, 28, 0, "Back"); 
+  button(10, 200, 130, 30, 28, 0, "Back");
   show();
   Serial.println("Koniec Options");
 }
 
-void spinner(int16_t x, int16_t y, uint16_t style, uint16_t scale){  
-   Serial.println("Start Spinner");  
+void spinner(int16_t x, int16_t y, uint16_t style, uint16_t scale){
+   Serial.println("Start Spinner");
    ft800memWrite32(RAM_CMD+cmdOffset, CMD_SPINNER);
    cmdOffset=incCMDOffset(cmdOffset, 4);
    ft800memWrite32(RAM_CMD+cmdOffset, ((uint32_t)y<<16)|(x & 0xffff) );
@@ -120,10 +127,10 @@ void button(int16_t x, int16_t y, int16_t w, int16_t h, int16_t font, uint16_t o
   Serial.println("Start Guzik");
   uint16_t i, j, q = 0;
   const uint16_t length = strlen(str);
-  if(!length) return ;	
-	
+  if(!length) return ;
+
   uint32_t* data = (uint32_t*) calloc((length / 4) + 1, sizeof(uint32_t));
-	
+
   for(i = 0; i < (length / 4); i++, q = q + 4){
     data[i] = (uint32_t)str[q + 3] << 24 | (uint32_t)str[q + 2] << 16 | (uint32_t)str[q + 1] << 8 | (uint32_t)str[q];
   }
@@ -131,7 +138,7 @@ void button(int16_t x, int16_t y, int16_t w, int16_t h, int16_t font, uint16_t o
   for(j = 0; j < (length % 4); j++, q++){
     data[i] |= (uint32_t)str[q] << (j * 8);
   }
-	
+
   ft800memWrite32(RAM_CMD+cmdOffset, CMD_BUTTON);
   cmdOffset=incCMDOffset(cmdOffset, 4);
   ft800memWrite32(RAM_CMD+cmdOffset,  ((uint32_t)y << 16)|(x & 0xffff) );
@@ -140,14 +147,14 @@ void button(int16_t x, int16_t y, int16_t w, int16_t h, int16_t font, uint16_t o
   cmdOffset=incCMDOffset(cmdOffset, 4);
   ft800memWrite32(RAM_CMD+cmdOffset,  ((uint32_t)options << 16)|(font & 0xffff) );
   cmdOffset=incCMDOffset(cmdOffset, 4);
-	
+
   for(j = 0; j < (length / 4) + 1; j++){
     ft800memWrite32(RAM_CMD+cmdOffset, (data[j]));
     cmdOffset=incCMDOffset(cmdOffset, 4);
   }
 
   free(data);
-  
+
   Serial.println("Koniec Guzik");
 }
 
@@ -155,10 +162,10 @@ void text( int16_t x,  int16_t y, int16_t font, uint16_t options, const char* st
   Serial.println("Start Text");
   uint16_t i, j, q = 0;
   const uint16_t length = strlen(str);
-  if(!length) return ;	
-	
+  if(!length) return ;
+
   uint32_t* data = (uint32_t*) calloc((length / 4) + 1, sizeof(uint32_t));
-	
+
   for(i = 0; i < (length / 4); i++, q = q + 4){
     data[i] = (uint32_t)str[q + 3] << 24 | (uint32_t)str[q + 2] << 16 | (uint32_t)str[q + 1] << 8 | (uint32_t)str[q];
   }
@@ -166,14 +173,14 @@ void text( int16_t x,  int16_t y, int16_t font, uint16_t options, const char* st
   for(j = 0; j < (length % 4); j++, q++){
     data[i] |= (uint32_t)str[q] << (j * 8);
   }
-	
+
   ft800memWrite32(RAM_CMD+cmdOffset, (DL_BEGIN|CMD_TEXT));
   cmdOffset=incCMDOffset(cmdOffset, 4);
   ft800memWrite32(RAM_CMD+cmdOffset, ((uint32_t)y << 16)|(x & 0xffff));
   cmdOffset=incCMDOffset(cmdOffset, 4);
   ft800memWrite32(RAM_CMD+cmdOffset, ((uint32_t)options << 16)|(font & 0xffff) );
   cmdOffset=incCMDOffset(cmdOffset, 4);
-  
+
   for(j = 0; j < (length / 4) + 1; j++){
       ft800memWrite32(RAM_CMD+cmdOffset, data[j]);
       cmdOffset=incCMDOffset(cmdOffset, 4);
@@ -185,7 +192,7 @@ void text( int16_t x,  int16_t y, int16_t font, uint16_t options, const char* st
 
 void number( int16_t x,  int16_t y, int16_t font, uint16_t options, int value){
   Serial.println("Start Number");
-	
+
   ft800memWrite32(RAM_CMD+cmdOffset, (DL_BEGIN|CMD_NUMBER));
   cmdOffset=incCMDOffset(cmdOffset, 4);
   ft800memWrite32(RAM_CMD+cmdOffset, ((uint32_t)y << 16)|(x & 0xffff));
@@ -194,7 +201,7 @@ void number( int16_t x,  int16_t y, int16_t font, uint16_t options, int value){
   cmdOffset=incCMDOffset(cmdOffset, 4);
   ft800memWrite32(RAM_CMD+cmdOffset, value);
   cmdOffset=incCMDOffset(cmdOffset, 4);
- 
+
   Serial.println("Koniec Number");
 }
 
@@ -212,15 +219,15 @@ void line(unsigned long color, unsigned long line_x1, unsigned long line_y1, uns
 
   ft800memWrite32(RAM_CMD+cmdOffset, (DL_VERTEX2F|(line_x1<<15)|line_y1));
   cmdOffset=incCMDOffset(cmdOffset,4);
-  
+
   ft800memWrite32(RAM_CMD+cmdOffset, (DL_VERTEX2F|(line_x2<<15)|line_y2));
-  cmdOffset=incCMDOffset(cmdOffset,4);	
-  
+  cmdOffset=incCMDOffset(cmdOffset,4);
+
   Serial.println("Koniec Linia");
 }
 
-void dot(unsigned long color, unsigned int point_size, unsigned long point_x, unsigned long point_y){ 
- Serial.println("Start Kropka"); 
+void dot(unsigned long color, unsigned int point_size, unsigned long point_x, unsigned long point_y){
+ Serial.println("Start Kropka");
 
   ft800memWrite32(RAM_CMD+cmdOffset, (DL_POINT_SIZE|point_size));
   cmdOffset=incCMDOffset(cmdOffset,4);
@@ -239,7 +246,7 @@ void dot(unsigned long color, unsigned int point_size, unsigned long point_x, un
 
 void slider(unsigned long x, unsigned long y, unsigned long w, unsigned long h, uint16_t options, uint16_t val, uint16_t range){
   Serial.println("Start slider");
-  
+
   ft800memWrite32(RAM_CMD + cmdOffset, (DL_BEGIN|CMD_SLIDER));
   cmdOffset=incCMDOffset(cmdOffset,4);
   ft800memWrite32(RAM_CMD + cmdOffset, ((uint32_t)y << 16) | (x & 0xffff));
@@ -250,19 +257,19 @@ void slider(unsigned long x, unsigned long y, unsigned long w, unsigned long h, 
   cmdOffset=incCMDOffset(cmdOffset,4);
   ft800memWrite32(RAM_CMD + cmdOffset, (uint32_t)range);
   cmdOffset=incCMDOffset(cmdOffset,4);
-  
+
   Serial.println("Koniec Slider");
 }
 
 void calibrate(){
   Serial.println("Start Calibrate");
-  
+
   start(BLACK);
   ft800memWrite32(RAM_CMD + cmdOffset, (DL_BEGIN|CMD_CALIBRATE));
   cmdOffset=incCMDOffset(cmdOffset,4);
   show();
-  
-  Serial.println("Koniec Calibrate"); 
+
+  Serial.println("Koniec Calibrate");
 }
 
 void start(unsigned long color){

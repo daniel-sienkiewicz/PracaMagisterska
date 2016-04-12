@@ -1,3 +1,10 @@
+/**
+ * @file FT800.cpp
+ * @author Daniel Sienkiewicz
+ * @date 28 February 2016
+ * @brief File containing declarations of all functions required to use with VM800.
+ */
+
 #include "FT800.h"
 #import <Arduino.h>
 
@@ -31,7 +38,7 @@ unsigned char getData(){
     digitalWrite(xclock, HIGH);
     delay_ms(2);
     digitalWrite(xclock, LOW);
-  }	
+  }
   return result;
 }
 
@@ -87,7 +94,7 @@ void ft800memWrite16(unsigned long ftAddress, unsigned int ftData16){
   sendData(((ftAddress >> 16) | MEM_WRITE));
   sendData((ftAddress >> 8));
   sendData((ftAddress));
-	
+
   sendData(ftData16);
   sendData((ftData16 >> 8));
   delay_us(2);
@@ -123,7 +130,7 @@ void ft800memWrite32(unsigned long ftAddress, unsigned long ftData32){
   sendData(((ftAddress >> 16) | MEM_WRITE));
   sendData((ftAddress >> 8));
   sendData(ftAddress);
-	
+
   sendData(ftData32);
   sendData((ftData32 >> 8));
   sendData((ftData32 >> 16));
@@ -159,7 +166,7 @@ unsigned char ft800memRead8(unsigned long ftAddress){
   sendData(ftAddress&255);
   sendData(0);
   delay_us(2);
-        
+
   ftData8 = getData();
   delay_us(2);
   digitalWrite(xCS, HIGH);
@@ -178,7 +185,7 @@ unsigned char ft800memRead16(unsigned long ftAddress){
   SSPBUF=(char)(ftAddress>>8);						// Send middle address byte
   while(!SSPSTATbits.BF);
   SSPBUF=(char)(ftAddress);							// Send low address byte
-  while(!SSPSTATbits.BF);    
+  while(!SSPSTATbits.BF);
   SSPBUF=ZERO;  									// Send dummy byte
   SSPBUF=ZERO;					       				// Send dummy byte
   while(!SSPSTATbits.BF);
@@ -202,12 +209,12 @@ unsigned char ft800memRead16(unsigned long ftAddress){
   sendData(ftAddress&255);
   sendData(0);
   delay_us(2);
-        
+
   tempData[0] = getData();
   ftData16 = (tempData[0])|(ftData16);
   sendData(0);
   delay_us(2);
-        
+
   tempData[1] = getData();
   ftData16 = (ftData16) | (tempData[1] << 8);
   delay_us(2);
@@ -260,22 +267,22 @@ unsigned long ft800memRead32(unsigned long ftAddress){
   sendData(ftAddress);
   sendData(0);
   delay_us(2);
-	
+
   tempData[3] = getData();
   ftData32 = tempData[3] | ftData32;
   sendData(0);
   delay_us(2);
-        
+
   tempData[2] = getData();
   ftData32 = (tempData[2] << 8) | ftData32;
   sendData(0);
   delay_us(2);
-        
+
   tempData[1] = getData();
   ftData32 = (tempData[1] << 16) | ftData32;
   sendData(0);
   delay_us(2);
-        
+
   tempData[0] = getData();
   ftData32 = ftData32 | (tempData[0] << 24);
   delay_us(2);
@@ -297,9 +304,9 @@ unsigned int incCMDOffset(unsigned int currentOffset, unsigned char commandSize)
 void ft800cmdWrite(unsigned char ftCommand){
 #ifdef PIC
   RC6=0;												// Set CS# low
-  
+
   SSPBUF=ftCommand;					        			// Send command
-  while(!SSPSTATbits.BF); 
+  while(!SSPSTATbits.BF);
   SSPBUF=ZERO;
   while(!SSPSTATbits.BF);		                        // Commands consist of two more zero bytes
   SSPBUF=ZERO;

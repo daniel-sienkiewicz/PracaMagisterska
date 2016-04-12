@@ -1,3 +1,10 @@
+/**
+ * @file simulator.cpp
+ * @author Daniel Sienkiewicz
+ * @date 28 February 2016
+ * @brief File containing declarations of all functions required to communication with car simulator.
+ */
+
 #include "simulator.h"
 
 void printObj(struct car * obj, char * d){
@@ -18,9 +25,9 @@ void printObj(struct car * obj, char * d){
   Serial.print("| Temp Engine = ");
   Serial.println(obj->tempEngine);
   Serial.println("+-------------------+");
-  
+
   Serial.println(d);
-  
+
   // Save data to file
   String file = "/tmp/";
   file += d;
@@ -34,7 +41,7 @@ void printObj(struct car * obj, char * d){
             fseek(fp, 0L, SEEK_END);
             if(ftell(fp) == 0)
               fprintf(fp, "doors, seatbelts, lights, r, temp out, temp in, temp engine\n");
-            
+
             fprintf(fp, "%d, %d, %d, %d, %f, %f, %f\n", obj->doors, obj->seatbelts, obj->lights, obj->r, obj->tempOut, obj->tempIn, obj->tempEngine);
             break;
     case 2:                // XML
@@ -69,11 +76,11 @@ void save(struct car *audi, struct car *tmp){
 
 struct car * readData(){
   struct car * tmp = (struct car *)malloc(sizeof(struct car));
-  
+
   int data = readPCF(0x41);                                                  // Read data from first PCF device
   tmp->doors = (data & 3) << 2;
   tmp->seatbelts = data & 12;
-  
+
   data = readPCF(0x43);                                                      // Read data from second PCF device
   tmp->doors |= data & 3;
   tmp->doors |= (data & 32) >> 1;
@@ -97,7 +104,7 @@ void checkChangesDigital(){
     mainScreen();
   }
   if(tmp->seatbelts != audi->seatbelts && screenNR == 1){
-    Serial.println("Pasy sie zmienily"); 
+    Serial.println("Pasy sie zmienily");
     mainScreen();
   }
   if(tmp->r != audi->r && screenNR == 1){
@@ -108,7 +115,7 @@ void checkChangesDigital(){
     Serial.println("Światła sie zmienily");
     mainScreen();
   }
-  
+
   save(audi, tmp);
   free(tmp);
   sendData();
@@ -126,7 +133,7 @@ void sendData(){
 void checkChangesAnalog(){
   digitalWrite(13, HIGH);
   struct car * tmp = readData();
-  
+
   if(tmp->tempOut != audi->tempOut && screenNR == 1){
     Serial.println("TempOut sie zmienilo");
     mainScreen();
@@ -139,10 +146,10 @@ void checkChangesAnalog(){
     Serial.println("TempEngine sie zmienilo");
     mainScreen();
   }
-  
+
   save(audi, tmp);
   free(tmp);
-  
+
   //printObj(audi);
   digitalWrite(13, LOW);
 }

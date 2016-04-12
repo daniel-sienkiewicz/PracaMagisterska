@@ -63,3 +63,7 @@ tools/
 VM800Linux/tests/
 website/bower_components/
 website/node_modules/
+VM800Galileo/latex/
+VM800Galileo/html/
+doc/latex/
+doc/html/
