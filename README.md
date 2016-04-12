@@ -18,6 +18,7 @@ Uniwersytet Gdański
 * tex - pliki pracy magisterskiej (LaTeX)
 * PCF8574N - własna wersji biblioteki potrzebnej do obs³ugi I/O Expander PCF8574N
 * website - strona www obrazujaca aktualny stan samochodu z REST API
+* doc - dokumentacja kodu wygenerowana za pomocą DOXYGEN
 
 ##Autor
 [Daniel Sienkiewicz](mailto:daniel@sienkiewicz.ovh)
