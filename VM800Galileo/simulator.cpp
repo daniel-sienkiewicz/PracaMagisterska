@@ -77,11 +77,11 @@ void save(struct car *audi, struct car *tmp){
 struct car * readData(){
   struct car * tmp = (struct car *)malloc(sizeof(struct car));
 
-  int data = readPCF(0x41);                                                  // Read data from first PCF device
+  int data = readPCF(0x71);                                                  // Read data from first PCF device
   tmp->doors = (data & 3) << 2;
   tmp->seatbelts = data & 12;
 
-  data = readPCF(0x43);                                                      // Read data from second PCF device
+  data = readPCF(0x73);                                                      // Read data from second PCF device
   tmp->doors |= data & 3;
   tmp->doors |= (data & 32) >> 1;
   tmp->seatbelts |= (data & 12) >> 2;
@@ -97,23 +97,23 @@ void checkChangesDigital(){
   digitalWrite(13, HIGH);
   struct car * tmp = readData();
   Serial.println("Zamiana danych");
-   Serial.println(screenNR);
+   //Serial.println(screenNR);
     Serial.println(tmp->doors);
   if(tmp->doors != audi->doors && screenNR == 1){
     Serial.println("Drzwi sie zmienily");
-    mainScreen();
+    //mainScreen();
   }
   if(tmp->seatbelts != audi->seatbelts && screenNR == 1){
     Serial.println("Pasy sie zmienily");
-    mainScreen();
+    //mainScreen();
   }
   if(tmp->r != audi->r && screenNR == 1){
     Serial.println("Wsteczny!!");
-    mainScreen();
+    //mainScreen();
   }
   if(tmp->lights != audi->lights && screenNR == 1){
     Serial.println("Światła sie zmienily");
-    mainScreen();
+    //mainScreen();
   }
 
   save(audi, tmp);

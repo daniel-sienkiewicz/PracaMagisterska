@@ -225,7 +225,7 @@ void setup(void){
 *
 ************************************************M*****************************/
 void loop(){
-
+checkChangesDigital();
   // Screens controller
   /*switch(screenNR){
     case 1:
