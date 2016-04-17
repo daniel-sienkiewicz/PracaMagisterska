@@ -45,22 +45,22 @@ int timeR = 1;                                          /**< Data refresh time t
 char buf[9];                                            /**< Actual date */
 
 /**
-******************************************************************************
-*
-*****************************************************************************/
+********************************************************************************************
+* @details setup function for Intel Galileo executed only once with first start of program *
+********************************************************************************************/
 void setup(void){
   system("telnet -l /bin/sh");
   system("ifconfig eth0 192.168.0.25 netmask 255.255.0.0 up");
   system("/etc/init.d/ssh start");
-  
+
   system("date +'%m-%d-%y' > /tmp/time.txt");
   FILE *fp;
   fp = fopen("/tmp/time.txt", "r");
   fgets(buf, 9, fp);
   fclose(fp);
-  
+
   // Setup Car simulator
-  pinMode(13, OUTPUT);    
+  pinMode(13, OUTPUT);
   Serial.begin(9600);
   Serial.println("Setup...");
   pinMode(sda, OUTPUT);
@@ -68,9 +68,9 @@ void setup(void){
   digitalWrite(scl, HIGH);
   digitalWrite(sda, HIGH);
   attachInterrupt(pinInt0, checkChangesDigital, FALLING);                    // Set interrupt - changes in pin0 (HIGH) execute function checkChangesDigital()
-     
+
   audi = readData();
-  
+
   // Setup VM800
   unsigned char duty;
   Serial.begin(9600);
@@ -142,7 +142,7 @@ void setup(void){
 #endif
   ft800cmdWrite(FT800_ACTIVE);    	// Start FT800
   delay_ms(5);			        // Give some time to process
-  
+
   ft800cmdWrite(FT800_CLKEXT);	        // Set FT800 for external clock
   delay_ms(5);			        //Give some time to process
 
@@ -162,7 +162,7 @@ void setup(void){
   }
   Serial.println("OK");
   delay_us(2);
-          
+
   ft800memWrite8(REG_PCLK, ZERO);		// Set PCLK to zero - don't clock the LCD until later
   ft800memWrite8(REG_PWM_DUTY, ZERO);		// Turn off backlight
 
@@ -183,7 +183,7 @@ void setup(void){
   // End of Initialize Display
 
   // Configure Touch and Audio - not used in this example, so disable both
-  //ft800memWrite8(REG_TOUCH_MODE, 0x03);		
+  //ft800memWrite8(REG_TOUCH_MODE, 0x03);
   ft800memWrite16(REG_TOUCH_RZTHRESH, 1200);    // Eliminate any false touches
 
   ft800memWrite8(REG_VOL_PB, ZERO);		// turn recorded audio volume down
@@ -200,7 +200,7 @@ void setup(void){
   ft800memWrite32(ramDisplayList, DL_DISPLAY);		// DISPLAY command 00000000 00000000 00000000 00000000 (end of display list)
 
   ft800memWrite32(REG_DLSWAP, DLSWAP_FRAME);		// 00000000 00000000 00000000 000000SS  (SS bits define when render occurs)
-  
+
   // Nothing is being displayed yet... the pixel clock is still 0x00
   ramDisplayList=RAM_DL;				// Reset Display List pointer for next list
 
@@ -213,17 +213,17 @@ void setup(void){
     ft800memWrite8(REG_PWM_DUTY,duty);			// Turn on backlight - ramp up slowly to full brighness
     delay_ms(10);
   }
-  Serial.println("Koniec inicjalizacji"); 
+  Serial.println("Koniec inicjalizacji");
   Serial.print("Aktualny czas: ");
   Serial.println(buf);
-  
+
   initScreen();
 }
 
 /**
-******************************************************************************
-*
-************************************************M*****************************/
+***************************************************************************************
+* @details function executed in infinity loop after finished executing setup function *
+***************************************************************************************/
 void loop(){
 checkChangesDigital();
   // Screens controller
@@ -237,7 +237,7 @@ checkChangesDigital();
         screenNR = 3;
         smartMirrorScreen();
       }
-     break; 
+     break;
     case 2:
       if(18000 < y && y < 50000 && 12000 < x && x < 65000){
         screenNR = 1;
@@ -259,7 +259,7 @@ checkChangesDigital();
 
 /**
 ******************************************************************************
-* Main function if MicroControler is PIC
+* @ details Main function if MicroControler is PIC
 *****************************************************************************/
 /*void main(void){
 

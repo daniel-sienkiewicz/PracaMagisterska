@@ -586,6 +586,13 @@ Najważniejszym założeniem funkcjonalnym projektowanego systemu była komunika
 \caption{Porty użyte do działania systemu}
 \end{table}
 
+\begin{figure}[!h]
+    \centering
+    	\includegraphics[height=0.33\textheight]{images/schemat.png}
+    \caption{Schemat logiczny zestawu}
+    \source{Opracowanie własne}
+\end{figure}
+
 \begin{figure}[!hp]
     \centering
     	\includegraphics[height=0.9\textheight]{images/symulator.png}
@@ -594,11 +601,13 @@ Najważniejszym założeniem funkcjonalnym projektowanego systemu była komunika
 \end{figure}
 
 \section{Opis budowy i działania}
-Proponowany komputer pokładowy jest całkowicie osobnym systemem niezależnym od sprzętu aktualnie posiadanego w samochodzie. Użytkownik montuje zestaw czujników oraz łączy je z komputerem i ekranem. 
+Proponowany komputer pokładowy jest całkowicie osobnym systemem niezależnym od sprzętu aktualnie posiadanego w samochodzie.
+
+Użytkownik montuje zestaw czujników oraz łączy je z komputerem i ekranem. 
 
 \begin{figure}[!hp]
     \centering
-    	\includegraphics[height=0.6\textheight]{images/codeDiagram.png}
+    	\includegraphics[height=0.65\textheight]{images/codeDiagram.png}
     \caption{Schemat blokowy działania programu}
     \source{Opracowanie własne}
 \end{figure}
@@ -607,8 +616,6 @@ Po wejściu do samochodu oraz włączeniu zapłonu powoduje automatyczny start s
 
 Na ekranie pojawia się powitanie oraz ekran startowy, na którym można zobaczyć symulację aktualnej pozycji \emph{GPS}, temperaturę panującą w środku samochodu, na zewnątrz oraz w silniku. 
 
-Stan drzwi i pasów z wizualizowany został poprzez miniaturkę samochodu z aktywnie otwierającymi się drzwiami, zapalającymi światłami oraz ikonką obrazującą stan zapiętych pasów.
-
 \begin{figure}[!h]
     \centering
     	\includegraphics[height=0.3\textheight]{images/start.JPG}
@@ -616,7 +623,15 @@ Stan drzwi i pasów z wizualizowany został poprzez miniaturkę samochodu z akty
     \source{Opracowanie własne}
 \end{figure} 
 
-Na ekranie głównym znajdują się 2 przyciski - \emph{Options} oraz \emph{Smart Mirror}. Pierwszy z nich umożliwia przejście w tryb aktywnego lusterka wstecznego, który może również służyć jako czujnik cofania co może przydać się podczas parkowania w ciasnych miejskich. Drugi pozwala na przejście do ekranu opcji systemu. 
+Stan drzwi i pasów z wizualizowany został poprzez miniaturkę samochodu z aktywnie otwierającymi się drzwiami, zapalającymi światłami oraz ikonką obrazującą stan zapiętych pasów.
+
+Na ekranie głównym znajdują się 2 przyciski:
+\begin{enumerate}
+	\item Options
+	\item Smart Mirror
+\end{enumerate}
+
+Pierwszy z nich umożliwia przejście w tryb aktywnego lusterka wstecznego, który może również służyć jako czujnik cofania co może przydać się podczas parkowania w ciasnych miejskich. Drugi pozwala na przejście do ekranu opcji systemu. 
 
 \begin{figure}[!h]
     \centering
@@ -696,8 +711,6 @@ struct car {
 };
 \end{lstlisting}
 
-Dokumentacja kodu została napisana za pomocą notacji wykorzystanej w systemie \emph{DOXYGEN} i zapisana do pliku \emph{PDF}.
-
 Dodatkowym modułem systemu jest uruchomiony na nim napisany w technologii \emph{NodeJS} serwer www udostępniający usługę śledzenia pojazdu. Gdy system zostanie podłączony do internetu (np. poprzez wejście Ethernet lub kartę Wi-Fi) użytkownik ma możliwość wejścia na stronę www gdzie może na bieżąco sprawdzać położenie samochodu na mapie oraz aktualną temperaturę wraz ze stanem drzwi oraz pasów. Komunikacja systemu z serwerem odbywa się poprzez udostępnione \emph{REST API}. Użycie technologii \emph{AngularJS} pozwala na wyświetlanie bieżących danych bez konieczności odświeżania strony.
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Request wysyłany do serwera www]
@@ -708,13 +721,14 @@ curl -i -X POST -H 'Content-Type: application/json' -d
 http://localhost:3000/updateData
 \end{lstlisting}
 
-Wygląd strony został przedstawiony na zrzucie ekranu poniżej.
 \begin{figure}[!h]
     \centering
-    	\includegraphics[height=0.35\textheight]{images/www.png}
+    	\includegraphics[height=0.3\textheight]{images/www.png}
     \caption{Strona www}
     \source{Opracowanie własne}
 \end{figure}
+
+Dokumentacja kodu została napisana za pomocą notacji wykorzystanej w systemie \emph{DOXYGEN} i zapisana do pliku \emph{PDF}.
 
 \section{Wnioski oraz własne doświadczenia}
 Komputer został tak zaprojektowany tak aby w łatwy sposób można było dodać kolejne funkcjonalności zależne od potrzeb użytkownika. Jako propozycje można uwzględnić:
@@ -740,11 +754,13 @@ Podczas pracy nad projektem niestety uszkodzone zostało Galileo - spalił się 
 \summary
 Celem niniejszej pracy było wykonanie komputera pokładowego do samochodu bazującego na mikrokomputerze Intel Galileo oraz sprawdzenie możliwości tego mikrokomputera. Przedstawiony projekt nie jest w pełni kompletnym rozwiązaniem. Funkcjonalności takie jak określanie pozycji GPS oraz inteligentne lusterko wsteczne zostały za symulowane na potrzeby pracy.
 
-Układ komputera został zaprojektowany i zbudowany przy użyciu symulatora samochodu, Intel Galielo oraz ekranu FTDI EVE VM800B. Układ symulatora samochodu został zaprojektowany i przedstawiony w postaci schematu elektrycznego za pomocą, którego został on później zbudowany. Do działania całego systemu zostało napisane własne oprogramowanie wraz z niezbędnymi bibliotekami służącymi do komunikacji poprzez użycie protokołów $I^2C$ oraz \emph{SPI}. Użycie ekranu bazuje na napisanym zestawie funkcji umożliwiającym wykorzystanie obsługiwanego HMI.
+Układ komputera został zaprojektowany i zbudowany przy użyciu symulatora samochodu, Intel Galielo oraz ekranu FTDI EVE VM800B. Układ symulatora samochodu został zaprojektowany i przedstawiony w postaci schematu elektrycznego przy pomocy, którego został on później zbudowany. 
+
+Do działania całego systemu zostało napisane własne oprogramowanie wraz z niezbędnymi bibliotekami służącymi do komunikacji z urządzeniami wejścia/wyjścia poprzez użycie protokołów $I^2C$ oraz \emph{SPI}. Użycie ekranu bazuje na napisanym zestawie funkcji umożliwiającym wykorzystanie obsługiwanego \emph{HMI}.
 
 Jedną z możliwości systemu był zapis danych na kartę pamięci \emph{microSD}, który został oprogramowany przy użyciu własnych funkcji z wykorzystaniem bibliotek systemu operacyjnego. 
 
-Podczas pracy nad projektem udało się sprawdzić możliwości Intel Galileo wykorzystując rożne interfejsy komunikacyjne (GPIO, Ethernet, USB, RS-232) oraz możliwości systemu \emph{Linux YOCTO}. Przetestowane została również możliwość skompilowanie i uruchomienia programu z pominięciem standardowego środowiska Intel Arduino Studio i komunikacji poprzez USB. W tym celu wykorzystane zostały możliwośći systemu operacyjnego Linux takie jak: protokół \emph{SSH} oraz kompilator \emph{GCC}. 
+Podczas pracy nad projektem udało się sprawdzić możliwości Intel Galileo wykorzystując rożne interfejsy komunikacyjne (GPIO, Ethernet, USB, RS-232) oraz możliwości systemu \emph{Linux YOCTO}. Przetestowana została również możliwość skompilowanie i uruchomienia programu z pominięciem standardowego środowiska Intel Arduino Studio i komunikacji poprzez USB. W tym celu wykorzystane zostały możliwośći systemu operacyjnego Linux takie jak: protokół \emph{SSH} oraz kompilator \emph{GCC}. 
 
 Dodatkową funkcjonalnością było napisane systemu umożliwiającego śledzenie pojazdu oraz aktualnych informacji o nim poprzez sieć Ethernet z wykorzystaniem technologii \emph{NodeJS} oraz \emph{AngularJS}.
 

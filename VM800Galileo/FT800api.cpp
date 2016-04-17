@@ -244,23 +244,6 @@ void dot(unsigned long color, unsigned int point_size, unsigned long point_x, un
   Serial.println("Koniec Kropka");
 }
 
-void slider(unsigned long x, unsigned long y, unsigned long w, unsigned long h, uint16_t options, uint16_t val, uint16_t range){
-  Serial.println("Start slider");
-
-  ft800memWrite32(RAM_CMD + cmdOffset, (DL_BEGIN|CMD_SLIDER));
-  cmdOffset=incCMDOffset(cmdOffset,4);
-  ft800memWrite32(RAM_CMD + cmdOffset, ((uint32_t)y << 16) | (x & 0xffff));
-  cmdOffset=incCMDOffset(cmdOffset,4);
-  ft800memWrite32(RAM_CMD + cmdOffset, ((uint32_t)h << 16) | (w & 0xffff));
-  cmdOffset=incCMDOffset(cmdOffset,4);
-  ft800memWrite32(RAM_CMD + cmdOffset, ((uint32_t)val << 16) | (options & 0xffff));
-  cmdOffset=incCMDOffset(cmdOffset,4);
-  ft800memWrite32(RAM_CMD + cmdOffset, (uint32_t)range);
-  cmdOffset=incCMDOffset(cmdOffset,4);
-
-  Serial.println("Koniec Slider");
-}
-
 void calibrate(){
   Serial.println("Start Calibrate");
 
