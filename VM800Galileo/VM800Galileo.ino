@@ -216,7 +216,10 @@ void setup(void){
   Serial.println("Koniec inicjalizacji");
   Serial.print("Aktualny czas: ");
   Serial.println(buf);
-
+  
+  Timer1.initialize(999999); 
+  Timer1.attachInterrupt(checkChangesAnalog, 999999);
+  
   initScreen();
 }
 
@@ -225,7 +228,6 @@ void setup(void){
 * @details function executed in infinity loop after finished executing setup function *
 ***************************************************************************************/
 void loop(){
-checkChangesDigital();
   // Screens controller
   /*switch(screenNR){
     case 1:

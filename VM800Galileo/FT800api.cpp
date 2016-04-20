@@ -22,19 +22,20 @@ void autko(){
   line(WHITE, 3500, 1700, 3500, 2500, 50);
   line(WHITE, 1500, 2500, 3500, 2500, 50);
 
-  if(audi->doors & 16)
+  if(audi->doors & 4)
     line(WHITE, 3500, 1700, 2600, 1400, 50);
   if(audi->doors & 8)
     line(WHITE, 3500, 2500, 2600, 2800, 50);
-  if(audi->doors & 4)
+  if(audi->doors & 1)
     line(WHITE, 2600, 1700, 1500, 1400, 50);
   if(audi->doors & 2)
     line(WHITE, 2600, 2500, 1500, 2800, 50);
-  if(audi->doors & 1){
+  if(audi->doors & 16){
     line(WHITE, 1500, 1700, 1200, 1900, 50);
     line(WHITE, 1500, 2500, 1200, 2300, 50);
     line(WHITE, 1200, 1900, 1200, 2300, 50);
   }
+  
   if(audi->seatbelts)
     text(105, 120, 21, 0, "Fasten Seatbelts");
   if(audi->lights){

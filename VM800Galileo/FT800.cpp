@@ -20,11 +20,11 @@ void sendData(int data){
   int i;
   for(i = 0x80; i; i >>= 1){
     digitalWrite(xSDO, data & i);
-    delay_us(2);
+    delay_us(10);
     digitalWrite(xclock, HIGH);
-    delay_us(2);
+    delay_us(10);
     digitalWrite(xclock, LOW);
-    delay_us(2);
+    delay_us(10);
   }
 }
 

@@ -95,33 +95,38 @@ struct car * readData(){
 
 void checkChangesDigital(){
   digitalWrite(13, HIGH);
+  int change = 0;
   struct car * tmp = readData();
   Serial.println("Zamiana danych");
-   //Serial.println(screenNR);
-    Serial.println(tmp->doors);
+  Serial.println(tmp->doors);
+  
   if(tmp->doors != audi->doors && screenNR == 1){
     Serial.println("Drzwi sie zmienily");
-    //mainScreen();
+    change = 1;
   }
   if(tmp->seatbelts != audi->seatbelts && screenNR == 1){
     Serial.println("Pasy sie zmienily");
-    //mainScreen();
-  }
-  if(tmp->r != audi->r && screenNR == 1){
-    Serial.println("Wsteczny!!");
-    //mainScreen();
+    change = 1;
   }
   if(tmp->lights != audi->lights && screenNR == 1){
     Serial.println("Światła sie zmienily");
-    //mainScreen();
+    change = 1;
   }
-
+  if(tmp->r != audi->r && screenNR == 1){
+    Serial.println("Wsteczny!!");
+    screenNR = 2;
+    smartMirrorScreen();
+    change = 2;
+  }
+  
   save(audi, tmp);
   free(tmp);
   sendData();
 
-  //printObj(audi);
   digitalWrite(13, LOW);
+  
+  if(change == 1)
+    mainScreen();
 }
 
 void sendData(){
@@ -133,23 +138,28 @@ void sendData(){
 void checkChangesAnalog(){
   digitalWrite(13, HIGH);
   struct car * tmp = readData();
-
-  if(tmp->tempOut != audi->tempOut && screenNR == 1){
+  
+  int change = 0;
+  if((tmp->tempOut < audi->tempOut - 5 || tmp->tempOut > audi->tempOut + 5) && screenNR == 1){
+    change = 1;
     Serial.println("TempOut sie zmienilo");
-    mainScreen();
   }
-  if(tmp->tempIn != audi->tempIn && screenNR == 1){
+    
+  if((tmp->tempIn < audi->tempIn - 5 || tmp->tempIn > audi->tempIn + 5) && screenNR == 1){
     Serial.println("TempIn sie zmienilo");
-    mainScreen();
+    change =1 ;
   }
-  if(tmp->tempEngine != audi->tempEngine && screenNR == 1){
+    
+  if((tmp->tempEngine < audi->tempEngine - 5 || tmp->tempEngine > audi->tempEngine + 5) && screenNR == 1){
     Serial.println("TempEngine sie zmienilo");
-    mainScreen();
+    change = 1;
   }
 
   save(audi, tmp);
   free(tmp);
-
-  //printObj(audi);
+  
+  if(change == 1)
+    mainScreen();
+  
   digitalWrite(13, LOW);
 }

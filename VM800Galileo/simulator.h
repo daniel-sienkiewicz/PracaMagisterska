@@ -54,10 +54,9 @@ void printObj(struct car * obj, char *d);
 /**
 ******************************************************************************
 * @details        Check if sth on analog ports was changed                   *
-* @param          audi structure to save dage read from analog sensors       *
 ******************************************************************************
 */
-void checkChangesAnalog(struct car *audi);
+void checkChangesAnalog();
 
 /**
 ******************************************************************************
