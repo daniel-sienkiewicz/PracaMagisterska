@@ -558,7 +558,7 @@ unsigned long y){
 %================Działanie komputera pokładowego=====================
 \chapter{Działanie komputera pokładowego}
 \section{Założenia funkcjonalne projektu}
-Najważniejszym założeniem funkcjonalnym projektowanego systemu była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. W projekcie zostały użyte czujniki otwarcia/zamknięcia drzwi, zapięcia pasów, włączenia/wyłączenia świateł oraz czujniki temperatury. Dodatkowym elementem była komunikacja z zewnętrznym wyświetlaczem TFT służącym do komunikacji pomiędzy użytkownikiem a komputerem. Samochód obrazowany został za pomocą zbudowanego symulatora, którego schemat elektryczny został przedstawiony na rysunku 6.2.
+Najważniejszym założeniem funkcjonalnym projektowanego systemu była komunikacja z zestawem czujników, które mogą być zamontowane w samochodzie. W projekcie zostały użyte czujniki otwarcia/zamknięcia drzwi, zapięcia pasów, włączenia/wyłączenia świateł oraz czujniki temperatury. Dodatkowym elementem była komunikacja z zewnętrznym wyświetlaczem TFT służącym do komunikacji pomiędzy użytkownikiem a komputerem. Samochód obrazowany został za pomocą zbudowanego symulatora, którego schemat elektryczny został przedstawiony na rysunku 6.3.
 
 \begin{figure}[!h]
     \centering
@@ -747,7 +747,7 @@ Intel Galileo ma wiele zalet ale niestety posiada również i wady. Największą
 
 Pierwszą rzeczą na którą należy uważać jest zasilanie. Galileo ma możliwość zasilania poprzez port \emph{USB} lecz w praktyce nie jest to możliwe. Podczas uruchomienia prąd dostarczany poprzez \emph{USB} jest nie wystarczający i następuję automatyczne wyłączenie sprzętu podczas którego Software zostaje uszkodzony. Kolejną wadą jest szybkość pinów \emph{GPIO}. Są one w porównaniu do innych urządzeń dostępnych na rynku bardzo wolne co znacznie ogranicza jego możliwości.
 
-Podczas pracy nad projektem niestety uszkodzone zostało Galileo - spalił się port USB niezbędny do ładowanie programów. Po zamianie na Galileo Gen 2 i przetestowaniu tego samego programu okazało się, że w wersji 2 znacznie poprawione zostały porty GPIO. Program, który na Gen 1 uruchamiał się w 40s, na Gen 2 uruchamia się 4s.
+Podczas pracy nad projektem niestety uszkodzone zostało Galileo - spalił się port USB niezbędny do ładowanie programów. Po zamianie na Galileo Gen 2 i przetestowaniu tego samego programu okazało się, że w wersji 2 znacznie poprawiona zastała obsługa portów \emph{GPIO}. Program, który na Gen 1 uruchamiał się w 40s, na Gen 2 uruchamia się 4s.
 %================KONIEC Działanie komputera pokładowego=====================
 
 %================Zakończenie=====================
@@ -764,7 +764,7 @@ Podczas pracy nad projektem udało się sprawdzić możliwości Intel Galileo wy
 
 Dodatkową funkcjonalnością było napisane systemu umożliwiającego śledzenie pojazdu oraz aktualnych informacji o nim poprzez sieć Ethernet z wykorzystaniem technologii \emph{NodeJS} oraz \emph{AngularJS}.
 
-Reasumując Intel Galileo jest bardzo ciekawym rozwiązaniem w świecie IoT\footnote{ang. Internet of things - system powiązanych ze sobą urządzeń gromadzących i przetwarzających informacje najczęściej za pośrednictwem sieci komputerowej}. Posiada ogromne możliwości do wykorzystania jako na przykład domowy serwer multimedialny lub kontroler urządzeń wejścia/wyjścia. Osobiście polecałbym generację 2 ze względu na poprawioną obsługę portów GPIO co znacznie ułatwia korzystanie z nich i znacznie wpływa na wydajność komunikacji pomiędzy urządzeniami.
+Reasumując Intel Galileo jest bardzo ciekawym rozwiązaniem w świecie IoT\footnote{ang. Internet of things - system powiązanych ze sobą urządzeń gromadzących i przetwarzających informacje najczęściej za pośrednictwem sieci komputerowej}. Posiada ogromne możliwości do wykorzystania jako na przykład domowy serwer multimedialny lub kontroler urządzeń wejścia/wyjścia. Osobiście polecałbym generację 2 ze względu na poprawioną obsługę portów GPIO co znacznie ułatwia korzystanie z nich oraz znacznie wpływa na wydajność komunikacji pomiędzy urządzeniami.
 %================KONIEC Zakonczenie=====================
 
 %================Dodatki=====================
