@@ -31,7 +31,7 @@ int readPCF(char adres){
    digitalWrite(scl,HIGH);
    delay(d);
 
-   ack = digitalRead(sda);                                                    //Read ACL
+   ack = digitalRead(sda);                                                    //Read ACK
    digitalWrite(scl,LOW);
    delay(d);
 
