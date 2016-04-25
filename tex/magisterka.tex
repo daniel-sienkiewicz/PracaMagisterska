@@ -54,7 +54,7 @@ Dodatkowym celem było praktyczne sprawdzenie możliwości oprogramowania i funk
 %================WPROWADZENIE=====================
 \chapter{Wprowadzenie}
 \section{Cele}
-Celem pracy była konstrukcja oraz oprogramowanie systemu komputera pokładowego do samochodu. Komputer ma wczytywać temperaturę panującą w silniku, na zewnątrz, w środku oraz aktualne stany zapięcia pasów i zamknięcia drzwi. Jednym z założeń tworzenia systemu jest konstrukcja modułowa umożliwiająca późniejszą rozbudowę funkcjonalności o didatkowe funkcje na przykład funkcję rejestrującą pozycję \emph{GPS}. Dodatkową funkcjonalnością jest możliwość zapisania danych obrazujących aktualny stan samochodu na karcie pamięci \emph{microSD}. Komunikacja użytkownika z komputerem będzie odbywała się poprzez użycie wyświetlacza TFT \emph{FTDI EVE VM800B} z panelem dotykowym.
+Celem pracy była konstrukcja oraz oprogramowanie systemu komputera pokładowego do samochodu. Komputer ma wczytywać temperaturę panującą w silniku, na zewnątrz, w środku oraz aktualny stan zapięcia pasów i zamknięcia drzwi. Jednym z założeń tworzenia systemu była konstrukcja modułowa umożliwiająca późniejszą rozbudowę funkcjonalności o dodatkowe funkcje na przykład funkcję rejestrującą pozycję \emph{GPS}. Dodatkową funkcjonalnością jest możliwość zapisania danych obrazujących aktualny stan samochodu na karcie pamięci \emph{microSD}. Komunikacja użytkownika z komputerem będzie odbywała się poprzez użycie wyświetlacza TFT \emph{FTDI EVE VM800B} z panelem dotykowym.
 
 \section{Założenia}
 Do wykonania pracy zostały przyjęte następujące założenia:
@@ -68,11 +68,11 @@ Do wykonania pracy zostały przyjęte następujące założenia:
 Parametry takie jak prędkość oraz przebieg nie będą rejestrowane ponieważ są one standardowo dostępne na zegarach samochodowych więc nie ma potrzeby powtarzania tej informacji.
 
 \section{Plan pracy}
-Praca została podzielona na dwie części. Pierwsza z nich jest częścią teoretyczną opisującą działanie użytych w projekcie komponentów oraz sposobów komunikacji pomiędzy nimi. 
+Praca została podzielona na dwie części. Pierwsza z nich była częścią teoretyczną opisującą działanie użytych w projekcie komponentów oraz sposobów komunikacji pomiędzy nimi. 
 
-W rozdziale \emph{Architektura} zostały opisane komponenty użyte do stworzenia pracy: Intel Galielo, FTDI EVE VM800B oraz symulator samochodu. Następnie opisane zostały mechanizmy komunikacji systemu z otoczeniem takie jak: Porty, Odpytywanie w pętli, Przerwania.
+W rozdziale \emph{Architektura} zostały opisane komponenty użyte do stworzenia pracy: Intel Galielo, FTDI EVE VM800B oraz symulator samochodu. Następnie opisane zostały mechanizmy komunikacji systemu z otoczeniem takie jak: porty wejścia/wyjścia, odpytywanie w pętli, przerwania.
 
-Część druga poświęcona jest praktycznej stronie projektu. W rozdziale \emph{Implementacja} wyjaśnione zostało jak działają użyte w projekcie protokoły komunikacyjne wraz z opisem własnych wersji bibliotek napisanych na potrzeby pracy oraz ich wykorzystania w projekcie. Na koniec opisane zostało działanie stworzonego komputera pokładowego wraz z jego wszystkimi możliwościami i propozycjami dalszej rozbudowy.
+Część druga poświęcona była praktycznej stronie projektu. W rozdziale \emph{Implementacja} wyjaśnione zostało jak działają użyte w projekcie protokoły komunikacyjne wraz z opisem własnych wersji bibliotek napisanych na potrzeby pracy oraz ich wykorzystania w projekcie. Na koniec opisane zostało działanie stworzonego komputera pokładowego wraz z jego wszystkimi możliwościami i propozycjami dalszej rozbudowy.
 %================KONIEC WPROWADZENIE=====================
 
 %================Architektura=====================
@@ -98,7 +98,7 @@ Najczęściej spotykane wersje Arduino to:
 \end{enumerate}
  
 \subsection{Intel Galileo}
-Zestaw Intel Galileo jest  to mikrokomputer oparty na 32-bitowym procesorze Intel® Quark SoC X1000 i taktowaniu 400MHz. Posiada on standardowy interfejs Arduino składający się z: 14 pinów cyfrowych (w tym 6 pinów mogących pełnić funkcję \emph{PWM}\footnote{ang. Pulse-Width Modulation - technika pozyskiwania wyników analogowych poprzez użycie wyjść cyfrowych}) oraz 6 pinów analogowych. Intel Galileo jest zgodny z standardem TTL\footnote{ang. Transistor-transistor logic} wartość logiczna 1 równa jest napięciu 5V, a wartość 0 odpowiada napięciu 0V. W Arduino odpowiednikiem tego są wartości \emph{HIGH} oraz \emph{LOW}.
+Zestaw Intel Galileo jest  to mikrokomputer oparty na 32-bitowym procesorze Intel® Quark SoC X1000 i taktowaniu 400MHz. Posiada on standardowy interfejs Arduino składający się z: 14 pinów cyfrowych (w tym 6 pinów mogących pełnić funkcję \emph{PWM}\footnote{ang. Pulse-Width Modulation - technika pozyskiwania wyników analogowych poprzez użycie wyjść cyfrowych}) oraz 6 pinów analogowych. Intel Galileo jest zgodny z standardem TTL\footnote{ang. Transistor-transistor logic} co oznacza, że wysłanie do portu wartości logicznej 1 oznacza wysłanie napięcia 5V, a wysłanie wartość 0 odpowiada wysłaniu napięcia 0V. W Arduino odpowiednikiem tych wartości logicznych są \emph{HIGH} oraz \emph{LOW}.
 
 Intel Galileo zostało wyposażone w:
 \begin{enumerate}
@@ -143,12 +143,12 @@ Podstawowe cechy urządzenia\cite{FTDI}:
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[height=0.3\textheight]{images/FTDIarchitecture.png}
+    \includegraphics[height=0.25\textheight]{images/FTDIarchitecture.png}
     \caption{Architektura FTDI EVE VM800B}
     \source{FT800 Programmers Guide}
 \end{figure}
 
-Rozpoczęcie pracy wyświetlacza polega na zainicjalizowaniu go poprzez wpisanie określonych przez specyfikację producenta wartości do określonych obszarów rejestrów określając w ten sposób np. rozdzielczość lub włączenie/wyłącznie modułu odpowiedzialnego za dźwięk czy dotyk. 
+Rozpoczęcie pracy wyświetlacza polega na zainicjalizowaniu go poprzez wpisanie określonych przez specyfikację producenta wartości do określonych rejestrów określając w ten sposób np. rozdzielczość lub włączenie/wyłącznie modułu odpowiedzialnego za dźwięk czy dotyk. 
 
 Kolejnym krokiem jest wywołanie zestawu funkcji odpowiedzialnych za rysowanie niezbędnych do działania systemu elementów np. guzików. Wszystkie wyświetlane elementy są na początku zapisywane w kołowym buforze pamięci. Następnie gdy cały ekran zostanie już przygotowany następuje wyświetlenie wszystkiego co zostało zapisane do bufora po czym zostaje on wyczyszczony. Należy pamiętać, że wielkość bufora, którą mamy do dyspozycji wynosi 4 Kb.
 
@@ -162,33 +162,33 @@ Procedura rysowania wygląda następująco:
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[height=0.25\textheight]{images/buf.png}
+    \includegraphics[height=0.15\textheight]{images/buf.png}
     \caption{Bufor kołowy dostępny podczas programowania ekranu VM800}
     \source{FT800 Programmers Guide}
 \end{figure}
 
-Komunikacja Galileo z Ekranem odbywa się poprzez protokół komunikacyjny \emph{SPI} (Protokół ten został opisany w części \emph{"Implementacja"}).
-
 \begin{figure}[!h]
     \centering
-    \includegraphics[height=0.24\textheight]{images/ekranGalileo.jpg}
+    \includegraphics[height=0.17\textheight]{images/ekranGalileo.jpg}
     \caption{Schemat połączenia wyświetlacza FTDI EVE z kontrolerem za pomocą SPI}
     \source{Opracowanie własne}
 \end{figure}
+
+Komunikacja Galileo z Ekranem odbywa się poprzez protokół komunikacyjny \emph{SPI} (Protokół ten został opisany w części \emph{"Implementacja"}).
 
 \subsection{Symulator samochodu}
 Do celów demonstracyjnych oraz implementacji oprogramowania komputer nie został zamontowany w fizycznym samochodzie. Zamiast tego został zbudowany symulator samochodu mający obrazować pełną pracę pojazdu.
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[height=0.24\textheight]{images/symulatorGalileo.jpg}
+    \includegraphics[height=0.17\textheight]{images/symulatorGalileo.jpg}
     \caption{Schemat połączenia symulatora samochodu z kontrolerom za pomocą $I^2C$}
     \source{Opracowanie własne}
 \end{figure}
 
 Symulator składa się z:
 \begin{enumerate}
-	\item 11 przełączników bistabilnych symulujących stan drzwi samochodu (wraz z stanem bagażnika), pasy pasażerów, przełączenie biegu na wsteczny oraz włączenie świateł - wciśniecie przełącznika dodatkowo obrazowane jest poprzez zaświecenie diody LED w symulatorze
+	\item 11 przełączników bistabilnych symulujących stan drzwi samochodu (wraz z stanem bagażnika), pasy pasażerów, przełączenie biegu na wsteczny oraz włączenie świateł - wciśniecie przełącznika dodatkowo obrazowane jest poprzez zaświecenie diody LED zamontowanej w symulatorze
 	\item 2 I/O Expandery PCF 8574N 
 	\item 3 potencjometrów symulujących czujniki temperatury w samochodzie
 \end{enumerate}
@@ -232,7 +232,7 @@ W momencie gdy zostaje zgłoszone przerwanie wątek programu zostaje zatrzymany 
 
 Przerwania programowe wywołuje się za pomocą instrukcji asemblera \emph{INT XX}, gdzie \emph{XX} oznacza numer przerwania zadeklarowanego w tablicy wektorów przerwań\footnote{ang. interrupt vector table - tablica zawierająca adresy podprogramów służących do obsługi wektorów przerwań}, która jest tworzona przy każdorazowym starcie systemu. W procesorach serii IAPX 86 znajduje się 255 wektorów przerwań.
 
-Przerwanie sprzętowe jest to rodzaj przerwań wywoływanych przez urządzenia wejścia/wyjścia lub zgłaszane przez procesor. Efektem zgłoszenia przerwania sprzętowego jest obsłużenie go poprzez wywołanie przerwania programowego. Przerwania te dzielimy na maskowalne oraz niemaskowalne. Główna różnica między nimi polega na możliwości zablokowania przerwań maskowalnych podczas gdy przerwania niemaskowalne muszą zostać obsłużone. Przykładem przerwania niemaskowalnego w systemach IAPX 86 jest \emph{INT2}, który w środowisku Windows znany jest jako popularny \emph{Blue Screen of Death}\footnote{Ekran błędu w systemach Windows pojawiający się po krytycznym błędzie systemu}.
+Przerwanie sprzętowe jest to rodzaj przerwań wywoływanych przez urządzenia wejścia/wyjścia lub zgłaszane przez procesor. Efektem zgłoszenia przerwania sprzętowego jest obsłużenie go poprzez wywołanie przerwania programowego. Przerwania te dzielimy na maskowalne oraz niemaskowalne. Główna różnica między nimi polega na możliwości zablokowania przerwań maskowalnych podczas gdy przerwania niemaskowalne muszą zostać obsłużone. Przykładem przerwania niemaskowalnego w procesorach IAPX 86 jest \emph{INT2}, który w środowisku Windows znany jest jako popularny \emph{Blue Screen of Death}\footnote{Ekran błędu w systemach Windows pojawiający się po krytycznym błędzie systemu}.
 
 Ostatnim rodzajem przerwań są wyjątki. Wywoływane są podczas napotkania przez procesor błędów oraz niepowodzeń.
 %================KONIEC Mechanizmy komunikacji systemu mikroprocesorowego z otoczeniem=====================
@@ -251,7 +251,7 @@ Programy pisane w środowisku Arduino różnią się nieznacznie od klasycznych 
     \source{Opracowanie własne}
 \end{figure}
 
-Pierwszą różnicą jest jednorazowe wywołanie funkcji \emph{setup()} zaraz po przesłaniu i uruchomieniu programu, która służy do inicjalizacji wszystkich niezbędnych portów. W tej funkcji należy określić początkowe tryby pracy portów. Następnie wywołana zostaje funkcja \emph{loop()}, która jest równoznaczna z funkcją \emph{main()} w języku C, z tą różnicą, że jest wykonywana od momentu startu (zaraz po jednorazowym wykonaniu funkcji \emph{setup()}) aż do wyłączenia systemu.
+Pierwszą różnicą jest jednorazowe wywołanie funkcji \emph{setup()} zaraz po przesłaniu i uruchomieniu programu, która służy np. do inicjalizacji wszystkich niezbędnych portów. W tej funkcji należy określić początkowe tryby pracy portów. Następnie wywołana zostaje funkcja \emph{loop()}, która jest równoznaczna z funkcją \emph{main()} w języku C, z tą różnicą, że jest wykonywana od momentu startu (zaraz po jednorazowym wykonaniu funkcji \emph{setup()}) aż do wyłączenia systemu.
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Odpowiednik wywołania pętli loop() w Arduino dla języka C/C++]
 void main() {
@@ -412,7 +412,7 @@ Dane wysyłane są od najstarszego do najmłodszego bitu. Każda paczka potwierd
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Odebranie danych z użyciem protokołu $I^2C$ na przykładzie PCF8574N]
 int readPCF(char adres){
-  int m, ack, wynik = 0;	// Deklaracja potrzebnych zmiennych
+  int m, ack, wynik = 0;
   digitalWrite(sda, LOW);
   delay(d);
   digitalWrite(scl, LOW);
@@ -484,16 +484,16 @@ void sendData(int data, int CS, int clock, int SDO){
   digitalWrite(CS, LOW);
   int i;
   for(i = 0x80; i; i >>= 1){
-    digitalWrite(SDO, data & i);	// Wysłanie bitu
-    digitalWrite(clock, HIGH);	// Wygenerowanie impulsu zegara
-    digitalWrite(clock, LOW);
+    digitalWrite(SDO, data & i);	// Wyslanie bitu
+    digitalWrite(clock, HIGH);		// Wygenerowanie impulsu
+    digitalWrite(clock, LOW);		// zegara
   }
   digitalWrite(CS, HIGH);
 }
 \end{lstlisting}
 
 \subsection{Komunikacja z ekranem FTDI EVE VM800b poprzez protokół SPI}
-Wyświetlacz TFT FTDI EVE VM800B jest obsługiwany za pomocą protokołu SPI. Podobnie jak w przypadku protokołu $I^2C$ została napisana własna wersja biblioteki do obsługi protokołu SPI. Do komunikacji niezbędne było napisanie funkcji implementujących niskopoziomowe procedury komunikacyjne:
+Wyświetlacz TFT FTDI EVE VM800B jest obsługiwany za pomocą protokołu SPI. Podobnie jak w przypadku protokołu $I^2C$ została napisana własna wersja biblioteki do obsługi protokołu SPI. Do komunikacji niezbędne było napisanie funkcji implementujących podstawowe niskopoziomowe procedury komunikacyjne:
 \begin{enumerate}
 	\item \emph{void sendData(int data)} - funkcja wysyłająca wartość 8 bitową
 	\item \emph{void ft800memWriteX(unsigned long ftAddress, unsigned char ftDataX)} - funkcja wpisująca podaną wartość X - bitową na podany adres, gdzie X może być wartością 8, 16 lub 32 bitową
@@ -591,7 +591,7 @@ Najważniejszym założeniem funkcjonalnym projektowanego systemu była komunika
     \source{Opracowanie własne}
 \end{figure}
 
-Symulator samochodu został wykonany za pomocą 12 przełączników bistabilnych. Stan każdego przełącznika sygnaluzowany jest za pomocą diody LED. Sygnały ze wszystkich przełączników odczytywane są za pomocą dwóch I/O Expanderów PCF8547. Do symulacji czujników temperatury zamontowane zostały trzy potencjometry wysyłające sygnał analogowy. Wszystkie sygnały doprowadzone zostały do wtyczki, która poprzez taśmę podłączona jest do Intel Galileo. Cały zestaw zasilany jest przez kontroler napięciem 5V.
+Symulator samochodu został wykonany za pomocą 12 przełączników bistabilnych. Stan każdego przełącznika sygnalizowany jest za pomocą diody LED. Sygnały ze wszystkich przełączników odczytywane są za pomocą dwóch I/O Expanderów PCF8547. Do symulacji czujników temperatury zamontowane zostały trzy potencjometry wysyłające sygnał analogowy. Wszystkie sygnały doprowadzone zostały do wtyczki, która poprzez taśmę podłączona jest do Intel Galileo. Cały zestaw zasilany jest przez kontroler napięciem 5V.
 
 \begin{figure}[!h]
     \centering
@@ -709,7 +709,7 @@ struct car {
 };
 \end{lstlisting}
 
-Dodatkowym modułem systemu jest uruchomiony na nim napisany w technologii \emph{NodeJS} serwer www uruchomiony na mikrokomputerze Intel Galileo udostępniający usługę śledzenia pojazdu. Gdy system zostanie podłączony do internetu (np. poprzez wejście Ethernet lub kartę Wi-Fi) użytkownik ma możliwość wejścia na stronę www gdzie może na bieżąco sprawdzać położenie samochodu na mapie oraz aktualną temperaturę wraz ze stanem drzwi oraz pasów. Komunikacja systemu z serwerem odbywa się poprzez udostępnione \emph{REST API}. Użycie technologii \emph{AngularJS} pozwala na wyświetlanie bieżących danych bez konieczności odświeżania strony.
+Dodatkowym modułem systemu jest uruchomiony na mikrokomputerze Intel Galileo napisany w technologii \emph{NodeJS} serwer www udostępniający usługę śledzenia pojazdu. Gdy system zostanie podłączony do internetu (np. poprzez wejście Ethernet lub kartę Wi-Fi) użytkownik ma możliwość wejścia na stronę www gdzie może na bieżąco sprawdzać położenie samochodu na mapie oraz aktualną temperaturę wraz ze stanem drzwi oraz pasów. Komunikacja systemu z serwerem odbywa się poprzez udostępnione \emph{REST API}. Użycie technologii \emph{AngularJS} pozwala na wyświetlanie bieżących danych bez konieczności odświeżania strony.
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Request wysyłany do serwera www]
 curl -i -X POST -H 'Content-Type: application/json' -d 
