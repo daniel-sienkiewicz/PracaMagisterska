@@ -112,6 +112,8 @@ Intel Galileo zostało wyposażone w:
   \item Slot karty \emph{microSD}.\cite{GalileoBook}
 \end{enumerate}
 
+Na rysunku 2.2 oraz 2.3 przedstawione zostało zdjęcie płytki oraz jej schemat blokowy.
+
 \begin{figure}[!h]
     \centering
     \includegraphics[height=0.4\textwidth]{images/galileo.png}
@@ -193,11 +195,12 @@ Symulator składa się z:
 	\item 3 potencjometrów symulujących czujniki temperatury w samochodzie
 \end{enumerate}
 
-Przełączniki wysyłają sygnały cyfrowe, a potencjometry sygnały analogowe. Ze względu na znaczną ilość sygnałów cyfrowych wychodzących z symulatora komunikacja z Galileo odbywa się poprzez \emph{I/O Expander PCF 8574N} wykorzystujący protokół  $I^2C$ (Protokół ten został opisany w części \emph{"Implementacja"}).
+Przełączniki wysyłają sygnały cyfrowe, a potencjometry sygnały analogowe. Ze względu na znaczną ilość sygnałów cyfrowych wychodzących z symulatora komunikacja z Galileo odbywa się poprzez dwa układy scalone \emph{I/O Expander PCF 8574N} wykorzystujące protokół  $I^2C$ (Protokół ten został opisany w części \emph{"Implementacja"}).
 %================KONIEC Architektura=====================
 
 %================Mechanizmy komunikacji systemu mikroprocesorowego z otoczeniem=====================
 \chapter{Mechanizmy komunikacji systemu mikroprocesorowego z otoczeniem}
+Mikrokomputer komunikuje się z urządzeniami wejścia/wyjścia za pomocą zasobów, w którego skład wchodzą porty, mechanizm przerwań oraz odpytywania.
 \subsection{Porty wejścia/wyjścia}
 Porty najczęściej dzieli się na:
 \begin{enumerate}
@@ -205,7 +208,7 @@ Porty najczęściej dzieli się na:
 	\item Analogowe
 \end{enumerate}
 
-Porty cyfrowe charakteryzują się możliwością przyjęcia lub wysłania sygnału binarnego (1 - jest sygnał, 0 - sygnału nie ma). W standardzie \emph{TTL} wysłanie sygnału równego 1 jest równoznaczne z wysłaniem napięcia o wartości 5V oraz odpowiednio wysłanie sygnału 0 jest równoznaczne z wysłaniem napięcia równego 0V. Każdy z portów może działać w jednym  z dwóch trybów: wejścia - oczekiwać na przyjęcie danych od urządzenia zewnętrznego lub wyjścia - wysyłać dane do urządzenia zewnętrznego. Z kolei porty analogowe mogą przesyłać sygnały o większej liczbie stanów logicznych, lecz do ich obsługi konieczny jest przetwornik analogowo-cyfrowy, który w Intel Galileo jest 10 bitowy - co oznacza możliwość wysłania jednorazowo do 10 bitów danych.
+Porty cyfrowe charakteryzują się możliwością przyjęcia lub wysłania sygnału binarnego (1 - jest sygnał, 0 - sygnału nie ma). W standardzie \emph{TTL} wysłanie sygnału równego 1 jest równoznaczne z wysłaniem napięcia o wartości 5V oraz odpowiednio wysłanie sygnału 0 jest równoznaczne z wysłaniem napięcia równego 0V. Każdy z portów może działać w jednym  z dwóch trybów: wejścia - oczekiwać na przyjęcie danych od urządzenia zewnętrznego lub wyjścia - wysyłać dane do urządzenia zewnętrznego. Z kolei porty analogowe mogą przesyłać sygnały o większej liczbie stanów. Do obsługi sygnałów analogowych przez układ mikroprocesorowy niezbędny jest przetwornik analogowo-cyfrowy, który w Intel Galileo jest 10 bitowy - co oznacza możliwość wysłania jednorazowo do 10 bitów danych.
 
 \subsection{Odpytywanie w pętli}
 Jedną z najprostszych metod pozyskania danych z urządzeń wejścia/wyjścia mikro kontrolera jest odpytywanie urządzeń zewnętrznych w nieskończonej pętli. Jest to najmniej efektywny sposób, ponieważ zajmuje zasoby sprzętu zapytaniami, które nie zawsze są konieczne. Odczyt stanu urządzeń wejścia/wyjścia może być realizowany za pomocą mechanizmów systemu operacyjnego (wykorzystując gotowe biblioteki np. Arduino/Wire) lub niskopoziomowo z wykorzystaniem funkcji języka C i/lub Asemblera.
@@ -275,11 +278,11 @@ Wpisanie wartości \emph{LOW} jest równoznaczna z wysyłaniem stanu logicznego 
 Arduino dostarcza szereg funkcji do obsługi portów. Podstawowe z nich to:
 
 \begin{enumerate}
-	\item \emph{pinMode(PIN, MODE);} - funkcja ustawiająca pin o podanym numerze (PIN) na podany tryb pracy - wejście/wyjście (MODE)
-	\item \emph{digitalWrite(PIN, VAL);} - funkcja wpisująca wartość (VAL) - HIGH/LOW - do podanego portu cyfrowego (PIN)
-	\item \emph{digitalRead(PIN);} - funkcja czytająca wartość z podanego portu cyfrowego (PIN)
-	\item \emph{analogWrite(PIN, VAL);} - funkcja wpisująca wartość (VAL) do podanego portu analogowego (PIN)
-	\item \emph{analogRead(PIN);}  - funkcja czytająca wartość z podanego portu analogowego (PIN)
+	\item \emph{void pinMode(int PIN, boolean MODE);} - funkcja ustawiająca pin o podanym numerze (PIN) na podany tryb pracy - wejście/wyjście (MODE)
+	\item \emph{void digitalWrite(int PIN, boolean VAL);} - funkcja wpisująca wartość (VAL) - HIGH/LOW - do podanego portu cyfrowego (PIN)
+	\item \emph{boolean digitalRead(int PIN);} - funkcja czytająca wartość z podanego portu cyfrowego (PIN)
+	\item \emph{void analogWrite(int PIN, int VAL);} - funkcja wpisująca wartość (VAL) do podanego portu analogowego (PIN)
+	\item \emph{int analogRead(int PIN);}  - funkcja czytająca wartość z podanego portu analogowego (PIN)
 \end{enumerate}
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa portu cyfrowego w środowisku Arduino]
@@ -301,7 +304,7 @@ analogWrite(ledPin, val);
 \end{lstlisting}
 
 Arduino obsługuje przerwania. W środowisku Arduino, aby zainicjalizować przerwania wystarczy wywołać funkcję \emph{
-attachInterrupt(digitalPinToInterrupt(pin), ISR, mode);}
+void attachInterrupt(int digitalPinToInterrupt(pin), ISR, boolean mode);}
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Inicjowanie przerwań sprzętowych w środowisku Arduino]
 void setup(){
@@ -317,7 +320,7 @@ gdzie \emph{pinInt} jest to pin, na którym Arduino będzie nasłuchiwało na pr
 	\item FALLING - przerwanie zostanie zgłoszone gdy wartość na określonym pinie zostanie zmieniona z HIGH na LOW
 \end{enumerate}
 
-Mechanizmem, który bazuje na przerwaniach jest mechanizm timera. Polega on na wywołaniu funkcji co określony czas (zgłaszane jako przerwanie), którego zarządzaniem zajmuje się urządzenie (lub system operacyjny). Rozwiązanie to jest bardzo podobne do odpytywania w pętli, a następnie wywołania funkcji \emph{sleep()} z tą różnicą, że użycie timera jest dokładniejsze, ponieważ wykorzystuje zegar czasu rzeczywistego znajdującego się w CPU\footnote{ang. Central Processing Unit - jednostka arytmetyczno-logiczna wykorzystywana do wykonywania obliczeń niezbędnych do działania programu}.
+Mechanizmem w systemie Intel Galileo, który bazuje na przerwaniach jest mechanizm timera. Polega on na wywołaniu zadeklarowanej funkcji co określony czas (zgłaszane jako przerwanie), którego zarządzaniem zajmuje się system operacyjny.
 \begin{lstlisting}[label=bot-dirs-alg,caption=Przykładowe użycie timera w środowisku Arduino]
 #include <TimerOne.h>
 void setup(){
@@ -370,8 +373,14 @@ Należy pamiętać aby najpierw ustalić tryb w jakim ma działać port. W przyp
 
 %================IMPLEMENTACJA=====================
 \chapter{Implementacja}
+W mikro kontrolerach komunikacja z urządzeniami wejścia/wyjścia zwykle obsługiwana jest za pomocą specyficznych protokołów komunikacyjnych np. $I^2C$ oraz SPI. W Galileo obsługa tych interfejsów realizowana jest na poziomie sprzętowym. Do obsługi tych protokołów w systemie Arduino dostępna jest biblioteka \emph{Wire}. Komunikacja poprzez $I^2C$  oraz SPI może odbywać się na poziomie kontrolera sprzętowego lub programowo. Z powodu problemów wynikających z użycia tej biblioteki została opracowana osobna wersja biblioteki stworzona na potrzeby tego projektu.
+
 \section{Protokół komunikacyjny $I^2C$}
 Protokół komunikacyjny \emph{$I^2C$}\footnote{ang. Inter-Integrated Circuit} jest szeregowym interfejsem stworzonym przez firmę \emph{Philips} służącym do przesyłania danych między urządzeniami elektrycznymi. W projekcie protokół ten został użyty do komunikacji z I/O Expander PCF 8574N obsługującym płytkę symulatora samochodu.
+
+Podstawową cechą \emph{$I^2C$} jest wykorzystywanie jedynie dwóch linii służących do komunikacji: dwukierunkowej linii danych \emph{SDA\footnote{ang. Serial Data Line}} oraz jednokierunkowej linii zegarowej \emph{SCL\footnote{ang. Serial Clock Time}}. Protokół $I^2C$ bazuje na przesyłaniu ramek (pakietów) składających się z sekwencji: START -> adres -> dane -> STOP jak pokazano na rysunku 5.1.
+
+W celu wygenerowania impulsu START należy ustawić linie \emph{SDA} oraz \emph{SCL} w stan \emph{HIGH} (5V) po czym w trakcie gdy linia \emph{SCL} jest w stanie \emph{HIGH} należy zmienić stan linii \emph{SDA} na stan \emph{LOW}. Analogicznie do wygenerowania impulsu STOP należy w trakcie, gdy linia \emph{SCL} jest w stanie \emph{HIGH} zmienić stan linii \emph{SDA} ze stanu \emph{LOW} na stan \emph{HIGH}. Dane wysyłane/odbierane są bit po bicie - na początku należy ustawić linię \emph{SCL} w stan wysoki (HIGH), odczytać wartość na linii \emph{SDA}, a następnie zmienić stan linii \emph{SCL} na niski (LOW).
 
 \begin{figure}[!h]
     \centering
@@ -379,10 +388,6 @@ Protokół komunikacyjny \emph{$I^2C$}\footnote{ang. Inter-Integrated Circuit} j
     \caption{Przebieg czasowy protokołu $I^2C$}
     \source{\url{http://www.byteparadigm.com/applications/introduction-to-i2c-and-spi-protocols/}\cite{byteparadigm}}
 \end{figure}
-
-Podstawową cechą \emph{$I^2C$} jest wykorzystywanie jedynie dwóch linii służących do komunikacji: dwukierunkowej linii danych \emph{SDA\footnote{ang. Serial Data Line}} oraz jednokierunkowej linii zegarowej \emph{SCL\footnote{ang. Serial Clock Time}}. Protokół $I^2C$ bazuje na przesyłaniu ramek (pakietów) składających się z sekwencji: START -> adres -> dane -> STOP.
-
-W celu wygenerowania impulsu START należy ustawić linie \emph{SDA} oraz \emph{SCL} w stan \emph{HIGH} (5V) po czym w trakcie gdy linia \emph{SCL} jest w stanie \emph{HIGH} należy zmienić stan linii \emph{SDA} na stan \emph{LOW}. Analogicznie do wygenerowania impulsu STOP należy w trakcie, gdy linia \emph{SCL} jest w stanie \emph{HIGH} zmienić stan linii \emph{SDA} ze stanu \emph{LOW} na stan \emph{HIGH}. Dane wysyłane/odbierane są bit po bicie - na początku należy ustawić linię \emph{SCL} w stan wysoki (HIGH), odczytać wartość na linii \emph{SDA}, a następnie zmienić stan linii \emph{SCL} na niski (LOW).
 
 Adresowanie urządzenia odbywa się poprzez wysłanie pojedynczych bitów adresu (pamiętając o kolejności MSB->LCB\footnote{Wysyłanie odbywa się w kolejności od najbardziej znaczących (najstarszych) bitów}) oraz wygenerowanie impulsu zegara. Gdy chcemy zaadresować urządzenie, którego adresem jest np. 4, należy wykonać:
 \begin{lstlisting}[label=bot-dirs-alg,caption=Własna wersja adresowania urządzenia $I^2C$ na przykładzie PCF8574N]
@@ -447,7 +452,7 @@ int readPCF(char adres){
    delay(d);
    digitalWrite(sda, HIGH);
    delay(d);
-   return wynik;	// Zwrócenie wyniku
+   return wynik;		// Zwrócenie wyniku
 }
 \end{lstlisting}
 
@@ -470,7 +475,7 @@ W symulatorze samochodu ze względu na dużą ilość wychodzących sygnałów z
 \section{Protokół komunikacyjny SPI}
 Protokół SPI\footnote{ang. Serial Peripherial Interface} jest szeregowym protokołem komunikacyjnym składającym się z czterech podstawowych linii - dwóch służących do przesyłania danych w przeciwnych kierunkach, jednej z sygnałem taktującym, synchronizującym transfer danych oraz linii \emph{Chip Select}. \emph{Chip Select} jest odpowiednikiem adresu urządzenia z protokołu $I^2C$. Każde urządzenie podłączone pod system musi mieć osobną linię \emph{Chip Select}. Gdy linia zostanie aktywowana (ustawiona w stan LOW) można rozpocząć komunikację z wybranym urządzeniem.
 
-Linia MISO\footnote{ang. Master In Slave Out} jest linią wejścia danych dla urządzenia nadrzędnego (master), a wyjściem dla urządzenia podrzędnego (slave), linia MOSI\footnote{ang. Master Out Slave In} jest wyjściem dla urządzenia master, a wejściem dla slave. Linia SCK\footnote{ang. Serial Clock} jest wejściem taktującym zegar. Sygnał taktujący jest zawsze generowany przez układ master. Transmisja danych na obydwu liniach jest zawsze dwukierunkowa i odbywa się jednocześnie - nadanie danych na linii MISO wiąże się z nadaniem danych na linii MOSI. Nie zawsze jednak nadane dane niosą ze sobą informację - najczęściej nadawane informacje płyną w jedną stronę, podczas gdy w tym samym czasie wysyłane zostają puste dane.\cite{Dorra}
+Linia MISO\footnote{ang. Master In Slave Out} jest linią wejścia danych dla urządzenia nadrzędnego (master), a wyjściem dla urządzenia podrzędnego (slave), linia MOSI\footnote{ang. Master Out Slave In} jest wyjściem dla urządzenia master, a wejściem dla slave. Linia SCK\footnote{ang. Serial Clock} jest wejściem taktującym zegar. Sygnał taktujący jest zawsze generowany przez układ master. Transmisja danych na obydwu liniach jest zawsze dwukierunkowa i odbywa się jednocześnie - nadanie danych na linii MISO wiąże się z nadaniem danych na linii MOSI. Nie zawsze jednak nadane dane niosą ze sobą informację - najczęściej nadawane informacje płyną w jedną stronę, podczas gdy w tym samym czasie wysyłane zostają puste dane jak zostało to przedstawione na rysunku 5.3.\cite{Dorra}
 
 \begin{figure}[!h]
     \centering
@@ -494,7 +499,7 @@ void sendData(int data, int CS, int clock, int SDO){
 \end{lstlisting}
 
 \subsection{Komunikacja z ekranem FTDI EVE VM800b poprzez protokół SPI}
-Wyświetlacz TFT FTDI EVE VM800B jest obsługiwany za pomocą protokołu SPI. Podobnie jak w przypadku protokołu $I^2C$ została napisana własna wersja biblioteki do obsługi protokołu SPI. Do komunikacji niezbędne było napisanie funkcji implementujących podstawowe niskopoziomowe procedury komunikacyjne:
+Wyświetlacz TFT FTDI EVE VM800B jest obsługiwany za pomocą protokołu SPI. Do komunikacji niezbędne było napisanie funkcji implementujących podstawowe niskopoziomowe procedury komunikacyjne:
 \begin{enumerate}
 	\item \emph{void sendData(int data)} - funkcja wysyłająca wartość 8 bitową
 	\item \emph{void ft800memWriteX(unsigned long ftAddress, unsigned char ftDataX)} - funkcja wpisująca podaną wartość X - bitową na podany adres, gdzie X może być wartością 8, 16 lub 32 bitową
@@ -503,7 +508,7 @@ Wyświetlacz TFT FTDI EVE VM800B jest obsługiwany za pomocą protokołu SPI. Po
 	\item \emph{void ft800cmdWrite(unsigned char ftCommand)} - funkcja wysyłająca podaną komendę do ekranu - np. Start urządzenia ($FT800_ACTIVE$)
 \end{enumerate}
 
-Wyświetlacz ma możliwość korzystania z systemu \emph{HMI} więc do obsługi zostało napisane proste API, które dostarcza następujące funkcjonalności:
+Wyświetlacz ma możliwość korzystania z wbudowanego w firmware systemu \emph{HMI} więc do obsługi zostało napisane proste API, które dostarcza następujące funkcjonalności:
  \begin{enumerate}
 	\item inicjalizacja ekranu
 	\item rysowanie kółka o podanym rozmiarze, kolorze i w podanym miejscu
@@ -617,7 +622,7 @@ Po włączeniu systemu na ekranie pojawia się powitanie oraz ekran startowy, na
 
 \begin{figure}[!h]
     \centering
-    	\includegraphics[height=0.3\textheight]{images/start.JPG}
+    	\includegraphics[height=0.4\textheight]{images/start.JPG}
     \caption{Ekran startowy}
     \source{Opracowanie własne}
 \end{figure} 
@@ -634,7 +639,7 @@ Pierwszy z nich umożliwia przejście w tryb aktywnego lusterka wstecznego, któ
 
 \begin{figure}[!h]
     \centering
-    	\includegraphics[height=0.3\textheight]{images/mainScreen.JPG}
+    	\includegraphics[height=0.4\textheight]{images/mainScreen.JPG}
     \caption{Ekran główny}
     \source{Opracowanie własne}
 \end{figure}
@@ -645,7 +650,7 @@ Wyłączenie systemu następuje wraz z wyłączeniem zapłonu w samochodzie.
 
 \begin{figure}[!h]
     \centering
-    	\includegraphics[height=0.3\textheight]{images/opcje.JPG}
+    	\includegraphics[height=0.4\textheight]{images/opcje.JPG}
     \caption{Ekran opcji}
     \source{Opracowanie własne}
 \end{figure}
@@ -685,7 +690,9 @@ void writeSD(){
   fclose(fp);
 \end{lstlisting}
 
-Intel Galileo wyposażony jest w zegar czasu rzeczywistego (RTC), który został wykorzystany do synchronizacji zapisu danych do pliku. Dane zapisywane są do pliku, którego nazwa jest taka sama jak data. Do odczytania aktualnej daty wystarczy użyć standardowych funkcji dostępnych w języku C. Należy jednak pamiętać o tym, aby zegar był cały czas zasilany poprzez zewnętrzną baterię. W przeciwnym wypadku za każdym razem będzie on resetowany do domyślnej daty.
+Intel Galileo wyposażony jest w zegar czasu rzeczywistego (RTC), który został wykorzystany do synchronizacji zapisu danych do pliku. Dane zapisywane są do pliku, którego nazwa jest taka sama jak data. Do odczytania aktualnej daty wystarczy użyć standardowych funkcji dostępnych w języku C. 
+
+Należy jednak pamiętać o tym, aby zegar był cały czas zasilany poprzez zewnętrzną baterię. W przeciwnym wypadku za każdym razem będzie on resetowany do domyślnej daty.
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Odczyt aktualnej daty]
   system("date '+%H:%M:%S' > /tmp/time.txt");
@@ -696,7 +703,7 @@ Intel Galileo wyposażony jest w zegar czasu rzeczywistego (RTC), który został
   fclose(fp);
 \end{lstlisting}
 
-W systemie samochód obrazowany jest za pomocą struktury, która jako pola posiada informację na temat aktualnego stanu pojazdu. Drzwi oraz pasy zostały zobrazowane jako liczba naturalna, w której poszczególne bity oznaczają stany binarne (1 - otwarte, 0 - zamknięte).
+W systemie stan samochodu obrazowany jest za pomocą struktury, która jako pola posiada informację na temat aktualnego stanu pojazdu. Drzwi oraz pasy zostały zobrazowane jako liczba naturalna, w której poszczególne bity oznaczają stany binarne (1 - otwarte, 0 - zamknięte).
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Struktura samochodu w programie]
 struct car {
@@ -710,7 +717,9 @@ struct car {
 };
 \end{lstlisting}
 
-Dodatkowym modułem systemu jest uruchomiony na mikrokomputerze Intel Galileo, napisany w technologii \emph{NodeJS} serwer www udostępniający usługę śledzenia pojazdu. Gdy system zostanie podłączony do internetu (np. poprzez wejście Ethernet lub kartę Wi-Fi) użytkownik ma możliwość wejścia na stronę www gdzie może na bieżąco sprawdzać położenie samochodu na mapie oraz aktualną temperaturę wraz ze stanem drzwi oraz pasów. Komunikacja systemu z serwerem odbywa się poprzez udostępnione \emph{REST API}. Użycie technologii \emph{AngularJS} pozwala na wyświetlanie bieżących danych bez konieczności odświeżania strony.
+Dodatkowym modułem systemu jest uruchomiony na mikrokomputerze Intel Galileo, napisany w technologii \emph{NodeJS} serwer www udostępniający usługę śledzenia pojazdu. Gdy system zostanie podłączony do komputera (np. poprzez kabel Ethernet lub poprzez sieć bezprzewodową) użytkownik ma możliwość wejścia na stronę www gdzie może na bieżąco sprawdzać położenie samochodu na mapie oraz aktualną temperaturę wraz ze stanem drzwi oraz pasów. Komunikacja systemu z serwerem odbywa się poprzez udostępnione \emph{REST API}. 
+
+Użycie technologii \emph{AngularJS} pozwala na wyświetlanie bieżących danych bez konieczności odświeżania strony.
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Request wysyłany do serwera www]
 curl -i -X POST -H 'Content-Type: application/json' -d 
