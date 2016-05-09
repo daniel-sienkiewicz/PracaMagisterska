@@ -502,10 +502,10 @@ void sendData(int data, int CS, int clock, int SDO){
 Wyświetlacz TFT FTDI EVE VM800B jest obsługiwany za pomocą protokołu SPI. Do komunikacji niezbędne było napisanie funkcji implementujących podstawowe niskopoziomowe procedury komunikacyjne:
 \begin{enumerate}
 	\item \emph{void sendData(int data)} - funkcja wysyłająca wartość 8 bitową
-	\item \emph{void ft800memWriteX(unsigned long ftAddress, unsigned char ftDataX)} - funkcja wpisująca podaną wartość X - bitową na podany adres, gdzie X może być wartością 8, 16 lub 32 bitową
+	\item \emph{void ft800memWriteX(unsigned long ftAddress, unsigned char ftData)} - funkcja wpisująca podaną wartość X - bitową na podany adres, gdzie X może być wartością 8, 16 lub 32 bitową
 	\item \emph{unsigned char ft800memReadX(unsigned long ftAddress)} - funkcja odczytująca wartość X - bitową z podanego adresu, gdzie X może być wartością 8, 16 lub 32 bitową
 	\item \emph{unsigned int incCMDOffset(unsigned int currentOffset, unsigned char commandSize)} - funkcja zwiększająca offset w buforze pamięci ekranu
-	\item \emph{void ft800cmdWrite(unsigned char ftCommand)} - funkcja wysyłająca podaną komendę do ekranu - np. Start urządzenia ($FT800_ACTIVE$)
+	\item \emph{void ft800cmdWrite(unsigned char ftCommand)} - funkcja wysyłająca podaną komendę do ekranu - np. Start urządzenia (FT800\_ACTIVE)
 \end{enumerate}
 
 Wyświetlacz ma możliwość korzystania z wbudowanego w firmware systemu \emph{HMI} więc do obsługi zostało napisane proste API, które dostarcza następujące funkcjonalności:
