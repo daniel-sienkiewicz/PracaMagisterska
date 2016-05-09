@@ -123,7 +123,7 @@ Na rysunku 2.2 oraz 2.3 przedstawione zostało zdjęcie płytki oraz jej schemat
 
 Do komunikacji z Intel Galileo programista ma do dyspozycji port RS-232, USB (działające w trybie host oraz client) oraz wyjście Ehernet. Intel Galileo jest zasilane napięciem 5V 2.0A, które może zostać dostarczone poprzez zasilacz z zestawu lub poprzez podłączenie zasilania do portów PWR\footnote{Port używany jako port zasilania (5V)} oraz GND\footnote{Port używany jako masa - GROUND}. Standardowym środowiskiem programistycznym mikrokomputera jest Intel Arduino Studio. Programista pisząc w języku C/C++ i używając dostarczonych przez producenta Arduino funkcji do obsługi portów, może wystawiać na nich stany logiczne. Następnie przesyła skompilowaną wersję oprogramowania poprzez kabel USB do urządzenia. Po przesłaniu program zostaje załadowany do pamięci urządzenia i uruchomiony. 
 
-Standardowo w Intel Galileo znajduje się podstawowa wersja systemu mini Linux bazująca na dystrybucji \emph{YOCTO}. Użytkownik może jednak użyć pełnego obrazu systemu uruchamiając go z karty pamięci. Komunikację z systemem operacyjnym można prowadzić w dowolnym języku programowania (np. C, NodeJS, python) łącząc się poprzez dowolny port komunikacyjny na przykład: SSH\footnote{ang. secure shell - protokół komunikacyjny służący do połączenia się ze zdalnym komputerem będącym w sieci} lub port RS-232.
+Standardowo w Intel Galileo znajduje się podstawowa wersja systemu mini Linux bazująca na dystrybucji \emph{YOCTO}. Użytkownik może jednak użyć pełnego obrazu systemu uruchamiając go z karty pamięci. Komunikację z systemem operacyjnym można prowadzić w dowolnym języku programowania (np. C, NodeJS, python) łącząc się poprzez dowolny protokół komunikacyjny na przykład: SSH\footnote{ang. secure shell - protokół komunikacyjny służący do połączenia się ze zdalnym komputerem będącym w sieci}.
 
 \begin{figure}[!h]
     \centering
@@ -190,7 +190,7 @@ Do celów demonstracyjnych oraz implementacji oprogramowania komputer nie zosta�
 
 Symulator składa się z:
 \begin{enumerate}
-	\item 11 przełączników bistabilnych symulujących stan drzwi samochodu (wraz z stanem bagażnika), pasy pasażerów, przełączanie biegu na wsteczny oraz włączenie świateł - wciśniecie przełącznika dodatkowo obrazowane jest poprzez zaświecenie diody LED zamontowanej w symulatorze
+	\item 12 przełączników bistabilnych symulujących stan drzwi samochodu (wraz z stanem bagażnika), pasy pasażerów, przełączanie biegu na wsteczny oraz włączenie świateł - wciśniecie przełącznika dodatkowo obrazowane jest poprzez zaświecenie diody LED zamontowanej w symulatorze
 	\item 2 I/O Expanderów PCF 8574N 
 	\item 3 potencjometrów symulujących czujniki temperatury w samochodzie
 \end{enumerate}
@@ -655,7 +655,7 @@ Wyłączenie systemu następuje wraz z wyłączeniem zapłonu w samochodzie.
     \source{Opracowanie własne}
 \end{figure}
 
-Komunikacja z ekranem TFT odbywa się za pomocą protokołu \emph{SPI}. Łącznie użytych zostało 7 linii: \emph{SDI}, \emph{SDO}, \emph{clock}, \emph{PD}, CS\footnote{Linia Chip Select wyświetlacza} oraz PWR\footnote{ang. Power - 5V} i \emph{GND}\footnote{ang. Ground}, natomiast komunikacja komputera z symulatorem odbywa się za pomocą protokołu $I^2C$. Odczytanie wartości czujników cyfrowych odbywa się po otrzymaniu przerwania sprzętowego zgłaszanego przez I/O Expander przy zmianie jakiejkolwiek wartości, np. przy otworzeniu drzwi. Odczyt czujników analogowych (temperatura) odbywa się przy użyciu timera co jakiś czas, który jest określony w programie.
+Komunikacja z ekranem TFT odbywa się za pomocą protokołu \emph{SPI}. Łącznie użytych zostało 7 linii: \emph{SDI}, \emph{SDO}, \emph{clock}, \emph{PD}, CS\footnote{Linia Chip Select wyświetlacza} oraz PWR\footnote{ang. Power - 5V} i \emph{GND}\footnote{ang. Ground}, natomiast komunikacja komputera z symulatorem odbywa się za pomocą protokołu $I^2C$. Odczytanie wartości czujników cyfrowych odbywa się po otrzymaniu przerwania sprzętowego zgłaszanego przez I/O Expander przy zmianie jakiejkolwiek wartości, np. przy otworzeniu drzwi. Odczyt czujników analogowych (temperatura) odbywa się przy użyciu timera co określony w programie czas.
 
 Gdy została wybrana opcja zapisu danych na kartę pamięci, wtedy w nieskończonej pętli, w odstępach czasu wybranych przez użytkownika aktualna pozycja \emph{GPS} zostaje zapisywana do pliku tekstowego do momentu wyłączenia systemu, wyczerpania miejsca na karcie lub zmiany tej opcji przez użytkownika. Zapis do pliku odbywa się poprzez użycie standardowych funkcji języka C znajdujących się w \emph{stdlib.h}. Możliwy jest w 3 najbardziej popularnych formatach: CSV, JSON oraz XML. Format może zostać wybrany przez użytkownika poprzez zmianę w ustawieniach komputera.
 
