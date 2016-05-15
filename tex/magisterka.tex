@@ -257,7 +257,8 @@ Programy pisane w środowisku Arduino różnią się nieznacznie od klasycznych 
 Pierwszą różnicą jest jednorazowe wywołanie funkcji \emph{setup()} zaraz po przesłaniu i uruchomieniu programu, która służy np. do inicjalizacji wszystkich niezbędnych portów. W tej funkcji należy określić początkowe tryby pracy portów. Następnie wywołana zostaje funkcja \emph{loop()}, która jest równoznaczna z funkcją \emph{main()} w języku C, z tą różnicą, że jest wykonywana od momentu startu (zaraz po jednorazowym wykonaniu funkcji \emph{setup()}) aż do wyłączenia systemu.
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Odpowiednik wywołania pętli loop() w Arduino dla języka C/C++]
-void main() {
+void main(void) {
+	setup();
 	while(1)
 		loop();
 	return 0;
@@ -597,11 +598,11 @@ Najważniejszym założeniem funkcjonalnym projektowanego systemu była komunika
     \source{Opracowanie własne}
 \end{figure}
 
-Symulator samochodu został wykonany za pomocą 12 przełączników bistabilnych. Stan każdego przełącznika sygnalizowany jest za pomocą diody LED. Sygnały ze wszystkich przełączników odczytywane są za pomocą dwóch I/O Expanderów PCF8547. Do symulacji czujników temperatury zamontowane zostały trzy potencjometry wysyłające sygnał analogowy. Wszystkie sygnały doprowadzone zostały do wtyczki, która poprzez taśmę podłączona jest do Intel Galileo. Cały zestaw zasilany jest przez kontroler napięciem 5V.
+Symulator samochodu został wykonany za pomocą 12 przełączników bistabilnych. Stan każdego przełącznika sygnalizowany jest za pomocą diody LED. Sygnały ze wszystkich przełączników odczytywane są za pomocą dwóch I/O Expanderów PCF8547, którym ustawiono adresy sprzętowe 0 oraz 4, które w połączeniu z ich domyślnymi adresami dają efektywne adresy \emph{0x71} oraz \emph{0x73}. Do sygnalizowania zmiany stanu przełączników wykorzystane zostały możliwości generowania przerwań przez Expandery, których linie \emph{int} połączone są razem i doprowadzone do pinu 2 w Galileo. Procedura przerwań wczytuje do globalnej struktury aktualne dane i kończy działanie. Do symulacji czujników temperatury zamontowane zostały trzy potencjometry wysyłające sygnał analogowy w zakresie od 0V do 5V. Wszystkie sygnały doprowadzone zostały do wtyczki, która poprzez taśmę podłączona jest do Intel Galileo. Cały zestaw zasilany jest przez kontroler napięciem 5V.
 
 \begin{figure}[!h]
     \centering
-    	\includegraphics[height=0.64\textheight]{images/symulator.png}
+    	\includegraphics[height=0.4\textheight]{images/symulator.png}
     \caption{Schemat elektryczny symulatora samochodu}
     \source{Opracowanie własne}
 \end{figure}
@@ -657,7 +658,7 @@ Wyłączenie systemu następuje wraz z wyłączeniem zapłonu w samochodzie.
 
 Komunikacja z ekranem TFT odbywa się za pomocą protokołu \emph{SPI}. Łącznie użytych zostało 7 linii: \emph{SDI}, \emph{SDO}, \emph{clock}, \emph{PD}, CS\footnote{Linia Chip Select wyświetlacza} oraz PWR\footnote{ang. Power - 5V} i \emph{GND}\footnote{ang. Ground}, natomiast komunikacja komputera z symulatorem odbywa się za pomocą protokołu $I^2C$. Odczytanie wartości czujników cyfrowych odbywa się po otrzymaniu przerwania sprzętowego zgłaszanego przez I/O Expander przy zmianie jakiejkolwiek wartości, np. przy otworzeniu drzwi. Odczyt czujników analogowych (temperatura) odbywa się przy użyciu timera co określony w programie czas.
 
-Gdy została wybrana opcja zapisu danych na kartę pamięci, wtedy w nieskończonej pętli, w odstępach czasu wybranych przez użytkownika aktualna pozycja \emph{GPS} zostaje zapisywana do pliku tekstowego do momentu wyłączenia systemu, wyczerpania miejsca na karcie lub zmiany tej opcji przez użytkownika. Zapis do pliku odbywa się poprzez użycie standardowych funkcji języka C znajdujących się w \emph{stdlib.h}. Możliwy jest w 3 najbardziej popularnych formatach: CSV, JSON oraz XML. Format może zostać wybrany przez użytkownika poprzez zmianę w ustawieniach komputera.
+Gdy została wybrana opcja zapisu danych na kartę pamięci, wtedy w nieskończonej pętli, w odstępach czasu wybranych przez użytkownika aktualna pozycja \emph{GPS} zostaje zapisywana do pliku tekstowego do momentu wyłączenia systemu, wyczerpania miejsca na karcie lub zmiany tej opcji przez użytkownika. Zapis do pliku odbywa się poprzez użycie standardowych funkcji języka C znajdujących się w \emph{stdlib.h}, mechanizmy Arduino oraza mechanizmy systemu operacyjnego. W zaproponowanym rozwiązaniu przyjęto wersję z biblioteką \emph{stdio.h}. Możliwy jest w 3 najbardziej popularnych formatach: CSV, JSON oraz XML. Format może zostać wybrany przez użytkownika poprzez zmianę w ustawieniach komputera.
 
 \begin{lstlisting}[label=bot-dirs-alg,caption=Obsługa karty microSD za pomocą mechanizmu Arduino]
 void writeSD(char *filename, char * data){

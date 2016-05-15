@@ -217,8 +217,8 @@ void setup(void){
   Serial.print("Aktualny czas: ");
   Serial.println(buf);
   
-  Timer1.initialize(999999); 
-  Timer1.attachInterrupt(checkChangesAnalog, 999999);
+  //Timer1.initialize(999999); 
+  //Timer1.attachInterrupt(checkChangesAnalog, 999999);
   
   initScreen();
 }
@@ -228,6 +228,20 @@ void setup(void){
 * @details function executed in infinity loop after finished executing setup function *
 ***************************************************************************************/
 void loop(){
+   uint32_t ReadWord = ft800memRead32(REG_TOUCH_DIRECT_XY);
+   uint32_t y = ReadWord & 1023;
+   uint32_t x = ReadWord >> 10;
+   int touch = ReadWord >> 31;
+  
+   Serial.print("x = ");
+   Serial.println(x);
+  
+   Serial.print("y = ");
+   Serial.println(y);
+   
+   Serial.println(touch);
+   Serial.println();
+   delay(300);
   // Screens controller
   /*switch(screenNR){
     case 1:
