@@ -228,9 +228,9 @@ void setup(void){
 * @details function executed in infinity loop after finished executing setup function *
 ***************************************************************************************/
 void loop(){
-   uint32_t ReadWord = ft800memRead32(REG_TOUCH_DIRECT_XY);
-   uint32_t y = ReadWord & 1023;
-   uint32_t x = ReadWord >> 10;
+   int ReadWord = ft800memRead32(REG_TOUCH_DIRECT_XY);
+   int y = ReadWord & 1023;
+   int x = (ReadWord >> 16) & 1023;
    int touch = ReadWord >> 31;
   
    Serial.print("x = ");
@@ -241,7 +241,7 @@ void loop(){
    
    Serial.println(touch);
    Serial.println();
-   delay(300);
+   delay(3000);
   // Screens controller
   /*switch(screenNR){
     case 1:

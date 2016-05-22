@@ -211,7 +211,7 @@ Porty najczęściej dzieli się na:
 Porty cyfrowe charakteryzują się możliwością przyjęcia lub wysłania sygnału binarnego (1 - jest sygnał, 0 - sygnału nie ma). W standardzie \emph{TTL} wysłanie sygnału równego 1 jest równoznaczne z wysłaniem napięcia o wartości 5V oraz odpowiednio wysłanie sygnału 0 jest równoznaczne z wysłaniem napięcia równego 0V. Każdy z portów może działać w jednym  z dwóch trybów: wejścia - oczekiwać na przyjęcie danych od urządzenia zewnętrznego lub wyjścia - wysyłać dane do urządzenia zewnętrznego. Z kolei porty analogowe mogą przesyłać sygnały o większej liczbie stanów. Do obsługi sygnałów analogowych przez układ mikroprocesorowy niezbędny jest przetwornik analogowo-cyfrowy, który w Intel Galileo jest 10 bitowy - co oznacza możliwość wysłania jednorazowo do 10 bitów danych.
 
 \subsection{Odpytywanie w pętli}
-Jedną z najprostszych metod pozyskania danych z urządzeń wejścia/wyjścia mikro kontrolera jest odpytywanie urządzeń zewnętrznych w nieskończonej pętli. Jest to najmniej efektywny sposób, ponieważ zajmuje zasoby sprzętu zapytaniami, które nie zawsze są konieczne. Odczyt stanu urządzeń wejścia/wyjścia może być realizowany za pomocą mechanizmów systemu operacyjnego (wykorzystując gotowe biblioteki np. Arduino/Wire) lub niskopoziomowo z wykorzystaniem funkcji języka C i/lub Asemblera.
+Jedną z najprostszych metod pozyskania danych z urządzeń wejścia/wyjścia mikrokontrolera jest odpytywanie urządzeń zewnętrznych w nieskończonej pętli. Jest to najmniej efektywny sposób, ponieważ zajmuje zasoby sprzętu zapytaniami, które nie zawsze są konieczne. Odczyt stanu urządzeń wejścia/wyjścia może być realizowany za pomocą mechanizmów systemu operacyjnego (wykorzystując gotowe biblioteki np. Arduino/Wire) lub niskopoziomowo z wykorzystaniem funkcji języka C i/lub Asemblera.
 
 \subsection{Przerwania}
 Alternatywnym mechanizmem do odpytywania w pętli jest mechanizm przerwań. 
@@ -374,7 +374,7 @@ Należy pamiętać aby najpierw ustalić tryb w jakim ma działać port. W przyp
 
 %================IMPLEMENTACJA=====================
 \chapter{Implementacja}
-W mikro kontrolerach komunikacja z urządzeniami wejścia/wyjścia zwykle obsługiwana jest za pomocą specyficznych protokołów komunikacyjnych np. $I^2C$ oraz SPI. W Galileo obsługa tych interfejsów realizowana jest na poziomie sprzętowym. Do obsługi tych protokołów w systemie Arduino dostępna jest biblioteka \emph{Wire}. Komunikacja poprzez $I^2C$  oraz SPI może odbywać się na poziomie kontrolera sprzętowego lub programowo. Z powodu problemów wynikających z użycia tej biblioteki została opracowana osobna wersja biblioteki stworzona na potrzeby tego projektu.
+W mikrokontrolerach komunikacja z urządzeniami wejścia/wyjścia zwykle obsługiwana jest za pomocą specyficznych protokołów komunikacyjnych np. $I^2C$ oraz SPI. W Galileo obsługa tych interfejsów realizowana jest na poziomie sprzętowym. Do obsługi tych protokołów w systemie Arduino dostępna jest biblioteka \emph{Wire}. Komunikacja poprzez $I^2C$  oraz SPI może odbywać się na poziomie kontrolera sprzętowego lub programowo. Z powodu problemów wynikających z użycia tej biblioteki została opracowana osobna wersja biblioteki stworzona na potrzeby tego projektu.
 
 \section{Protokół komunikacyjny $I^2C$}
 Protokół komunikacyjny \emph{$I^2C$}\footnote{ang. Inter-Integrated Circuit} jest szeregowym interfejsem stworzonym przez firmę \emph{Philips} służącym do przesyłania danych między urządzeniami elektrycznymi. W projekcie protokół ten został użyty do komunikacji z I/O Expander PCF 8574N obsługującym płytkę symulatora samochodu.
@@ -785,7 +785,7 @@ Katalog \emph{datasheets} zawiera karty katalogowe użytych podzespołów
 \item PCF8574.pdf - Karta katalogowa I/O Expander PCF 8574N
 \item VM800B.pdf - Karta katalogowa ekranu FTDI EVE VM800B
 \end{enumerate}
-\chapter{Porównanie dostępnych na rynku mikro kontrolerów}
+\chapter{Porównanie dostępnych na rynku mikrokontrolerów}
 \begin{table}[!tbh]
 \begin{tabular}{|c|c|c|c|} \hline
  & \textbf{Intel Galileo} & \textbf{Raspberry Pi (Model B)} & \textbf{Arduino Uno} \\ \hline
@@ -798,7 +798,7 @@ Analog I/O	& 6 & 17 & 6 \\ \hline
 Digital I/O	& 14 & 8 & 14 \\ \hline
 PWM	& 6 & 1 & 6 \\ \hline
 \end{tabular}
-\caption{Specyfikacja dostępnych na rynku mikro kontrolerów}
+\caption{Specyfikacja dostępnych na rynku mikrokontrolerów}
 \source{\url{http://eu.mouser.com/applications/open-source-hardware-galileo-pi/}\cite{GalileoVSRaspberry}}
 \source{\url{http://botland.com.pl/arduino-moduly-glowne/1060-arduino-uno-r3.html}\cite{Botland}}
 \end{table}
