@@ -184,7 +184,7 @@ void setup(void){
 
   // Configure Touch and Audio - not used in this example, so disable both
   //ft800memWrite8(REG_TOUCH_MODE, 0x03);
-  ft800memWrite16(REG_TOUCH_RZTHRESH, 1200);    // Eliminate any false touches
+  ft800memWrite16(REG_TOUCH_RZTHRESH, 12000);    // Eliminate any false touches
 
   ft800memWrite8(REG_VOL_PB, ZERO);		// turn recorded audio volume down
   ft800memWrite8(REG_VOL_SOUND, ZERO);		// turn synthesizer volume down
@@ -220,6 +220,7 @@ void setup(void){
   //Timer1.initialize(999999); 
   //Timer1.attachInterrupt(checkChangesAnalog, 999999);
   
+  calibrate();
   initScreen();
 }
 
@@ -228,49 +229,50 @@ void setup(void){
 * @details function executed in infinity loop after finished executing setup function *
 ***************************************************************************************/
 void loop(){
-   int ReadWord = ft800memRead32(REG_TOUCH_DIRECT_XY);
-   int y = ReadWord & 1023;
-   int x = (ReadWord >> 16) & 1023;
-   int touch = ReadWord >> 31;
+  delay(1000);
+  int coor = ft800memRead32(REG_TOUCH_SCREEN_XY);
+  int x = (coor >> 16) & 0xffff;
+  int y = coor & 0xffff;
   
-   Serial.print("x = ");
-   Serial.println(x);
+  Serial.print(x);
+  Serial.print(" ");
+  Serial.println(y);
   
-   Serial.print("y = ");
-   Serial.println(y);
-   
-   Serial.println(touch);
-   Serial.println();
-   delay(3000);
   // Screens controller
-  /*switch(screenNR){
+  switch(screenNR){
     case 1:
-      if(18000 < y && y < 50000 && 12000 < x && x < 65000){
+      if(x != 0 && y != 0 && x > 4000 && y > 4000 && x < 36000 && y < 36000){
         screenNR = 2;
         smartMirrorScreen();
+        Serial.println("Guzik1");
       }
-      if(30000 < y && y < 47000 && 30000 < x && x < 46000){
+      
+      else if(x != 0 && y != 0 && x > 51000 && y > 51000){
         screenNR = 3;
-        smartMirrorScreen();
-      }
+        opctionsScreen();
+        Serial.println("Guzik2");
+      }      
      break;
-    case 2:
-      if(18000 < y && y < 50000 && 12000 < x && x < 65000){
+     
+     case 2:
+       if(x != 0 && y != 0 && x > 4000 && y > 4000 && x < 36000 && y < 36000){
         screenNR = 1;
         mainScreen();
       }
-     break;
+      break;
+      
      case 3:
-       if(18000 < y && y < 50000 && 12000 < x && x < 65000){
-         screenNR = 1;
-         mainScreen();
-       }
-       if(30000 < y && y < 47000 && 30000 < x && x < 46000){
-        screenNR = 3;
-        calibrate();
+       if(x != 0 && y != 0 && x > 4000 && y > 4000 && x < 36000 && y < 36000){
+        screenNR = 1;
+        mainScreen();
       }
-       break;
-  }*/
+      break; 
+  }
+  
+  do{
+    cmdBufferRd=ft800memRead16(REG_CMD_READ);
+    cmdBufferWr=ft800memRead16(REG_CMD_WRITE);
+  }while(cmdBufferWr!=cmdBufferRd);
 }
 
 /**

@@ -61,6 +61,7 @@ void mainScreen(){
   button(10, 200, 130, 30, 28, 0, "Smart Mirror");
   button(200, 200, 110, 30, 28, 0, "Options");
   autko();
+  
   show();
   Serial.println("Koniec Mainscreen");
 }
